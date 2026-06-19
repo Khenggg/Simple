@@ -870,8 +870,10 @@ async function openProblem(slug) {
   const examples = (problem.examples || []).map((ex, i) => `<div class="example"><div class="example-head">Ví dụ ${i+1}</div><div class="example-grid"><div>Input<pre>${escapeHtml(ex.input)}</pre></div><div>Output<pre>${escapeHtml(ex.output)}</pre></div></div>${ex.explanation ? `<div style="padding:0 12px 12px" class="muted">${escapeHtml(ex.explanation)}</div>` : ''}</div>`).join('');
   shell(`<div class="solve-mobile-tabs" role="tablist"><button class="active" id="show-problem" role="tab">Đề bài</button><button id="show-code" role="tab">Code & Shell</button></div><section class="solve-layout" id="solve-layout">
     <article class="problem-pane" id="problem-pane"><span class="badge ${ratingClass}">${rating} · ${escapeHtml(ratingLabel)}</span><h2>${escapeHtml(problem.title)}</h2><div class="markdown">${markdown(problem.description)}</div><div class="section-head"><h3>Ví dụ</h3></div>${examples}</article>
+    <div class="solve-layout-resizer-h" id="resizer-h"></div>
     <section class="editor-pane"><div class="editor-bar"><span><i class="python-dot"></i> PYTHON 3 · main.py</span><span class="timer" id="timer">--:--</span></div>
       <div class="code-editor" id="code" aria-label="Mã nguồn Python"></div>
+      <div class="solve-layout-resizer-v" id="resizer-v"></div>
       <section class="terminal" aria-label="Terminal"><div class="terminal-header"><div class="terminal-dots"><span></span><span></span><span></span></div><span class="terminal-title">Terminal — Python 3 <span id="python-status" style="font-size:11px; margin-left:8px; opacity:0.8; color: ${initialStatusColor}">${initialStatusText}</span></span><div class="terminal-actions"><button class="term-btn" id="clear-shell" title="Xóa terminal (clear)">⌫</button><button class="term-btn stop" id="stop" title="Ngắt tiến trình (Ctrl+C)" disabled>■ Stop</button><button class="term-btn run" id="run" title="Chạy thử (python main.py)">▶ Run</button><button class="term-btn submit" id="submit" title="Nộp bài chấm điểm">⬆ Nộp bài</button></div></div>
         <div class="terminal-screen" id="terminal-host" tabindex="0" aria-label="Terminal Python tương tác"></div>
       </section>
@@ -897,6 +899,7 @@ async function openProblem(slug) {
     }
   }
   await setupEditor();
+  initResizers();
 }
 
 async function setupEditor() {
@@ -1201,3 +1204,120 @@ window.addEventListener('pyodide-state-change', (e) => {
     statusEl.style.color = 'var(--muted)';
   }
 });
+
+function initResizers() {
+  const layout = document.querySelector('#solve-layout');
+  const problemPane = document.querySelector('#problem-pane');
+  const editorPane = document.querySelector('.editor-pane');
+  const codeEditor = document.querySelector('#code');
+  const terminal = document.querySelector('.terminal');
+  const resizerH = document.querySelector('#resizer-h');
+  const resizerV = document.querySelector('#resizer-v');
+
+  if (!layout || !problemPane || !editorPane || !codeEditor || !terminal || !resizerH || !resizerV) return;
+
+  // Load saved dimensions
+  const savedWidth = localStorage.getItem('simpleoj-problem-pane-width');
+  const savedHeight = localStorage.getItem('simpleoj-terminal-height');
+
+  if (savedWidth && window.innerWidth > 1000) {
+    problemPane.style.width = savedWidth + 'px';
+    problemPane.style.flex = 'none';
+  } else {
+    if (window.innerWidth > 1000) {
+      problemPane.style.width = '40%';
+      problemPane.style.flex = 'none';
+    }
+  }
+
+  if (savedHeight && window.innerWidth > 1000) {
+    terminal.style.height = savedHeight + 'px';
+    terminal.style.flex = 'none';
+  } else {
+    if (window.innerWidth > 1000) {
+      terminal.style.height = '280px';
+      terminal.style.flex = 'none';
+    }
+  }
+
+  // Trigger Monaco editor redraw and xterm layout change on load
+  requestAnimationFrame(() => {
+    state.editor?.layout();
+    state.terminal?.fit();
+  });
+
+  // Horizontal Resizer (left/right)
+  resizerH.addEventListener('mousedown', (e) => {
+    if (window.innerWidth <= 1000) return;
+    e.preventDefault();
+    const startX = e.clientX;
+    const startWidth = problemPane.getBoundingClientRect().width;
+    document.body.classList.add('resizing');
+
+    const onMouseMove = (moveEvent) => {
+      const dx = moveEvent.clientX - startX;
+      let newWidth = startWidth + dx;
+      const minWidth = 280;
+      const maxWidth = window.innerWidth - 450;
+      
+      if (newWidth < minWidth) newWidth = minWidth;
+      if (newWidth > maxWidth) newWidth = maxWidth;
+
+      problemPane.style.width = newWidth + 'px';
+      problemPane.style.flex = 'none';
+
+      state.editor?.layout();
+    };
+
+    const onMouseUp = () => {
+      document.body.classList.remove('resizing');
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+
+      localStorage.setItem('simpleoj-problem-pane-width', problemPane.getBoundingClientRect().width);
+      state.editor?.layout();
+    };
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+  });
+
+  // Vertical Resizer (up/down)
+  resizerV.addEventListener('mousedown', (e) => {
+    if (window.innerWidth <= 1000) return;
+    e.preventDefault();
+    const startY = e.clientY;
+    const startHeight = terminal.getBoundingClientRect().height;
+    document.body.classList.add('resizing-v');
+
+    const onMouseMove = (moveEvent) => {
+      const dy = moveEvent.clientY - startY;
+      let newHeight = startHeight - dy;
+      const minHeight = 100;
+      const editorPaneHeight = editorPane.getBoundingClientRect().height;
+      const maxHeight = editorPaneHeight - 48 - 150; // min 150px editor height, 48px header bar
+
+      if (newHeight < minHeight) newHeight = minHeight;
+      if (newHeight > maxHeight) newHeight = maxHeight;
+
+      terminal.style.height = newHeight + 'px';
+      terminal.style.flex = 'none';
+
+      state.editor?.layout();
+      state.terminal?.fit();
+    };
+
+    const onMouseUp = () => {
+      document.body.classList.remove('resizing-v');
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+
+      localStorage.setItem('simpleoj-terminal-height', terminal.getBoundingClientRect().height);
+      state.editor?.layout();
+      state.terminal?.fit();
+    };
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+  });
+}
