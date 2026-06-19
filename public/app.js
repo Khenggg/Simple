@@ -179,8 +179,22 @@ function shell(content, title = 'Tổng quan') {
   });
   const shellEl = document.querySelector('#shell');
   const sidebar = document.querySelector('#sidebar');
-  const closeMobileNav = () => { sidebar.classList.remove('open'); shellEl.classList.remove('nav-open'); };
-  document.querySelector('#menu').onclick = () => { sidebar.classList.add('open'); shellEl.classList.add('nav-open'); };
+  
+  const closeMobileNav = () => {
+    sidebar.classList.remove('open');
+    shellEl.classList.remove('nav-open');
+    document.body.style.overflow = '';
+    // Accessibility: return focus to hamburger menu
+    document.querySelector('#menu')?.focus();
+  };
+  
+  const openMobileNav = () => {
+    sidebar.classList.add('open');
+    shellEl.classList.add('nav-open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  document.querySelector('#menu').onclick = openMobileNav;
   document.querySelector('#nav-backdrop').onclick = closeMobileNav;
   document.querySelector('#nav-toggle').onclick = () => {
     state.sidebarCollapsed = !state.sidebarCollapsed;
@@ -188,17 +202,40 @@ function shell(content, title = 'Tổng quan') {
     localStorage.setItem('simpleoj-sidebar', state.sidebarCollapsed ? 'collapsed' : 'expanded');
     requestAnimationFrame(() => state.editor?.layout());
   };
+
+  // Keyboard navigation: Escape closes drawer
+  if (window._onEscDrawer) {
+    document.removeEventListener('keydown', window._onEscDrawer);
+  }
+  window._onEscDrawer = (e) => {
+    if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+      closeMobileNav();
+    }
+  };
+  document.addEventListener('keydown', window._onEscDrawer);
+
   let touchStart = null;
   shellEl.addEventListener('touchstart', (event) => {
-    const t = event.changedTouches[0]; touchStart = { x:t.clientX, y:t.clientY };
-  }, { passive:true });
+    const t = event.changedTouches[0];
+    touchStart = { x: t.clientX, y: t.clientY };
+  }, { passive: true });
+
   shellEl.addEventListener('touchend', (event) => {
-    if (!touchStart || window.innerWidth > 760) return;
-    const t = event.changedTouches[0], dx = t.clientX-touchStart.x, dy = t.clientY-touchStart.y;
-    if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy)*1.3) return;
-    if (touchStart.x < 28 && dx > 0) { sidebar.classList.add('open'); shellEl.classList.add('nav-open'); }
-    if (sidebar.classList.contains('open') && dx < 0) closeMobileNav();
-  }, { passive:true });
+    if (!touchStart || window.innerWidth > 768) return;
+    const t = event.changedTouches[0];
+    const dx = t.clientX - touchStart.x;
+    const dy = t.clientY - touchStart.y;
+    
+    // Swipe gestures: abs(dx) > 60 and abs(dx) > abs(dy) * 1.5
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      if (touchStart.x < 24 && dx > 0) {
+        openMobileNav();
+      } else if (sidebar.classList.contains('open') && dx < 0) {
+        closeMobileNav();
+      }
+    }
+    touchStart = null;
+  }, { passive: true });
   document.querySelector('#logout').onclick = async () => {
     if (state.page === 'solve') {
       if (!confirm('Bạn đang trong lượt làm bài và chưa nộp bài. Đăng xuất sẽ mất mã nguồn hiện tại. Bạn có chắc chắn muốn đăng xuất?')) return;
@@ -302,8 +339,8 @@ function problemCards(problems) {
       </div>
       <h3>${escapeHtml(title)}</h3>
       <div class="problem-meta">
-        <span>🕒 ${limitMinutes} phút</span>
-        <span>💯 Điểm: ${bestScore}/${maxScore}</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="meta-icon" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${limitMinutes} phút</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="meta-icon" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Điểm: ${bestScore}/${maxScore}</span>
       </div>
       <button class="btn small open-problem" data-slug="${escapeHtml(slug)}">Mở bài →</button>
     </article>`;
@@ -357,18 +394,25 @@ async function problemsView() {
     
     <!-- Tab Headers -->
     <div class="tabs-header" role="tablist">
-      <button class="tab-btn active" data-tab="done" role="tab">Đã làm</button>
-      <button class="tab-btn" data-tab="todo" role="tab">Chưa làm</button>
+      <button class="tab-btn active" data-tab="done" role="tab" aria-selected="true">Đã làm</button>
+      <button class="tab-btn" data-tab="todo" role="tab" aria-selected="false">Chưa làm</button>
     </div>
     
     <!-- Filter Panel -->
     <div class="filter-wrapper">
-      <button class="filter-toggle-btn" id="filter-toggle">
+      <div class="filter-backdrop" id="filter-backdrop" aria-hidden="true"></div>
+      <button class="filter-toggle-btn" id="filter-toggle" aria-label="Mở bộ lọc và sắp xếp">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
         Bộ lọc & Sắp xếp
       </button>
       
-      <div class="filter-panel collapsed" id="filter-panel">
+      <div class="filter-panel collapsed" id="filter-panel" role="dialog" aria-modal="true" aria-label="Bộ lọc và sắp xếp">
+        <div class="drag-handle" aria-hidden="true"></div>
+        <div class="filter-header">
+          <h3>Bộ lọc & Sắp xếp</h3>
+          <button class="close-sheet-btn" id="close-sheet" aria-label="Đóng bộ lọc">✕</button>
+        </div>
+        
         <div class="filter-grid">
           <div class="filter-group">
             <label for="filter-rating">Độ khó / Rating</label>
@@ -403,7 +447,7 @@ async function problemsView() {
             </select>
           </div>
           
-          <div class="filter-group">
+          <div class="filter-group" id="filter-group-score">
             <label>Điểm số (Min - Max)</label>
             <div class="range-inputs">
               <input type="number" id="filter-min-score" placeholder="0" min="0" max="100">
@@ -420,6 +464,11 @@ async function problemsView() {
               <input type="date" id="filter-date-to">
             </div>
           </div>
+        </div>
+        
+        <div class="filter-actions">
+          <button class="btn secondary" id="filter-reset">Đặt lại</button>
+          <button class="btn" id="filter-apply">Áp dụng</button>
         </div>
       </div>
     </div>
@@ -439,24 +488,79 @@ async function problemsView() {
   </section>`, 'Bài tập');
 
   // Bind tab events
+  const updateScoreFilterVisibility = () => {
+    const scoreGroup = document.querySelector('#filter-group-score');
+    if (scoreGroup) {
+      scoreGroup.style.display = state.problemsPage.tab === 'done' ? 'flex' : 'none';
+    }
+  };
+  updateScoreFilterVisibility();
+
   document.querySelectorAll('.tab-btn').forEach((btn) => {
     btn.onclick = () => {
       if (state.problemsPage.loading) return;
-      document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach((b) => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
       state.problemsPage.tab = btn.dataset.tab;
+      
+      updateScoreFilterVisibility();
       resetAndLoadProblems();
     };
   });
 
-  // Bind filter toggle
+  // Bind filter toggle and dialog controls
   const filterToggle = document.querySelector('#filter-toggle');
   const filterPanel = document.querySelector('#filter-panel');
-  filterToggle.onclick = () => {
-    filterPanel.classList.toggle('collapsed');
+  const filterBackdrop = document.querySelector('#filter-backdrop');
+  const closeSheetBtn = document.querySelector('#close-sheet');
+  const filterApplyBtn = document.querySelector('#filter-apply');
+  const filterResetBtn = document.querySelector('#filter-reset');
+
+  const openFilter = () => {
+    filterPanel.classList.remove('collapsed');
+    filterPanel.classList.add('open');
+    if (window.innerWidth <= 768) {
+      filterBackdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      filterApplyBtn?.focus();
+    }
   };
 
-  // Bind filter change events
+  const closeFilter = () => {
+    filterPanel.classList.add('collapsed');
+    filterPanel.classList.remove('open');
+    filterBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+    filterToggle.focus();
+  };
+
+  filterToggle.onclick = () => {
+    if (filterPanel.classList.contains('collapsed')) {
+      openFilter();
+    } else {
+      closeFilter();
+    }
+  };
+
+  filterBackdrop.onclick = closeFilter;
+  closeSheetBtn.onclick = closeFilter;
+
+  // Keyboard navigation: Escape closes filter bottom sheet
+  if (window._onEscFilter) {
+    document.removeEventListener('keydown', window._onEscFilter);
+  }
+  window._onEscFilter = (e) => {
+    if (e.key === 'Escape' && !filterPanel.classList.contains('collapsed')) {
+      closeFilter();
+    }
+  };
+  document.addEventListener('keydown', window._onEscFilter);
+
+  // Bind filter input elements
   const ratingSelect = document.querySelector('#filter-rating');
   const assignedSelect = document.querySelector('#filter-assigned');
   const sortSelect = document.querySelector('#filter-sort');
@@ -484,20 +588,124 @@ async function problemsView() {
     resetAndLoadProblems();
   };
 
-  // Debounce helper for text/date inputs
+  // Debounce helper for live filters on desktop
   let debounceTimer;
   const debouncedFilterChange = () => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(onFilterChange, 400);
   };
 
-  ratingSelect.onchange = onFilterChange;
-  assignedSelect.onchange = onFilterChange;
-  sortSelect.onchange = onFilterChange;
-  minScoreInput.oninput = debouncedFilterChange;
-  maxScoreInput.oninput = debouncedFilterChange;
-  dateFromInput.onchange = onFilterChange;
-  dateToInput.onchange = onFilterChange;
+  const handleInstantFilterChange = () => {
+    if (window.innerWidth > 768) {
+      onFilterChange();
+    }
+  };
+
+  const handleInstantDebouncedChange = () => {
+    if (window.innerWidth > 768) {
+      debouncedFilterChange();
+    }
+  };
+
+  ratingSelect.onchange = handleInstantFilterChange;
+  assignedSelect.onchange = handleInstantFilterChange;
+  sortSelect.onchange = handleInstantFilterChange;
+  minScoreInput.oninput = handleInstantDebouncedChange;
+  maxScoreInput.oninput = handleInstantDebouncedChange;
+  dateFromInput.onchange = handleInstantFilterChange;
+  dateToInput.onchange = handleInstantFilterChange;
+
+  // Apply and Reset actions
+  const applyFiltersMobile = () => {
+    const rRange = ratingSelect.value;
+    if (rRange === 'all') {
+      state.problemsPage.minRating = '';
+      state.problemsPage.maxRating = '';
+    } else {
+      const [min, max] = rRange.split('-');
+      state.problemsPage.minRating = min;
+      state.problemsPage.maxRating = max;
+    }
+    state.problemsPage.assigned = assignedSelect.value;
+    state.problemsPage.sort = sortSelect.value;
+    state.problemsPage.minScore = minScoreInput.value;
+    state.problemsPage.maxScore = maxScoreInput.value;
+    state.problemsPage.uploadedFrom = dateFromInput.value;
+    state.problemsPage.uploadedTo = dateToInput.value;
+    
+    closeFilter();
+    resetAndLoadProblems();
+  };
+
+  const resetFilters = () => {
+    ratingSelect.value = 'all';
+    assignedSelect.value = 'all';
+    sortSelect.value = 'newest';
+    minScoreInput.value = '';
+    maxScoreInput.value = '';
+    dateFromInput.value = '';
+    dateToInput.value = '';
+    
+    if (window.innerWidth <= 768) {
+      applyFiltersMobile();
+    } else {
+      onFilterChange();
+    }
+  };
+
+  filterApplyBtn.onclick = applyFiltersMobile;
+  filterResetBtn.onclick = resetFilters;
+
+  // Gesture: Swipe down on filter bottom sheet to close
+  let sheetTouchStart = null;
+  filterPanel.addEventListener('touchstart', (e) => {
+    if (window.innerWidth > 768) return;
+    if (['INPUT', 'SELECT', 'TEXTAREA', 'BUTTON'].includes(e.target.tagName)) return;
+    const t = e.changedTouches[0];
+    sheetTouchStart = { x: t.clientX, y: t.clientY };
+  }, { passive: true });
+
+  filterPanel.addEventListener('touchend', (e) => {
+    if (!sheetTouchStart || window.innerWidth > 768) return;
+    const t = e.changedTouches[0];
+    const dy = t.clientY - sheetTouchStart.y;
+    const dx = t.clientX - sheetTouchStart.x;
+    if (dy > 60 && dy > Math.abs(dx) * 1.5) {
+      closeFilter();
+    }
+    sheetTouchStart = null;
+  }, { passive: true });
+
+  // Gesture: Swipe left/right on problems list container to switch tabs
+  let gridTouchStart = null;
+  const problemsListContainer = document.querySelector('#problems-list-container');
+  if (problemsListContainer) {
+    problemsListContainer.addEventListener('touchstart', (e) => {
+      if (window.innerWidth > 768) return;
+      if (['INPUT', 'SELECT', 'TEXTAREA', 'BUTTON', 'A'].includes(e.target.tagName)) return;
+      if (e.target.closest('.code-editor') || e.target.closest('.terminal')) return;
+      const t = e.changedTouches[0];
+      gridTouchStart = { x: t.clientX, y: t.clientY };
+    }, { passive: true });
+
+    problemsListContainer.addEventListener('touchend', (e) => {
+      if (!gridTouchStart || window.innerWidth > 768) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - gridTouchStart.x;
+      const dy = t.clientY - gridTouchStart.y;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        const currentTab = state.problemsPage.tab;
+        if (dx < 0 && currentTab === 'done') {
+          const todoBtn = document.querySelector('.tab-btn[data-tab="todo"]');
+          if (todoBtn) todoBtn.click();
+        } else if (dx > 0 && currentTab === 'todo') {
+          const doneBtn = document.querySelector('.tab-btn[data-tab="done"]');
+          if (doneBtn) doneBtn.click();
+        }
+      }
+      gridTouchStart = null;
+    }, { passive: true });
+  }
 
   // Setup Infinite Scroll Observer
   setupInfiniteScrollObserver();
@@ -514,8 +722,14 @@ function resetAndLoadProblems() {
   const grid = document.querySelector('#problems-grid');
   if (grid) grid.innerHTML = '';
   
+  const oldRetry = document.querySelector('#retry-loading');
+  if (oldRetry) oldRetry.remove();
+  
   document.querySelector('#problems-empty').style.display = 'none';
   document.querySelector('#problems-no-more').style.display = 'none';
+  
+  // Safe area: prevent scroll issue on bottom sheet and reset to top
+  window.scrollTo({ top: 0, behavior: 'instant' });
   
   loadNextProblemsPage();
 }
@@ -526,6 +740,9 @@ async function loadNextProblemsPage() {
   
   const loadingIndicator = document.querySelector('#problems-loading');
   if (loadingIndicator) loadingIndicator.style.display = 'flex';
+  
+  const oldRetry = document.querySelector('#retry-loading');
+  if (oldRetry) oldRetry.remove();
   
   try {
     const { tab, cursor, minRating, maxRating, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo } = state.problemsPage;
@@ -554,6 +771,19 @@ async function loadNextProblemsPage() {
     renderProblemsGrid();
   } catch (error) {
     toast(error.message, true);
+    // Display interactive retry prompt on failure
+    const grid = document.querySelector('#problems-grid');
+    if (grid) {
+      grid.insertAdjacentHTML('afterend', `
+        <div id="retry-loading" class="retry-state" style="text-align:center; padding:16px;">
+          <span style="font-size:13px; color:var(--muted)">Không tải được bài. </span>
+          <button class="text-btn" id="btn-retry-load" style="font-size:13px;">Thử lại</button>
+        </div>
+      `);
+      document.querySelector('#btn-retry-load').onclick = () => {
+        loadNextProblemsPage();
+      };
+    }
   } finally {
     state.problemsPage.loading = false;
     if (loadingIndicator) loadingIndicator.style.display = 'none';
