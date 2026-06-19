@@ -59,8 +59,10 @@ function customInput(promptText) {
   
   // Decode string from inputData buffer
   const bytes = new Uint8Array(sharedBuffer, 8, length);
+  const nonSharedBytes = new Uint8Array(length);
+  nonSharedBytes.set(bytes);
   const decoder = new TextDecoder("utf-8");
-  return decoder.decode(bytes);
+  return decoder.decode(nonSharedBytes);
 }
 
 async function initPyodide() {

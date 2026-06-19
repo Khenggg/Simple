@@ -18,12 +18,11 @@ import { attachTerminalServer } from './terminal.js';
 const app = express();
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 app.set('trust proxy', 1);
-app.use((req, res, next) => {
-  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
-  next();
-});
-app.use(helmet({ contentSecurityPolicy: false, crossOriginEmbedderPolicy: false }));
+app.use(helmet({
+  contentSecurityPolicy: false,
+  crossOriginOpenerPolicy: { policy: 'same-origin' },
+  crossOriginEmbedderPolicy: { policy: 'require-corp' }
+}));
 app.use(express.json({ limit: '1mb' }));
 app.use(cookieParser());
 app.use(optionalAuth);
