@@ -72,11 +72,11 @@ app.post('/api/auth/logout', (_req, res) => {
 app.get('/api/auth/me', (req, res) => res.json({ user: req.user || null }));
 
 app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
-  const { tab, cursor, difficulty, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo } = req.query;
+  const { tab, cursor, rating, minRating, maxRating, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo } = req.query;
   if (!tab) {
     const admin = req.user.role === 'ADMIN';
     const { rows } = await query(
-      `SELECT p.id,p.slug,p.title,p.difficulty,p.time_limit_minutes,p.execution_limit_ms,p.is_active,p.created_at,
+      `SELECT p.id,p.slug,p.title,p.difficulty,p.rating,p.time_limit_minutes,p.execution_limit_ms,p.is_active,p.created_at,
          COALESCE((SELECT MAX(s.score) FROM submissions s WHERE s.problem_id=p.id AND s.user_id=$1), 0)::int AS best_score
        FROM problems p ${admin ? '' : 'WHERE p.is_active = TRUE'} ORDER BY p.created_at DESC`,
       [req.user.id]
@@ -85,10 +85,9 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
   }
 
   // Parse filters
-  let difficultyLevel = null;
-  if (difficulty === '1' || difficulty === 'easy' || difficulty === 'Dễ') difficultyLevel = 1;
-  else if (difficulty === '2' || difficulty === 'medium' || difficulty === 'Trung bình') difficultyLevel = 2;
-  else if (difficulty === '3' || difficulty === 'hard' || difficulty === 'Khó') difficultyLevel = 3;
+  const parsedRating = rating !== undefined && rating !== '' ? Number(rating) : null;
+  const parsedMinRating = minRating !== undefined && minRating !== '' ? Number(minRating) : null;
+  const parsedMaxRating = maxRating !== undefined && maxRating !== '' ? Number(maxRating) : null;
 
   const parsedMinScore = minScore !== undefined && minScore !== '' ? Number(minScore) : null;
   const parsedMaxScore = maxScore !== undefined && maxScore !== '' ? Number(maxScore) : null;
@@ -107,10 +106,18 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
     whereConditions.push('(upp.completed_at IS NULL OR upp.user_id IS NULL)');
   }
 
-  // Filter difficulty
-  if (difficultyLevel !== null) {
-    queryParams.push(difficultyLevel);
-    whereConditions.push(`p.difficulty_level = $${queryParams.length}`);
+  // Filter rating
+  if (parsedRating !== null) {
+    queryParams.push(parsedRating);
+    whereConditions.push(`p.rating = $${queryParams.length}`);
+  }
+  if (parsedMinRating !== null) {
+    queryParams.push(parsedMinRating);
+    whereConditions.push(`p.rating >= $${queryParams.length}`);
+  }
+  if (parsedMaxRating !== null) {
+    queryParams.push(parsedMaxRating);
+    whereConditions.push(`p.rating <= $${queryParams.length}`);
   }
 
   // Filter scores
@@ -148,6 +155,13 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
       sortField = 'p.published_at';
       sortOrder = 'ASC';
       jsFieldName = 'publishedAt';
+    } else if (sort === 'rating_desc') {
+      sortField = 'p.rating';
+      jsFieldName = 'rating';
+    } else if (sort === 'rating_asc') {
+      sortField = 'p.rating';
+      sortOrder = 'ASC';
+      jsFieldName = 'rating';
     } else if (sort === 'score_desc') {
       sortField = 'COALESCE(upp.best_score, 0)';
       jsFieldName = 'bestScore';
@@ -168,6 +182,13 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
       sortField = 'p.published_at';
       sortOrder = 'ASC';
       jsFieldName = 'publishedAt';
+    } else if (sort === 'rating_desc') {
+      sortField = 'p.rating';
+      jsFieldName = 'rating';
+    } else if (sort === 'rating_asc') {
+      sortField = 'p.rating';
+      sortOrder = 'ASC';
+      jsFieldName = 'rating';
     } else if (sort === 'score_desc') {
       sortField = 'p.max_score';
       jsFieldName = 'maxScore';
@@ -233,7 +254,7 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
       p.slug,
       p.title,
       p.difficulty,
-      p.difficulty_level AS "difficultyLevel",
+      p.rating,
       p.max_score AS "maxScore",
       p.passing_score AS "passingScore",
       COALESCE(upp.best_score, 0)::int AS "bestScore",
@@ -253,7 +274,20 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
 
   const { rows } = await query(querySql, queryParams);
   const hasMore = rows.length > limit;
-  const items = hasMore ? rows.slice(0, limit) : rows;
+  const rawItems = hasMore ? rows.slice(0, limit) : rows;
+
+  function getRatingLabel(r) {
+    if (r >= 800 && r <= 1000) return 'Cơ bản';
+    if (r >= 1100 && r <= 1300) return 'Dễ';
+    if (r >= 1400 && r <= 1600) return 'Trung bình';
+    if (r >= 1700 && r <= 1900) return 'Khó';
+    return 'Nâng cao';
+  }
+
+  const items = rawItems.map((item) => ({
+    ...item,
+    ratingLabel: getRatingLabel(item.rating)
+  }));
 
   let nextCursor = null;
   if (items.length > 0 && hasMore) {
@@ -271,7 +305,7 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
 
 app.get('/api/problems/:slug', requireAuth, asyncRoute(async (req, res) => {
   const { rows } = await query(
-    `SELECT id,slug,title,difficulty,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active
+    `SELECT id,slug,title,difficulty,rating,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active
      FROM problems WHERE slug=$1 AND (is_active=TRUE OR $2='ADMIN')`,
     [req.params.slug, req.user.role]
   );
@@ -465,9 +499,9 @@ app.post('/api/admin/problems', requireAdmin, asyncRoute(async (req, res) => {
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
   const saved = await transaction(async (client) => {
     const { rows } = await client.query(
-      `INSERT INTO problems(slug,title,difficulty,difficulty_level,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by)
+      `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by)
        VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16) RETURNING *`,
-      [p.slug, p.title, p.difficulty, p.difficultyLevel, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+      [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
         p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id]
     );
     const problem = rows[0];
@@ -490,11 +524,11 @@ app.put('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => 
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
   const saved = await transaction(async (client) => {
     const { rows } = await client.query(
-      `UPDATE problems SET slug=$1,title=$2,difficulty=$3,difficulty_level=$4,max_score=$5,passing_score=$6,
+      `UPDATE problems SET slug=$1,title=$2,difficulty=$3,rating=$4,max_score=$5,passing_score=$6,
          published_at=$7,source=$8,order_index=$9,description=$10,starter_code=$11,examples=$12::jsonb,
          time_limit_minutes=$13,execution_limit_ms=$14,is_active=$15,updated_at=NOW()
        WHERE id=$16 RETURNING *`,
-      [p.slug, p.title, p.difficulty, p.difficultyLevel, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+      [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
         p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.params.id]
     );
     const problem = rows[0];
@@ -529,12 +563,12 @@ app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res)
   await transaction(async (client) => {
     for (const p of normalized) {
       const { rows } = await client.query(
-        `INSERT INTO problems(slug,title,difficulty,difficulty_level,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by)
+        `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by)
          VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16)
          ON CONFLICT(slug) DO UPDATE SET
            title=EXCLUDED.title,
            difficulty=EXCLUDED.difficulty,
-           difficulty_level=EXCLUDED.difficulty_level,
+           rating=EXCLUDED.rating,
            max_score=EXCLUDED.max_score,
            passing_score=EXCLUDED.passing_score,
            published_at=EXCLUDED.published_at,
@@ -548,7 +582,7 @@ app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res)
            is_active=EXCLUDED.is_active,
            updated_at=NOW()
          RETURNING id`,
-        [p.slug, p.title, p.difficulty, p.difficultyLevel, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+        [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
           p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id]
       );
       const problemId = rows[0].id;

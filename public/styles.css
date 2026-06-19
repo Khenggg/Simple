@@ -469,6 +469,26 @@ tr:last-child td { border-bottom:0; }
   border: 1px solid var(--line);
   color: var(--muted);
 }
+.badge.r800 {
+  background-color: #eceff1;
+  color: #455a64;
+}
+.badge.r1100 {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+.badge.r1400 {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+.badge.r1700 {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+.badge.r2000 {
+  background-color: #ffebee;
+  color: #c62828;
+}
 
 .loading-state {
   display: flex;

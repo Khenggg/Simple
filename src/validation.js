@@ -13,11 +13,27 @@ export function validEmail(email) {
 export function normalizeProblem(body) {
   const examples = Array.isArray(body.examples) ? body.examples.slice(0, 10) : [];
   const testcases = Array.isArray(body.testcases) ? body.testcases.slice(0, 50) : [];
+  
+  let rating = 800;
+  if (body.rating !== undefined && body.rating !== '') {
+    rating = Number(body.rating);
+  } else if (body.difficultyLevel !== undefined || body.difficulty_level !== undefined) {
+    const df = Number(body.difficultyLevel ?? body.difficulty_level);
+    if (df === 1) rating = 800;
+    else if (df === 2) rating = 1200;
+    else if (df === 3) rating = 1600;
+  } else if (body.difficulty) {
+    const dfStr = String(body.difficulty).trim();
+    if (dfStr === 'Dễ') rating = 800;
+    else if (dfStr === 'Trung bình') rating = 1200;
+    else if (dfStr === 'Khó') rating = 1600;
+  }
+
   return {
     slug: cleanText(body.slug ?? body.id, 80).toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-|-$/g, ''),
     title: cleanText(body.title, 180),
     difficulty: cleanText(body.difficulty || 'Dễ', 40),
-    difficultyLevel: Number(body.difficultyLevel ?? body.difficulty_level ?? 1),
+    rating: rating,
     maxScore: Number(body.maxScore ?? body.max_score ?? 100),
     passingScore: Number(body.passingScore ?? body.passing_score ?? 100),
     publishedAt: body.publishedAt ?? body.published_at ? new Date(body.publishedAt ?? body.published_at).toISOString() : new Date().toISOString(),
@@ -50,5 +66,8 @@ export function validateProblem(problem) {
   if (!problem.title) errors.push('Thiếu tên bài.');
   if (!problem.description) errors.push('Thiếu đề bài.');
   if (!problem.testcases.length) errors.push('Cần ít nhất một test case.');
+  if (problem.rating === undefined || isNaN(problem.rating) || problem.rating < 800 || problem.rating > 3500 || problem.rating % 100 !== 0) {
+    errors.push('Rating không hợp lệ (phải từ 800 đến 3500 và chia hết cho 100).');
+  }
   return errors;
 }

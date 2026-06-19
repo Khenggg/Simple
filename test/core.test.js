@@ -17,6 +17,33 @@ test('problem normalization supports legacy problem shape', () => {
   assert.deepEqual(validateProblem(problem), []);
 });
 
+test('problem rating normalization and validation', () => {
+  // Check exact Codeforces rating validation
+  const p1 = normalizeProblem({ id: 'p1', title: 'P1', description: 'Desc', testcases: [{ input:'', output:'x' }], rating: 1200 });
+  assert.equal(p1.rating, 1200);
+  assert.deepEqual(validateProblem(p1), []);
+
+  // Check invalid rating rejection
+  const p2 = normalizeProblem({ id: 'p2', title: 'P2', description: 'Desc', testcases: [{ input:'', output:'x' }], rating: 850 });
+  assert.equal(p2.rating, 850);
+  const errs2 = validateProblem(p2);
+  assert.ok(errs2.length > 0);
+  assert.ok(errs2[0].includes('Rating không hợp lệ'));
+
+  const p3 = normalizeProblem({ id: 'p3', title: 'P3', description: 'Desc', testcases: [{ input:'', output:'x' }], rating: 400 });
+  assert.ok(validateProblem(p3).length > 0);
+
+  const p4 = normalizeProblem({ id: 'p4', title: 'P4', description: 'Desc', testcases: [{ input:'', output:'x' }], rating: 3600 });
+  assert.ok(validateProblem(p4).length > 0);
+
+  // Check legacy mapping
+  const p5 = normalizeProblem({ id: 'p5', title: 'P5', description: 'Desc', testcases: [{ input:'', output:'x' }], difficultyLevel: 3 });
+  assert.equal(p5.rating, 1600);
+
+  const p6 = normalizeProblem({ id: 'p6', title: 'P6', description: 'Desc', testcases: [{ input:'', output:'x' }], difficulty: 'Trung bình' });
+  assert.equal(p6.rating, 1200);
+});
+
 test('python runner captures output and runtime errors', async () => {
   const ok = await runPythonLocal('print(int(input()) * 2)', '4', 1200);
   assert.equal(ok.output.trim(), '8');

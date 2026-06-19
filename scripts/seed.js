@@ -30,10 +30,10 @@ if (count.rows[0].count === 0) {
   for (const raw of source) {
     const p = normalizeProblem({ ...raw, slug: raw.id, timeLimitMinutes: 30, executionLimitMs: 1500 });
     await pool.query(
-      `INSERT INTO problems(slug, title, difficulty, description, starter_code, examples, testcases,
+      `INSERT INTO problems(slug, title, difficulty, rating, description, starter_code, examples, testcases,
         time_limit_minutes, execution_limit_ms, created_by)
-       VALUES ($1,$2,$3,$4,$5,$6::jsonb,$7::jsonb,$8,$9,$10) ON CONFLICT(slug) DO NOTHING`,
-      [p.slug, p.title, p.difficulty, p.description, p.starterCode, JSON.stringify(p.examples),
+       VALUES ($1,$2,$3,$4,$5,$6,$7::jsonb,$8::jsonb,$9,$10,$11) ON CONFLICT(slug) DO NOTHING`,
+      [p.slug, p.title, p.difficulty, p.rating, p.description, p.starterCode, JSON.stringify(p.examples),
         JSON.stringify(p.testcases), p.timeLimitMinutes, p.executionLimitMs, admin.rows[0]?.id || null]
     );
   }

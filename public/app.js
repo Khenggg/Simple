@@ -250,12 +250,21 @@ async function loadAdminUsers() {
   return data.users;
 }
 
+function clientGetRatingLabel(r) {
+  if (r >= 800 && r <= 1000) return 'Cơ bản';
+  if (r >= 1100 && r <= 1300) return 'Dễ';
+  if (r >= 1400 && r <= 1600) return 'Trung bình';
+  if (r >= 1700 && r <= 1900) return 'Khó';
+  return 'Nâng cao';
+}
+
 function problemCards(problems) {
   if (!problems.length) return '<div class="empty">Chưa có bài tập nào được mở.</div>';
   return `<div class="grid">${problems.map((p) => {
     const slug = p.slug;
     const title = p.title;
-    const difficulty = p.difficulty || 'Dễ';
+    const rating = p.rating ?? 800;
+    const ratingLabel = p.ratingLabel ?? clientGetRatingLabel(rating);
     const limitMinutes = p.timeLimitMinutes ?? p.time_limit_minutes ?? 30;
     const bestScore = p.bestScore ?? p.best_score ?? 0;
     const maxScore = p.maxScore ?? 100;
@@ -278,12 +287,18 @@ function problemCards(problems) {
     }
     
     const isAssigned = p.isAssigned ?? false;
+
+    let ratingClass = 'r800';
+    if (rating >= 1100 && rating <= 1300) ratingClass = 'r1100';
+    else if (rating >= 1400 && rating <= 1600) ratingClass = 'r1400';
+    else if (rating >= 1700 && rating <= 1900) ratingClass = 'r1700';
+    else if (rating >= 2000) ratingClass = 'r2000';
     
     return `<article class="problem-card">
       <div class="card-badges">
         <span class="badge ${statusClass}">${statusLabel}</span>
         ${isAssigned ? '<span class="badge assigned">Được giao</span>' : ''}
-        <span class="badge diff">${escapeHtml(difficulty)}</span>
+        <span class="badge ${ratingClass}">${rating} · ${escapeHtml(ratingLabel)}</span>
       </div>
       <h3>${escapeHtml(title)}</h3>
       <div class="problem-meta">
@@ -322,7 +337,8 @@ async function problemsView() {
     cursor: null,
     hasMore: false,
     loading: false,
-    difficulty: '',
+    minRating: '',
+    maxRating: '',
     minScore: '',
     maxScore: '',
     assigned: 'all',
@@ -355,12 +371,14 @@ async function problemsView() {
       <div class="filter-panel collapsed" id="filter-panel">
         <div class="filter-grid">
           <div class="filter-group">
-            <label for="filter-difficulty">Độ khó</label>
-            <select id="filter-difficulty">
-              <option value="">Tất cả</option>
-              <option value="1">Dễ</option>
-              <option value="2">Trung bình</option>
-              <option value="3">Khó</option>
+            <label for="filter-rating">Độ khó / Rating</label>
+            <select id="filter-rating">
+              <option value="all">Tất cả</option>
+              <option value="800-1000">800 - 1000 (Cơ bản)</option>
+              <option value="1100-1300">1100 - 1300 (Dễ)</option>
+              <option value="1400-1600">1400 - 1600 (Trung bình)</option>
+              <option value="1700-1900">1700 - 1900 (Khó)</option>
+              <option value="2000-3500">2000+ (Nâng cao)</option>
             </select>
           </div>
           
@@ -378,6 +396,8 @@ async function problemsView() {
             <select id="filter-sort">
               <option value="newest">Mới nhất</option>
               <option value="oldest">Cũ nhất</option>
+              <option value="rating_desc">Rating cao nhất</option>
+              <option value="rating_asc">Rating thấp nhất</option>
               <option value="score_desc">Điểm cao nhất</option>
               <option value="score_asc">Điểm thấp nhất</option>
             </select>
@@ -437,7 +457,7 @@ async function problemsView() {
   };
 
   // Bind filter change events
-  const difficultySelect = document.querySelector('#filter-difficulty');
+  const ratingSelect = document.querySelector('#filter-rating');
   const assignedSelect = document.querySelector('#filter-assigned');
   const sortSelect = document.querySelector('#filter-sort');
   const minScoreInput = document.querySelector('#filter-min-score');
@@ -446,7 +466,15 @@ async function problemsView() {
   const dateToInput = document.querySelector('#filter-date-to');
 
   const onFilterChange = () => {
-    state.problemsPage.difficulty = difficultySelect.value;
+    const rRange = ratingSelect.value;
+    if (rRange === 'all') {
+      state.problemsPage.minRating = '';
+      state.problemsPage.maxRating = '';
+    } else {
+      const [min, max] = rRange.split('-');
+      state.problemsPage.minRating = min;
+      state.problemsPage.maxRating = max;
+    }
     state.problemsPage.assigned = assignedSelect.value;
     state.problemsPage.sort = sortSelect.value;
     state.problemsPage.minScore = minScoreInput.value;
@@ -463,7 +491,7 @@ async function problemsView() {
     debounceTimer = setTimeout(onFilterChange, 400);
   };
 
-  difficultySelect.onchange = onFilterChange;
+  ratingSelect.onchange = onFilterChange;
   assignedSelect.onchange = onFilterChange;
   sortSelect.onchange = onFilterChange;
   minScoreInput.oninput = debouncedFilterChange;
@@ -500,7 +528,7 @@ async function loadNextProblemsPage() {
   if (loadingIndicator) loadingIndicator.style.display = 'flex';
   
   try {
-    const { tab, cursor, difficulty, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo } = state.problemsPage;
+    const { tab, cursor, minRating, maxRating, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo } = state.problemsPage;
     
     // Build query params
     const params = new URLSearchParams({
@@ -508,7 +536,8 @@ async function loadNextProblemsPage() {
       limit: '10'
     });
     if (cursor) params.append('cursor', cursor);
-    if (difficulty) params.append('difficulty', difficulty);
+    if (minRating) params.append('minRating', minRating);
+    if (maxRating) params.append('maxRating', maxRating);
     if (minScore) params.append('minScore', minScore);
     if (maxScore) params.append('maxScore', maxScore);
     if (assigned) params.append('assigned', assigned);
@@ -588,6 +617,30 @@ function setupInfiniteScrollObserver() {
   }, {
     rootMargin: '100px'
   });
+  observer.observe(trigger);
+}ards(items);
+    bindProblemButtons();
+    
+    if (!state.problemsPage.hasMore) {
+      noMoreState.style.display = 'block';
+    } else {
+      noMoreState.style.display = 'none';
+    }
+  }
+}
+
+function setupInfiniteScrollObserver() {
+  const trigger = document.querySelector('#infinite-scroll-trigger');
+  if (!trigger) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    const entry = entries[0];
+    if (entry.isIntersecting && state.problemsPage.hasMore && !state.problemsPage.loading) {
+      loadNextProblemsPage();
+    }
+  }, {
+    rootMargin: '100px'
+  });
   
   observer.observe(trigger);
 }
@@ -620,9 +673,17 @@ async function openProblem(slug) {
   }
   
   state.current = problem; state.attempt = attempt; state.page = 'solve';
+  const rating = problem.rating ?? 800;
+  const ratingLabel = clientGetRatingLabel(rating);
+  let ratingClass = 'r800';
+  if (rating >= 1100 && rating <= 1300) ratingClass = 'r1100';
+  else if (rating >= 1400 && rating <= 1600) ratingClass = 'r1400';
+  else if (rating >= 1700 && rating <= 1900) ratingClass = 'r1700';
+  else if (rating >= 2000) ratingClass = 'r2000';
+
   const examples = (problem.examples || []).map((ex, i) => `<div class="example"><div class="example-head">Ví dụ ${i+1}</div><div class="example-grid"><div>Input<pre>${escapeHtml(ex.input)}</pre></div><div>Output<pre>${escapeHtml(ex.output)}</pre></div></div>${ex.explanation ? `<div style="padding:0 12px 12px" class="muted">${escapeHtml(ex.explanation)}</div>` : ''}</div>`).join('');
   shell(`<div class="solve-mobile-tabs" role="tablist"><button class="active" id="show-problem" role="tab">Đề bài</button><button id="show-code" role="tab">Code & Shell</button></div><section class="solve-layout" id="solve-layout">
-    <article class="problem-pane" id="problem-pane"><span class="badge orange">${escapeHtml(problem.difficulty)}</span><h2>${escapeHtml(problem.title)}</h2><div class="markdown">${markdown(problem.description)}</div><div class="section-head"><h3>Ví dụ</h3></div>${examples}</article>
+    <article class="problem-pane" id="problem-pane"><span class="badge ${ratingClass}">${rating} · ${escapeHtml(ratingLabel)}</span><h2>${escapeHtml(problem.title)}</h2><div class="markdown">${markdown(problem.description)}</div><div class="section-head"><h3>Ví dụ</h3></div>${examples}</article>
     <section class="editor-pane"><div class="editor-bar"><span><i class="python-dot"></i> PYTHON 3 · main.py</span><span class="timer" id="timer">--:--</span></div>
       <div class="code-editor" id="code" aria-label="Mã nguồn Python"></div>
       <section class="terminal" aria-label="Terminal"><div class="terminal-header"><div class="terminal-dots"><span></span><span></span><span></span></div><span class="terminal-title">Terminal — Python 3</span><div class="terminal-actions"><button class="term-btn" id="clear-shell" title="Xóa terminal (clear)">⌫</button><button class="term-btn stop" id="stop" title="Ngắt tiến trình (Ctrl+C)" disabled>■ Stop</button><button class="term-btn run" id="run" title="Chạy thử (python main.py)">▶ Run</button><button class="term-btn submit" id="submit" title="Nộp bài chấm điểm">⬆ Nộp bài</button></div></div>
@@ -789,7 +850,11 @@ async function leaderboardView() {
 async function adminView() {
   const [dashboard, problems] = await Promise.all([loadAdminDashboard(), loadProblems()]);
   const recent = dashboard.recent.map((s) => `<tr><td>${escapeHtml(s.full_name)}</td><td>${escapeHtml(s.title)}</td><td>${s.score}</td><td>${formatDuration(s.duration_ms)}</td><td>${formatDate(s.created_at)}</td></tr>`).join('');
-  const list = problems.map((p) => `<tr><td><strong>${escapeHtml(p.title)}</strong><br><span class="muted">${escapeHtml(p.slug)}</span></td><td>${escapeHtml(p.difficulty)}</td><td>${p.time_limit_minutes}p</td><td><span class="badge ${p.is_active ? '' : 'gray'}">${p.is_active ? 'Đang mở' : 'Đã ẩn'}</span></td><td><button class="btn small secondary edit-problem" data-id="${p.id}">Sửa</button> <button class="btn small danger hide-problem" data-id="${p.id}">Ẩn</button></td></tr>`).join('');
+  const list = problems.map((p) => {
+    const rating = p.rating ?? 800;
+    const label = clientGetRatingLabel(rating);
+    return `<tr><td><strong>${escapeHtml(p.title)}</strong><br><span class="muted">${escapeHtml(p.slug)}</span></td><td>${rating} · ${escapeHtml(label)}</td><td>${p.time_limit_minutes}p</td><td><span class="badge ${p.is_active ? '' : 'gray'}">${p.is_active ? 'Đang mở' : 'Đã ẩn'}</span></td><td><button class="btn small secondary edit-problem" data-id="${p.id}">Sửa</button> <button class="btn small danger hide-problem" data-id="${p.id}">Ẩn</button></td></tr>`;
+  }).join('');
   shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Bàn điều khiển</span><h2>Quản lý lớp học.</h2></div><div><button class="btn secondary" id="import">Import JSON</button> <button class="btn" id="new-problem">+ Thêm bài</button></div></div>
     <div class="stats"><div class="stat"><b>${dashboard.stats.students}</b><span>Học sinh</span></div><div class="stat"><b>${dashboard.stats.problems}</b><span>Bài tập</span></div><div class="stat"><b>${dashboard.stats.submissions}</b><span>Lượt nộp</span></div></div>
     <div class="section-head"><h3>Kho bài</h3></div><div class="table-wrap"><table><thead><tr><th>Bài</th><th>Độ khó</th><th>Giờ làm</th><th>Trạng thái</th><th></th></tr></thead><tbody>${list}</tbody></table></div>
@@ -814,9 +879,13 @@ function testRows(values = [{input:'',output:''}]) {
 }
 
 function problemModal(problem = null) {
+  const ratingOpts = Array.from({length: 28}, (_, i) => 800 + i * 100).map(r => `
+    <option value="${r}" ${(problem?.rating ?? 800) === r ? 'selected' : ''}>${r}</option>
+  `).join('');
+
   document.body.insertAdjacentHTML('beforeend', `<div class="modal-backdrop" id="problem-modal"><form class="modal wide" id="problem-form"><span class="eyebrow">${problem ? 'Chỉnh sửa' : 'Bài tập mới'}</span><h2>${problem ? escapeHtml(problem.title) : 'Tạo bài tập'}</h2><div class="form-grid">
     <div class="field"><label>Slug</label><input name="slug" value="${escapeHtml(problem?.slug || '')}" required></div><div class="field"><label>Tên bài</label><input name="title" value="${escapeHtml(problem?.title || '')}" required></div>
-    <div class="field"><label>Độ khó</label><input name="difficulty" value="${escapeHtml(problem?.difficulty || 'Dễ')}"></div><div class="field"><label>Thời gian làm (phút)</label><input name="timeLimitMinutes" type="number" min="1" max="240" value="${problem?.time_limit_minutes || 30}"></div>
+    <div class="field"><label>Rating Codeforces</label><select name="rating" required>${ratingOpts}</select></div><div class="field"><label>Thời gian làm (phút)</label><input name="timeLimitMinutes" type="number" min="1" max="240" value="${problem?.time_limit_minutes || 30}"></div>
     <div class="field full"><label>Đề bài (Markdown)</label><textarea name="description" rows="8" required>${escapeHtml(problem?.description || '')}</textarea></div>
     <div class="field full"><label>Code mẫu</label><textarea name="starterCode" rows="6">${escapeHtml(problem?.starter_code || '# Viết lời giải tại đây\n')}</textarea></div>
     <div class="field"><label>Giới hạn chạy mỗi test (ms)</label><input name="executionLimitMs" type="number" min="250" max="5000" value="${problem?.execution_limit_ms || 1500}"></div><div class="field"><label><input name="isActive" type="checkbox" ${problem?.is_active === false ? '' : 'checked'}> Mở cho học sinh</label></div>
@@ -831,6 +900,8 @@ function problemModal(problem = null) {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(event.target));
     data.isActive = event.target.isActive.checked;
+    data.rating = Number(data.rating || 800);
+    data.difficulty = clientGetRatingLabel(data.rating); // Auto map to difficulty text for backward compatibility
     data.testcases = [...modal.querySelectorAll('.test-row')].map((row) => ({ input:row.children[0].value, output:row.children[1].value }));
     data.examples = problem?.examples || [];
     try {
