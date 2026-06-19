@@ -72,14 +72,201 @@ app.post('/api/auth/logout', (_req, res) => {
 app.get('/api/auth/me', (req, res) => res.json({ user: req.user || null }));
 
 app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
-  const admin = req.user.role === 'ADMIN';
-  const { rows } = await query(
-    `SELECT p.id,p.slug,p.title,p.difficulty,p.time_limit_minutes,p.execution_limit_ms,p.is_active,p.created_at,
-       COALESCE((SELECT MAX(s.score) FROM submissions s WHERE s.problem_id=p.id AND s.user_id=$1), 0)::int AS best_score
-     FROM problems p ${admin ? '' : 'WHERE p.is_active = TRUE'} ORDER BY p.created_at DESC`,
-    [req.user.id]
-  );
-  res.json({ problems: rows });
+  const { tab, cursor, difficulty, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo } = req.query;
+  if (!tab) {
+    const admin = req.user.role === 'ADMIN';
+    const { rows } = await query(
+      `SELECT p.id,p.slug,p.title,p.difficulty,p.time_limit_minutes,p.execution_limit_ms,p.is_active,p.created_at,
+         COALESCE((SELECT MAX(s.score) FROM submissions s WHERE s.problem_id=p.id AND s.user_id=$1), 0)::int AS best_score
+       FROM problems p ${admin ? '' : 'WHERE p.is_active = TRUE'} ORDER BY p.created_at DESC`,
+      [req.user.id]
+    );
+    return res.json({ problems: rows });
+  }
+
+  // Parse filters
+  let difficultyLevel = null;
+  if (difficulty === '1' || difficulty === 'easy' || difficulty === 'Dễ') difficultyLevel = 1;
+  else if (difficulty === '2' || difficulty === 'medium' || difficulty === 'Trung bình') difficultyLevel = 2;
+  else if (difficulty === '3' || difficulty === 'hard' || difficulty === 'Khó') difficultyLevel = 3;
+
+  const parsedMinScore = minScore !== undefined && minScore !== '' ? Number(minScore) : null;
+  const parsedMaxScore = maxScore !== undefined && maxScore !== '' ? Number(maxScore) : null;
+
+  const queryParams = [req.user.id, req.user.role];
+  const whereConditions = [];
+
+  // Default is_active check
+  whereConditions.push('(p.is_active = TRUE OR $2 = \'ADMIN\')');
+
+  if (tab === 'done') {
+    whereConditions.push('upp.user_id = $1');
+    whereConditions.push('upp.completed_at IS NOT NULL');
+  } else {
+    // tab === 'todo'
+    whereConditions.push('(upp.completed_at IS NULL OR upp.user_id IS NULL)');
+  }
+
+  // Filter difficulty
+  if (difficultyLevel !== null) {
+    queryParams.push(difficultyLevel);
+    whereConditions.push(`p.difficulty_level = $${queryParams.length}`);
+  }
+
+  // Filter scores
+  if (parsedMinScore !== null) {
+    queryParams.push(parsedMinScore);
+    const col = tab === 'done' ? 'COALESCE(upp.best_score, 0)' : 'p.max_score';
+    whereConditions.push(`${col} >= $${queryParams.length}`);
+  }
+  if (parsedMaxScore !== null) {
+    queryParams.push(parsedMaxScore);
+    const col = tab === 'done' ? 'COALESCE(upp.best_score, 0)' : 'p.max_score';
+    whereConditions.push(`${col} <= $${queryParams.length}`);
+  }
+
+  // Filter date
+  if (uploadedFrom) {
+    queryParams.push(new Date(uploadedFrom).toISOString());
+    whereConditions.push(`p.published_at >= $${queryParams.length}`);
+  }
+  if (uploadedTo) {
+    queryParams.push(new Date(uploadedTo).toISOString());
+    whereConditions.push(`p.published_at <= $${queryParams.length}`);
+  }
+
+  // Determine sort parameters
+  let sortField = '';
+  let sortOrder = 'DESC'; // 'DESC' or 'ASC'
+  let jsFieldName = '';
+
+  if (tab === 'done') {
+    if (sort === 'newest') {
+      sortField = 'p.published_at';
+      jsFieldName = 'publishedAt';
+    } else if (sort === 'oldest') {
+      sortField = 'p.published_at';
+      sortOrder = 'ASC';
+      jsFieldName = 'publishedAt';
+    } else if (sort === 'score_desc') {
+      sortField = 'COALESCE(upp.best_score, 0)';
+      jsFieldName = 'bestScore';
+    } else if (sort === 'score_asc') {
+      sortField = 'COALESCE(upp.best_score, 0)';
+      sortOrder = 'ASC';
+      jsFieldName = 'bestScore';
+    } else {
+      sortField = 'upp.completed_at';
+      jsFieldName = 'completedAt';
+    }
+  } else {
+    // tab === 'todo'
+    if (sort === 'newest') {
+      sortField = 'p.published_at';
+      jsFieldName = 'publishedAt';
+    } else if (sort === 'oldest') {
+      sortField = 'p.published_at';
+      sortOrder = 'ASC';
+      jsFieldName = 'publishedAt';
+    } else if (sort === 'score_desc') {
+      sortField = 'p.max_score';
+      jsFieldName = 'maxScore';
+    } else if (sort === 'score_asc') {
+      sortField = 'p.max_score';
+      sortOrder = 'ASC';
+      jsFieldName = 'maxScore';
+    } else {
+      sortField = 'p.published_at';
+      jsFieldName = 'publishedAt';
+    }
+  }
+
+  // Filter assigned
+  if (assigned === 'only') {
+    whereConditions.push('ap.problem_id IS NOT NULL');
+  } else if (assigned === 'free') {
+    whereConditions.push('ap.problem_id IS NULL');
+  }
+
+  // Cursor handling
+  if (cursor) {
+    try {
+      const { val, id } = JSON.parse(Buffer.from(cursor, 'base64').toString('utf8'));
+      if (val !== undefined && id) {
+        queryParams.push(val);
+        const valPlaceholder = `$${queryParams.length}`;
+        queryParams.push(id);
+        const idPlaceholder = `$${queryParams.length}`;
+        
+        const op = sortOrder === 'DESC' ? '<' : '>';
+        const isDate = (sortField === 'p.published_at' || sortField === 'upp.completed_at');
+        const castedVal = isDate ? `(${valPlaceholder}::timestamptz)` : valPlaceholder;
+        
+        whereConditions.push(
+          `(${sortField} ${op} ${castedVal} OR (${sortField} = ${castedVal} AND p.id ${op} ${idPlaceholder}))`
+        );
+      }
+    } catch (err) {
+      console.error('Failed to parse cursor:', err);
+    }
+  }
+
+  const limit = Math.min(20, Math.max(1, Number(req.query.limit || 10)));
+  queryParams.push(limit + 1);
+  const limitPlaceholder = `$${queryParams.length}`;
+
+  const querySql = `
+    WITH user_classrooms AS (
+      SELECT classroom_id FROM classroom_members WHERE user_id = $1
+    ),
+    assigned_problems AS (
+      SELECT DISTINCT pa.problem_id
+      FROM problem_assignments pa
+      JOIN problem_assignment_targets pat ON pat.assignment_id = pa.id
+      WHERE
+        pat.target_type = 'ALL'
+        OR (pat.target_type = 'CLASSROOM' AND pat.classroom_id IN (SELECT classroom_id FROM user_classrooms))
+        OR (pat.target_type = 'STUDENT' AND pat.user_id = $1)
+    )
+    SELECT
+      p.id,
+      p.slug,
+      p.title,
+      p.difficulty,
+      p.difficulty_level AS "difficultyLevel",
+      p.max_score AS "maxScore",
+      p.passing_score AS "passingScore",
+      COALESCE(upp.best_score, 0)::int AS "bestScore",
+      upp.best_status AS "bestStatus",
+      CASE WHEN upp.completed_at IS NOT NULL THEN TRUE ELSE FALSE END AS "isCompleted",
+      CASE WHEN ap.problem_id IS NOT NULL THEN TRUE ELSE FALSE END AS "isAssigned",
+      p.published_at AS "publishedAt",
+      upp.last_submitted_at AS "lastSubmittedAt",
+      upp.completed_at AS "completedAt",
+      p.time_limit_minutes AS "timeLimitMinutes"
+    FROM ${tab === 'done' ? 'user_problem_progress upp JOIN problems p ON p.id = upp.problem_id' : 'problems p LEFT JOIN user_problem_progress upp ON upp.problem_id = p.id AND upp.user_id = $1'}
+    LEFT JOIN assigned_problems ap ON ap.problem_id = p.id
+    WHERE ${whereConditions.join(' AND ')}
+    ORDER BY ${sortField} ${sortOrder}, p.id ${sortOrder}
+    LIMIT ${limitPlaceholder}
+  `;
+
+  const { rows } = await query(querySql, queryParams);
+  const hasMore = rows.length > limit;
+  const items = hasMore ? rows.slice(0, limit) : rows;
+
+  let nextCursor = null;
+  if (items.length > 0 && hasMore) {
+    const lastItem = items[items.length - 1];
+    const lastVal = lastItem[jsFieldName];
+    nextCursor = Buffer.from(JSON.stringify({ val: lastVal, id: lastItem.id })).toString('base64');
+  }
+
+  res.json({
+    items,
+    nextCursor,
+    hasMore
+  });
 }));
 
 app.get('/api/problems/:slug', requireAuth, asyncRoute(async (req, res) => {
@@ -132,7 +319,7 @@ app.post('/api/submissions', requireAuth, asyncRoute(async (req, res) => {
   const code = String(req.body.code || '').slice(0, 30000);
   if (!code.trim()) return res.status(400).json({ error: 'Chưa có code để nộp.' });
   const attemptResult = await query(
-    `SELECT a.*,p.testcases,p.execution_limit_ms,p.id AS problem_id
+    `SELECT a.*,p.execution_limit_ms,p.id AS problem_id,p.passing_score
      FROM attempts a JOIN problems p ON p.id=a.problem_id
      WHERE a.id=$1 AND a.user_id=$2`,
     [req.body.attemptId, req.user.id]
@@ -141,13 +328,19 @@ app.post('/api/submissions', requireAuth, asyncRoute(async (req, res) => {
   if (!attempt) return res.status(404).json({ error: 'Lượt làm không tồn tại.' });
   if (attempt.status !== 'IN_PROGRESS') return res.status(409).json({ error: 'Lượt làm này đã kết thúc.' });
 
+  // Query test cases from problem_testcases
+  const { rows: testcases } = await query(
+    `SELECT input, expected_output AS output FROM problem_testcases WHERE problem_id=$1 ORDER BY order_index ASC`,
+    [attempt.problem_id]
+  );
+
   const now = Date.now();
   const started = new Date(attempt.started_at).getTime();
   const expired = now > new Date(attempt.deadline_at).getTime();
-  let judged = { passed: 0, total: attempt.testcases.length, score: 0, reports: [] };
+  let judged = { passed: 0, total: testcases.length, score: 0, reports: [] };
   let status = 'EXPIRED';
   if (!expired) {
-    judged = await judgeSubmission(code, attempt.testcases, attempt.execution_limit_ms);
+    judged = await judgeSubmission(code, testcases, attempt.execution_limit_ms);
     const hadTimeout = judged.reports.some((r) => r.status === 'Time Limit Exceeded');
     const hadOutputLimit = judged.reports.some((r) => r.status === 'Output Limit Exceeded');
     const hadMemoryLimit = judged.reports.some((r) => r.status === 'Memory Limit Exceeded');
@@ -180,7 +373,45 @@ app.post('/api/submissions', requireAuth, asyncRoute(async (req, res) => {
         judged.total, Math.max(0, now - started), JSON.stringify(judged.reports)]
     );
   });
-  res.status(201).json({ submission: saved.rows[0], reports: judged.reports });
+
+  const submission = saved.rows[0];
+  try {
+    // Update progress in a safe post-commit block
+    await query(
+      `INSERT INTO user_problem_progress (
+        user_id,
+        problem_id,
+        best_submission_id,
+        best_score,
+        best_status,
+        submission_count,
+        first_started_at,
+        last_submitted_at,
+        completed_at,
+        updated_at
+      ) VALUES ($1, $2, $3, $4, $5, 1, NOW(), NOW(), CASE WHEN $5 = 'ACCEPTED' OR $4 >= $6 THEN NOW() ELSE NULL END, NOW())
+      ON CONFLICT (user_id, problem_id) DO UPDATE SET
+        submission_count = user_problem_progress.submission_count + 1,
+        last_submitted_at = NOW(),
+        best_submission_id = CASE WHEN $4 > user_problem_progress.best_score OR user_problem_progress.best_submission_id IS NULL THEN $3 ELSE user_problem_progress.best_submission_id END,
+        best_status = CASE WHEN $4 > user_problem_progress.best_score OR user_problem_progress.best_submission_id IS NULL THEN $5 ELSE user_problem_progress.best_status END,
+        best_score = CASE WHEN $4 > user_problem_progress.best_score OR user_problem_progress.best_submission_id IS NULL THEN $4 ELSE user_problem_progress.best_score END,
+        completed_at = COALESCE(user_problem_progress.completed_at, CASE WHEN $5 = 'ACCEPTED' OR $4 >= $6 THEN NOW() ELSE NULL END),
+        updated_at = NOW()`,
+      [
+        req.user.id,
+        attempt.problem_id,
+        submission.id,
+        submission.score,
+        submission.status,
+        attempt.passing_score
+      ]
+    );
+  } catch (progressErr) {
+    console.error('Failed to update user_problem_progress:', progressErr);
+  }
+
+  res.status(201).json({ submission, reports: judged.reports });
 }));
 
 app.get('/api/me/submissions', requireAuth, asyncRoute(async (req, res) => {
@@ -219,35 +450,68 @@ app.get('/api/admin/dashboard', requireAdmin, asyncRoute(async (_req, res) => {
 app.get('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => {
   const { rows } = await query('SELECT * FROM problems WHERE id=$1', [req.params.id]);
   if (!rows[0]) return res.status(404).json({ error: 'Không tìm thấy bài.' });
-  res.json({ problem: rows[0] });
+  const problem = rows[0];
+  const { rows: testcases } = await query(
+    'SELECT input, expected_output AS output, explanation, is_public, weight, order_index FROM problem_testcases WHERE problem_id=$1 ORDER BY order_index ASC',
+    [problem.id]
+  );
+  problem.testcases = testcases;
+  res.json({ problem });
 }));
 
 app.post('/api/admin/problems', requireAdmin, asyncRoute(async (req, res) => {
   const p = normalizeProblem(req.body);
   const errors = validateProblem(p);
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
-  const { rows } = await query(
-    `INSERT INTO problems(slug,title,difficulty,description,starter_code,examples,testcases,time_limit_minutes,execution_limit_ms,is_active,created_by)
-     VALUES($1,$2,$3,$4,$5,$6::jsonb,$7::jsonb,$8,$9,$10,$11) RETURNING *`,
-    [p.slug,p.title,p.difficulty,p.description,p.starterCode,JSON.stringify(p.examples),JSON.stringify(p.testcases),
-      p.timeLimitMinutes,p.executionLimitMs,p.isActive,req.user.id]
-  );
-  res.status(201).json({ problem: rows[0] });
+  const saved = await transaction(async (client) => {
+    const { rows } = await client.query(
+      `INSERT INTO problems(slug,title,difficulty,difficulty_level,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by)
+       VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16) RETURNING *`,
+      [p.slug, p.title, p.difficulty, p.difficultyLevel, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+        p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id]
+    );
+    const problem = rows[0];
+    for (const tc of p.testcases) {
+      await client.query(
+        `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+        [problem.id, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+      );
+    }
+    problem.testcases = p.testcases;
+    return problem;
+  });
+  res.status(201).json({ problem: saved });
 }));
 
 app.put('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => {
   const p = normalizeProblem(req.body);
   const errors = validateProblem(p);
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
-  const { rows } = await query(
-    `UPDATE problems SET slug=$1,title=$2,difficulty=$3,description=$4,starter_code=$5,examples=$6::jsonb,
-       testcases=$7::jsonb,time_limit_minutes=$8,execution_limit_ms=$9,is_active=$10,updated_at=NOW()
-     WHERE id=$11 RETURNING *`,
-    [p.slug,p.title,p.difficulty,p.description,p.starterCode,JSON.stringify(p.examples),JSON.stringify(p.testcases),
-      p.timeLimitMinutes,p.executionLimitMs,p.isActive,req.params.id]
-  );
-  if (!rows[0]) return res.status(404).json({ error: 'Không tìm thấy bài.' });
-  res.json({ problem: rows[0] });
+  const saved = await transaction(async (client) => {
+    const { rows } = await client.query(
+      `UPDATE problems SET slug=$1,title=$2,difficulty=$3,difficulty_level=$4,max_score=$5,passing_score=$6,
+         published_at=$7,source=$8,order_index=$9,description=$10,starter_code=$11,examples=$12::jsonb,
+         time_limit_minutes=$13,execution_limit_ms=$14,is_active=$15,updated_at=NOW()
+       WHERE id=$16 RETURNING *`,
+      [p.slug, p.title, p.difficulty, p.difficultyLevel, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+        p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.params.id]
+    );
+    const problem = rows[0];
+    if (!problem) return null;
+    await client.query('DELETE FROM problem_testcases WHERE problem_id=$1', [problem.id]);
+    for (const tc of p.testcases) {
+      await client.query(
+        `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
+         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+        [problem.id, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+      );
+    }
+    problem.testcases = p.testcases;
+    return problem;
+  });
+  if (!saved) return res.status(404).json({ error: 'Không tìm thấy bài.' });
+  res.json({ problem: saved });
 }));
 
 app.delete('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => {
@@ -264,16 +528,38 @@ app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res)
   if (invalid) return res.status(400).json({ error: `Bài ${invalid.slug || '(không tên)'} không hợp lệ.` });
   await transaction(async (client) => {
     for (const p of normalized) {
-      await client.query(
-        `INSERT INTO problems(slug,title,difficulty,description,starter_code,examples,testcases,time_limit_minutes,execution_limit_ms,is_active,created_by)
-         VALUES($1,$2,$3,$4,$5,$6::jsonb,$7::jsonb,$8,$9,$10,$11)
-         ON CONFLICT(slug) DO UPDATE SET title=EXCLUDED.title,difficulty=EXCLUDED.difficulty,description=EXCLUDED.description,
-           starter_code=EXCLUDED.starter_code,examples=EXCLUDED.examples,testcases=EXCLUDED.testcases,
-           time_limit_minutes=EXCLUDED.time_limit_minutes,execution_limit_ms=EXCLUDED.execution_limit_ms,
-           is_active=EXCLUDED.is_active,updated_at=NOW()`,
-        [p.slug,p.title,p.difficulty,p.description,p.starterCode,JSON.stringify(p.examples),JSON.stringify(p.testcases),
-          p.timeLimitMinutes,p.executionLimitMs,p.isActive,req.user.id]
+      const { rows } = await client.query(
+        `INSERT INTO problems(slug,title,difficulty,difficulty_level,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by)
+         VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16)
+         ON CONFLICT(slug) DO UPDATE SET
+           title=EXCLUDED.title,
+           difficulty=EXCLUDED.difficulty,
+           difficulty_level=EXCLUDED.difficulty_level,
+           max_score=EXCLUDED.max_score,
+           passing_score=EXCLUDED.passing_score,
+           published_at=EXCLUDED.published_at,
+           source=EXCLUDED.source,
+           order_index=EXCLUDED.order_index,
+           description=EXCLUDED.description,
+           starter_code=EXCLUDED.starter_code,
+           examples=EXCLUDED.examples,
+           time_limit_minutes=EXCLUDED.time_limit_minutes,
+           execution_limit_ms=EXCLUDED.execution_limit_ms,
+           is_active=EXCLUDED.is_active,
+           updated_at=NOW()
+         RETURNING id`,
+        [p.slug, p.title, p.difficulty, p.difficultyLevel, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+          p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id]
       );
+      const problemId = rows[0].id;
+      await client.query('DELETE FROM problem_testcases WHERE problem_id=$1', [problemId]);
+      for (const tc of p.testcases) {
+        await client.query(
+          `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
+           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+          [problemId, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+        );
+      }
     }
   });
   res.json({ imported: normalized.length });

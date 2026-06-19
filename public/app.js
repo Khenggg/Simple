@@ -143,11 +143,31 @@ function shell(content, title = 'Tổng quan') {
     <aside class="sidebar" id="sidebar" aria-label="Điều hướng chính">
       <div class="brand-row"><div class="brand"><span class="brand-mark">S/</span><span class="brand-name">SimpleOJ</span></div><button class="sidebar-toggle" id="nav-toggle" aria-label="Thu gọn thanh điều hướng" title="Thu gọn/mở rộng">‹</button></div>
       <nav class="nav">
-        <button data-page="home" title="Tổng quan"><span class="nav-icon">⌂</span><span class="nav-label">Tổng quan</span></button>
-        <button data-page="problems" title="Bài tập"><span class="nav-icon">◇</span><span class="nav-label">Bài tập</span></button>
-        <button data-page="history" title="Lịch sử nộp"><span class="nav-icon">↗</span><span class="nav-label">Lịch sử nộp</span></button>
-        <button data-page="leaderboard" title="Bảng xếp hạng"><span class="nav-icon">♜</span><span class="nav-label">Bảng xếp hạng</span></button>
-        ${admin ? '<button class="admin-nav" data-page="admin" title="Quản trị"><span class="nav-icon">▦</span><span class="nav-label">Quản trị</span></button><button data-page="users" title="Học sinh"><span class="nav-icon">◎</span><span class="nav-label">Học sinh</span></button>' : ''}
+        <button data-page="home" title="Tổng quan">
+          <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+          <span class="nav-label">Tổng quan</span>
+        </button>
+        <button data-page="problems" title="Bài tập">
+          <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+          <span class="nav-label">Bài tập</span>
+        </button>
+        <button data-page="history" title="Lịch sử nộp">
+          <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/><line x1="12" y1="7" x2="12" y2="12"/><polyline points="12 12 16 14"/></svg></span>
+          <span class="nav-label">Lịch sử nộp</span>
+        </button>
+        <button data-page="leaderboard" title="Bảng xếp hạng">
+          <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34"/><path d="M12 2a6 6 0 0 1 6 6v1a6 6 0 0 1-6 6a6 6 0 0 1-6-6V8a6 6 0 0 1 6-6z"/></svg></span>
+          <span class="nav-label">Bảng xếp hạng</span>
+        </button>
+        ${admin ? `
+        <button class="admin-nav" data-page="admin" title="Quản trị">
+          <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 9.7a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 .76-.97l8-2a1 1 0 0 1 .48 0l8 2A1 1 0 0 1 20 6z"/></svg></span>
+          <span class="nav-label">Quản trị</span>
+        </button>
+        <button data-page="users" title="Học sinh">
+          <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <span class="nav-label">Học sinh</span>
+        </button>` : ''}
       </nav>
       <div class="user-chip"><div class="user-avatar">${escapeHtml(state.user.full_name.trim().charAt(0).toUpperCase())}</div><div class="user-copy"><strong>${escapeHtml(state.user.full_name)}</strong><span>${escapeHtml(state.user.email)} · ${admin ? 'ADMIN' : 'HỌC SINH'}</span></div></div>
     </aside>
@@ -232,12 +252,47 @@ async function loadAdminUsers() {
 
 function problemCards(problems) {
   if (!problems.length) return '<div class="empty">Chưa có bài tập nào được mở.</div>';
-  return `<div class="grid">${problems.map((p) => `<article class="problem-card">
-    <span class="badge${p.best_score === 100 ? '' : ' orange'}">${p.best_score === 100 ? 'Đã hoàn thành' : escapeHtml(p.difficulty)}</span>
-    <h3>${escapeHtml(p.title)}</h3>
-    <div class="problem-meta"><span>${p.time_limit_minutes} phút</span><span>Điểm tốt nhất: ${p.best_score}/100</span></div>
-    <button class="btn small open-problem" data-slug="${escapeHtml(p.slug)}">Mở bài →</button>
-  </article>`).join('')}</div>`;
+  return `<div class="grid">${problems.map((p) => {
+    const slug = p.slug;
+    const title = p.title;
+    const difficulty = p.difficulty || 'Dễ';
+    const limitMinutes = p.timeLimitMinutes ?? p.time_limit_minutes ?? 30;
+    const bestScore = p.bestScore ?? p.best_score ?? 0;
+    const maxScore = p.maxScore ?? 100;
+    const passingScore = p.passingScore ?? 100;
+    
+    let isCompleted = p.isCompleted;
+    if (isCompleted === undefined) {
+      isCompleted = bestScore === 100 || bestScore >= passingScore;
+    }
+    const isAttempted = !isCompleted && bestScore > 0;
+    
+    let statusClass = 'neutral';
+    let statusLabel = 'Chưa làm';
+    if (isCompleted) {
+      statusClass = 'mint';
+      statusLabel = 'Đã hoàn thành';
+    } else if (isAttempted) {
+      statusClass = 'warm';
+      statusLabel = 'Đang làm';
+    }
+    
+    const isAssigned = p.isAssigned ?? false;
+    
+    return `<article class="problem-card">
+      <div class="card-badges">
+        <span class="badge ${statusClass}">${statusLabel}</span>
+        ${isAssigned ? '<span class="badge assigned">Được giao</span>' : ''}
+        <span class="badge diff">${escapeHtml(difficulty)}</span>
+      </div>
+      <h3>${escapeHtml(title)}</h3>
+      <div class="problem-meta">
+        <span>🕒 ${limitMinutes} phút</span>
+        <span>💯 Điểm: ${bestScore}/${maxScore}</span>
+      </div>
+      <button class="btn small open-problem" data-slug="${escapeHtml(slug)}">Mở bài →</button>
+    </article>`;
+  }).join('')}</div>`;
 }
 
 function bindProblemButtons() {
@@ -246,7 +301,7 @@ function bindProblemButtons() {
 
 async function homeView() {
   const [problems, submissions] = await Promise.all([loadProblems(), loadSubmissions()]);
-  const accepted = new Set(submissions.filter((s) => s.score === 100).map((s) => s.slug)).size;
+  const accepted = submissions.filter((s) => s.status === 'ACCEPTED').reduce((acc, s) => { acc.add(s.slug); return acc; }, new Set()).size;
   shell(`<section class="content">
     <div class="hero-row"><div><span class="eyebrow">Phòng luyện hôm nay</span><h2>Chào ${escapeHtml(state.user.full_name.split(' ').slice(-1)[0])},<br>mình viết gì đây?</h2></div><p class="muted">Mỗi lần chạy là một giả thuyết.<br>Mỗi lần sai là thêm một dữ kiện.</p></div>
     <div class="stats"><div class="stat"><b>${problems.length}</b><span>Bài đang mở</span></div><div class="stat"><b>${accepted}</b><span>Bài đã giải đúng</span></div><div class="stat"><b>${submissions.length}</b><span>Lượt nộp gần đây</span></div></div>
@@ -260,9 +315,281 @@ async function homeView() {
 }
 
 async function problemsView() {
-  const problems = await loadProblems();
-  shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Kho bài tập</span><h2>Chọn một vấn đề<br>đáng để giải.</h2></div></div>${problemCards(problems)}</section>`, 'Bài tập');
-  bindProblemButtons();
+  // Initialize pagination & filter state
+  state.problemsPage = {
+    tab: 'done',
+    items: [],
+    cursor: null,
+    hasMore: false,
+    loading: false,
+    difficulty: '',
+    minScore: '',
+    maxScore: '',
+    assigned: 'all',
+    sort: 'newest',
+    uploadedFrom: '',
+    uploadedTo: ''
+  };
+
+  shell(`<section class="content">
+    <div class="hero-row">
+      <div>
+        <span class="eyebrow">Kho bài tập</span>
+        <h2>Chọn một vấn đề<br>đáng để giải.</h2>
+      </div>
+    </div>
+    
+    <!-- Tab Headers -->
+    <div class="tabs-header" role="tablist">
+      <button class="tab-btn active" data-tab="done" role="tab">Đã làm</button>
+      <button class="tab-btn" data-tab="todo" role="tab">Chưa làm</button>
+    </div>
+    
+    <!-- Filter Panel -->
+    <div class="filter-wrapper">
+      <button class="filter-toggle-btn" id="filter-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+        Bộ lọc & Sắp xếp
+      </button>
+      
+      <div class="filter-panel collapsed" id="filter-panel">
+        <div class="filter-grid">
+          <div class="filter-group">
+            <label for="filter-difficulty">Độ khó</label>
+            <select id="filter-difficulty">
+              <option value="">Tất cả</option>
+              <option value="1">Dễ</option>
+              <option value="2">Trung bình</option>
+              <option value="3">Khó</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label for="filter-assigned">Phân bổ</label>
+            <select id="filter-assigned">
+              <option value="all">Tất cả bài</option>
+              <option value="only">Bài được giao</option>
+              <option value="free">Bài tự do</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label for="filter-sort">Sắp xếp</label>
+            <select id="filter-sort">
+              <option value="newest">Mới nhất</option>
+              <option value="oldest">Cũ nhất</option>
+              <option value="score_desc">Điểm cao nhất</option>
+              <option value="score_asc">Điểm thấp nhất</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label>Điểm số (Min - Max)</label>
+            <div class="range-inputs">
+              <input type="number" id="filter-min-score" placeholder="0" min="0" max="100">
+              <span>-</span>
+              <input type="number" id="filter-max-score" placeholder="100" min="0" max="100">
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <label>Ngày đăng (Từ - Đến)</label>
+            <div class="range-inputs">
+              <input type="date" id="filter-date-from">
+              <span>-</span>
+              <input type="date" id="filter-date-to">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Problems Container -->
+    <div id="problems-list-container">
+      <div id="problems-grid"></div>
+      <div class="loading-state" id="problems-loading" style="display:none;">
+        <div class="loading-spinner small"></div> <span>Đang tải...</span>
+      </div>
+      <div class="empty-state" id="problems-empty" style="display:none;"></div>
+      <div class="no-more-state" id="problems-no-more" style="display:none;">Đã hết bài</div>
+      
+      <!-- Infinite Scroll Trigger -->
+      <div id="infinite-scroll-trigger" style="height: 10px; margin-top: 10px;"></div>
+    </div>
+  </section>`, 'Bài tập');
+
+  // Bind tab events
+  document.querySelectorAll('.tab-btn').forEach((btn) => {
+    btn.onclick = () => {
+      if (state.problemsPage.loading) return;
+      document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.problemsPage.tab = btn.dataset.tab;
+      resetAndLoadProblems();
+    };
+  });
+
+  // Bind filter toggle
+  const filterToggle = document.querySelector('#filter-toggle');
+  const filterPanel = document.querySelector('#filter-panel');
+  filterToggle.onclick = () => {
+    filterPanel.classList.toggle('collapsed');
+  };
+
+  // Bind filter change events
+  const difficultySelect = document.querySelector('#filter-difficulty');
+  const assignedSelect = document.querySelector('#filter-assigned');
+  const sortSelect = document.querySelector('#filter-sort');
+  const minScoreInput = document.querySelector('#filter-min-score');
+  const maxScoreInput = document.querySelector('#filter-max-score');
+  const dateFromInput = document.querySelector('#filter-date-from');
+  const dateToInput = document.querySelector('#filter-date-to');
+
+  const onFilterChange = () => {
+    state.problemsPage.difficulty = difficultySelect.value;
+    state.problemsPage.assigned = assignedSelect.value;
+    state.problemsPage.sort = sortSelect.value;
+    state.problemsPage.minScore = minScoreInput.value;
+    state.problemsPage.maxScore = maxScoreInput.value;
+    state.problemsPage.uploadedFrom = dateFromInput.value;
+    state.problemsPage.uploadedTo = dateToInput.value;
+    resetAndLoadProblems();
+  };
+
+  // Debounce helper for text/date inputs
+  let debounceTimer;
+  const debouncedFilterChange = () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(onFilterChange, 400);
+  };
+
+  difficultySelect.onchange = onFilterChange;
+  assignedSelect.onchange = onFilterChange;
+  sortSelect.onchange = onFilterChange;
+  minScoreInput.oninput = debouncedFilterChange;
+  maxScoreInput.oninput = debouncedFilterChange;
+  dateFromInput.onchange = onFilterChange;
+  dateToInput.onchange = onFilterChange;
+
+  // Setup Infinite Scroll Observer
+  setupInfiniteScrollObserver();
+
+  // Initial load
+  await loadNextProblemsPage();
+}
+
+function resetAndLoadProblems() {
+  state.problemsPage.items = [];
+  state.problemsPage.cursor = null;
+  state.problemsPage.hasMore = false;
+  
+  const grid = document.querySelector('#problems-grid');
+  if (grid) grid.innerHTML = '';
+  
+  document.querySelector('#problems-empty').style.display = 'none';
+  document.querySelector('#problems-no-more').style.display = 'none';
+  
+  loadNextProblemsPage();
+}
+
+async function loadNextProblemsPage() {
+  if (state.problemsPage.loading) return;
+  state.problemsPage.loading = true;
+  
+  const loadingIndicator = document.querySelector('#problems-loading');
+  if (loadingIndicator) loadingIndicator.style.display = 'flex';
+  
+  try {
+    const { tab, cursor, difficulty, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo } = state.problemsPage;
+    
+    // Build query params
+    const params = new URLSearchParams({
+      tab,
+      limit: '10'
+    });
+    if (cursor) params.append('cursor', cursor);
+    if (difficulty) params.append('difficulty', difficulty);
+    if (minScore) params.append('minScore', minScore);
+    if (maxScore) params.append('maxScore', maxScore);
+    if (assigned) params.append('assigned', assigned);
+    if (sort) params.append('sort', sort);
+    if (uploadedFrom) params.append('uploadedFrom', uploadedFrom);
+    if (uploadedTo) params.append('uploadedTo', uploadedTo);
+    
+    const data = await api(`/api/problems?${params.toString()}`);
+    
+    state.problemsPage.items.push(...data.items);
+    state.problemsPage.cursor = data.nextCursor;
+    state.problemsPage.hasMore = data.hasMore;
+    
+    renderProblemsGrid();
+  } catch (error) {
+    toast(error.message, true);
+  } finally {
+    state.problemsPage.loading = false;
+    if (loadingIndicator) loadingIndicator.style.display = 'none';
+  }
+}
+
+function renderProblemsGrid() {
+  const grid = document.querySelector('#problems-grid');
+  const emptyState = document.querySelector('#problems-empty');
+  const noMoreState = document.querySelector('#problems-no-more');
+  
+  if (!grid) return;
+  
+  const items = state.problemsPage.items;
+  
+  if (items.length === 0) {
+    grid.innerHTML = '';
+    emptyState.style.display = 'block';
+    noMoreState.style.display = 'none';
+    
+    if (state.problemsPage.tab === 'done') {
+      emptyState.innerHTML = `
+        <div class="empty-prompt">
+          <p>Bạn chưa hoàn thành bài tập nào trong mục này.</p>
+          <button class="btn" id="go-to-todo-tab">Xem danh sách chưa làm</button>
+        </div>
+      `;
+      const btn = document.querySelector('#go-to-todo-tab');
+      if (btn) {
+        btn.onclick = () => {
+          const todoBtn = document.querySelector('.tab-btn[data-tab="todo"]');
+          if (todoBtn) todoBtn.click();
+        };
+      }
+    } else {
+      emptyState.innerHTML = '<div class="empty-prompt"><p>Không tìm thấy bài tập phù hợp với bộ lọc.</p></div>';
+    }
+  } else {
+    emptyState.style.display = 'none';
+    
+    grid.innerHTML = problemCards(items);
+    bindProblemButtons();
+    
+    if (!state.problemsPage.hasMore) {
+      noMoreState.style.display = 'block';
+    } else {
+      noMoreState.style.display = 'none';
+    }
+  }
+}
+
+function setupInfiniteScrollObserver() {
+  const trigger = document.querySelector('#infinite-scroll-trigger');
+  if (!trigger) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    const entry = entries[0];
+    if (entry.isIntersecting && state.problemsPage.hasMore && !state.problemsPage.loading) {
+      loadNextProblemsPage();
+    }
+  }, {
+    rootMargin: '100px'
+  });
+  
+  observer.observe(trigger);
 }
 
 async function openProblem(slug) {
