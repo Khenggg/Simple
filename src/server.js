@@ -32,6 +32,31 @@ app.use('/api/submissions', rateLimit({ windowMs: 60 * 1000, limit: 10, standard
 
 const asyncRoute = (handler) => (req, res, next) => Promise.resolve(handler(req, res, next)).catch(next);
 
+const ASSIGNMENT_STATUSES = new Set(['ASSIGNED', 'COMPLETED', 'CANCELLED']);
+
+function normalizeAssignmentStatusFilter(value) {
+  const normalized = String(value || 'all').toUpperCase();
+  return ASSIGNMENT_STATUSES.has(normalized) ? normalized : 'all';
+}
+
+function parseUuidList(value, limit = 100) {
+  if (!Array.isArray(value)) return [];
+  const seen = new Set();
+  const items = [];
+  for (const entry of value) {
+    const id = String(entry || '').trim();
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    items.push(id);
+    if (items.length >= limit) break;
+  }
+  return items;
+}
+
+function isCompletedSubmission(score, status, passingScore) {
+  return status === 'ACCEPTED' || Number(score) >= Number(passingScore);
+}
+
 app.get('/api/health', asyncRoute(async (_req, res) => {
   await query('SELECT 1');
   res.json({ ok: true, judge: config.judgeServiceUrl ? 'remote' : 'local' });
@@ -81,7 +106,24 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
     const admin = req.user.role === 'ADMIN';
     const { rows } = await query(
       `SELECT p.id,p.slug,p.title,p.difficulty,p.rating,p.time_limit_minutes,p.execution_limit_ms,p.is_active,p.created_at,
-         COALESCE((SELECT MAX(s.score) FROM submissions s WHERE s.problem_id=p.id AND s.user_id=$1), 0)::int AS best_score
+         COALESCE((SELECT MAX(s.score) FROM submissions s WHERE s.problem_id=p.id AND s.user_id=$1), 0)::int AS best_score,
+         CASE
+           WHEN EXISTS (
+             SELECT 1
+             FROM student_problem_assignments spa
+             WHERE spa.user_id = $1
+               AND spa.problem_id = p.id
+               AND spa.status = 'ASSIGNED'
+           )
+           AND NOT EXISTS (
+             SELECT 1
+             FROM user_problem_progress upp
+             WHERE upp.user_id = $1
+               AND upp.problem_id = p.id
+               AND (upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= 100)
+           )
+           THEN TRUE ELSE FALSE
+         END AS "isAssigned"
        FROM problems p ${admin ? '' : 'WHERE p.is_active = TRUE'} ORDER BY p.created_at DESC`,
       [req.user.id]
     );
@@ -208,9 +250,9 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
 
   // Filter assigned
   if (assigned === 'only') {
-    whereConditions.push('ap.problem_id IS NOT NULL');
+    whereConditions.push('aa.problem_id IS NOT NULL AND NOT (upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= 100)');
   } else if (assigned === 'free') {
-    whereConditions.push('ap.problem_id IS NULL');
+    whereConditions.push('aa.problem_id IS NULL');
   }
 
   // Cursor handling
@@ -241,17 +283,10 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
   const limitPlaceholder = `$${queryParams.length}`;
 
   const querySql = `
-    WITH user_classrooms AS (
-      SELECT classroom_id FROM classroom_members WHERE user_id = $1
-    ),
-    assigned_problems AS (
+    WITH active_assignments AS (
       SELECT DISTINCT pa.problem_id
-      FROM problem_assignments pa
-      JOIN problem_assignment_targets pat ON pat.assignment_id = pa.id
-      WHERE
-        pat.target_type = 'ALL'
-        OR (pat.target_type = 'CLASSROOM' AND pat.classroom_id IN (SELECT classroom_id FROM user_classrooms))
-        OR (pat.target_type = 'STUDENT' AND pat.user_id = $1)
+      FROM student_problem_assignments pa
+      WHERE pa.user_id = $1 AND pa.status = 'ASSIGNED'
     )
     SELECT
       p.id,
@@ -264,13 +299,13 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
       COALESCE(upp.best_score, 0)::int AS "bestScore",
       upp.best_status AS "bestStatus",
       CASE WHEN upp.completed_at IS NOT NULL THEN TRUE ELSE FALSE END AS "isCompleted",
-      CASE WHEN ap.problem_id IS NOT NULL THEN TRUE ELSE FALSE END AS "isAssigned",
+      CASE WHEN aa.problem_id IS NOT NULL AND NOT (upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= 100) THEN TRUE ELSE FALSE END AS "isAssigned",
       p.published_at AS "publishedAt",
       upp.last_submitted_at AS "lastSubmittedAt",
       upp.completed_at AS "completedAt",
       p.time_limit_minutes AS "timeLimitMinutes"
     FROM ${tab === 'done' ? 'user_problem_progress upp JOIN problems p ON p.id = upp.problem_id' : 'problems p LEFT JOIN user_problem_progress upp ON upp.problem_id = p.id AND upp.user_id = $1'}
-    LEFT JOIN assigned_problems ap ON ap.problem_id = p.id
+    LEFT JOIN active_assignments aa ON aa.problem_id = p.id
     WHERE ${whereConditions.join(' AND ')}
     ORDER BY ${sortField} ${sortOrder}, p.id ${sortOrder}
     LIMIT ${limitPlaceholder}
@@ -403,19 +438,16 @@ app.post('/api/submissions', requireAuth, asyncRoute(async (req, res) => {
       `UPDATE attempts SET status=$1,submitted_at=NOW() WHERE id=$2`,
       [expired ? 'EXPIRED' : 'SUBMITTED', attempt.id]
     );
-    return client.query(
+    const result = await client.query(
       `INSERT INTO submissions(user_id,problem_id,attempt_id,code,status,score,passed_count,total_count,duration_ms,report)
        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10::jsonb)
        RETURNING id,status,score,passed_count,total_count,duration_ms,created_at`,
       [req.user.id, attempt.problem_id, attempt.id, code, status, judged.score, judged.passed,
         judged.total, Math.max(0, now - started), JSON.stringify(judged.reports)]
     );
-  });
-
-  const submission = saved.rows[0];
-  try {
-    // Update progress in a safe post-commit block
-    await query(
+    const submission = result.rows[0];
+    const shouldComplete = isCompletedSubmission(submission.score, submission.status, attempt.passing_score);
+    await client.query(
       `INSERT INTO user_problem_progress (
         user_id,
         problem_id,
@@ -445,9 +477,20 @@ app.post('/api/submissions', requireAuth, asyncRoute(async (req, res) => {
         attempt.passing_score
       ]
     );
-  } catch (progressErr) {
-    console.error('Failed to update user_problem_progress:', progressErr);
-  }
+    if (shouldComplete) {
+      await client.query(
+        `UPDATE student_problem_assignments
+         SET status='COMPLETED',
+             completed_at = COALESCE(completed_at, NOW()),
+             updated_at = NOW()
+         WHERE user_id=$1 AND problem_id=$2 AND status='ASSIGNED'`,
+        [req.user.id, attempt.problem_id]
+      );
+    }
+    return result;
+  });
+
+  const submission = saved.rows[0];
 
   res.status(201).json({ submission, reports: judged.reports });
 }));
@@ -610,6 +653,294 @@ app.get('/api/admin/users', requireAdmin, asyncRoute(async (_req, res) => {
      GROUP BY u.id ORDER BY u.created_at DESC LIMIT 300`
   );
   res.json({ users: rows });
+}));
+
+app.get('/api/admin/student-assignments', requireAdmin, asyncRoute(async (req, res) => {
+  const userId = String(req.query.userId || '').trim();
+  const status = normalizeAssignmentStatusFilter(req.query.status);
+  if (!userId) return res.status(400).json({ error: 'Thiếu học sinh.' });
+
+  const { rows: studentRows } = await query(
+    `SELECT id, email, full_name, role, is_active
+     FROM users
+     WHERE id=$1`,
+    [userId]
+  );
+  const student = studentRows[0];
+  if (!student || student.role !== 'STUDENT') {
+    return res.status(404).json({ error: 'Không tìm thấy học sinh.' });
+  }
+
+  const params = [userId];
+  const statusClause = status === 'all' ? '' : `AND spa.status = $2`;
+  if (status !== 'all') params.push(status);
+
+  const { rows } = await query(
+    `SELECT
+       spa.id,
+       spa.user_id,
+       spa.problem_id,
+       spa.assigned_by,
+       spa.status,
+       spa.note,
+       spa.assigned_at,
+       spa.completed_at,
+       spa.cancelled_at,
+       spa.copied_from_user_id,
+       spa.copied_from_assignment_id,
+       spa.created_at,
+       spa.updated_at,
+       p.slug,
+       p.title,
+       p.rating,
+       p.is_active,
+       assigner.full_name AS assigned_by_name,
+       copied_from.full_name AS copied_from_user_name
+     FROM student_problem_assignments spa
+     JOIN problems p ON p.id = spa.problem_id
+     LEFT JOIN users assigner ON assigner.id = spa.assigned_by
+     LEFT JOIN users copied_from ON copied_from.id = spa.copied_from_user_id
+     WHERE spa.user_id = $1 ${statusClause}
+     ORDER BY spa.assigned_at DESC, spa.created_at DESC`,
+    params
+  );
+
+  res.json({ student, assignments: rows });
+}));
+
+app.post('/api/admin/student-assignments', requireAdmin, asyncRoute(async (req, res) => {
+  const userId = String(req.body.userId || '').trim();
+  const problemIds = parseUuidList(req.body.problemIds, 100);
+  const note = cleanText(req.body.note, 1000);
+  const force = Boolean(req.body.force);
+
+  if (!userId || !problemIds.length) {
+    return res.status(400).json({ error: 'Thiếu học sinh hoặc danh sách bài tập.' });
+  }
+
+  const { rows: studentRows } = await query(
+    `SELECT id, email, full_name, role, is_active
+     FROM users
+     WHERE id=$1`,
+    [userId]
+  );
+  const student = studentRows[0];
+  if (!student || student.role !== 'STUDENT' || !student.is_active) {
+    return res.status(404).json({ error: 'Không tìm thấy học sinh.' });
+  }
+
+  const { rows: problemStates } = await query(
+    `SELECT
+       req.problem_id,
+       p.is_active AS problem_is_active,
+       spa.id AS active_assignment_id,
+       (upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= 100) AS is_completed
+     FROM unnest($2::uuid[]) AS req(problem_id)
+     LEFT JOIN problems p ON p.id = req.problem_id
+     LEFT JOIN student_problem_assignments spa
+       ON spa.user_id = $1
+      AND spa.problem_id = req.problem_id
+      AND spa.status = 'ASSIGNED'
+     LEFT JOIN user_problem_progress upp
+       ON upp.user_id = $1
+      AND upp.problem_id = req.problem_id`,
+    [userId, problemIds]
+  );
+
+  const eligibleProblemIds = [];
+  let skippedInactive = 0;
+  let skippedAlreadyAssigned = 0;
+  let skippedCompleted = 0;
+  let createdCount = 0;
+
+  for (const row of problemStates) {
+    if (!row.problem_is_active) {
+      skippedInactive += 1;
+      continue;
+    }
+    if (row.is_completed && !force) {
+      skippedCompleted += 1;
+      continue;
+    }
+    if (row.active_assignment_id) {
+      skippedAlreadyAssigned += 1;
+      continue;
+    }
+    eligibleProblemIds.push(row.problem_id);
+  }
+
+  if (eligibleProblemIds.length) {
+    await transaction(async (client) => {
+      const inserted = await client.query(
+        `INSERT INTO student_problem_assignments (
+           user_id,
+           problem_id,
+           assigned_by,
+           status,
+           note,
+           assigned_at,
+           completed_at,
+           cancelled_at,
+           copied_from_user_id,
+           copied_from_assignment_id,
+           created_at,
+           updated_at
+         )
+         SELECT $1::uuid, req.problem_id, $2::uuid, 'ASSIGNED', $3::text, NOW(), NULL, NULL, NULL, NULL, NOW(), NOW()
+         FROM unnest($4::uuid[]) AS req(problem_id)
+         ON CONFLICT DO NOTHING
+         RETURNING problem_id`,
+        [userId, req.user.id, note, eligibleProblemIds]
+      );
+      createdCount = inserted.rowCount;
+    });
+  }
+
+  res.status(201).json({
+    createdCount,
+    skippedAlreadyAssigned,
+    skippedCompleted,
+    skippedInactive
+  });
+}));
+
+app.patch('/api/admin/student-assignments/:id/cancel', requireAdmin, asyncRoute(async (req, res) => {
+  const { rows } = await query(
+    `UPDATE student_problem_assignments
+     SET status='CANCELLED',
+         cancelled_at = COALESCE(cancelled_at, NOW()),
+         updated_at = NOW()
+     WHERE id=$1 AND status='ASSIGNED'
+     RETURNING *`,
+    [req.params.id]
+  );
+  if (!rows[0]) return res.status(404).json({ error: 'Không tìm thấy bài đang được giao.' });
+  res.json({ assignment: rows[0] });
+}));
+
+app.post('/api/admin/student-assignments/copy', requireAdmin, asyncRoute(async (req, res) => {
+  const fromUserId = String(req.body.fromUserId || '').trim();
+  const toUserId = String(req.body.toUserId || '').trim();
+
+  if (!fromUserId || !toUserId) {
+    return res.status(400).json({ error: 'Thiếu học sinh nguồn hoặc học sinh đích.' });
+  }
+  if (fromUserId === toUserId) {
+    return res.status(400).json({ error: 'Học sinh nguồn và đích phải khác nhau.' });
+  }
+
+  const { rows: users } = await query(
+    `SELECT id, email, full_name, role, is_active
+     FROM users
+     WHERE id = ANY($1::uuid[])`,
+    [[fromUserId, toUserId]]
+  );
+  const sourceUser = users.find((row) => row.id === fromUserId);
+  const targetUser = users.find((row) => row.id === toUserId);
+  if (!sourceUser || !targetUser || sourceUser.role !== 'STUDENT' || targetUser.role !== 'STUDENT' || !sourceUser.is_active || !targetUser.is_active) {
+    return res.status(404).json({ error: 'Không tìm thấy học sinh nguồn hoặc học sinh đích.' });
+  }
+
+  const { rows: sourceAssignments } = await query(
+    `SELECT
+       spa.id AS assignment_id,
+       spa.problem_id,
+       spa.note,
+       p.is_active AS problem_is_active
+     FROM student_problem_assignments spa
+     JOIN problems p ON p.id = spa.problem_id
+     WHERE spa.user_id = $1 AND spa.status = 'ASSIGNED'
+     ORDER BY spa.assigned_at DESC, spa.created_at DESC`,
+    [fromUserId]
+  );
+
+  if (!sourceAssignments.length) {
+    return res.json({ copiedCount: 0, skippedAlreadyAssigned: 0, skippedCompleted: 0, skippedInactive: 0 });
+  }
+
+  const problemIds = sourceAssignments.map((row) => row.problem_id);
+  const { rows: targetStates } = await query(
+    `SELECT
+       req.problem_id,
+       p.is_active AS problem_is_active,
+       spa.id AS active_assignment_id,
+       (upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= 100) AS is_completed
+     FROM unnest($1::uuid[]) AS req(problem_id)
+     LEFT JOIN problems p ON p.id = req.problem_id
+     LEFT JOIN student_problem_assignments spa
+       ON spa.user_id = $2
+      AND spa.problem_id = req.problem_id
+      AND spa.status = 'ASSIGNED'
+     LEFT JOIN user_problem_progress upp
+       ON upp.user_id = $2
+      AND upp.problem_id = req.problem_id`,
+    [problemIds, toUserId]
+  );
+
+  const targetStateMap = new Map(targetStates.map((row) => [row.problem_id, row]));
+  const assignmentsToCopy = [];
+  let skippedInactive = 0;
+  let skippedAlreadyAssigned = 0;
+  let skippedCompleted = 0;
+  let copiedCount = 0;
+
+  for (const sourceAssignment of sourceAssignments) {
+    const targetState = targetStateMap.get(sourceAssignment.problem_id);
+    if (!targetState || !targetState.problem_is_active || !sourceAssignment.problem_is_active) {
+      skippedInactive += 1;
+      continue;
+    }
+    if (targetState.is_completed) {
+      skippedCompleted += 1;
+      continue;
+    }
+    if (targetState.active_assignment_id) {
+      skippedAlreadyAssigned += 1;
+      continue;
+    }
+    assignmentsToCopy.push(sourceAssignment);
+  }
+
+  if (assignmentsToCopy.length) {
+    await transaction(async (client) => {
+      const inserted = await client.query(
+        `INSERT INTO student_problem_assignments (
+           user_id,
+           problem_id,
+           assigned_by,
+           status,
+           note,
+           assigned_at,
+           completed_at,
+           cancelled_at,
+           copied_from_user_id,
+           copied_from_assignment_id,
+           created_at,
+           updated_at
+         )
+         SELECT $1::uuid, req.problem_id, $2::uuid, 'ASSIGNED', req.note, NOW(), NULL, NULL, $3::uuid, req.assignment_id, NOW(), NOW()
+         FROM unnest($4::uuid[], $5::text[], $6::uuid[]) AS req(problem_id, note, assignment_id)
+         ON CONFLICT DO NOTHING
+         RETURNING problem_id`,
+        [
+          toUserId,
+          req.user.id,
+          fromUserId,
+          assignmentsToCopy.map((row) => row.problem_id),
+          assignmentsToCopy.map((row) => row.note || ''),
+          assignmentsToCopy.map((row) => row.assignment_id)
+        ]
+      );
+      copiedCount = inserted.rowCount;
+    });
+  }
+
+  res.json({
+    copiedCount,
+    skippedAlreadyAssigned,
+    skippedCompleted,
+    skippedInactive
+  });
 }));
 
 app.patch('/api/admin/users/:id', requireAdmin, asyncRoute(async (req, res) => {

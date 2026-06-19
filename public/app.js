@@ -5,7 +5,7 @@ const toastEl = document.querySelector('#toast');
 const state = {
   user: null, page: 'home', problems: null, current: null, attempt: null, timer: null, editor: null, terminal: null,
   sidebarCollapsed: localStorage.getItem('simpleoj-sidebar') === 'collapsed',
-  submissions: null, leaderboard: null, adminDashboard: null, adminUsers: null, problemDetails: {}
+  submissions: null, leaderboard: null, adminDashboard: null, adminUsers: null, adminAssignmentState: null, problemDetails: {}
 };
 window.state = state;
 
@@ -264,6 +264,7 @@ function shell(content, title = 'Tổng quan') {
     state.leaderboard = null;
     state.adminDashboard = null;
     state.adminUsers = null;
+    state.adminAssignmentState = null;
     state.problemDetails = {};
     authView();
   };
@@ -304,12 +305,96 @@ async function loadAdminUsers() {
   return data.users;
 }
 
+async function loadAdminStudentAssignments(userId, status = 'all') {
+  if (!userId) return { student: null, assignments: [] };
+  const params = new URLSearchParams({ userId, status });
+  return api(`/api/admin/student-assignments?${params.toString()}`);
+}
+
 function clientGetRatingLabel(r) {
   if (r >= 800 && r <= 1000) return 'Cơ bản';
   if (r >= 1100 && r <= 1300) return 'Dễ';
   if (r >= 1400 && r <= 1600) return 'Trung bình';
   if (r >= 1700 && r <= 1900) return 'Khó';
   return 'Nâng cao';
+}
+
+function assignmentStatusLabel(status) {
+  return {
+    ASSIGNED: 'Đang giao',
+    COMPLETED: 'Đã hoàn thành',
+    CANCELLED: 'Đã hủy'
+  }[status] || status;
+}
+
+function assignmentStatusClass(status) {
+  return {
+    ASSIGNED: 'assigned',
+    COMPLETED: 'mint',
+    CANCELLED: 'gray'
+  }[status] || 'gray';
+}
+
+function formatMaybeDate(value) {
+  return value ? formatDate(value) : '—';
+}
+
+function renderStudentOptions(users, selectedId) {
+  if (!users.length) {
+    return '<option value="">Chưa có học sinh</option>';
+  }
+  return users.map((user) => {
+    const selected = user.id === selectedId ? 'selected' : '';
+    return `<option value="${escapeHtml(user.id)}" ${selected}>${escapeHtml(user.full_name)} · ${escapeHtml(user.email)}</option>`;
+  }).join('');
+}
+
+function renderAssignmentProblemOptions(problems) {
+  return problems
+    .filter((problem) => problem.is_active !== false)
+    .sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0) || String(a.title).localeCompare(String(b.title), 'vi'))
+    .map((problem) => {
+      const rating = problem.rating ?? 800;
+      return `<label class="assignment-problem-item">
+        <input type="checkbox" class="assignment-problem-checkbox" value="${escapeHtml(problem.id)}">
+        <span class="assignment-problem-copy">
+          <strong>${escapeHtml(problem.title)}</strong>
+          <small>${rating} · ${escapeHtml(clientGetRatingLabel(rating))}${problem.is_active === false ? ' · Đã ẩn' : ''}</small>
+        </span>
+      </label>`;
+    }).join('');
+}
+
+function renderAdminAssignmentsTable(assignments) {
+  if (!assignments.length) {
+    return '<div class="empty">Chưa có bài được giao cho học sinh này.</div>';
+  }
+
+  const rows = assignments.map((assignment) => {
+    const rating = assignment.rating ?? 800;
+    const ratingLabel = clientGetRatingLabel(rating);
+    const canCancel = assignment.status === 'ASSIGNED';
+    const note = assignment.note ? `<div class="assignment-note">${escapeHtml(assignment.note)}</div>` : '';
+    const copied = assignment.copied_from_user_name ? `<div class="muted assignment-copy-note">Sao chép từ ${escapeHtml(assignment.copied_from_user_name)}</div>` : '';
+    return `<tr>
+      <td>
+        <strong>${escapeHtml(assignment.title)}</strong><br>
+        <span class="muted">${escapeHtml(assignment.slug)}</span>
+        ${note}
+        ${copied}
+      </td>
+      <td>${rating} · ${escapeHtml(ratingLabel)}</td>
+      <td><span class="badge ${assignmentStatusClass(assignment.status)}">${assignmentStatusLabel(assignment.status)}</span></td>
+      <td>${formatMaybeDate(assignment.assigned_at)}</td>
+      <td>${formatMaybeDate(assignment.completed_at || assignment.cancelled_at)}</td>
+      <td>${canCancel ? `<button class="btn small danger cancel-assignment" data-id="${escapeHtml(assignment.id)}">Hủy</button>` : '<span class="muted">—</span>'}</td>
+    </tr>`;
+  }).join('');
+
+  return `<div class="table-wrap"><table>
+    <thead><tr><th>Bài</th><th>Rating</th><th>Trạng thái</th><th>Ngày giao</th><th>Ngày hoàn thành</th><th></th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table></div>`;
 }
 
 function problemCards(problems) {
@@ -499,7 +584,7 @@ async function problemsView() {
       <div class="no-more-state" id="problems-no-more" style="display:none;">Đã hết bài</div>
       
       <!-- Infinite Scroll Trigger -->
-      <div id="infinite-scroll-trigger" style="height: 10px; margin-top: 10px;"></div>
+      <div id="infinite-scroll-trigger" style="height: 1px; margin-top: 0;"></div>
     </div>
   </section>`, 'Bài tập');
 
@@ -1024,30 +1109,248 @@ async function leaderboardView() {
 }
 
 async function adminView() {
-  const [dashboard, problems] = await Promise.all([loadAdminDashboard(), loadProblems()]);
-  const recent = dashboard.recent.map((s) => `<tr><td>${escapeHtml(s.full_name)}</td><td>${escapeHtml(s.title)}</td><td>${s.score}</td><td>${formatDuration(s.duration_ms)}</td><td>${formatDate(s.created_at)}</td></tr>`).join('');
-  const list = problems.map((p) => {
-    const rating = p.rating ?? 800;
+  const [dashboard, problems, users] = await Promise.all([loadAdminDashboard(), loadProblems(), loadAdminUsers()]);
+  const students = users.filter((user) => user.role === 'STUDENT');
+  const fallbackStudentId = students[0]?.id || '';
+  const fallbackCopyToId = students.find((user) => user.id !== fallbackStudentId)?.id || fallbackStudentId;
+
+  if (!state.adminAssignmentState) {
+    state.adminAssignmentState = {
+      assignUserId: fallbackStudentId,
+      viewUserId: fallbackStudentId,
+      viewStatus: 'all',
+      copyFromUserId: fallbackStudentId,
+      copyToUserId: fallbackCopyToId,
+      note: '',
+      force: false
+    };
+  } else {
+    state.adminAssignmentState.assignUserId ||= fallbackStudentId;
+    state.adminAssignmentState.viewUserId ||= fallbackStudentId;
+    state.adminAssignmentState.copyFromUserId ||= fallbackStudentId;
+    state.adminAssignmentState.copyToUserId ||= fallbackCopyToId;
+    state.adminAssignmentState.viewStatus ||= 'all';
+  }
+
+  const activeProblems = problems.filter((problem) => problem.is_active !== false);
+  const recent = dashboard.recent.map((submission) => `<tr><td>${escapeHtml(submission.full_name)}</td><td>${escapeHtml(submission.title)}</td><td>${submission.score}</td><td>${formatDuration(submission.duration_ms)}</td><td>${formatDate(submission.created_at)}</td></tr>`).join('');
+  const list = problems.map((problem) => {
+    const rating = problem.rating ?? 800;
     const label = clientGetRatingLabel(rating);
-    return `<tr><td><strong>${escapeHtml(p.title)}</strong><br><span class="muted">${escapeHtml(p.slug)}</span></td><td>${rating} · ${escapeHtml(label)}</td><td>${p.time_limit_minutes}p</td><td><span class="badge ${p.is_active ? '' : 'gray'}">${p.is_active ? 'Đang mở' : 'Đã ẩn'}</span></td><td><button class="btn small secondary edit-problem" data-id="${p.id}">Sửa</button> <button class="btn small danger hide-problem" data-id="${p.id}">Ẩn</button></td></tr>`;
+    return `<tr><td><strong>${escapeHtml(problem.title)}</strong><br><span class="muted">${escapeHtml(problem.slug)}</span></td><td>${rating} · ${escapeHtml(label)}</td><td>${problem.time_limit_minutes}p</td><td><span class="badge ${problem.is_active ? '' : 'gray'}">${problem.is_active ? 'Đang mở' : 'Đã ẩn'}</span></td><td><button class="btn small secondary edit-problem" data-id="${problem.id}">Sửa</button> <button class="btn small danger hide-problem" data-id="${problem.id}">Ẩn</button></td></tr>`;
   }).join('');
-  shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Bàn điều khiển</span><h2>Quản lý lớp học.</h2></div><div><button class="btn secondary" id="import">Import JSON</button> <button class="btn" id="new-problem">+ Thêm bài</button></div></div>
+
+  shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Bàn điều khiển</span><h2>Quản lý bài tập, học sinh và phân bổ.</h2></div><div><button class="btn secondary" id="import">Import JSON</button> <button class="btn" id="new-problem">+ Thêm bài</button></div></div>
     <div class="stats"><div class="stat"><b>${dashboard.stats.students}</b><span>Học sinh</span></div><div class="stat"><b>${dashboard.stats.problems}</b><span>Bài tập</span></div><div class="stat"><b>${dashboard.stats.submissions}</b><span>Lượt nộp</span></div></div>
     <div class="section-head"><h3>Kho bài</h3></div><div class="table-wrap"><table><thead><tr><th>Bài</th><th>Độ khó</th><th>Giờ làm</th><th>Trạng thái</th><th></th></tr></thead><tbody>${list}</tbody></table></div>
     <div class="section-head"><h3>Lượt nộp mới nhất</h3></div><div class="table-wrap"><table><thead><tr><th>Học sinh</th><th>Bài</th><th>Điểm</th><th>Thời gian</th><th>Lúc nộp</th></tr></thead><tbody>${recent}</tbody></table></div>
+    <div class="section-head"><h3>Phân bổ bài tập</h3></div>
+    <div class="assignment-board">
+      <section class="assignment-panel assignment-panel--wide">
+        <div class="assignment-panel-head">
+          <div>
+            <span class="eyebrow">Giao bài trực tiếp</span>
+            <h3>Chọn học sinh, chọn bài, rồi giao ngay.</h3>
+          </div>
+          <label class="assignment-force-toggle"><input type="checkbox" id="assignment-force" ${state.adminAssignmentState.force ? 'checked' : ''}> Giao lại nếu đã hoàn thành</label>
+        </div>
+        <div class="assignment-form-grid">
+          <div class="field">
+            <label for="assignment-user">Học sinh</label>
+            <select id="assignment-user">${renderStudentOptions(students, state.adminAssignmentState.assignUserId)}</select>
+          </div>
+          <div class="field">
+            <label for="assignment-note">Ghi chú</label>
+            <input id="assignment-note" maxlength="1000" value="${escapeHtml(state.adminAssignmentState.note || '')}" placeholder="Ví dụ: làm trước thứ Sáu">
+          </div>
+        </div>
+        <div class="assignment-problem-picker" id="assignment-problem-pick">${renderAssignmentProblemOptions(activeProblems)}</div>
+        <div class="modal-actions">
+          <button class="btn" id="assign-problems">Giao bài</button>
+        </div>
+      </section>
+
+      <section class="assignment-panel">
+        <div class="assignment-panel-head">
+          <div>
+            <span class="eyebrow">Bài đã giao</span>
+            <h3>Xem danh sách đang giao, đã hoàn thành hoặc đã hủy.</h3>
+          </div>
+        </div>
+        <div class="assignment-toolbar">
+          <select id="assignment-view-user">${renderStudentOptions(students, state.adminAssignmentState.viewUserId)}</select>
+          <select id="assignment-view-status">
+            <option value="all" ${state.adminAssignmentState.viewStatus === 'all' ? 'selected' : ''}>Tất cả</option>
+            <option value="ASSIGNED" ${state.adminAssignmentState.viewStatus === 'ASSIGNED' ? 'selected' : ''}>Đang giao</option>
+            <option value="COMPLETED" ${state.adminAssignmentState.viewStatus === 'COMPLETED' ? 'selected' : ''}>Đã hoàn thành</option>
+            <option value="CANCELLED" ${state.adminAssignmentState.viewStatus === 'CANCELLED' ? 'selected' : ''}>Đã hủy</option>
+          </select>
+          <button class="btn secondary" id="refresh-assignments">Làm mới</button>
+        </div>
+        <div id="assignment-list" class="assignment-loading">Đang tải...</div>
+      </section>
+
+      <section class="assignment-panel">
+        <div class="assignment-panel-head">
+          <div>
+            <span class="eyebrow">Sao chép phân bổ</span>
+            <h3>Copy toàn bộ bài đang giao từ một học sinh sang học sinh khác.</h3>
+          </div>
+        </div>
+        <div class="assignment-form-grid">
+          <div class="field">
+            <label for="copy-from-user">Học sinh nguồn</label>
+            <select id="copy-from-user">${renderStudentOptions(students, state.adminAssignmentState.copyFromUserId)}</select>
+          </div>
+          <div class="field">
+            <label for="copy-to-user">Học sinh đích</label>
+            <select id="copy-to-user">${renderStudentOptions(students, state.adminAssignmentState.copyToUserId)}</select>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn" id="copy-assignments">Sao chép</button>
+        </div>
+      </section>
+    </div>
   </section>`, 'Quản trị');
+
+  const assignmentUserSelect = document.querySelector('#assignment-user');
+  const assignmentNoteInput = document.querySelector('#assignment-note');
+  const assignmentForceInput = document.querySelector('#assignment-force');
+  const assignmentViewUserSelect = document.querySelector('#assignment-view-user');
+  const assignmentViewStatusSelect = document.querySelector('#assignment-view-status');
+  const copyFromSelect = document.querySelector('#copy-from-user');
+  const copyToSelect = document.querySelector('#copy-to-user');
+  const assignmentList = document.querySelector('#assignment-list');
+
+  const syncAssignmentState = () => {
+    state.adminAssignmentState = {
+      assignUserId: assignmentUserSelect?.value || '',
+      viewUserId: assignmentViewUserSelect?.value || '',
+      viewStatus: assignmentViewStatusSelect?.value || 'all',
+      copyFromUserId: copyFromSelect?.value || '',
+      copyToUserId: copyToSelect?.value || '',
+      note: assignmentNoteInput?.value || '',
+      force: Boolean(assignmentForceInput?.checked)
+    };
+  };
+
+  const refreshAssignmentList = async () => {
+    syncAssignmentState();
+    if (!assignmentList) return;
+    if (!assignmentViewUserSelect?.value) {
+      assignmentList.innerHTML = '<div class="empty">Chọn học sinh để xem bài đã giao.</div>';
+      return;
+    }
+    assignmentList.innerHTML = '<div class="assignment-loading">Đang tải...</div>';
+    try {
+      const data = await loadAdminStudentAssignments(assignmentViewUserSelect.value, assignmentViewStatusSelect.value);
+      assignmentList.innerHTML = renderAdminAssignmentsTable(data.assignments);
+      assignmentList.querySelectorAll('.cancel-assignment').forEach((button) => {
+        button.onclick = async () => {
+          if (!confirm('Hủy phân bổ bài này?')) return;
+          try {
+            await api(`/api/admin/student-assignments/${button.dataset.id}/cancel`, { method: 'PATCH' });
+            state.problems = null;
+            state.adminDashboard = null;
+            toast('Đã hủy phân bổ.');
+            await refreshAssignmentList();
+          } catch (error) {
+            toast(error.message, true);
+          }
+        };
+      });
+    } catch (error) {
+      assignmentList.innerHTML = `<div class="empty">${escapeHtml(error.message)}</div>`;
+    }
+  };
+
+  assignmentUserSelect.onchange = () => {
+    syncAssignmentState();
+  };
+  assignmentNoteInput.oninput = () => {
+    syncAssignmentState();
+  };
+  assignmentForceInput.onchange = () => {
+    syncAssignmentState();
+  };
+  assignmentViewUserSelect.onchange = () => {
+    syncAssignmentState();
+    refreshAssignmentList();
+  };
+  assignmentViewStatusSelect.onchange = () => {
+    syncAssignmentState();
+    refreshAssignmentList();
+  };
+  copyFromSelect.onchange = () => {
+    syncAssignmentState();
+  };
+  copyToSelect.onchange = () => {
+    syncAssignmentState();
+  };
+  document.querySelector('#refresh-assignments').onclick = refreshAssignmentList;
+
+  document.querySelector('#assign-problems').onclick = async () => {
+    syncAssignmentState();
+    const problemIds = [...document.querySelectorAll('.assignment-problem-checkbox:checked')].map((input) => input.value);
+    if (!assignmentUserSelect.value) return toast('Hãy chọn học sinh.', true);
+    if (!problemIds.length) return toast('Hãy chọn ít nhất một bài tập.', true);
+    try {
+      const result = await api('/api/admin/student-assignments', {
+        method: 'POST',
+        body: {
+          userId: assignmentUserSelect.value,
+          problemIds,
+          note: assignmentNoteInput.value,
+          force: assignmentForceInput.checked
+        }
+      });
+      state.problems = null;
+      state.adminDashboard = null;
+      toast(`Đã giao ${result.createdCount} bài. Bỏ qua ${result.skippedAlreadyAssigned} đã có, ${result.skippedCompleted} đã hoàn thành, ${result.skippedInactive} bài đã ẩn.`);
+      await refreshAssignmentList();
+    } catch (error) {
+      toast(error.message, true);
+    }
+  };
+
+  document.querySelector('#copy-assignments').onclick = async () => {
+    syncAssignmentState();
+    if (!copyFromSelect.value || !copyToSelect.value) return toast('Hãy chọn học sinh nguồn và đích.', true);
+    if (copyFromSelect.value === copyToSelect.value) return toast('Học sinh nguồn và đích phải khác nhau.', true);
+    try {
+      const result = await api('/api/admin/student-assignments/copy', {
+        method: 'POST',
+        body: {
+          fromUserId: copyFromSelect.value,
+          toUserId: copyToSelect.value
+        }
+      });
+      state.problems = null;
+      state.adminDashboard = null;
+      toast(`Đã copy ${result.copiedCount} bài. Bỏ qua ${result.skippedAlreadyAssigned} đã có, ${result.skippedCompleted} đã hoàn thành, ${result.skippedInactive} bài đã ẩn.`);
+      if (assignmentViewUserSelect.value === copyToSelect.value) {
+        await refreshAssignmentList();
+      }
+    } catch (error) {
+      toast(error.message, true);
+    }
+  };
+
   document.querySelector('#new-problem').onclick = () => problemModal();
   document.querySelector('#import').onclick = importModal;
-  document.querySelectorAll('.edit-problem').forEach((b) => b.onclick = async () => problemModal((await api(`/api/admin/problems/${b.dataset.id}`)).problem));
-  document.querySelectorAll('.hide-problem').forEach((b) => b.onclick = async () => {
-    if(confirm('Ẩn bài này khỏi học sinh?')) {
-      await api(`/api/admin/problems/${b.dataset.id}`, {method:'DELETE'});
+  document.querySelectorAll('.edit-problem').forEach((button) => button.onclick = async () => problemModal((await api(`/api/admin/problems/${button.dataset.id}`)).problem));
+  document.querySelectorAll('.hide-problem').forEach((button) => button.onclick = async () => {
+    if (confirm('Ẩn bài này khỏi học sinh?')) {
+      await api(`/api/admin/problems/${button.dataset.id}`, { method: 'DELETE' });
       state.problems = null;
       state.problemDetails = {};
       state.adminDashboard = null;
       adminView();
     }
   });
+
+  await refreshAssignmentList();
 }
 
 function testRows(values = [{input:'',output:''}]) {
