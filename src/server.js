@@ -428,14 +428,14 @@ app.post('/api/submissions', requireAuth, asyncRoute(async (req, res) => {
         last_submitted_at,
         completed_at,
         updated_at
-      ) VALUES ($1, $2, $3, $4, $5, 1, NOW(), NOW(), CASE WHEN $5 = 'ACCEPTED' OR $4 >= $6 THEN NOW() ELSE NULL END, NOW())
+      ) VALUES ($1, $2, $3, $4::integer, $5, 1, NOW(), NOW(), CASE WHEN $5 = 'ACCEPTED' OR $4::integer >= $6::integer THEN NOW() ELSE NULL END, NOW())
       ON CONFLICT (user_id, problem_id) DO UPDATE SET
         submission_count = user_problem_progress.submission_count + 1,
         last_submitted_at = NOW(),
-        best_submission_id = CASE WHEN $4 > user_problem_progress.best_score OR user_problem_progress.best_submission_id IS NULL THEN $3 ELSE user_problem_progress.best_submission_id END,
-        best_status = CASE WHEN $4 > user_problem_progress.best_score OR user_problem_progress.best_submission_id IS NULL THEN $5 ELSE user_problem_progress.best_status END,
-        best_score = CASE WHEN $4 > user_problem_progress.best_score OR user_problem_progress.best_submission_id IS NULL THEN $4 ELSE user_problem_progress.best_score END,
-        completed_at = COALESCE(user_problem_progress.completed_at, CASE WHEN $5 = 'ACCEPTED' OR $4 >= $6 THEN NOW() ELSE NULL END),
+        best_submission_id = CASE WHEN $4::integer > user_problem_progress.best_score OR user_problem_progress.best_submission_id IS NULL THEN $3 ELSE user_problem_progress.best_submission_id END,
+        best_status = CASE WHEN $4::integer > user_problem_progress.best_score OR user_problem_progress.best_submission_id IS NULL THEN $5 ELSE user_problem_progress.best_status END,
+        best_score = CASE WHEN $4::integer > user_problem_progress.best_score OR user_problem_progress.best_submission_id IS NULL THEN $4::integer ELSE user_problem_progress.best_score END,
+        completed_at = COALESCE(user_problem_progress.completed_at, CASE WHEN $5 = 'ACCEPTED' OR $4::integer >= $6::integer THEN NOW() ELSE NULL END),
         updated_at = NOW()`,
       [
         req.user.id,
@@ -468,7 +468,7 @@ app.get('/api/leaderboard', requireAuth, asyncRoute(async (_req, res) => {
        COALESCE(SUM(best.score),0)::int AS total_score
      FROM users u LEFT JOIN (
        SELECT user_id,problem_id,MAX(score)::int AS score FROM submissions GROUP BY user_id,problem_id
-     ) best ON best.user_id=u.id WHERE u.role='STUDENT' AND u.is_active=TRUE
+     ) best ON best.user_id=u.id WHERE u.is_active=TRUE
      GROUP BY u.id,u.full_name ORDER BY solved DESC,total_score DESC,u.full_name LIMIT 100`
   );
   res.json({ leaderboard: rows });
