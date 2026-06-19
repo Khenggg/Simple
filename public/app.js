@@ -139,6 +139,7 @@ function markdown(source) {
 }
 
 function authView(register = false) {
+  document.body.style.overflow = '';
   app.innerHTML = `<main class="auth-page">
     <section class="auth-story">
       <div><div class="brand"><span class="brand-mark">S/</span> SimpleOJ</div>
@@ -1133,6 +1134,13 @@ async function navigate(page) {
       return;
     }
   }
+  
+  // Close mobile nav drawer and reset scroll-lock if open
+  const sidebar = document.querySelector('#sidebar');
+  const shellEl = document.querySelector('#shell');
+  if (sidebar) sidebar.classList.remove('open');
+  if (shellEl) shellEl.classList.remove('nav-open');
+  document.body.style.overflow = '';
   
   // Highlight the clicked tab instantly for immediate visual feedback
   document.querySelectorAll('[data-page]').forEach((button) => {
