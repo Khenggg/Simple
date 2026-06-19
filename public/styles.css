@@ -74,8 +74,12 @@ button { cursor: pointer; }
 .main { grid-column:2; min-width:0; }
 .topbar { height:72px; background:rgba(244,241,232,.88); backdrop-filter:blur(14px); border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; padding:0 clamp(20px,4vw,56px); position:sticky; top:0; z-index:10; }
 .topbar h1 { font-size:17px; margin:0; }
-.content { padding:clamp(22px,4vw,56px); max-width:1500px; margin:auto; animation:rise .35s ease both; }
-@keyframes rise { from { opacity:0; transform:translateY(8px); } }
+.content { padding:clamp(22px,4vw,56px); max-width:1500px; margin:auto; animation:content-fade .28s ease both; }
+/* Keep content ancestors free of transforms so mobile fixed overlays stay pinned to the viewport. */
+@keyframes content-fade {
+  from { opacity:0; }
+  to { opacity:1; }
+}
 .hero-row { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:32px; }
 .hero-row h2 { font-size:clamp(30px,4vw,52px); line-height:1.08; letter-spacing:-.05em; margin:6px 0; }
 .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:24px 0 38px; }

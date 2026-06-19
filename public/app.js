@@ -588,6 +588,9 @@ async function problemsView() {
     </div>
   </section>`, 'Bài tập');
 
+  // Reset inherited scroll from long pages such as the solver before binding mobile filter UI.
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
   // Bind tab events
   const updateScoreFilterVisibility = () => {
     const scoreGroup = document.querySelector('#filter-group-score');
