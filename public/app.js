@@ -618,31 +618,6 @@ function setupInfiniteScrollObserver() {
     rootMargin: '100px'
   });
   observer.observe(trigger);
-}ards(items);
-    bindProblemButtons();
-    
-    if (!state.problemsPage.hasMore) {
-      noMoreState.style.display = 'block';
-    } else {
-      noMoreState.style.display = 'none';
-    }
-  }
-}
-
-function setupInfiniteScrollObserver() {
-  const trigger = document.querySelector('#infinite-scroll-trigger');
-  if (!trigger) return;
-  
-  const observer = new IntersectionObserver((entries) => {
-    const entry = entries[0];
-    if (entry.isIntersecting && state.problemsPage.hasMore && !state.problemsPage.loading) {
-      loadNextProblemsPage();
-    }
-  }, {
-    rootMargin: '100px'
-  });
-  
-  observer.observe(trigger);
 }
 
 async function openProblem(slug) {
