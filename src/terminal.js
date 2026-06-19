@@ -526,6 +526,10 @@ export function attachTerminalServer(server) {
     try { pathname = new URL(request.url, 'http://localhost').pathname; } catch { return rejectUpgrade(socket, '400 Bad Request', 'Bad request'); }
     if (pathname !== '/ws/terminal') return rejectUpgrade(socket, '404 Not Found', 'Not found');
 
+    if (!config.serverTerminalEnabled || config.terminalRunner !== 'server') {
+      return rejectUpgrade(socket, '403 Forbidden', 'Server-side terminal is disabled');
+    }
+
     const user = await authenticate(request);
     if (!user) return rejectUpgrade(socket, '401 Unauthorized', 'Authentication required');
 

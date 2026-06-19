@@ -1,4 +1,4 @@
-import { createTerminalController } from '/terminal-client.js';
+import { createTerminalController, PyodideManager } from '/terminal-client.js';
 
 const app = document.querySelector('#app');
 const toastEl = document.querySelector('#toast');
@@ -169,6 +169,7 @@ function authView(register = false) {
       const data = await api(`/api/auth/${register ? 'register' : 'login'}`, { method:'POST', body });
       state.user = data.user;
       await navigate('home');
+      if (typeof PyodideManager !== 'undefined') PyodideManager.preload();
     } catch (error) { toast(error.message, true); button.disabled = false; }
   };
 }
@@ -250,34 +251,12 @@ function shell(content, title = 'Tổng quan') {
     }
   };
   document.addEventListener('keydown', window._onEscDrawer);
-
-  let touchStart = null;
-  shellEl.addEventListener('touchstart', (event) => {
-    const t = event.changedTouches[0];
-    touchStart = { x: t.clientX, y: t.clientY };
-  }, { passive: true });
-
-  shellEl.addEventListener('touchend', (event) => {
-    if (!touchStart || window.innerWidth > 768) return;
-    const t = event.changedTouches[0];
-    const dx = t.clientX - touchStart.x;
-    const dy = t.clientY - touchStart.y;
-    
-    // Swipe gestures: abs(dx) > 60 and abs(dx) > abs(dy) * 1.5
-    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-      if (touchStart.x < 24 && dx > 0) {
-        openMobileNav();
-      } else if (sidebar.classList.contains('open') && dx < 0) {
-        closeMobileNav();
-      }
-    }
-    touchStart = null;
-  }, { passive: true });
   document.querySelector('#logout').onclick = async () => {
     if (state.page === 'solve') {
       if (!confirm('Bạn đang trong lượt làm bài và chưa nộp bài. Đăng xuất sẽ mất mã nguồn hiện tại. Bạn có chắc chắn muốn đăng xuất?')) return;
     }
     await api('/api/auth/logout', { method:'POST' });
+    if (typeof PyodideManager !== 'undefined') PyodideManager.terminate();
     state.user = null;
     state.problems = null;
     state.submissions = null;
@@ -444,7 +423,6 @@ async function problemsView() {
       </button>
       
       <div class="filter-panel collapsed" id="filter-panel" role="dialog" aria-modal="true" aria-label="Bộ lọc và sắp xếp">
-        <div class="drag-handle" aria-hidden="true"></div>
         <div class="filter-header">
           <h3>Bộ lọc & Sắp xếp</h3>
           <button class="close-sheet-btn" id="close-sheet" aria-label="Đóng bộ lọc">✕</button>
@@ -693,57 +671,6 @@ async function problemsView() {
   filterApplyBtn.onclick = applyFiltersMobile;
   filterResetBtn.onclick = resetFilters;
 
-  // Gesture: Swipe down on filter bottom sheet to close
-  let sheetTouchStart = null;
-  filterPanel.addEventListener('touchstart', (e) => {
-    if (window.innerWidth > 768) return;
-    if (['INPUT', 'SELECT', 'TEXTAREA', 'BUTTON'].includes(e.target.tagName)) return;
-    const t = e.changedTouches[0];
-    sheetTouchStart = { x: t.clientX, y: t.clientY };
-  }, { passive: true });
-
-  filterPanel.addEventListener('touchend', (e) => {
-    if (!sheetTouchStart || window.innerWidth > 768) return;
-    const t = e.changedTouches[0];
-    const dy = t.clientY - sheetTouchStart.y;
-    const dx = t.clientX - sheetTouchStart.x;
-    if (dy > 60 && dy > Math.abs(dx) * 1.5) {
-      closeFilter();
-    }
-    sheetTouchStart = null;
-  }, { passive: true });
-
-  // Gesture: Swipe left/right on problems list container to switch tabs
-  let gridTouchStart = null;
-  const problemsListContainer = document.querySelector('#problems-list-container');
-  if (problemsListContainer) {
-    problemsListContainer.addEventListener('touchstart', (e) => {
-      if (window.innerWidth > 768) return;
-      if (['INPUT', 'SELECT', 'TEXTAREA', 'BUTTON', 'A'].includes(e.target.tagName)) return;
-      if (e.target.closest('.code-editor') || e.target.closest('.terminal')) return;
-      const t = e.changedTouches[0];
-      gridTouchStart = { x: t.clientX, y: t.clientY };
-    }, { passive: true });
-
-    problemsListContainer.addEventListener('touchend', (e) => {
-      if (!gridTouchStart || window.innerWidth > 768) return;
-      const t = e.changedTouches[0];
-      const dx = t.clientX - gridTouchStart.x;
-      const dy = t.clientY - gridTouchStart.y;
-      if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-        const currentTab = state.problemsPage.tab;
-        if (dx < 0 && currentTab === 'done') {
-          const todoBtn = document.querySelector('.tab-btn[data-tab="todo"]');
-          if (todoBtn) todoBtn.click();
-        } else if (dx > 0 && currentTab === 'todo') {
-          const doneBtn = document.querySelector('.tab-btn[data-tab="done"]');
-          if (doneBtn) doneBtn.click();
-        }
-      }
-      gridTouchStart = null;
-    }, { passive: true });
-  }
-
   // Setup Infinite Scroll Observer
   setupInfiniteScrollObserver();
 
@@ -928,7 +855,7 @@ async function openProblem(slug) {
     <article class="problem-pane" id="problem-pane"><span class="badge ${ratingClass}">${rating} · ${escapeHtml(ratingLabel)}</span><h2>${escapeHtml(problem.title)}</h2><div class="markdown">${markdown(problem.description)}</div><div class="section-head"><h3>Ví dụ</h3></div>${examples}</article>
     <section class="editor-pane"><div class="editor-bar"><span><i class="python-dot"></i> PYTHON 3 · main.py</span><span class="timer" id="timer">--:--</span></div>
       <div class="code-editor" id="code" aria-label="Mã nguồn Python"></div>
-      <section class="terminal" aria-label="Terminal"><div class="terminal-header"><div class="terminal-dots"><span></span><span></span><span></span></div><span class="terminal-title">Terminal — Python 3</span><div class="terminal-actions"><button class="term-btn" id="clear-shell" title="Xóa terminal (clear)">⌫</button><button class="term-btn stop" id="stop" title="Ngắt tiến trình (Ctrl+C)" disabled>■ Stop</button><button class="term-btn run" id="run" title="Chạy thử (python main.py)">▶ Run</button><button class="term-btn submit" id="submit" title="Nộp bài chấm điểm">⬆ Nộp bài</button></div></div>
+      <section class="terminal" aria-label="Terminal"><div class="terminal-header"><div class="terminal-dots"><span></span><span></span><span></span></div><span class="terminal-title">Terminal — Python 3 <span id="python-status" style="font-size:11px; margin-left:8px; opacity:0.8;">(Python: Đang tải)</span></span><div class="terminal-actions"><button class="term-btn" id="clear-shell" title="Xóa terminal (clear)">⌫</button><button class="term-btn stop" id="stop" title="Ngắt tiến trình (Ctrl+C)" disabled>■ Stop</button><button class="term-btn run" id="run" title="Chạy thử (python main.py)">▶ Run</button><button class="term-btn submit" id="submit" title="Nộp bài chấm điểm">⬆ Nộp bài</button></div></div>
         <div class="terminal-screen" id="terminal-host" tabindex="0" aria-label="Terminal Python tương tác"></div>
       </section>
     </section></section>`, problem.title);
@@ -1000,20 +927,6 @@ async function setupEditor() {
   };
   document.querySelector('#show-problem').onclick = () => setMobilePane(false);
   document.querySelector('#show-code').onclick = () => setMobilePane(true);
-  let paneTouch = null;
-  layout.addEventListener('touchstart', (event) => {
-    if (event.target.closest('.monaco-editor,.terminal')) return;
-    const touch = event.changedTouches[0];
-    paneTouch = { x:touch.clientX, y:touch.clientY };
-  }, { passive:true });
-  layout.addEventListener('touchend', (event) => {
-    if (!paneTouch || window.innerWidth > 1000) return;
-    const touch = event.changedTouches[0];
-    const dx = touch.clientX - paneTouch.x;
-    const dy = touch.clientY - paneTouch.y;
-    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.4) setMobilePane(dx < 0);
-    paneTouch = null;
-  }, { passive:true });
 
   const tick = () => {
     const remaining = Math.max(0, new Date(state.attempt.deadline_at).getTime() - Date.now());
@@ -1217,6 +1130,11 @@ async function navigate(page) {
   state.editor?.dispose(); state.editor = null;
   state.terminal?.dispose(); state.terminal = null;
   state.page = page;
+  
+  if (state.user && (page === 'home' || page === 'problems')) {
+    if (typeof PyodideManager !== 'undefined') PyodideManager.preload();
+  }
+
   try {
     if (page === 'home') return await homeView();
     if (page === 'problems') return await problemsView();
@@ -1233,6 +1151,7 @@ try {
   state.user = user;
   if (user) {
     await navigate('home');
+    if (typeof PyodideManager !== 'undefined') PyodideManager.preload();
   } else authView();
 } catch { authView(); }
 
@@ -1241,5 +1160,21 @@ window.addEventListener('beforeunload', (event) => {
     event.preventDefault();
     event.returnValue = 'Bạn đang trong lượt làm bài và chưa nộp bài. Nếu rời đi, mã nguồn của bạn có thể bị mất!';
     return event.returnValue;
+  }
+});
+
+window.addEventListener('pyodide-state-change', (e) => {
+  const statusEl = document.querySelector('#python-status');
+  if (!statusEl) return;
+  const s = e.detail.state;
+  if (s === 'ready' || s === 'running' || s === 'waiting_input') {
+    statusEl.textContent = '(Python: Sẵn sàng)';
+    statusEl.style.color = '#236a51'; // var(--green-2)
+  } else if (s === 'failed') {
+    statusEl.textContent = '(Python: Lỗi)';
+    statusEl.style.color = '#b43b31'; // var(--red)
+  } else {
+    statusEl.textContent = '(Python: Đang tải)';
+    statusEl.style.color = 'var(--muted)';
   }
 });

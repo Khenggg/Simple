@@ -21,5 +21,7 @@ export const config = {
   pythonRunningTimeoutMs: Number(process.env.PYTHON_RUNNING_TIMEOUT_MS || 10000),
   pythonInputTimeoutMs: Number(process.env.PYTHON_INPUT_TIMEOUT_MS || 90000),
   pythonTotalTimeoutMs: Number(process.env.PYTHON_TOTAL_TIMEOUT_MS || 180000),
-  terminalOutputLimitBytes: Number(process.env.TERMINAL_OUTPUT_LIMIT_BYTES || 262144) // 256KB
+  terminalOutputLimitBytes: Number(process.env.TERMINAL_OUTPUT_LIMIT_BYTES || 262144), // 256KB
+  terminalRunner: process.env.TERMINAL_RUNNER || 'client',
+  serverTerminalEnabled: process.env.SERVER_TERMINAL_ENABLED === 'true'
 };

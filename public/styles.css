@@ -602,9 +602,6 @@ tr:last-child td { border-bottom:0; }
 .filter-actions {
   display: none;
 }
-.drag-handle {
-  display: none;
-}
 
 /* ────────────────────────────────────────────────────────── */
 /* RESPONSIVE DESIGN - BREAKPOINTS */
@@ -732,16 +729,6 @@ tr:last-child td { border-bottom:0; }
     border-color: var(--line);
   }
 
-  /* Drag handle and header */
-  .drag-handle {
-    display: block;
-    width: 40px;
-    height: 5px;
-    background-color: var(--line);
-    border-radius: 99px;
-    margin: -10px auto 16px auto;
-    flex-shrink: 0;
-  }
   .filter-header {
     display: flex;
     justify-content: space-between;
