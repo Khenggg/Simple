@@ -254,6 +254,9 @@ async function homeView() {
   </section>`);
   document.querySelector('#all-problems').onclick = () => navigate('problems');
   bindProblemButtons();
+  
+  // Preload Monaco Editor in background to eliminate delay
+  loadMonaco().catch(() => {});
 }
 
 async function problemsView() {
@@ -266,6 +269,13 @@ async function openProblem(slug) {
   clearInterval(state.timer);
   state.editor?.dispose(); state.editor = null;
   state.terminal?.dispose(); state.terminal = null;
+  
+  // Show a loading indicator instantly inside the content area for immediate visual feedback
+  const mainEl = document.querySelector('.main');
+  if (mainEl) {
+    mainEl.innerHTML = `<header class="topbar"><button class="mobile-menu" id="menu" aria-label="Mở menu">☰</button><h1>Đang chuẩn bị phòng luyện...</h1><button class="text-btn" id="logout">Đăng xuất</button></header>
+      <div class="loading-container"><div class="loading-spinner"></div></div>`;
+  }
   
   let problem = state.problemDetails[slug];
   let attempt;
