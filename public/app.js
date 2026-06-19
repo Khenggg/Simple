@@ -1,0 +1,502 @@
+import { createTerminalController } from '/terminal-client.js';
+
+const app = document.querySelector('#app');
+const toastEl = document.querySelector('#toast');
+const state = {
+  user: null, page: 'home', problems: [], current: null, attempt: null, timer: null, editor: null, terminal: null,
+  sidebarCollapsed: localStorage.getItem('simpleoj-sidebar') === 'collapsed'
+};
+
+let monacoReady;
+
+const escapeHtml = (value = '') => String(value).replace(/[&<>'"]/g, (char) => ({ '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;' })[char]);
+const formatDate = (value) => new Intl.DateTimeFormat('vi-VN', { dateStyle:'short', timeStyle:'short' }).format(new Date(value));
+const formatDuration = (ms) => `${Math.floor(ms / 60000)}p ${Math.floor((ms % 60000) / 1000)}s`;
+const statusLabel = (s) => ({ ACCEPTED:'Đúng (Accepted)', WRONG_ANSWER:'Sai đáp án (Wrong Answer)', RUNTIME_ERROR:'Lỗi thực thi (Runtime Error)', TIME_LIMIT:'Quá thời gian (Time Limit Exceeded)', EXPIRED:'Hết giờ (Expired)', OUTPUT_LIMIT:'Vượt giới hạn Output (Output Limit Exceeded)', MEMORY_LIMIT:'Vượt giới hạn bộ nhớ (Memory Limit Exceeded)' })[s] || s;
+
+function toast(message, error = false) {
+  toastEl.textContent = message;
+  toastEl.className = `toast show${error ? ' error' : ''}`;
+  clearTimeout(toastEl._timer);
+  toastEl._timer = setTimeout(() => toastEl.className = 'toast', 3000);
+}
+
+function loadMonaco() {
+  if (monacoReady) return monacoReady;
+  monacoReady = new Promise((resolve, reject) => {
+    if (!window.require) return reject(new Error('Không tải được trình soạn thảo.'));
+    window.require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs' } });
+    window.require(['vs/editor/editor.main'], () => {
+      monaco.editor.defineTheme('thonny-light', {
+        base: 'vs', inherit: true,
+        rules: [
+          { token:'keyword', foreground:'7F0055', fontStyle:'bold' },
+          { token:'keyword.python', foreground:'7F0055', fontStyle:'bold' },
+          { token:'type.identifier', foreground:'00008B', fontStyle:'bold' },
+          { token:'identifier.function', foreground:'00008B', fontStyle:'bold' },
+          { token:'string', foreground:'006400' },
+          { token:'number', foreground:'B04600' },
+          { token:'comment', foreground:'A9A9A9' }
+        ],
+        colors: {
+          'editor.background':'#FDFDFD', 'editor.foreground':'#000000',
+          'editorGutter.background':'#E0E0E0', 'editorLineNumber.foreground':'#777777',
+          'editorLineNumber.activeForeground':'#000000', 'editor.lineHighlightBackground':'#F5F5F5',
+          'editor.selectionBackground':'#B9D7F6', 'editorCursor.foreground':'#000000',
+          'editorIndentGuide.background1':'#E8E8E8'
+        }
+      });
+      resolve(monaco);
+    }, reject);
+  });
+  return monacoReady;
+}
+
+async function api(url, options = {}) {
+  const response = await fetch(url, {
+    ...options,
+    headers: { 'content-type':'application/json', ...(options.headers || {}) },
+    body: options.body && typeof options.body !== 'string' ? JSON.stringify(options.body) : options.body
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(data.error || 'Không thể kết nối máy chủ.');
+  return data;
+}
+
+// Cấu hình Marked.js renderer tùy biến để tối ưu tải ảnh và liên kết
+if (window.marked && window.marked.use) {
+  window.marked.use({
+    renderer: {
+      image(token) {
+        // Hỗ trợ cả cấu trúc token của marked v13+ lẫn tham số vị trí của v12 trở xuống
+        const href = (typeof token === 'object' ? token.href : arguments[0]) || '';
+        const title = (typeof token === 'object' ? token.title : arguments[1]) || '';
+        const text = (typeof token === 'object' ? token.text : arguments[2]) || '';
+        const titleAttr = title ? ` title="${title}"` : "";
+        return `<img src="${href}" alt="${text}"${titleAttr} loading="lazy" decoding="async">`;
+      },
+      link(token) {
+        const href = (typeof token === 'object' ? token.href : arguments[0]) || '';
+        const title = (typeof token === 'object' ? token.title : arguments[1]) || '';
+        const text = (typeof token === 'object' ? token.text : arguments[2]) || '';
+        const titleAttr = title ? ` title="${title}"` : "";
+        const isExternal = href.startsWith('http://') || href.startsWith('https://');
+        const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+        return `<a href="${href}"${titleAttr}${targetAttr}>${text}</a>`;
+      }
+    }
+  });
+}
+
+function markdown(source) {
+  if (window.marked && window.marked.parse) {
+    return window.marked.parse(source);
+  }
+  let value = escapeHtml(source);
+  value = value.replace(/^### (.+)$/gm, '<h3>$1</h3>').replace(/^## (.+)$/gm, '<h2>$1</h2>');
+  value = value.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/`([^`]+)`/g, '<code>$1</code>');
+  value = value.replace(/^[-*] (.+)$/gm, '<li>$1</li>').replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>');
+  return value.split(/\n{2,}/).map((block) => /^<(h|ul)/.test(block) ? block : `<p>${block.replace(/\n/g,'<br>')}</p>`).join('');
+}
+
+function authView(register = false) {
+  app.innerHTML = `<main class="auth-page">
+    <section class="auth-story">
+      <div><div class="brand"><span class="brand-mark">S/</span> SimpleOJ</div>
+        <h1>Viết code.<br><em>Hiểu thật.</em></h1>
+        <p>Một phòng luyện Python gọn gàng cho lớp học — đề bài rõ ràng, đồng hồ minh bạch và kết quả được lưu sau mỗi lần thử.</p></div>
+      <div class="story-foot"><span>Python 3</span><span>Chấm tự động</span><span>Tiến bộ từng bài</span></div>
+    </section>
+    <section class="auth-panel"><div class="auth-box">
+      <span class="eyebrow">${register ? 'Tạo hồ sơ học tập' : 'Chào mừng trở lại'}</span>
+      <h2>${register ? 'Đăng ký' : 'Đăng nhập'}</h2>
+      <p class="muted">${register ? 'Bắt đầu lưu điểm và theo dõi tiến bộ.' : 'Tiếp tục bài đang làm dở của bạn.'}</p>
+      <form id="auth-form">
+        ${register ? '<div class="field"><label>Họ và tên</label><input name="fullName" maxlength="100" required autocomplete="name"></div>' : ''}
+        <div class="field"><label>Email</label><input name="email" type="email" required autocomplete="email"></div>
+        <div class="field"><label>Mật khẩu</label><input name="password" type="password" minlength="8" required autocomplete="${register ? 'new-password' : 'current-password'}"></div>
+        <button class="btn block" type="submit">${register ? 'Tạo tài khoản' : 'Vào phòng học'} →</button>
+      </form>
+      <div class="auth-switch">${register ? 'Đã có tài khoản?' : 'Chưa có tài khoản?'} <button class="text-btn" id="switch-auth">${register ? 'Đăng nhập' : 'Đăng ký'}</button></div>
+    </div></section>
+  </main>`;
+  document.querySelector('#switch-auth').onclick = () => authView(!register);
+  document.querySelector('#auth-form').onsubmit = async (event) => {
+    event.preventDefault();
+    const button = event.target.querySelector('button[type=submit]');
+    button.disabled = true;
+    try {
+      const body = Object.fromEntries(new FormData(event.target));
+      const data = await api(`/api/auth/${register ? 'register' : 'login'}`, { method:'POST', body });
+      state.user = data.user;
+      await navigate('home');
+    } catch (error) { toast(error.message, true); button.disabled = false; }
+  };
+}
+
+function shell(content, title = 'Tổng quan') {
+  const admin = state.user.role === 'ADMIN';
+  app.innerHTML = `<div class="shell${state.sidebarCollapsed ? ' nav-collapsed' : ''}" id="shell">
+    <div class="nav-backdrop" id="nav-backdrop"></div>
+    <aside class="sidebar" id="sidebar" aria-label="Điều hướng chính">
+      <div class="brand-row"><div class="brand"><span class="brand-mark">S/</span><span class="brand-name">SimpleOJ</span></div><button class="sidebar-toggle" id="nav-toggle" aria-label="Thu gọn thanh điều hướng" title="Thu gọn/mở rộng">‹</button></div>
+      <nav class="nav">
+        <button data-page="home" title="Tổng quan"><span class="nav-icon">⌂</span><span class="nav-label">Tổng quan</span></button>
+        <button data-page="problems" title="Bài tập"><span class="nav-icon">◇</span><span class="nav-label">Bài tập</span></button>
+        <button data-page="history" title="Lịch sử nộp"><span class="nav-icon">↗</span><span class="nav-label">Lịch sử nộp</span></button>
+        <button data-page="leaderboard" title="Bảng xếp hạng"><span class="nav-icon">♜</span><span class="nav-label">Bảng xếp hạng</span></button>
+        ${admin ? '<button class="admin-nav" data-page="admin" title="Quản trị"><span class="nav-icon">▦</span><span class="nav-label">Quản trị</span></button><button data-page="users" title="Học sinh"><span class="nav-icon">◎</span><span class="nav-label">Học sinh</span></button>' : ''}
+      </nav>
+      <div class="user-chip"><div class="user-avatar">${escapeHtml(state.user.full_name.trim().charAt(0).toUpperCase())}</div><div class="user-copy"><strong>${escapeHtml(state.user.full_name)}</strong><span>${escapeHtml(state.user.email)} · ${admin ? 'ADMIN' : 'HỌC SINH'}</span></div></div>
+    </aside>
+    <main class="main"><header class="topbar"><button class="mobile-menu" id="menu" aria-label="Mở menu">☰</button><h1>${escapeHtml(title)}</h1><button class="text-btn" id="logout">Đăng xuất</button></header>${content}</main>
+  </div>`;
+  document.querySelectorAll('[data-page]').forEach((button) => {
+    button.classList.toggle('active', button.dataset.page === state.page);
+    button.onclick = () => navigate(button.dataset.page);
+  });
+  const shellEl = document.querySelector('#shell');
+  const sidebar = document.querySelector('#sidebar');
+  const closeMobileNav = () => { sidebar.classList.remove('open'); shellEl.classList.remove('nav-open'); };
+  document.querySelector('#menu').onclick = () => { sidebar.classList.add('open'); shellEl.classList.add('nav-open'); };
+  document.querySelector('#nav-backdrop').onclick = closeMobileNav;
+  document.querySelector('#nav-toggle').onclick = () => {
+    state.sidebarCollapsed = !state.sidebarCollapsed;
+    shellEl.classList.toggle('nav-collapsed', state.sidebarCollapsed);
+    localStorage.setItem('simpleoj-sidebar', state.sidebarCollapsed ? 'collapsed' : 'expanded');
+    requestAnimationFrame(() => state.editor?.layout());
+  };
+  let touchStart = null;
+  shellEl.addEventListener('touchstart', (event) => {
+    const t = event.changedTouches[0]; touchStart = { x:t.clientX, y:t.clientY };
+  }, { passive:true });
+  shellEl.addEventListener('touchend', (event) => {
+    if (!touchStart || window.innerWidth > 760) return;
+    const t = event.changedTouches[0], dx = t.clientX-touchStart.x, dy = t.clientY-touchStart.y;
+    if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy)*1.3) return;
+    if (touchStart.x < 28 && dx > 0) { sidebar.classList.add('open'); shellEl.classList.add('nav-open'); }
+    if (sidebar.classList.contains('open') && dx < 0) closeMobileNav();
+  }, { passive:true });
+  document.querySelector('#logout').onclick = async () => {
+    if (state.page === 'solve') {
+      if (!confirm('Bạn đang trong lượt làm bài và chưa nộp bài. Đăng xuất sẽ mất mã nguồn hiện tại. Bạn có chắc chắn muốn đăng xuất?')) return;
+    }
+    await api('/api/auth/logout', { method:'POST' }); state.user = null; authView();
+  };
+}
+
+async function loadProblems() {
+  const data = await api('/api/problems');
+  state.problems = data.problems;
+  return data.problems;
+}
+
+function problemCards(problems) {
+  if (!problems.length) return '<div class="empty">Chưa có bài tập nào được mở.</div>';
+  return `<div class="grid">${problems.map((p) => `<article class="problem-card">
+    <span class="badge${p.best_score === 100 ? '' : ' orange'}">${p.best_score === 100 ? 'Đã hoàn thành' : escapeHtml(p.difficulty)}</span>
+    <h3>${escapeHtml(p.title)}</h3>
+    <div class="problem-meta"><span>${p.time_limit_minutes} phút</span><span>Điểm tốt nhất: ${p.best_score}/100</span></div>
+    <button class="btn small open-problem" data-slug="${escapeHtml(p.slug)}">Mở bài →</button>
+  </article>`).join('')}</div>`;
+}
+
+function bindProblemButtons() {
+  document.querySelectorAll('.open-problem').forEach((button) => button.onclick = () => openProblem(button.dataset.slug));
+}
+
+async function homeView() {
+  const [problems, history] = await Promise.all([loadProblems(), api('/api/me/submissions')]);
+  const accepted = new Set(history.submissions.filter((s) => s.score === 100).map((s) => s.slug)).size;
+  shell(`<section class="content">
+    <div class="hero-row"><div><span class="eyebrow">Phòng luyện hôm nay</span><h2>Chào ${escapeHtml(state.user.full_name.split(' ').slice(-1)[0])},<br>mình viết gì đây?</h2></div><p class="muted">Mỗi lần chạy là một giả thuyết.<br>Mỗi lần sai là thêm một dữ kiện.</p></div>
+    <div class="stats"><div class="stat"><b>${problems.length}</b><span>Bài đang mở</span></div><div class="stat"><b>${accepted}</b><span>Bài đã giải đúng</span></div><div class="stat"><b>${history.submissions.length}</b><span>Lượt nộp gần đây</span></div></div>
+    <div class="section-head"><h3>Bài tập mới</h3><button class="text-btn" id="all-problems">Xem tất cả →</button></div>${problemCards(problems.slice(0,6))}
+  </section>`);
+  document.querySelector('#all-problems').onclick = () => navigate('problems');
+  bindProblemButtons();
+}
+
+async function problemsView() {
+  const problems = await loadProblems();
+  shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Kho bài tập</span><h2>Chọn một vấn đề<br>đáng để giải.</h2></div></div>${problemCards(problems)}</section>`, 'Bài tập');
+  bindProblemButtons();
+}
+
+async function openProblem(slug) {
+  clearInterval(state.timer);
+  state.editor?.dispose(); state.editor = null;
+  state.terminal?.dispose(); state.terminal = null;
+  const [{ problem }, { attempt }] = await Promise.all([
+    api(`/api/problems/${encodeURIComponent(slug)}`),
+    api('/api/attempts', { method:'POST', body:{ slug } })
+  ]);
+  state.current = problem; state.attempt = attempt; state.page = 'solve';
+  const examples = (problem.examples || []).map((ex, i) => `<div class="example"><div class="example-head">Ví dụ ${i+1}</div><div class="example-grid"><div>Input<pre>${escapeHtml(ex.input)}</pre></div><div>Output<pre>${escapeHtml(ex.output)}</pre></div></div>${ex.explanation ? `<div style="padding:0 12px 12px" class="muted">${escapeHtml(ex.explanation)}</div>` : ''}</div>`).join('');
+  shell(`<div class="solve-mobile-tabs" role="tablist"><button class="active" id="show-problem" role="tab">Đề bài</button><button id="show-code" role="tab">Code & Shell</button></div><section class="solve-layout" id="solve-layout">
+    <article class="problem-pane" id="problem-pane"><span class="badge orange">${escapeHtml(problem.difficulty)}</span><h2>${escapeHtml(problem.title)}</h2><div class="markdown">${markdown(problem.description)}</div><div class="section-head"><h3>Ví dụ</h3></div>${examples}</article>
+    <section class="editor-pane"><div class="editor-bar"><span><i class="python-dot"></i> PYTHON 3 · main.py</span><span class="timer" id="timer">--:--</span></div>
+      <div class="code-editor" id="code" aria-label="Mã nguồn Python"></div>
+      <section class="terminal" aria-label="Terminal"><div class="terminal-header"><div class="terminal-dots"><span></span><span></span><span></span></div><span class="terminal-title">Terminal — Python 3</span><div class="terminal-actions"><button class="term-btn" id="clear-shell" title="Xóa terminal (clear)">⌫</button><button class="term-btn stop" id="stop" title="Ngắt tiến trình (Ctrl+C)" disabled>■ Stop</button><button class="term-btn run" id="run" title="Chạy thử (python main.py)">▶ Run</button><button class="term-btn submit" id="submit" title="Nộp bài chấm điểm">⬆ Nộp bài</button></div></div>
+        <div class="terminal-screen" id="terminal-host" tabindex="0" aria-label="Terminal Python tương tác"></div>
+      </section>
+    </section></section>`, problem.title);
+  const pane = document.querySelector('#problem-pane');
+  if (pane && window.renderMathInElement) {
+    const renderMath = () => {
+      window.renderMathInElement(pane, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\[', display: true}
+        ],
+        throwOnError: false
+      });
+    };
+    // Trì hoãn render LaTeX để tránh khóa UI thread và tăng tốc độ chuyển trang
+    if (window.requestIdleCallback) {
+      window.requestIdleCallback(renderMath);
+    } else {
+      setTimeout(renderMath, 50);
+    }
+  }
+  await setupEditor();
+}
+
+async function setupEditor() {
+  const editorHost = document.querySelector('#code');
+  await loadMonaco();
+  if (!editorHost.isConnected) return;
+  const cacheKey = `simpleoj-code-${state.user.id}-${state.current.slug}`;
+  const savedCode = localStorage.getItem(cacheKey);
+  state.editor = monaco.editor.create(editorHost, {
+    value: savedCode || state.current.starter_code, language:'python', theme:'thonny-light', automaticLayout:true,
+    fontFamily:'Consolas, "DM Mono", monospace', fontSize:14, lineHeight:22, tabSize:4,
+    insertSpaces:true, minimap:{enabled:false}, scrollBeyondLastLine:false, smoothScrolling:true,
+    padding:{top:10,bottom:10}, renderLineHighlight:'all', overviewRulerLanes:0,
+    scrollbar:{verticalScrollbarSize:10,horizontalScrollbarSize:10}, wordWrap:'off'
+  });
+  let saveTimeout = null;
+  state.editor.onDidChangeModelContent(() => {
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      localStorage.setItem(cacheKey, state.editor.getValue());
+    }, 500);
+  });
+  const terminalHost = document.querySelector('#terminal-host');
+  const runButton = document.querySelector('#run');
+  const stopButton = document.querySelector('#stop');
+  state.terminal?.dispose();
+  state.terminal = createTerminalController({
+    host: terminalHost,
+    getCode: () => state.editor?.getValue() || '',
+    onRunningChange: (running) => {
+      if (runButton) runButton.disabled = running;
+      if (stopButton) stopButton.disabled = !running;
+    }
+  });
+
+  const layout = document.querySelector('#solve-layout');
+  const setMobilePane = (code) => {
+    layout.classList.toggle('show-code', code);
+    document.querySelector('#show-code').classList.toggle('active', code);
+    document.querySelector('#show-problem').classList.toggle('active', !code);
+    if (code) requestAnimationFrame(() => {
+      state.editor?.layout();
+      state.terminal?.fit();
+    });
+  };
+  document.querySelector('#show-problem').onclick = () => setMobilePane(false);
+  document.querySelector('#show-code').onclick = () => setMobilePane(true);
+  let paneTouch = null;
+  layout.addEventListener('touchstart', (event) => {
+    if (event.target.closest('.monaco-editor,.terminal')) return;
+    const touch = event.changedTouches[0];
+    paneTouch = { x:touch.clientX, y:touch.clientY };
+  }, { passive:true });
+  layout.addEventListener('touchend', (event) => {
+    if (!paneTouch || window.innerWidth > 1000) return;
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - paneTouch.x;
+    const dy = touch.clientY - paneTouch.y;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.4) setMobilePane(dx < 0);
+    paneTouch = null;
+  }, { passive:true });
+
+  const tick = () => {
+    const remaining = Math.max(0, new Date(state.attempt.deadline_at).getTime() - Date.now());
+    const minutes = String(Math.floor(remaining / 60000)).padStart(2, '0');
+    const seconds = String(Math.floor((remaining % 60000) / 1000)).padStart(2, '0');
+    const timer = document.querySelector('#timer');
+    if (timer) timer.textContent = `${minutes}:${seconds}`;
+    if (!remaining) {
+      clearInterval(state.timer);
+      document.querySelector('#submit').disabled = true;
+      toast('Lượt làm đã hết giờ.', true);
+    }
+  };
+  tick();
+  state.timer = setInterval(tick, 1000);
+
+  document.querySelector('#clear-shell').onclick = () => {
+    state.terminal?.execute('clear');
+    state.terminal?.focus();
+  };
+  runButton.onclick = () => {
+    if (state.terminal?.execute('python main.py')) runButton.disabled = true;
+    state.terminal?.focus();
+  };
+  stopButton.onclick = () => {
+    state.terminal?.interrupt();
+    state.terminal?.focus();
+  };
+  document.querySelector('#submit').onclick = async (event) => {
+    if (!confirm('Nộp bài và kết thúc lượt làm hiện tại?')) return;
+    event.target.disabled = true;
+    state.terminal?.notice('Đang chấm trên các test ẩn…', '36');
+    try {
+      const data = await api('/api/submissions', { method:'POST', body:{ attemptId:state.attempt.id, code:state.editor.getValue() } });
+      clearInterval(state.timer);
+      state.page = 'submitted';
+      const cacheKey = `simpleoj-code-${state.user.id}-${state.current.slug}`;
+      localStorage.removeItem(cacheKey);
+      const submitBtn = document.querySelector('#submit');
+      if (submitBtn) {
+        submitBtn.textContent = '← Quay lại';
+        submitBtn.className = 'term-btn';
+        submitBtn.title = 'Quay lại danh sách bài tập';
+        submitBtn.disabled = false;
+        submitBtn.onclick = () => navigate('problems');
+      }
+      resultModal(data);
+    } catch (error) { toast(error.message, true); event.target.disabled = false; }
+  };
+}
+
+function resultModal(data) {
+  const s = data.submission;
+  const reports = data.reports.map((r) => `<tr><td>Test ${r.index}</td><td><span class="badge ${r.passed ? '' : 'red'}">${r.passed ? 'Đúng' : 'Sai'}</span></td><td>${escapeHtml(r.error || (r.passed ? 'Khớp đáp án' : `Nhận: ${r.actual || '(trống)'}`))}</td></tr>`).join('');
+  document.body.insertAdjacentHTML('beforeend', `<div class="modal-backdrop" id="result-modal"><div class="modal"><span class="eyebrow">Kết quả chấm bài</span><h2>${s.score}/100 · ${statusLabel(s.status)}</h2><p class="muted">${s.passed_count}/${s.total_count} test đúng · thời gian ${formatDuration(s.duration_ms)}</p><div class="table-wrap"><table><thead><tr><th>Test</th><th>Kết quả</th><th>Chi tiết</th></tr></thead><tbody>${reports}</tbody></table></div><div class="modal-actions"><button class="btn secondary" id="result-stay">Ở lại xem code</button><button class="btn" id="result-close">Về danh sách bài</button></div></div></div>`);
+  document.querySelector('#result-stay').onclick = () => { document.querySelector('#result-modal').remove(); };
+  document.querySelector('#result-close').onclick = () => { document.querySelector('#result-modal').remove(); navigate('problems'); };
+}
+
+async function historyView() {
+  const { submissions } = await api('/api/me/submissions');
+  const rows = submissions.map((s) => `<tr><td><strong>${escapeHtml(s.title)}</strong></td><td><span class="badge ${s.status === 'ACCEPTED' ? '' : 'red'}">${statusLabel(s.status)}</span></td><td>${s.score}/100</td><td>${formatDuration(s.duration_ms)}</td><td>${formatDate(s.created_at)}</td></tr>`).join('');
+  shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Dấu vết học tập</span><h2>Lịch sử nộp bài</h2></div></div><div class="table-wrap"><table><thead><tr><th>Bài</th><th>Trạng thái</th><th>Điểm</th><th>Thời gian làm</th><th>Lúc nộp</th></tr></thead><tbody>${rows || '<tr><td colspan="5">Chưa có lượt nộp nào.</td></tr>'}</tbody></table></div></section>`, 'Lịch sử nộp');
+}
+
+async function leaderboardView() {
+  const { leaderboard } = await api('/api/leaderboard');
+  const rows = leaderboard.map((u,i) => `<tr><td><strong>${i+1}</strong></td><td>${escapeHtml(u.full_name)}</td><td>${u.solved}</td><td>${u.total_score}</td></tr>`).join('');
+  shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Bảng thành tích</span><h2>Tiến bộ không phải<br>một cuộc đua.</h2></div></div><div class="table-wrap"><table><thead><tr><th>Hạng</th><th>Học sinh</th><th>Bài hoàn thành</th><th>Tổng điểm tốt nhất</th></tr></thead><tbody>${rows}</tbody></table></div></section>`, 'Bảng xếp hạng');
+}
+
+async function adminView() {
+  const [dashboard, problems] = await Promise.all([api('/api/admin/dashboard'), loadProblems()]);
+  const recent = dashboard.recent.map((s) => `<tr><td>${escapeHtml(s.full_name)}</td><td>${escapeHtml(s.title)}</td><td>${s.score}</td><td>${formatDuration(s.duration_ms)}</td><td>${formatDate(s.created_at)}</td></tr>`).join('');
+  const list = problems.map((p) => `<tr><td><strong>${escapeHtml(p.title)}</strong><br><span class="muted">${escapeHtml(p.slug)}</span></td><td>${escapeHtml(p.difficulty)}</td><td>${p.time_limit_minutes}p</td><td><span class="badge ${p.is_active ? '' : 'gray'}">${p.is_active ? 'Đang mở' : 'Đã ẩn'}</span></td><td><button class="btn small secondary edit-problem" data-id="${p.id}">Sửa</button> <button class="btn small danger hide-problem" data-id="${p.id}">Ẩn</button></td></tr>`).join('');
+  shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Bàn điều khiển</span><h2>Quản lý lớp học.</h2></div><div><button class="btn secondary" id="import">Import JSON</button> <button class="btn" id="new-problem">+ Thêm bài</button></div></div>
+    <div class="stats"><div class="stat"><b>${dashboard.stats.students}</b><span>Học sinh</span></div><div class="stat"><b>${dashboard.stats.problems}</b><span>Bài tập</span></div><div class="stat"><b>${dashboard.stats.submissions}</b><span>Lượt nộp</span></div></div>
+    <div class="section-head"><h3>Kho bài</h3></div><div class="table-wrap"><table><thead><tr><th>Bài</th><th>Độ khó</th><th>Giờ làm</th><th>Trạng thái</th><th></th></tr></thead><tbody>${list}</tbody></table></div>
+    <div class="section-head"><h3>Lượt nộp mới nhất</h3></div><div class="table-wrap"><table><thead><tr><th>Học sinh</th><th>Bài</th><th>Điểm</th><th>Thời gian</th><th>Lúc nộp</th></tr></thead><tbody>${recent}</tbody></table></div>
+  </section>`, 'Quản trị');
+  document.querySelector('#new-problem').onclick = () => problemModal();
+  document.querySelector('#import').onclick = importModal;
+  document.querySelectorAll('.edit-problem').forEach((b) => b.onclick = async () => problemModal((await api(`/api/admin/problems/${b.dataset.id}`)).problem));
+  document.querySelectorAll('.hide-problem').forEach((b) => b.onclick = async () => { if(confirm('Ẩn bài này khỏi học sinh?')) { await api(`/api/admin/problems/${b.dataset.id}`, {method:'DELETE'}); adminView(); } });
+}
+
+function testRows(values = [{input:'',output:''}]) {
+  return values.map((t) => `<div class="test-row"><textarea placeholder="Input">${escapeHtml(t.input)}</textarea><textarea placeholder="Output">${escapeHtml(t.output)}</textarea><button type="button" class="btn small danger remove-test">×</button></div>`).join('');
+}
+
+function problemModal(problem = null) {
+  document.body.insertAdjacentHTML('beforeend', `<div class="modal-backdrop" id="problem-modal"><form class="modal wide" id="problem-form"><span class="eyebrow">${problem ? 'Chỉnh sửa' : 'Bài tập mới'}</span><h2>${problem ? escapeHtml(problem.title) : 'Tạo bài tập'}</h2><div class="form-grid">
+    <div class="field"><label>Slug</label><input name="slug" value="${escapeHtml(problem?.slug || '')}" required></div><div class="field"><label>Tên bài</label><input name="title" value="${escapeHtml(problem?.title || '')}" required></div>
+    <div class="field"><label>Độ khó</label><input name="difficulty" value="${escapeHtml(problem?.difficulty || 'Dễ')}"></div><div class="field"><label>Thời gian làm (phút)</label><input name="timeLimitMinutes" type="number" min="1" max="240" value="${problem?.time_limit_minutes || 30}"></div>
+    <div class="field full"><label>Đề bài (Markdown)</label><textarea name="description" rows="8" required>${escapeHtml(problem?.description || '')}</textarea></div>
+    <div class="field full"><label>Code mẫu</label><textarea name="starterCode" rows="6">${escapeHtml(problem?.starter_code || '# Viết lời giải tại đây\n')}</textarea></div>
+    <div class="field"><label>Giới hạn chạy mỗi test (ms)</label><input name="executionLimitMs" type="number" min="250" max="5000" value="${problem?.execution_limit_ms || 1500}"></div><div class="field"><label><input name="isActive" type="checkbox" ${problem?.is_active === false ? '' : 'checked'}> Mở cho học sinh</label></div>
+    <div class="field full"><label>Test case ẩn</label><div id="tests">${testRows(problem?.testcases)}</div><button type="button" class="btn small secondary" id="add-test">+ Thêm test</button></div>
+  </div><div class="modal-actions"><button type="button" class="btn secondary" id="cancel-problem">Hủy</button><button class="btn" type="submit">Lưu bài</button></div></form></div>`);
+  const modal = document.querySelector('#problem-modal');
+  const bindRemove = () => modal.querySelectorAll('.remove-test').forEach((b) => b.onclick = () => b.parentElement.remove());
+  bindRemove();
+  modal.querySelector('#add-test').onclick = () => { modal.querySelector('#tests').insertAdjacentHTML('beforeend', testRows()); bindRemove(); };
+  modal.querySelector('#cancel-problem').onclick = () => modal.remove();
+  modal.querySelector('#problem-form').onsubmit = async (event) => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(event.target));
+    data.isActive = event.target.isActive.checked;
+    data.testcases = [...modal.querySelectorAll('.test-row')].map((row) => ({ input:row.children[0].value, output:row.children[1].value }));
+    data.examples = problem?.examples || [];
+    try {
+      await api(problem ? `/api/admin/problems/${problem.id}` : '/api/admin/problems', { method:problem ? 'PUT':'POST', body:data });
+      modal.remove(); toast('Đã lưu bài tập.'); adminView();
+    } catch(error) { toast(error.message,true); }
+  };
+}
+
+function importModal() {
+  document.body.insertAdjacentHTML('beforeend', `<div class="modal-backdrop" id="import-modal"><div class="modal"><span class="eyebrow">Nhập hàng loạt</span><h2>Import bài từ JSON</h2><p class="muted">Chấp nhận định dạng <code>problems.json</code> cũ hoặc mảng bài theo schema mới. Bài trùng slug sẽ được cập nhật.</p><div class="field"><label>Chọn file JSON</label><input type="file" id="json-file" accept="application/json,.json"></div><div class="modal-actions"><button class="btn secondary" id="cancel-import">Hủy</button><button class="btn" id="do-import">Import</button></div></div></div>`);
+  const modal = document.querySelector('#import-modal');
+  modal.querySelector('#cancel-import').onclick = () => modal.remove();
+  modal.querySelector('#do-import').onclick = async () => {
+    const file = modal.querySelector('#json-file').files[0]; if(!file) return toast('Hãy chọn file JSON.',true);
+    try { const body = JSON.parse(await file.text()); const result = await api('/api/admin/problems/import',{method:'POST',body}); modal.remove(); toast(`Đã import ${result.imported} bài.`); adminView(); } catch(error) { toast(error.message,true); }
+  };
+}
+
+async function usersView() {
+  const { users } = await api('/api/admin/users');
+  const rows = users.map((u) => `<tr><td><strong>${escapeHtml(u.full_name)}</strong><br><span class="muted">${escapeHtml(u.email)}</span></td><td><select class="role" data-id="${u.id}"><option ${u.role==='STUDENT'?'selected':''}>STUDENT</option><option ${u.role==='ADMIN'?'selected':''}>ADMIN</option></select></td><td>${u.submissions}</td><td><label><input type="checkbox" class="active-user" data-id="${u.id}" ${u.is_active?'checked':''}> Hoạt động</label></td><td><button class="btn small save-user" data-id="${u.id}">Lưu</button></td></tr>`).join('');
+  shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Tài khoản</span><h2>Học sinh & quyền truy cập.</h2></div></div><div class="table-wrap"><table><thead><tr><th>Tài khoản</th><th>Vai trò</th><th>Lượt nộp</th><th>Trạng thái</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></section>`, 'Học sinh');
+  document.querySelectorAll('.save-user').forEach((b) => b.onclick = async () => {
+    const role = document.querySelector(`.role[data-id="${b.dataset.id}"]`).value;
+    const isActive = document.querySelector(`.active-user[data-id="${b.dataset.id}"]`).checked;
+    try { await api(`/api/admin/users/${b.dataset.id}`,{method:'PATCH',body:{role,isActive}}); toast('Đã cập nhật tài khoản.'); } catch(error) { toast(error.message,true); }
+  });
+}
+
+async function navigate(page) {
+  if (state.page === 'solve' && page !== 'solve') {
+    if (!confirm('Bạn đang trong lượt làm bài và chưa nộp bài. Rời khỏi trang này sẽ mất mã nguồn hiện tại. Bạn có chắc chắn muốn rời đi?')) {
+      document.querySelectorAll('[data-page]').forEach((button) => {
+        button.classList.toggle('active', button.dataset.page === state.page);
+      });
+      return;
+    }
+  }
+  clearInterval(state.timer);
+  state.editor?.dispose(); state.editor = null;
+  state.terminal?.dispose(); state.terminal = null;
+  state.page = page;
+  try {
+    if (page === 'home') return await homeView();
+    if (page === 'problems') return await problemsView();
+    if (page === 'history') return await historyView();
+    if (page === 'leaderboard') return await leaderboardView();
+    if (page === 'admin' && state.user.role === 'ADMIN') return await adminView();
+    if (page === 'users' && state.user.role === 'ADMIN') return await usersView();
+    return await homeView();
+  } catch (error) { toast(error.message,true); }
+}
+
+try {
+  const { user } = await api('/api/auth/me');
+  state.user = user;
+  if (user) {
+    await navigate('home');
+  } else authView();
+} catch { authView(); }
+
+window.addEventListener('beforeunload', (event) => {
+  if (state.page === 'solve') {
+    event.preventDefault();
+    event.returnValue = 'Bạn đang trong lượt làm bài và chưa nộp bài. Nếu rời đi, mã nguồn của bạn có thể bị mất!';
+    return event.returnValue;
+  }
+});

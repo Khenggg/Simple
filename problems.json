@@ -1,0 +1,80 @@
+[
+  {
+    "id": "sum",
+    "title": "Bài 1: Tính tổng hai số",
+    "difficulty": "Dễ",
+    "description": "Viết chương trình nhập vào hai số nguyên $a$ và $b$ (cách nhau bởi một khoảng trắng) từ bàn phím. In ra màn hình tổng của hai số đó.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa hai số nguyên $a$ và $b$ ($-10^9 \\le a, b \\le 10^9$).\n\n### Định dạng dữ liệu đầu ra:\n* In ra một số nguyên duy nhất là tổng của $a$ và $b$.",
+    "examples": [
+      {
+        "input": "3 5",
+        "output": "8",
+        "explanation": "Tổng của 3 và 5 là 8."
+      },
+      {
+        "input": "-2 10",
+        "output": "8",
+        "explanation": "Tổng của -2 và 10 là 8."
+      }
+    ],
+    "testcases": [
+      { "input": "3 5", "output": "8" },
+      { "input": "-2 10", "output": "8" },
+      { "input": "0 0", "output": "0" },
+      { "input": "999999 1", "output": "1000000" },
+      { "input": "-100 -200", "output": "-300" }
+    ],
+    "template": "# Nhập dữ liệu đầu vào và chuyển thành số nguyên\na, b = map(int, input().split())\n\n# Tính toán và in kết quả\nprint(a + b)\n"
+  },
+  {
+    "id": "watermelon",
+    "title": "Bài 2: Chia dưa hấu (Watermelon)",
+    "difficulty": "800 (Codeforces)",
+    "description": "Pete và Billy mua được một quả dưa hấu nặng $w$ kg. Họ rất thích các số chẵn và muốn chia quả dưa hấu này thành **hai phần đều có cân nặng là số chẵn dương** (không nhất thiết phải bằng nhau). \n\nHãy giúp họ kiểm tra xem có thể chia như vậy được không. Nếu có in ra `YES`, ngược lại in ra `NO`.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa số nguyên $w$ ($1 \\le w \\le 100$) — cân nặng của quả dưa hấu.\n\n### Định dạng dữ liệu đầu ra:\n* In ra `YES` nếu có thể chia quả dưa thành hai phần có số cân là số chẵn dương. Ngược lại, in ra `NO`.",
+    "examples": [
+      {
+        "input": "8",
+        "output": "YES",
+        "explanation": "Quả dưa hấu nặng 8kg có thể chia thành hai phần nặng 2kg và 6kg (hoặc 4kg và 4kg)."
+      },
+      {
+        "input": "2",
+        "output": "NO",
+        "explanation": "Quả dưa hấu nặng 2kg chỉ có thể chia thành hai phần là 1kg và 1kg. Mà số 1 không phải số chẵn, nên kết quả là NO."
+      }
+    ],
+    "testcases": [
+      { "input": "8", "output": "YES" },
+      { "input": "2", "output": "NO" },
+      { "input": "3", "output": "NO" },
+      { "input": "100", "output": "YES" },
+      { "input": "4", "output": "YES" }
+    ],
+    "template": "# Nhập cân nặng w của quả dưa\nw = int(input())\n\n# Hãy viết code kiểm tra ở đây\n"
+  },
+  {
+    "id": "case_count",
+    "title": "Bài 3: Đếm chữ Hoa - chữ Thường",
+    "difficulty": "Dễ - Trung bình",
+    "description": "Viết chương trình nhập vào một chuỗi ký tự $S$ gồm cả chữ hoa, chữ thường và chữ số. Hãy đếm xem có bao nhiêu chữ cái viết hoa và bao nhiêu chữ cái viết thường xuất hiện trong chuỗi.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa chuỗi ký tự $S$ (độ dài không quá 100 ký tự).\n\n### Định dạng dữ liệu đầu ra:\n* Một dòng chứa hai số nguyên cách nhau bởi khoảng trắng: Số lượng chữ cái viết hoa và số lượng chữ cái viết thường.",
+    "examples": [
+      {
+        "input": "CodeForces",
+        "output": "2 8",
+        "explanation": "Chuỗi 'CodeForces' có 2 chữ hoa ('C', 'F') và 8 chữ thường ('o', 'd', 'e', 'o', 'r', 'c', 'e', 's')."
+      },
+      {
+        "input": "Python3.10",
+        "output": "1 5",
+        "explanation": "Chuỗi 'Python3.10' có 1 chữ hoa ('P') và 5 chữ thường ('y', 't', 'h', 'o', 'n'). Các chữ số và dấu chấm không được đếm."
+      }
+    ],
+    "testcases": [
+      { "input": "CodeForces", "output": "2 8" },
+      { "input": "Python3.10", "output": "1 5" },
+      { "input": "HELLO", "output": "5 0" },
+      { "input": "world", "output": "0 5" },
+      { "input": "123456", "output": "0 0" }
+    ],
+    "template": "# Nhập chuỗi ký tự\ns = input()\n\n# Hãy đếm chữ hoa và chữ thường rồi in ra kết quả\n"
+  }
+]
