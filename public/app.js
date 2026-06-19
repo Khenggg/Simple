@@ -186,6 +186,7 @@ function shell(content, title = 'Tổng quan') {
 }
 
 async function loadProblems() {
+  if (state.problems.length) return state.problems;
   const data = await api('/api/problems');
   state.problems = data.problems;
   return data.problems;
@@ -361,6 +362,7 @@ async function setupEditor() {
       state.page = 'submitted';
       const cacheKey = `simpleoj-code-${state.user.id}-${state.current.slug}`;
       localStorage.removeItem(cacheKey);
+      state.problems = [];
       const submitBtn = document.querySelector('#submit');
       if (submitBtn) {
         submitBtn.textContent = '← Quay lại';
@@ -470,6 +472,19 @@ async function navigate(page) {
       return;
     }
   }
+  
+  // Highlight the clicked tab instantly for immediate visual feedback
+  document.querySelectorAll('[data-page]').forEach((button) => {
+    button.classList.toggle('active', button.dataset.page === page);
+  });
+  
+  // Show a loading spinner instantly inside the content area
+  const mainEl = document.querySelector('.main');
+  if (mainEl) {
+    mainEl.innerHTML = `<header class="topbar"><button class="mobile-menu" id="menu" aria-label="Mở menu">☰</button><h1>Đang tải...</h1><button class="text-btn" id="logout">Đăng xuất</button></header>
+      <div class="loading-container"><div class="loading-spinner"></div></div>`;
+  }
+
   clearInterval(state.timer);
   state.editor?.dispose(); state.editor = null;
   state.terminal?.dispose(); state.terminal = null;
