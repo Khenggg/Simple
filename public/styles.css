@@ -149,6 +149,22 @@ tr:last-child td { border-bottom:0; }
 .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:0 16px; }
 .form-grid .full { grid-column:1/-1; }
 .modal-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:20px; }
+
+/* Confirm Leave Modal */
+.confirm-backdrop { position:fixed; inset:0; background:rgba(15,24,19,0); display:grid; place-items:center; z-index:200; padding:20px; transition:background .2s ease; }
+.confirm-backdrop.show { background:rgba(15,24,19,.72); }
+.confirm-dialog { background:var(--card); width:min(380px,calc(100% - 32px)); border-radius:18px; padding:28px 24px; box-shadow:0 20px 60px rgba(0,0,0,.25); text-align:center; transform:scale(.9) translateY(20px); opacity:0; transition:transform .25s cubic-bezier(.34,1.56,.64,1), opacity .2s ease; }
+.confirm-backdrop.show .confirm-dialog { transform:scale(1) translateY(0); opacity:1; }
+.confirm-icon { display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; border-radius:50%; background:#fff3e0; color:#e65100; margin-bottom:14px; }
+.confirm-dialog h3 { font-size:17px; font-weight:700; margin:0 0 8px; color:var(--ink); }
+.confirm-dialog p { font-size:14px; line-height:1.5; color:var(--muted); margin:0 0 22px; }
+.confirm-actions { display:flex; gap:10px; justify-content:center; }
+.confirm-actions .btn { flex:1; min-height:44px; font-size:14px; border-radius:10px; }
+@media (max-width:480px) {
+  .confirm-dialog { padding:24px 18px; }
+  .confirm-actions { flex-direction:column-reverse; }
+  .confirm-actions .btn { width:100%; }
+}
 .test-row { display:grid; grid-template-columns:1fr 1fr auto; gap:8px; align-items:start; margin:8px 0; }
 .test-row textarea { min-height:62px; }
 .empty { padding:50px 20px; text-align:center; color:var(--muted); border:1px dashed #bbbdb6; border-radius:14px; }

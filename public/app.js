@@ -23,6 +23,43 @@ function toast(message, error = false) {
   toastEl._timer = setTimeout(() => toastEl.className = 'toast', 3000);
 }
 
+function showConfirmModal(message, { confirmText = 'Rời bài', cancelText = 'Ở lại' } = {}) {
+  return new Promise((resolve) => {
+    const existing = document.querySelector('#confirm-leave-modal');
+    if (existing) { existing.remove(); resolve(false); return; }
+    const backdrop = document.createElement('div');
+    backdrop.id = 'confirm-leave-modal';
+    backdrop.className = 'confirm-backdrop';
+    backdrop.innerHTML = `
+      <div class="confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-msg">
+        <div class="confirm-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3 id="confirm-title">Xác nhận rời bài</h3>
+        <p id="confirm-msg">${escapeHtml(message)}</p>
+        <div class="confirm-actions">
+          <button class="btn secondary" id="confirm-cancel">${escapeHtml(cancelText)}</button>
+          <button class="btn danger" id="confirm-leave">${escapeHtml(confirmText)}</button>
+        </div>
+      </div>`;
+    document.body.appendChild(backdrop);
+    requestAnimationFrame(() => backdrop.classList.add('show'));
+    const cleanup = (result) => {
+      backdrop.classList.remove('show');
+      backdrop.addEventListener('transitionend', () => backdrop.remove(), { once: true });
+      setTimeout(() => backdrop.remove(), 300);
+      resolve(result);
+    };
+    backdrop.querySelector('#confirm-cancel').onclick = () => cleanup(false);
+    backdrop.querySelector('#confirm-leave').onclick = () => cleanup(true);
+    backdrop.addEventListener('click', (e) => { if (e.target === backdrop) cleanup(false); });
+    document.addEventListener('keydown', function onKey(e) {
+      if (e.key === 'Escape') { cleanup(false); document.removeEventListener('keydown', onKey); }
+    });
+    backdrop.querySelector('#confirm-cancel').focus();
+  });
+}
+
 function loadMonaco() {
   if (monacoReady) return monacoReady;
   monacoReady = new Promise((resolve, reject) => {
@@ -1155,7 +1192,8 @@ async function usersView() {
 
 async function navigate(page) {
   if (state.page === 'solve' && page !== 'solve') {
-    if (!confirm('Bạn đang trong lượt làm bài và chưa nộp bài. Rời khỏi trang này sẽ mất mã nguồn hiện tại. Bạn có chắc chắn muốn rời đi?')) {
+    const leave = await showConfirmModal('Bạn đang làm bài. Rời bài sẽ mất thay đổi chưa lưu hoặc chưa nộp. Tiếp tục rời bài?');
+    if (!leave) {
       document.querySelectorAll('[data-page]').forEach((button) => {
         button.classList.toggle('active', button.dataset.page === state.page);
       });
