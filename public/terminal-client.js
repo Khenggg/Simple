@@ -255,7 +255,7 @@ export const PyodideManager = {
           }
           activeRun = null;
         }
-      }, 500);
+      }, 2000);
 
       return true;
     }

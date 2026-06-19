@@ -137,19 +137,29 @@ self.onmessage = async function(e) {
         except KeyboardInterrupt:
             pass
         except BaseException as e:
-            import traceback
-            tb = traceback.format_exception(type(e), e, e.__traceback__)
-            cleaned = []
-            for i, line in enumerate(tb):
-                if i == len(tb) - 1:
-                    cleaned.append(line)
-                elif 'runpy.py' in line or 'pyodide' in line or 'js_input_module' in line:
-                    continue
-                else:
-                    cleaned.append(line)
-            sys.stderr.write("".join(cleaned))
-            sys.stderr.flush()
+            is_interrupt = 'KEYBOARD_INTERRUPT' in str(e) or 'KEYBOARD_INTERRUPT' in repr(e) or 'KeyboardInterrupt' in type(e).__name__
+            if is_interrupt:
+                pass
+            else:
+                import traceback
+                tb = traceback.format_exception(type(e), e, e.__traceback__)
+                cleaned = []
+                for i, line in enumerate(tb):
+                    if i == len(tb) - 1:
+                        cleaned.append(line)
+                    elif 'runpy' in line or 'pyodide' in line or 'js_input_module' in line:
+                        continue
+                    else:
+                        cleaned.append(line)
+                sys.stderr.write("".join(cleaned))
+                sys.stderr.flush()
       `);
+      
+      const wasInterrupted = (interruptBuffer && interruptBuffer[0] === 2) || (statusInt32 && Atomics.load(statusInt32, 0) === 2);
+      if (wasInterrupted) {
+        self.postMessage({ type: "exit", code: 130, interrupted: true });
+        return;
+      }
       
       self.postMessage({ type: "exit", code: 0 });
     } catch (err) {
@@ -190,39 +200,54 @@ self.onmessage = async function(e) {
             except KeyboardInterrupt:
                 pass
             except BaseException as e:
+                is_interrupt = 'KEYBOARD_INTERRUPT' in str(e) or 'KEYBOARD_INTERRUPT' in repr(e) or 'KeyboardInterrupt' in type(e).__name__
+                if is_interrupt:
+                    pass
+                else:
+                    import traceback
+                    tb = traceback.format_exception(type(e), e, e.__traceback__)
+                    cleaned = []
+                    for i, line in enumerate(tb):
+                        if i == len(tb) - 1:
+                            cleaned.append(line)
+                        elif 'pyodide' in line or 'runpy' in line:
+                            continue
+                        else:
+                            cleaned.append(line)
+                    sys.stderr.write("".join(cleaned))
+                    sys.stderr.flush()
+        except KeyboardInterrupt:
+            pass
+        except BaseException as e:
+            is_interrupt = 'KEYBOARD_INTERRUPT' in str(e) or 'KEYBOARD_INTERRUPT' in repr(e) or 'KeyboardInterrupt' in type(e).__name__
+            if is_interrupt:
+                pass
+            else:
                 import traceback
                 tb = traceback.format_exception(type(e), e, e.__traceback__)
                 cleaned = []
                 for i, line in enumerate(tb):
                     if i == len(tb) - 1:
                         cleaned.append(line)
-                    elif 'pyodide' in line:
+                    elif 'pyodide' in line or 'runpy' in line:
                         continue
                     else:
                         cleaned.append(line)
                 sys.stderr.write("".join(cleaned))
                 sys.stderr.flush()
-        except KeyboardInterrupt:
-            pass
-        except BaseException as e:
-            import traceback
-            tb = traceback.format_exception(type(e), e, e.__traceback__)
-            cleaned = []
-            for i, line in enumerate(tb):
-                if i == len(tb) - 1:
-                    cleaned.append(line)
-                elif 'pyodide' in line:
-                    continue
-                else:
-                    cleaned.append(line)
-            sys.stderr.write("".join(cleaned))
-            sys.stderr.flush()
       `);
+      
+      const wasInterrupted = (interruptBuffer && interruptBuffer[0] === 2) || (statusInt32 && Atomics.load(statusInt32, 0) === 2);
+      if (wasInterrupted) {
+        self.postMessage({ type: "exit", code: 130, interrupted: true });
+        return;
+      }
+      
       self.postMessage({ type: "exit", code: 0 });
     } catch (err) {
       if (err.message === "OUTPUT_LIMIT_EXCEEDED") return;
       if (err.message === "INPUT_TIMEOUT") return;
-      if (err.message === "KEYBOARD_INTERRUPT") {
+      if (err.message === "KEYBOARD_INTERRUPT" || err.message.includes("KeyboardInterrupt")) {
         self.postMessage({ type: "exit", code: 130, interrupted: true });
         return;
       }
