@@ -851,12 +851,21 @@ async function openProblem(slug) {
   else if (rating >= 2000) ratingClass = 'r2000';
 
   const pState = typeof PyodideManager !== 'undefined' ? PyodideManager.getState() : 'idle';
-  const initialStatusText = (pState === 'ready' || pState === 'running' || pState === 'waiting_input') 
-    ? '(Python: Sẵn sàng)' 
-    : (pState === 'failed' ? '(Python: Lỗi)' : '(Python: Đang tải)');
-  const initialStatusColor = (pState === 'ready' || pState === 'running' || pState === 'waiting_input') 
-    ? '#236a51' 
-    : (pState === 'failed' ? '#b43b31' : 'var(--muted)');
+  let initialStatusText = '(Python: Đang tải)';
+  let initialStatusColor = 'var(--muted)';
+  if (pState === 'ready') {
+    initialStatusText = '(Python: Sẵn sàng)';
+    initialStatusColor = '#236a51';
+  } else if (pState === 'running') {
+    initialStatusText = '(Python: Đang chạy)';
+    initialStatusColor = '#2563eb';
+  } else if (pState === 'waiting_input') {
+    initialStatusText = '(Python: Đang chờ nhập)';
+    initialStatusColor = '#d97706';
+  } else if (pState === 'failed') {
+    initialStatusText = '(Python: Lỗi)';
+    initialStatusColor = '#b43b31';
+  }
 
   const examples = (problem.examples || []).map((ex, i) => `<div class="example"><div class="example-head">Ví dụ ${i+1}</div><div class="example-grid"><div>Input<pre>${escapeHtml(ex.input)}</pre></div><div>Output<pre>${escapeHtml(ex.output)}</pre></div></div>${ex.explanation ? `<div style="padding:0 12px 12px" class="muted">${escapeHtml(ex.explanation)}</div>` : ''}</div>`).join('');
   shell(`<div class="solve-mobile-tabs" role="tablist"><button class="active" id="show-problem" role="tab">Đề bài</button><button id="show-code" role="tab">Code & Shell</button></div><section class="solve-layout" id="solve-layout">
@@ -1175,9 +1184,15 @@ window.addEventListener('pyodide-state-change', (e) => {
   const statusEl = document.querySelector('#python-status');
   if (!statusEl) return;
   const s = e.detail.state;
-  if (s === 'ready' || s === 'running' || s === 'waiting_input') {
+  if (s === 'ready') {
     statusEl.textContent = '(Python: Sẵn sàng)';
     statusEl.style.color = '#236a51'; // var(--green-2)
+  } else if (s === 'running') {
+    statusEl.textContent = '(Python: Đang chạy)';
+    statusEl.style.color = '#2563eb';
+  } else if (s === 'waiting_input') {
+    statusEl.textContent = '(Python: Đang chờ nhập)';
+    statusEl.style.color = '#d97706';
   } else if (s === 'failed') {
     statusEl.textContent = '(Python: Lỗi)';
     statusEl.style.color = '#b43b31'; // var(--red)

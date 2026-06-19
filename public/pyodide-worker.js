@@ -138,10 +138,13 @@ self.onmessage = async function(e) {
             import traceback
             tb = traceback.format_exception(type(e), e, e.__traceback__)
             cleaned = []
-            for line in tb:
-                if 'runpy.py' in line or 'pyodide' in line or 'js_input_module' in line:
+            for i, line in enumerate(tb):
+                if i == len(tb) - 1:
+                    cleaned.append(line)
+                elif 'runpy.py' in line or 'pyodide' in line or 'js_input_module' in line:
                     continue
-                cleaned.append(line)
+                else:
+                    cleaned.append(line)
             sys.stderr.write("".join(cleaned))
             sys.stderr.flush()
       `);
@@ -187,7 +190,14 @@ self.onmessage = async function(e) {
             except BaseException as e:
                 import traceback
                 tb = traceback.format_exception(type(e), e, e.__traceback__)
-                cleaned = [line for line in tb if 'pyodide' not in line]
+                cleaned = []
+                for i, line in enumerate(tb):
+                    if i == len(tb) - 1:
+                        cleaned.append(line)
+                    elif 'pyodide' in line:
+                        continue
+                    else:
+                        cleaned.append(line)
                 sys.stderr.write("".join(cleaned))
                 sys.stderr.flush()
         except KeyboardInterrupt:
@@ -195,7 +205,14 @@ self.onmessage = async function(e) {
         except BaseException as e:
             import traceback
             tb = traceback.format_exception(type(e), e, e.__traceback__)
-            cleaned = [line for line in tb if 'pyodide' not in line]
+            cleaned = []
+            for i, line in enumerate(tb):
+                if i == len(tb) - 1:
+                    cleaned.append(line)
+                elif 'pyodide' in line:
+                    continue
+                else:
+                    cleaned.append(line)
             sys.stderr.write("".join(cleaned))
             sys.stderr.flush()
       `);
