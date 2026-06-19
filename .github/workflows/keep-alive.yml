@@ -1,0 +1,14 @@
+name: Keep Alive SimpleOJ
+
+on:
+  schedule:
+    - cron: '*/20 * * * *' # Chạy mỗi 20 phút
+  workflow_dispatch: # Cho phép kích hoạt thủ công
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Health Endpoint
+        run: |
+          curl -s https://simple-hqnb.onrender.com/api/health
