@@ -3,9 +3,11 @@ import { createTerminalController } from '/terminal-client.js';
 const app = document.querySelector('#app');
 const toastEl = document.querySelector('#toast');
 const state = {
-  user: null, page: 'home', problems: [], current: null, attempt: null, timer: null, editor: null, terminal: null,
-  sidebarCollapsed: localStorage.getItem('simpleoj-sidebar') === 'collapsed'
+  user: null, page: 'home', problems: null, current: null, attempt: null, timer: null, editor: null, terminal: null,
+  sidebarCollapsed: localStorage.getItem('simpleoj-sidebar') === 'collapsed',
+  submissions: null, leaderboard: null, adminDashboard: null, adminUsers: null, problemDetails: {}
 };
+window.state = state;
 
 let monacoReady;
 
@@ -181,15 +183,51 @@ function shell(content, title = 'Tổng quan') {
     if (state.page === 'solve') {
       if (!confirm('Bạn đang trong lượt làm bài và chưa nộp bài. Đăng xuất sẽ mất mã nguồn hiện tại. Bạn có chắc chắn muốn đăng xuất?')) return;
     }
-    await api('/api/auth/logout', { method:'POST' }); state.user = null; authView();
+    await api('/api/auth/logout', { method:'POST' });
+    state.user = null;
+    state.problems = null;
+    state.submissions = null;
+    state.leaderboard = null;
+    state.adminDashboard = null;
+    state.adminUsers = null;
+    state.problemDetails = {};
+    authView();
   };
 }
 
 async function loadProblems() {
-  if (state.problems.length) return state.problems;
+  if (state.problems !== null) return state.problems;
   const data = await api('/api/problems');
   state.problems = data.problems;
   return data.problems;
+}
+
+async function loadSubmissions() {
+  if (state.submissions !== null) return state.submissions;
+  const data = await api('/api/me/submissions');
+  state.submissions = data.submissions;
+  return data.submissions;
+}
+
+async function loadLeaderboard() {
+  if (state.leaderboard !== null) return state.leaderboard;
+  const data = await api('/api/leaderboard');
+  state.leaderboard = data.leaderboard;
+  return data.leaderboard;
+}
+
+async function loadAdminDashboard() {
+  if (state.adminDashboard !== null) return state.adminDashboard;
+  const data = await api('/api/admin/dashboard');
+  state.adminDashboard = data;
+  return data;
+}
+
+async function loadAdminUsers() {
+  if (state.adminUsers !== null) return state.adminUsers;
+  const data = await api('/api/admin/users');
+  state.adminUsers = data.users;
+  return data.users;
 }
 
 function problemCards(problems) {
@@ -207,11 +245,11 @@ function bindProblemButtons() {
 }
 
 async function homeView() {
-  const [problems, history] = await Promise.all([loadProblems(), api('/api/me/submissions')]);
-  const accepted = new Set(history.submissions.filter((s) => s.score === 100).map((s) => s.slug)).size;
+  const [problems, submissions] = await Promise.all([loadProblems(), loadSubmissions()]);
+  const accepted = new Set(submissions.filter((s) => s.score === 100).map((s) => s.slug)).size;
   shell(`<section class="content">
     <div class="hero-row"><div><span class="eyebrow">Phòng luyện hôm nay</span><h2>Chào ${escapeHtml(state.user.full_name.split(' ').slice(-1)[0])},<br>mình viết gì đây?</h2></div><p class="muted">Mỗi lần chạy là một giả thuyết.<br>Mỗi lần sai là thêm một dữ kiện.</p></div>
-    <div class="stats"><div class="stat"><b>${problems.length}</b><span>Bài đang mở</span></div><div class="stat"><b>${accepted}</b><span>Bài đã giải đúng</span></div><div class="stat"><b>${history.submissions.length}</b><span>Lượt nộp gần đây</span></div></div>
+    <div class="stats"><div class="stat"><b>${problems.length}</b><span>Bài đang mở</span></div><div class="stat"><b>${accepted}</b><span>Bài đã giải đúng</span></div><div class="stat"><b>${submissions.length}</b><span>Lượt nộp gần đây</span></div></div>
     <div class="section-head"><h3>Bài tập mới</h3><button class="text-btn" id="all-problems">Xem tất cả →</button></div>${problemCards(problems.slice(0,6))}
   </section>`);
   document.querySelector('#all-problems').onclick = () => navigate('problems');
@@ -228,10 +266,22 @@ async function openProblem(slug) {
   clearInterval(state.timer);
   state.editor?.dispose(); state.editor = null;
   state.terminal?.dispose(); state.terminal = null;
-  const [{ problem }, { attempt }] = await Promise.all([
-    api(`/api/problems/${encodeURIComponent(slug)}`),
-    api('/api/attempts', { method:'POST', body:{ slug } })
-  ]);
+  
+  let problem = state.problemDetails[slug];
+  let attempt;
+  if (problem) {
+    const res = await api('/api/attempts', { method:'POST', body:{ slug } });
+    attempt = res.attempt;
+  } else {
+    const [resP, resA] = await Promise.all([
+      api(`/api/problems/${encodeURIComponent(slug)}`),
+      api('/api/attempts', { method:'POST', body:{ slug } })
+    ]);
+    problem = resP.problem;
+    attempt = resA.attempt;
+    state.problemDetails[slug] = problem;
+  }
+  
   state.current = problem; state.attempt = attempt; state.page = 'solve';
   const examples = (problem.examples || []).map((ex, i) => `<div class="example"><div class="example-head">Ví dụ ${i+1}</div><div class="example-grid"><div>Input<pre>${escapeHtml(ex.input)}</pre></div><div>Output<pre>${escapeHtml(ex.output)}</pre></div></div>${ex.explanation ? `<div style="padding:0 12px 12px" class="muted">${escapeHtml(ex.explanation)}</div>` : ''}</div>`).join('');
   shell(`<div class="solve-mobile-tabs" role="tablist"><button class="active" id="show-problem" role="tab">Đề bài</button><button id="show-code" role="tab">Code & Shell</button></div><section class="solve-layout" id="solve-layout">
@@ -362,7 +412,10 @@ async function setupEditor() {
       state.page = 'submitted';
       const cacheKey = `simpleoj-code-${state.user.id}-${state.current.slug}`;
       localStorage.removeItem(cacheKey);
-      state.problems = [];
+      state.problems = null;
+      state.submissions = null;
+      state.leaderboard = null;
+      state.adminDashboard = null;
       const submitBtn = document.querySelector('#submit');
       if (submitBtn) {
         submitBtn.textContent = '← Quay lại';
@@ -385,19 +438,19 @@ function resultModal(data) {
 }
 
 async function historyView() {
-  const { submissions } = await api('/api/me/submissions');
+  const submissions = await loadSubmissions();
   const rows = submissions.map((s) => `<tr><td><strong>${escapeHtml(s.title)}</strong></td><td><span class="badge ${s.status === 'ACCEPTED' ? '' : 'red'}">${statusLabel(s.status)}</span></td><td>${s.score}/100</td><td>${formatDuration(s.duration_ms)}</td><td>${formatDate(s.created_at)}</td></tr>`).join('');
   shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Dấu vết học tập</span><h2>Lịch sử nộp bài</h2></div></div><div class="table-wrap"><table><thead><tr><th>Bài</th><th>Trạng thái</th><th>Điểm</th><th>Thời gian làm</th><th>Lúc nộp</th></tr></thead><tbody>${rows || '<tr><td colspan="5">Chưa có lượt nộp nào.</td></tr>'}</tbody></table></div></section>`, 'Lịch sử nộp');
 }
 
 async function leaderboardView() {
-  const { leaderboard } = await api('/api/leaderboard');
+  const leaderboard = await loadLeaderboard();
   const rows = leaderboard.map((u,i) => `<tr><td><strong>${i+1}</strong></td><td>${escapeHtml(u.full_name)}</td><td>${u.solved}</td><td>${u.total_score}</td></tr>`).join('');
   shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Bảng thành tích</span><h2>Tiến bộ không phải<br>một cuộc đua.</h2></div></div><div class="table-wrap"><table><thead><tr><th>Hạng</th><th>Học sinh</th><th>Bài hoàn thành</th><th>Tổng điểm tốt nhất</th></tr></thead><tbody>${rows}</tbody></table></div></section>`, 'Bảng xếp hạng');
 }
 
 async function adminView() {
-  const [dashboard, problems] = await Promise.all([api('/api/admin/dashboard'), loadProblems()]);
+  const [dashboard, problems] = await Promise.all([loadAdminDashboard(), loadProblems()]);
   const recent = dashboard.recent.map((s) => `<tr><td>${escapeHtml(s.full_name)}</td><td>${escapeHtml(s.title)}</td><td>${s.score}</td><td>${formatDuration(s.duration_ms)}</td><td>${formatDate(s.created_at)}</td></tr>`).join('');
   const list = problems.map((p) => `<tr><td><strong>${escapeHtml(p.title)}</strong><br><span class="muted">${escapeHtml(p.slug)}</span></td><td>${escapeHtml(p.difficulty)}</td><td>${p.time_limit_minutes}p</td><td><span class="badge ${p.is_active ? '' : 'gray'}">${p.is_active ? 'Đang mở' : 'Đã ẩn'}</span></td><td><button class="btn small secondary edit-problem" data-id="${p.id}">Sửa</button> <button class="btn small danger hide-problem" data-id="${p.id}">Ẩn</button></td></tr>`).join('');
   shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Bàn điều khiển</span><h2>Quản lý lớp học.</h2></div><div><button class="btn secondary" id="import">Import JSON</button> <button class="btn" id="new-problem">+ Thêm bài</button></div></div>
@@ -408,7 +461,15 @@ async function adminView() {
   document.querySelector('#new-problem').onclick = () => problemModal();
   document.querySelector('#import').onclick = importModal;
   document.querySelectorAll('.edit-problem').forEach((b) => b.onclick = async () => problemModal((await api(`/api/admin/problems/${b.dataset.id}`)).problem));
-  document.querySelectorAll('.hide-problem').forEach((b) => b.onclick = async () => { if(confirm('Ẩn bài này khỏi học sinh?')) { await api(`/api/admin/problems/${b.dataset.id}`, {method:'DELETE'}); adminView(); } });
+  document.querySelectorAll('.hide-problem').forEach((b) => b.onclick = async () => {
+    if(confirm('Ẩn bài này khỏi học sinh?')) {
+      await api(`/api/admin/problems/${b.dataset.id}`, {method:'DELETE'});
+      state.problems = null;
+      state.problemDetails = {};
+      state.adminDashboard = null;
+      adminView();
+    }
+  });
 }
 
 function testRows(values = [{input:'',output:''}]) {
@@ -437,6 +498,9 @@ function problemModal(problem = null) {
     data.examples = problem?.examples || [];
     try {
       await api(problem ? `/api/admin/problems/${problem.id}` : '/api/admin/problems', { method:problem ? 'PUT':'POST', body:data });
+      state.problems = null;
+      state.problemDetails = {};
+      state.adminDashboard = null;
       modal.remove(); toast('Đã lưu bài tập.'); adminView();
     } catch(error) { toast(error.message,true); }
   };
@@ -448,18 +512,31 @@ function importModal() {
   modal.querySelector('#cancel-import').onclick = () => modal.remove();
   modal.querySelector('#do-import').onclick = async () => {
     const file = modal.querySelector('#json-file').files[0]; if(!file) return toast('Hãy chọn file JSON.',true);
-    try { const body = JSON.parse(await file.text()); const result = await api('/api/admin/problems/import',{method:'POST',body}); modal.remove(); toast(`Đã import ${result.imported} bài.`); adminView(); } catch(error) { toast(error.message,true); }
+    try {
+      const body = JSON.parse(await file.text());
+      const result = await api('/api/admin/problems/import',{method:'POST',body});
+      state.problems = null;
+      state.problemDetails = {};
+      state.adminDashboard = null;
+      modal.remove(); toast(`Đã import ${result.imported} bài.`); adminView();
+    } catch(error) { toast(error.message,true); }
   };
 }
 
 async function usersView() {
-  const { users } = await api('/api/admin/users');
+  const users = await loadAdminUsers();
   const rows = users.map((u) => `<tr><td><strong>${escapeHtml(u.full_name)}</strong><br><span class="muted">${escapeHtml(u.email)}</span></td><td><select class="role" data-id="${u.id}"><option ${u.role==='STUDENT'?'selected':''}>STUDENT</option><option ${u.role==='ADMIN'?'selected':''}>ADMIN</option></select></td><td>${u.submissions}</td><td><label><input type="checkbox" class="active-user" data-id="${u.id}" ${u.is_active?'checked':''}> Hoạt động</label></td><td><button class="btn small save-user" data-id="${u.id}">Lưu</button></td></tr>`).join('');
   shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Tài khoản</span><h2>Học sinh & quyền truy cập.</h2></div></div><div class="table-wrap"><table><thead><tr><th>Tài khoản</th><th>Vai trò</th><th>Lượt nộp</th><th>Trạng thái</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></section>`, 'Học sinh');
   document.querySelectorAll('.save-user').forEach((b) => b.onclick = async () => {
     const role = document.querySelector(`.role[data-id="${b.dataset.id}"]`).value;
     const isActive = document.querySelector(`.active-user[data-id="${b.dataset.id}"]`).checked;
-    try { await api(`/api/admin/users/${b.dataset.id}`,{method:'PATCH',body:{role,isActive}}); toast('Đã cập nhật tài khoản.'); } catch(error) { toast(error.message,true); }
+    try {
+      await api(`/api/admin/users/${b.dataset.id}`,{method:'PATCH',body:{role,isActive}});
+      state.adminUsers = null;
+      state.adminDashboard = null;
+      state.leaderboard = null;
+      toast('Đã cập nhật tài khoản.');
+    } catch(error) { toast(error.message,true); }
   });
 }
 
