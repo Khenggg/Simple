@@ -98,7 +98,7 @@ export const PyodideManager = {
             }, 120000);
 
             if (activeRun?.onWaitingInput) {
-              activeRun.onWaitingInput();
+              activeRun.onWaitingInput(msg.prompt);
             }
           }
 
@@ -306,12 +306,18 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
   let disposed = false;
   let running = false;
   let replMode = false;
-  let runningInput = false;
   let commandPending = false;
-  let commandBuffer = '';
-  let inputBuffer = '';
+
+  // History & Readline states
+  let currentLine = '';
+  let cursorIndex = 0;
   let history = [];
   let historyIndex = 0;
+  
+  // States: 'COMMAND' | 'LOADING' | 'RUNNING' | 'WAITING_INPUT' | 'REPL' | 'FAILED'
+  let terminalState = 'COMMAND';
+  let activePrompt = '$ ';
+  let compositionActive = false;
 
   const fit = () => {
     if (disposed || !host.isConnected) return;
@@ -324,16 +330,377 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
   resizeObserver.observe(host);
   requestAnimationFrame(fit);
 
+  // Focus and Composition Event Listeners for Mobile Compatibility
+  const textarea = host.querySelector('.xterm-helper-textarea');
+  if (textarea) {
+    textarea.addEventListener('compositionstart', () => {
+      compositionActive = true;
+    });
+    textarea.addEventListener('compositionend', (e) => {
+      compositionActive = false;
+    });
+  }
+
+  // Ensure touching terminal focuses input
+  const handleTerminalFocus = () => {
+    if (!disposed) terminal.focus();
+  };
+  host.addEventListener('click', handleTerminalFocus);
+  host.addEventListener('touchstart', handleTerminalFocus);
+
+  // Helper to get length of string without ANSI escape sequences
+  const getVisibleLength = (str) => {
+    return str.replace(/\x1b\[[0-9;]*[a-zA-Z]/g, '').length;
+  };
+
+  // Redraw line buffer on terminal screen
+  const draw = () => {
+    if (terminalState === 'RUNNING' || terminalState === 'LOADING') return;
+    const prompt = activePrompt;
+    const line = currentLine;
+    const cursor = cursorIndex;
+    const promptLength = getVisibleLength(prompt);
+    terminal.write('\r' + prompt + line + '\x1b[K' + `\x1b[${promptLength + cursor + 1}G`);
+  };
+
+  const setLine = (text) => {
+    currentLine = text;
+    cursorIndex = text.length;
+    draw();
+  };
+
+  const insertText = (text) => {
+    if (text.includes('\r') || text.includes('\n')) {
+      text = text.split(/\r?\n/)[0];
+    }
+    currentLine = currentLine.slice(0, cursorIndex) + text + currentLine.slice(cursorIndex);
+    cursorIndex += text.length;
+    draw();
+  };
+
+  const handleBackspace = () => {
+    if (cursorIndex > 0) {
+      currentLine = currentLine.slice(0, cursorIndex - 1) + currentLine.slice(cursorIndex);
+      cursorIndex--;
+      draw();
+    }
+  };
+
+  const handleDelete = () => {
+    if (cursorIndex < currentLine.length) {
+      currentLine = currentLine.slice(0, cursorIndex) + currentLine.slice(cursorIndex + 1);
+      draw();
+    }
+  };
+
+  const moveCursorLeft = () => {
+    if (cursorIndex > 0) {
+      cursorIndex--;
+      draw();
+    }
+  };
+
+  const moveCursorRight = () => {
+    if (cursorIndex < currentLine.length) {
+      cursorIndex++;
+      draw();
+    }
+  };
+
+  const moveCursorHome = () => {
+    cursorIndex = 0;
+    draw();
+  };
+
+  const moveCursorEnd = () => {
+    cursorIndex = currentLine.length;
+    draw();
+  };
+
+  const clearFromStartToCursor = () => {
+    currentLine = currentLine.slice(cursorIndex);
+    cursorIndex = 0;
+    draw();
+  };
+
+  const clearFromCursorToEnd = () => {
+    currentLine = currentLine.slice(0, cursorIndex);
+    draw();
+  };
+
+  const handleHistoryUp = () => {
+    if (terminalState === 'COMMAND' || terminalState === 'REPL') {
+      if (historyIndex > 0) {
+        historyIndex--;
+        setLine(history[historyIndex] || '');
+      }
+    }
+  };
+
+  const handleHistoryDown = () => {
+    if (terminalState === 'COMMAND' || terminalState === 'REPL') {
+      if (historyIndex < history.length) {
+        historyIndex++;
+        setLine(history[historyIndex] || '');
+      }
+    }
+  };
+
+  const handleCtrlC = () => {
+    terminal.write('^C\r\n');
+    currentLine = '';
+    cursorIndex = 0;
+    
+    if (running || terminalState === 'RUNNING' || terminalState === 'WAITING_INPUT') {
+      PyodideManager.interrupt();
+    }
+    
+    running = false;
+    commandPending = false;
+    onRunningChange?.(false);
+
+    if (replMode) {
+      terminalState = 'REPL';
+      activePrompt = '>>> ';
+    } else {
+      terminalState = 'COMMAND';
+      activePrompt = '$ ';
+    }
+    
+    terminal.write(activePrompt);
+  };
+
+  const handleEnter = () => {
+    const line = currentLine;
+    terminal.write('\r\n');
+    currentLine = '';
+    cursorIndex = 0;
+
+    if (terminalState === 'COMMAND') {
+      submitCommand(line);
+    } else if (terminalState === 'REPL') {
+      submitReplLine(line);
+    } else if (terminalState === 'WAITING_INPUT') {
+      terminalState = 'RUNNING';
+      onRunningChange?.(true);
+      PyodideManager.submitInput(line + '\n');
+    }
+  };
+
+  const submitCommand = (cmdText) => {
+    const cmd = cmdText.trim().replace(/\s+/g, ' ');
+
+    if (cmd) {
+      history = [...history.filter((item) => item !== cmd), cmd].slice(-50);
+      historyIndex = history.length;
+    }
+
+    if (cmd === 'help') {
+      terminal.writeln('Các lệnh được phép:');
+      terminal.writeln('  python main.py   Chạy code hiện tại trong editor');
+      terminal.writeln('  python           Mở Python REPL interactive (Basic Mode)');
+      terminal.writeln('  cat main.py      In code hiện tại trong editor');
+      terminal.writeln('  clear / cls      Xóa terminal');
+      terminal.writeln('  retry            Tải lại Python runtime');
+      terminal.writeln('  help             Hiện trợ giúp');
+      terminal.write(activePrompt);
+    } else if (cmd === 'clear' || cmd === 'cls') {
+      terminal.clear();
+      terminal.write(activePrompt);
+    } else if (cmd === 'cat main.py') {
+      const code = getCode();
+      terminal.write(code + (code.endsWith('\n') ? '' : '\r\n'));
+      terminal.write(activePrompt);
+    } else if (cmd === 'python main.py') {
+      runCode(getCode(), 'file');
+    } else if (cmd === 'python') {
+      const state = PyodideManager.getState();
+      const enterRepl = () => {
+        replMode = true;
+        terminalState = 'REPL';
+        activePrompt = '>>> ';
+        terminal.writeln('\x1b[90mPython 3 REPL (Basic Mode). Gõ exit() hoặc quit() để thoát.\x1b[0m');
+        terminal.write(activePrompt);
+      };
+      
+      if (state === 'ready') {
+        enterRepl();
+      } else {
+        terminalState = 'LOADING';
+        terminal.writeln('[Đang tải Python runtime... lần đầu có thể mất vài giây]');
+        PyodideManager.init().then((success) => {
+          if (success) {
+            terminal.writeln('[Python runtime đã sẵn sàng]');
+            enterRepl();
+          } else {
+            terminalState = 'FAILED';
+            terminal.writeln('\x1b[31m[Không thể tải Python runtime từ CDN. Kiểm tra mạng hoặc gõ retry để thử lại.]\x1b[0m');
+            activePrompt = '$ ';
+            terminal.write(activePrompt);
+          }
+        });
+      }
+    } else if (cmd === 'retry') {
+      terminalState = 'LOADING';
+      terminal.writeln('[Đang tải lại Python runtime...]');
+      PyodideManager.terminate();
+      PyodideManager.init().then((success) => {
+        if (success) {
+          terminal.writeln('[Python runtime đã sẵn sàng]');
+          if (replMode) {
+            terminalState = 'REPL';
+            activePrompt = '>>> ';
+          } else {
+            terminalState = 'COMMAND';
+            activePrompt = '$ ';
+          }
+        } else {
+          terminalState = 'FAILED';
+          terminal.writeln('\x1b[31m[Không thể tải Python runtime từ CDN. Kiểm tra mạng hoặc gõ retry để thử lại.]\x1b[0m');
+          if (replMode) {
+            terminalState = 'REPL';
+            activePrompt = '>>> ';
+          } else {
+            terminalState = 'COMMAND';
+            activePrompt = '$ ';
+          }
+        }
+        terminal.write(activePrompt);
+      });
+    } else if (cmd === '') {
+      terminal.write(activePrompt);
+    } else {
+      terminal.writeln(`Lệnh không được phép: ${cmd}`);
+      terminal.writeln('Gõ "help" để xem danh sách lệnh.');
+      terminal.write(activePrompt);
+    }
+  };
+
+  const submitReplLine = (line) => {
+    if (line.trim() === 'exit()' || line.trim() === 'quit()') {
+      replMode = false;
+      terminalState = 'COMMAND';
+      activePrompt = '$ ';
+      terminal.write(activePrompt);
+      return;
+    }
+
+    if (line.trim()) {
+      history = [...history.filter((item) => item !== line), line].slice(-50);
+      historyIndex = history.length;
+    }
+
+    runCode(line, 'repl');
+  };
+
+  const handleRunExit = (res) => {
+    running = false;
+    commandPending = false;
+    onRunningChange?.(false);
+    
+    if (res.error) {
+      if (res.error === 'TIMEOUT') {
+        if (res.timeout === 'input') {
+          terminal.writeln(`\r\n\x1b[31m[Input timeout: chương trình đã chờ nhập quá lâu]\x1b[0m`);
+        } else {
+          terminal.writeln(`\r\n\x1b[31m[Time limit exceeded: chương trình chạy quá thời gian cho phép]\x1b[0m`);
+        }
+      } else if (res.error === 'OUTPUT_LIMIT') {
+        terminal.writeln(`\r\n\x1b[31m[Output limit exceeded: chương trình in quá nhiều dữ liệu]\x1b[0m`);
+      } else {
+        terminal.writeln(`\r\n\x1b[31m[Runner error: ${res.error}]\x1b[0m`);
+      }
+    } else if (res.interrupted) {
+      // already printed ^C
+    }
+    
+    if (replMode) {
+      terminalState = 'REPL';
+      activePrompt = '>>> ';
+    } else {
+      terminalState = 'COMMAND';
+      activePrompt = '$ ';
+    }
+    
+    terminal.write(activePrompt);
+    terminal.focus();
+  };
+
+  const runCode = (code, type = 'file') => {
+    running = true;
+    commandPending = true;
+    terminalState = 'RUNNING';
+    onRunningChange?.(true);
+
+    const state = PyodideManager.getState();
+    
+    const startRun = () => {
+      PyodideManager.runCode(
+        code,
+        (text) => terminal.write(text.replace(/\r?\n/g, '\r\n')),
+        handleRunExit,
+        (promptText) => {
+          terminalState = 'WAITING_INPUT';
+          activePrompt = promptText ? (promptText.includes('\n') ? promptText.substring(promptText.lastIndexOf('\n') + 1) : promptText) : '';
+          running = true;
+          draw();
+        },
+        type
+      );
+    };
+
+    if (state === 'ready') {
+      startRun();
+    } else if (state === 'loading' || state === 'idle') {
+      terminalState = 'LOADING';
+      terminal.writeln('[Đang tải Python runtime... lần đầu có thể mất vài giây]');
+      PyodideManager.init().then((success) => {
+        if (success) {
+          terminal.writeln('[Python runtime đã sẵn sàng]');
+          terminalState = 'RUNNING';
+          startRun();
+        } else {
+          terminalState = 'FAILED';
+          terminal.writeln('\x1b[31m[Không thể tải Python runtime từ CDN. Kiểm tra mạng hoặc gõ retry để thử lại.]\x1b[0m');
+          running = false;
+          commandPending = false;
+          onRunningChange?.(false);
+          if (replMode) {
+            terminalState = 'REPL';
+            activePrompt = '>>> ';
+          } else {
+            terminalState = 'COMMAND';
+            activePrompt = '$ ';
+          }
+          terminal.write(activePrompt);
+        }
+      });
+    } else {
+      terminalState = 'FAILED';
+      terminal.writeln('\x1b[31m[Không thể tải Python runtime từ CDN. Kiểm tra mạng hoặc gõ retry để thử lại.]\x1b[0m');
+      running = false;
+      commandPending = false;
+      onRunningChange?.(false);
+      if (replMode) {
+        terminalState = 'REPL';
+        activePrompt = '>>> ';
+      } else {
+        terminalState = 'COMMAND';
+        activePrompt = '$ ';
+      }
+      terminal.write(activePrompt);
+    }
+  };
+
   if (!isSupported) {
     terminal.writeln(`\x1b[31m[Trình duyệt hiện không hỗ trợ Terminal tương tác. Bạn vẫn có thể Submit để chấm trên server.]\x1b[0m`);
     terminal.write('$ ');
     
-    // Limited shell for unsupported browsers
     const handleUnsupportedShell = (data) => {
-      if (data === '\r') {
-        const cmd = commandBuffer.trim().replace(/\s+/g, ' ');
+      if (data === '\r' || data === '\n') {
+        const cmd = currentLine.trim().replace(/\s+/g, ' ');
         terminal.write('\r\n');
-        commandBuffer = '';
+        currentLine = '';
         if (cmd === 'help') {
           terminal.writeln('Các lệnh được phép:');
           terminal.writeln('  cat main.py      In code hiện tại trong editor');
@@ -359,16 +726,16 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
         }
         return;
       }
-      if (data === '\x7f') {
-        if (commandBuffer.length) {
-          commandBuffer = commandBuffer.slice(0, -1);
+      if (data === '\x7f' || data === '\x08') {
+        if (currentLine.length) {
+          currentLine = currentLine.slice(0, -1);
           terminal.write('\b \b');
         }
         return;
       }
       for (const char of data) {
         if (char >= ' ') {
-          commandBuffer += char;
+          currentLine += char;
           terminal.write(char);
         }
       }
@@ -385,271 +752,111 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
       dispose() {
         disposed = true;
         resizeObserver.disconnect();
+        host.removeEventListener('click', handleTerminalFocus);
+        host.removeEventListener('touchstart', handleTerminalFocus);
         terminal.dispose();
       }
     };
   }
 
-  // --- Fully Supported Browser Flow ---
-  terminal.writeln(`\x1b[90mSimpleOJ Terminal — Python 3 (Client-side). Gõ "help" để xem lệnh.\x1b[0m`);
-  terminal.write('$ ');
+  // Set initial terminal state
+  terminalState = 'COMMAND';
+  activePrompt = '$ ';
+  terminal.writeln('\x1b[90mSimpleOJ Terminal — Python 3 (Client-side). Gõ "help" để xem lệnh.\x1b[0m');
+  terminal.write(activePrompt);
 
-  const replaceCurrentCommand = (next) => {
-    while (commandBuffer.length) {
-      terminal.write('\b \b');
-      commandBuffer = commandBuffer.slice(0, -1);
-    }
-    commandBuffer = next;
-    terminal.write(next);
-  };
-
-  const handleRunExit = (res) => {
-    running = false;
-    runningInput = false;
-    commandPending = false;
-    onRunningChange?.(false);
-    
-    if (res.error) {
-      if (res.error === 'TIMEOUT') {
-        if (res.timeout === 'input') {
-          terminal.writeln(`\r\n\x1b[31m[Input timeout: chương trình đã chờ nhập quá lâu]\x1b[0m`);
-        } else {
-          terminal.writeln(`\r\n\x1b[31m[Time limit exceeded: chương trình chạy quá thời gian cho phép]\x1b[0m`);
-        }
-      } else if (res.error === 'OUTPUT_LIMIT') {
-        terminal.writeln(`\r\n\x1b[31m[Output limit exceeded: chương trình in quá nhiều dữ liệu]\x1b[0m`);
-      } else {
-        terminal.writeln(`\r\n\x1b[31m[Runner error: ${res.error}]\x1b[0m`);
-      }
-    } else if (res.interrupted) {
-      // already printed ^C
-    }
-    
-    if (replMode) {
-      terminal.write('>>> ');
-    } else {
-      terminal.write('$ ');
-    }
-    terminal.focus();
-  };
-
-  const runCode = (code, type = 'file') => {
-    running = true;
-    commandPending = true;
-    onRunningChange?.(true);
-
-    const state = PyodideManager.getState();
-    
-    const startRun = () => {
-      PyodideManager.runCode(
-        code,
-        (text) => terminal.write(text.replace(/\r?\n/g, '\r\n')),
-        handleRunExit,
-        () => {
-          runningInput = true;
-        },
-        type
-      );
-    };
-
-    if (state === 'ready') {
-      startRun();
-    } else if (state === 'loading' || state === 'idle') {
-      terminal.writeln('[Đang tải Python runtime... lần đầu có thể mất vài giây]');
-      PyodideManager.init().then((success) => {
-        if (success) {
-          terminal.writeln('[Python runtime đã sẵn sàng]');
-          startRun();
-        } else {
-          terminal.writeln('\x1b[31m[Không thể tải Python runtime từ CDN. Kiểm tra mạng hoặc gõ retry để thử lại.]\x1b[0m');
-          running = false;
-          commandPending = false;
-          onRunningChange?.(false);
-          terminal.write(replMode ? '>>> ' : '$ ');
-        }
-      });
-    } else {
-      terminal.writeln('\x1b[31m[Không thể tải Python runtime từ CDN. Kiểm tra mạng hoặc gõ retry để thử lại.]\x1b[0m');
-      running = false;
-      commandPending = false;
-      onRunningChange?.(false);
-      terminal.write(replMode ? '>>> ' : '$ ');
-    }
-  };
-
-  const submitCommand = () => {
-    const cmd = commandBuffer.trim().replace(/\s+/g, ' ');
-    terminal.write('\r\n');
-    commandBuffer = '';
-
-    if (cmd) {
-      history = [...history.filter((item) => item !== cmd), cmd].slice(-50);
-      historyIndex = history.length;
-    }
-
-    if (cmd === 'help') {
-      terminal.writeln('Các lệnh được phép:');
-      terminal.writeln('  python main.py   Chạy code hiện tại trong editor');
-      terminal.writeln('  python           Mở Python REPL interactive (Basic Mode)');
-      terminal.writeln('  cat main.py      In code hiện tại trong editor');
-      terminal.writeln('  clear / cls      Xóa terminal');
-      terminal.writeln('  retry            Tải lại Python runtime');
-      terminal.writeln('  help             Hiện trợ giúp');
-      terminal.write('$ ');
-    } else if (cmd === 'clear' || cmd === 'cls') {
-      terminal.clear();
-      terminal.write('$ ');
-    } else if (cmd === 'cat main.py') {
-      const code = getCode();
-      terminal.write(code + (code.endsWith('\n') ? '' : '\r\n'));
-      terminal.write('$ ');
-    } else if (cmd === 'python main.py') {
-      runCode(getCode(), 'file');
-    } else if (cmd === 'python') {
-      const state = PyodideManager.getState();
-      const enterRepl = () => {
-        replMode = true;
-        terminal.writeln('\x1b[90mPython 3 REPL (Basic Mode). Gõ exit() hoặc quit() để thoát.\x1b[0m');
-        terminal.write('>>> ');
-      };
-      
-      if (state === 'ready') {
-        enterRepl();
-      } else {
-        terminal.writeln('[Đang tải Python runtime... lần đầu có thể mất vài giây]');
-        PyodideManager.init().then((success) => {
-          if (success) {
-            terminal.writeln('[Python runtime đã sẵn sàng]');
-            enterRepl();
-          } else {
-            terminal.writeln('\x1b[31m[Không thể tải Python runtime từ CDN. Kiểm tra mạng hoặc gõ retry để thử lại.]\x1b[0m');
-            terminal.write('$ ');
-          }
-        });
-      }
-    } else if (cmd === 'retry') {
-      terminal.writeln('[Đang tải lại Python runtime...]');
-      PyodideManager.terminate();
-      PyodideManager.init().then((success) => {
-        if (success) {
-          terminal.writeln('[Python runtime đã sẵn sàng]');
-        } else {
-          terminal.writeln('\x1b[31m[Không thể tải Python runtime từ CDN. Kiểm tra mạng hoặc gõ retry để thử lại.]\x1b[0m');
-        }
-        terminal.write(replMode ? '>>> ' : '$ ');
-      });
-    } else if (cmd === '') {
-      terminal.write('$ ');
-    } else {
-      terminal.writeln(`Lệnh không được phép: ${cmd}`);
-      terminal.writeln('Gõ "help" để xem danh sách lệnh.');
-      terminal.write('$ ');
-    }
-  };
-
-  const submitReplLine = () => {
-    const line = commandBuffer;
-    terminal.write('\r\n');
-    commandBuffer = '';
-
-    if (line.trim() === 'exit()' || line.trim() === 'quit()') {
-      replMode = false;
-      terminal.write('$ ');
-      return;
-    }
-
-    runCode(line, 'repl');
-  };
-
-  const handleShellData = (data) => {
-    if (commandPending) return;
-    if (data === '\r') {
-      if (replMode) return submitReplLine();
-      return submitCommand();
-    }
-    if (data === '\x03') { // Ctrl+C
-      terminal.write('^C\r\n');
-      commandBuffer = '';
-      terminal.write(replMode ? '>>> ' : '$ ');
-      return;
-    }
-    if (data === '\x7f' || data === '\x08') { // Backspace
-      if (commandBuffer.length) {
-        commandBuffer = commandBuffer.slice(0, -1);
-        terminal.write('\b \b');
-      }
-      return;
-    }
-    if (data === '\x1b[A') { // Up arrow
-      if (historyIndex > 0) historyIndex -= 1;
-      return replaceCurrentCommand(history[historyIndex] || '');
-    }
-    if (data === '\x1b[B') { // Down arrow
-      if (historyIndex < history.length) historyIndex += 1;
-      return replaceCurrentCommand(history[historyIndex] || '');
-    }
-    if (data.startsWith('\x1b')) return;
-    for (const char of data) {
-      if (char === '\r' || char === '\n') {
-        if (replMode) submitReplLine();
-        else submitCommand();
-      } else if (char >= ' ') {
-        commandBuffer += char;
-        terminal.write(char);
-      }
-    }
-  };
-
-  const handleInputModeData = (data) => {
-    if (data === '\x03') { // Ctrl+C interrupt
-      terminal.write('^C\r\n');
-      PyodideManager.interrupt();
-      inputBuffer = '';
-      runningInput = false;
-      return;
-    }
-    if (data === '\x7f' || data === '\x08') { // Backspace
-      if (inputBuffer.length) {
-        inputBuffer = inputBuffer.slice(0, -1);
-        terminal.write('\b \b');
-      }
-      return;
-    }
-    for (const char of data) {
-      if (char === '\r' || char === '\n') {
-        terminal.write('\r\n');
-        PyodideManager.submitInput(inputBuffer + '\n');
-        inputBuffer = '';
-        runningInput = false;
-      } else if (char >= ' ') {
-        inputBuffer += char;
-        terminal.write(char);
-      }
-    }
-  };
-
+  // Handle keys and paste inside onData
   terminal.onData((data) => {
-    if (running) {
-      if (runningInput) {
-        handleInputModeData(data);
-      } else {
-        if (data === '\x03') {
-          terminal.write('^C\r\n');
-          PyodideManager.interrupt();
-        }
+    if (disposed) return;
+    
+    // Ignore keys during execution, except Ctrl+C
+    if (terminalState === 'RUNNING' || terminalState === 'LOADING') {
+      if (data === '\x03') {
+        handleCtrlC();
       }
-    } else {
-      handleShellData(data);
+      return;
+    }
+
+    if (compositionActive) {
+      return;
+    }
+
+    if (data === '\r' || data === '\n') {
+      handleEnter();
+      return;
+    }
+    if (data === '\x03') {
+      handleCtrlC();
+      return;
+    }
+    if (data === '\x7f' || data === '\x08') {
+      handleBackspace();
+      return;
+    }
+    if (data === '\x1b[D') {
+      moveCursorLeft();
+      return;
+    }
+    if (data === '\x1b[C') {
+      moveCursorRight();
+      return;
+    }
+    if (data === '\x1b[A') {
+      handleHistoryUp();
+      return;
+    }
+    if (data === '\x1b[B') {
+      handleHistoryDown();
+      return;
+    }
+    if (data === '\x1b[H' || data === '\x1b[1~') {
+      moveCursorHome();
+      return;
+    }
+    if (data === '\x1b[F' || data === '\x1b[4~') {
+      moveCursorEnd();
+      return;
+    }
+    if (data === '\x1b[3~') {
+      handleDelete();
+      return;
+    }
+    if (data === '\x04') {
+      handleDelete();
+      return;
+    }
+    if (data.startsWith('\x1b')) {
+      return;
+    }
+
+    for (const char of data) {
+      if (char >= ' ') {
+        insertText(char);
+      }
     }
   });
 
   const handleTerminalKeydown = (event) => {
-    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'c') {
-      if (running) {
+    if (event.ctrlKey || event.metaKey) {
+      const key = event.key.toLowerCase();
+      if (key === 'a' || key === 'e' || key === 'u' || key === 'k' || key === 'c') {
+        if (key === 'c' && terminal.hasSelection()) {
+          return;
+        }
         event.preventDefault();
         event.stopPropagation();
-        terminal.write('^C\r\n');
-        PyodideManager.interrupt();
+        
+        if (key === 'c') {
+          handleCtrlC();
+        } else if (key === 'a') {
+          moveCursorHome();
+        } else if (key === 'e') {
+          moveCursorEnd();
+        } else if (key === 'u') {
+          clearFromStartToCursor();
+        } else if (key === 'k') {
+          clearFromCursorToEnd();
+        }
       }
     }
   };
@@ -657,35 +864,37 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
 
   terminal.attachCustomKeyEventHandler((event) => {
     if (event.type === 'keydown' && event.ctrlKey && event.key.toLowerCase() === 'c') {
-      if (running) {
-        terminal.write('^C\r\n');
-        PyodideManager.interrupt();
+      if (running || terminalState === 'RUNNING' || terminalState === 'WAITING_INPUT') {
+        handleCtrlC();
         return false;
       }
     }
     return true;
   });
 
+  onRunningChange?.(false);
+
   return {
     execute(cmd) {
-      if (running || commandPending) return false;
-      replaceCurrentCommand(cmd);
-      if (replMode) submitReplLine();
-      else submitCommand();
+      if (running || commandPending || terminalState === 'RUNNING' || terminalState === 'LOADING') return false;
+      setLine(cmd);
+      handleEnter();
       return true;
     },
     focus() { terminal.focus(); },
     fit,
     interrupt() {
-      if (!running) return false;
-      terminal.write('^C\r\n');
-      return PyodideManager.interrupt();
+      if (!running && terminalState !== 'RUNNING' && terminalState !== 'WAITING_INPUT') return false;
+      handleCtrlC();
+      return true;
     },
     notice(text, color = '90') { terminal.write(`\r\n\x1b[${color}m${text}\x1b[0m\r\n`); },
     dispose() {
       disposed = true;
       resizeObserver.disconnect();
       host.removeEventListener('keydown', handleTerminalKeydown, true);
+      host.removeEventListener('click', handleTerminalFocus);
+      host.removeEventListener('touchstart', handleTerminalFocus);
       if (running) {
         PyodideManager.interrupt();
       }

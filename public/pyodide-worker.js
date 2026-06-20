@@ -37,7 +37,7 @@ function customInput(promptText) {
   }
   
   // Post WAITING_INPUT to main thread
-  self.postMessage({ type: "waiting_input" });
+  self.postMessage({ type: "waiting_input", prompt: promptText || "" });
   
   // Reset status to 0 (waiting)
   Atomics.store(statusInt32, 0, 0);
