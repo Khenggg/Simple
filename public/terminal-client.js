@@ -443,7 +443,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
     const startRun = () => {
       PyodideManager.runCode(
         code,
-        (text) => terminal.write(text),
+        (text) => terminal.write(text.replace(/\r?\n/g, '\r\n')),
         handleRunExit,
         () => {
           runningInput = true;
@@ -573,7 +573,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
       terminal.write(replMode ? '>>> ' : '$ ');
       return;
     }
-    if (data === '\x7f') { // Backspace
+    if (data === '\x7f' || data === '\x08') { // Backspace
       if (commandBuffer.length) {
         commandBuffer = commandBuffer.slice(0, -1);
         terminal.write('\b \b');
@@ -608,7 +608,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
       runningInput = false;
       return;
     }
-    if (data === '\x7f') { // Backspace
+    if (data === '\x7f' || data === '\x08') { // Backspace
       if (inputBuffer.length) {
         inputBuffer = inputBuffer.slice(0, -1);
         terminal.write('\b \b');

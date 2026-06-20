@@ -12,23 +12,24 @@ let inputData = null;
 let outputBytes = 0;
 const MAX_OUTPUT_SIZE = 128 * 1024; // 128KB
 
-function stdout(text) {
+function stdout(text, appendNewline = true) {
   outputBytes += new Blob([text]).size;
   if (outputBytes > MAX_OUTPUT_SIZE) {
     self.postMessage({ type: "output_limit" });
     throw new Error("OUTPUT_LIMIT_EXCEEDED");
   }
-  self.postMessage({ type: "stdout", text });
+  const needsNewline = appendNewline && !text.endsWith('\n');
+  self.postMessage({ type: "stdout", text: needsNewline ? text + '\n' : text });
 }
 
 function stderr(text) {
-  stdout(text);
+  stdout(text, true);
 }
 
 // Custom input handler for Python builtins.input
 function customInput(promptText) {
   if (promptText) {
-    stdout(promptText);
+    stdout(promptText, false);
   }
   
   if (!sharedBuffer || !statusInt32) {
