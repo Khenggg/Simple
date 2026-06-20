@@ -29,14 +29,12 @@ const rawProblems = [
 Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong.
 \`\`\`
 `,
-    template: `# Nhập sĩ số lớp N
+    template: `# Nhập sĩ số lớp N (số nguyên)
 N = int(input())
-# Nhập tổng số tiền T
+# Nhập tổng số tiền T (số thực)
 T = float(input())
 
-# Tính toán và in kết quả đúng định dạng
-val = T / N
-print(f"Trung binh moi hoc sinh nhan qua tri gia: {val} dong.")
+# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được
 `,
     examples: [
       {
@@ -89,14 +87,7 @@ N = int(input())
 # Nhập số bạn Nam
 nam = int(input())
 
-# Thực hiện kiểm tra và in kết quả
-nu = N - nam
-if nu > nam:
-    print("Số bạn Nữ nhiều hơn số bạn Nam.")
-elif nam > nu:
-    print("Số bạn Nam nhiều hơn số bạn Nữ.")
-else:
-    print("Số bạn Nam bằng số bạn Nữ.")
+# Hãy kiểm tra xem số bạn Nam hay số bạn Nữ nhiều hơn và in kết quả ra màn hình
 `,
     examples: [
       {
@@ -146,11 +137,7 @@ Chu vi (so nguyen): 29
 a = float(input())
 b = float(input())
 
-# Tính toán chu vi và in ra theo đúng định dạng
-cv_real = (a + b) * 2
-cv_int = int(cv_real)
-print(f"Chu vi (so thuc): {cv_real}")
-print(f"Chu vi (so nguyen): {cv_int}")
+# Tính chu vi thực và chu vi làm tròn xuống dưới dạng số nguyên rồi in ra màn hình
 `,
     examples: [
       {
@@ -201,11 +188,7 @@ a khong chia het cho b
 a = int(input())
 b = int(input())
 
-# Kiểm tra chia hết và in thông báo
-if a % b == 0:
-    print("a chia het cho b")
-else:
-    print("a khong chia het cho b")
+# Kiểm tra xem a có chia hết cho b hay không và in thông báo ra màn hình
 `,
     examples: [
       {
@@ -247,12 +230,10 @@ else:
 Chieu cao cua ban la: 142 cm.
 \`\`\`
 `,
-    template: `# Nhập chiều cao h
+    template: `# Nhập chiều cao tính bằng mét (số thực)
 h = float(input())
 
-# Đổi sang cm và in kết quả đúng định dạng
-cm = int(h * 100)
-print(f"Chieu cao cua ban la: {cm} cm.")
+# Đổi sang centimet (số nguyên) và in ra màn hình đúng định dạng
 `,
     examples: [
       {
@@ -296,14 +277,11 @@ print(f"Chieu cao cua ban la: {cm} cm.")
 Sau khi sap xep: a = 3, b = 8
 \`\`\`
 `,
-    template: `# Nhập a và b
+    template: `# Nhập hai số nguyên a và b
 a = int(input())
 b = int(input())
 
-# Sắp xếp và in kết quả
-if a > b:
-    a, b = b, a
-print(f"Sau khi sap xep: a = {a}, b = {b}")
+# Hoán đổi giá trị nếu a > b để sắp xếp tăng dần và in ra màn hình
 `,
     examples: [
       {
@@ -394,7 +372,7 @@ async function run() {
       }
     });
 
-    console.log("\n=== TẤT CẢ BÀI TẬP ĐÃ ĐƯỢC IMPORT THÀNH CÔNG ===");
+    console.log("\n=== TẤT CẢ BÀI TẬP ĐÃ ĐƯỢC CẬP NHẬT TEMPLATE THÀNH CÔNG ===");
   } catch (err) {
     console.error("Lỗi khi import bài tập:", err);
   } finally {
