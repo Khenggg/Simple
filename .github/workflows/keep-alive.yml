@@ -2,7 +2,7 @@ name: Keep Alive SimpleOJ
 
 on:
   schedule:
-    - cron: '*/20 * * * *' # Chạy mỗi 20 phút
+    - cron: '*/10 * * * *' # Chạy mỗi 10 phút
   workflow_dispatch: # Cho phép kích hoạt thủ công
 
 jobs:
