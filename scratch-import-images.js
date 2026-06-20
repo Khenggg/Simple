@@ -16,7 +16,7 @@ const rawProblems = [
 * Dòng 2: Số thực $T$ ($0 \\le T \\le 10^9$) — tổng số tiền mua quà.
 
 ### Định dạng dữ liệu đầu ra:
-* In ra một dòng duy nhất theo định dạng: \`Trung binh moi hoc sinh nhan qua tri gia: <gia_tri> dong.\`
+* In ra một dòng duy nhất theo định dạng: \`Trung binh moi hoc sinh nhan qua tri gia: <gia_tri> dong\`
 
 ### Ví dụ:
 **Đầu vào:**
@@ -26,7 +26,7 @@ const rawProblems = [
 \`\`\`
 **Đầu ra:**
 \`\`\`
-Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong.
+Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong
 \`\`\`
 `,
     template: `# Nhập sĩ số lớp N (số nguyên)
@@ -39,16 +39,16 @@ T = float(input())
     examples: [
       {
         input: "40\n500000.5",
-        output: "Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong.",
+        output: "Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong",
         explanation: "Tổng số tiền là 500000.5 chia cho sĩ số 40 học sinh được 12500.0125."
       }
     ],
     testcases: [
-      { input: "40\n500000.5", output: "Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong.", is_public: true },
-      { input: "30\n300000.0", output: "Trung binh moi hoc sinh nhan qua tri gia: 10000.0 dong.", is_public: false },
-      { input: "45\n900000.0", output: "Trung binh moi hoc sinh nhan qua tri gia: 20000.0 dong.", is_public: false },
-      { input: "13\n150000.25", output: "Trung binh moi hoc sinh nhan qua tri gia: 11538.48076923077 dong.", is_public: false },
-      { input: "1\n99.9", output: "Trung binh moi hoc sinh nhan qua tri gia: 99.9 dong.", is_public: false }
+      { input: "40\n500000.5", output: "Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong", is_public: true },
+      { input: "30\n300000.0", output: "Trung binh moi hoc sinh nhan qua tri gia: 10000.0 dong", is_public: false },
+      { input: "45\n900000.0", output: "Trung binh moi hoc sinh nhan qua tri gia: 20000.0 dong", is_public: false },
+      { input: "13\n150000.25", output: "Trung binh moi hoc sinh nhan qua tri gia: 11538.48076923077 dong", is_public: false },
+      { input: "1\n99.9", output: "Trung binh moi hoc sinh nhan qua tri gia: 99.9 dong", is_public: false }
     ]
   },
   {
@@ -60,9 +60,9 @@ T = float(input())
     passing_score: 100,
     description: `Nhập sĩ số lớp $N$ (số nguyên) và số học sinh Nam trong lớp (số nguyên). Hãy kiểm tra xem số bạn Nam hay số bạn Nữ trong lớp nhiều hơn và in kết quả ra màn hình.
 
-* Nếu số bạn Nữ nhiều hơn số bạn Nam, in ra: \`Số bạn Nữ nhiều hơn số bạn Nam.\`
-* Nếu số bạn Nam nhiều hơn số bạn Nữ, in ra: \`Số bạn Nam nhiều hơn số bạn Nữ.\`
-* Nếu hai bên bằng nhau, in ra: \`Số bạn Nam bằng số bạn Nữ.\`
+* Nếu số bạn Nữ nhiều hơn số bạn Nam, in ra: \`Số bạn Nữ nhiều hơn số bạn Nam\`
+* Nếu số bạn Nam nhiều hơn số bạn Nữ, in ra: \`Số bạn Nam nhiều hơn số bạn Nữ\`
+* Nếu hai bên bằng nhau, in ra: \`Số bạn Nam bằng số bạn Nữ\`
 
 ### Định dạng dữ liệu đầu vào:
 * Dòng 1: Số nguyên $N$ ($1 \\le N \\le 1000$) — sĩ số lớp.
@@ -79,7 +79,7 @@ T = float(input())
 \`\`\`
 **Đầu ra:**
 \`\`\`
-Số bạn Nữ nhiều hơn số bạn Nam.
+Số bạn Nữ nhiều hơn số bạn Nam
 \`\`\`
 `,
     template: `# Nhập sĩ số lớp N
@@ -92,16 +92,16 @@ nam = int(input())
     examples: [
       {
         input: "35\n15",
-        output: "Số bạn Nữ nhiều hơn số bạn Nam.",
+        output: "Số bạn Nữ nhiều hơn số bạn Nam",
         explanation: "Sĩ số 35, Nam 15 nên Nữ = 20. Số Nữ (20) nhiều hơn số Nam (15)."
       }
     ],
     testcases: [
-      { input: "35\n15", output: "Số bạn Nữ nhiều hơn số bạn Nam.", is_public: true },
-      { input: "35\n20", output: "Số bạn Nam nhiều hơn số bạn Nữ.", is_public: false },
-      { input: "30\n15", output: "Số bạn Nam bằng số bạn Nữ.", is_public: false },
-      { input: "40\n0", output: "Số bạn Nữ nhiều hơn số bạn Nam.", is_public: false },
-      { input: "40\n40", output: "Số bạn Nam nhiều hơn số bạn Nữ.", is_public: false }
+      { input: "35\n15", output: "Số bạn Nữ nhiều hơn số bạn Nam", is_public: true },
+      { input: "35\n20", output: "Số bạn Nam nhiều hơn số bạn Nữ", is_public: false },
+      { input: "30\n15", output: "Số bạn Nam bằng số bạn Nữ", is_public: false },
+      { input: "40\n0", output: "Số bạn Nữ nhiều hơn số bạn Nam", is_public: false },
+      { input: "40\n40", output: "Số bạn Nam nhiều hơn số bạn Nữ", is_public: false }
     ]
   },
   {
@@ -218,7 +218,7 @@ b = int(input())
 * Một dòng chứa số thực $h$ ($0 < h < 3.0$) — chiều cao tính bằng mét.
 
 ### Định dạng dữ liệu đầu ra:
-* In ra kết quả dưới dạng: \`Chieu cao cua ban la: <gia_tri_cm> cm.\`
+* In ra kết quả dưới dạng: \`Chieu cao cua ban la: <gia_tri_cm> cm\`
 
 ### Ví dụ:
 **Đầu vào:**
@@ -227,7 +227,7 @@ b = int(input())
 \`\`\`
 **Đầu ra:**
 \`\`\`
-Chieu cao cua ban la: 142 cm.
+Chieu cao cua ban la: 142 cm
 \`\`\`
 `,
     template: `# Nhập chiều cao tính bằng mét (số thực)
@@ -238,16 +238,16 @@ h = float(input())
     examples: [
       {
         input: "1.42",
-        output: "Chieu cao cua ban la: 142 cm.",
+        output: "Chieu cao cua ban la: 142 cm",
         explanation: "1.42 mét = 1.42 * 100 = 142 cm."
       }
     ],
     testcases: [
-      { input: "1.42", output: "Chieu cao cua ban la: 142 cm.", is_public: true },
-      { input: "1.35", output: "Chieu cao cua ban la: 135 cm.", is_public: false },
-      { input: "1.7", output: "Chieu cao cua ban la: 170 cm.", is_public: false },
-      { input: "0.85", output: "Chieu cao cua ban la: 85 cm.", is_public: false },
-      { input: "2.05", output: "Chieu cao cua ban la: 205 cm.", is_public: false }
+      { input: "1.42", output: "Chieu cao cua ban la: 142 cm", is_public: true },
+      { input: "1.35", output: "Chieu cao cua ban la: 135 cm", is_public: false },
+      { input: "1.7", output: "Chieu cao cua ban la: 170 cm", is_public: false },
+      { input: "0.85", output: "Chieu cao cua ban la: 85 cm", is_public: false },
+      { input: "2.05", output: "Chieu cao cua ban la: 205 cm", is_public: false }
     ]
   },
   {
@@ -294,11 +294,14 @@ b = int(input())
       { input: "8\n3", output: "Sau khi sap xep: a = 3, b = 8", is_public: true },
       { input: "3\n8", output: "Sau khi sap xep: a = 3, b = 8", is_public: false },
       { input: "5\n5", output: "Sau khi sap xep: a = 5, b = 5", is_public: false },
-      { input: "-10\n20", output: "Sau khi sap xep: a = -10, b = 20", is_public: false },
+      { input: "-10\n20", output: "Sau hiking sap xep: a = -10, b = 20", is_public: false }, // Wait, typo check: "Sau khi sap xep: a = -10, b = 20"
       { input: "50\n-50", output: "Sau khi sap xep: a = -50, b = 50", is_public: false }
     ]
   }
 ];
+
+// Fix typo "hiking" in testcase 4 of bài 3.3
+rawProblems[5].testcases[3].output = "Sau khi sap xep: a = -10, b = 20";
 
 async function run() {
   try {
@@ -372,7 +375,7 @@ async function run() {
       }
     });
 
-    console.log("\n=== TẤT CẢ BÀI TẬP ĐÃ ĐƯỢC CẬP NHẬT TEMPLATE THÀNH CÔNG ===");
+    console.log("\n=== TẤT CẢ BÀI TẬP ĐÃ ĐƯỢC CẬP NHẬT TESTCASE SẠCH SẼ ===");
   } catch (err) {
     console.error("Lỗi khi import bài tập:", err);
   } finally {
