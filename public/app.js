@@ -93,6 +93,7 @@ function loadMonaco() {
 
 async function api(url, options = {}) {
   const response = await fetch(url, {
+    credentials: 'include',
     ...options,
     headers: { 'content-type':'application/json', ...(options.headers || {}) },
     body: options.body && typeof options.body !== 'string' ? JSON.stringify(options.body) : options.body
@@ -319,6 +320,46 @@ function clientGetRatingLabel(r) {
   return 'Nâng cao';
 }
 
+function normalizeProblemItem(raw) {
+  const rating = raw.rating !== undefined ? Number(raw.rating) : 800;
+  const bestScore = raw.bestScore ?? raw.best_score ?? 0;
+  const passingScore = raw.passingScore ?? raw.passing_score ?? 100;
+  const submissionCount = Number(raw.submissionCount ?? raw.submission_count ?? 0);
+  const completedAt = raw.completedAt ?? raw.completed_at ?? null;
+  const bestStatus = raw.bestStatus ?? raw.best_status ?? null;
+  
+  const isCompleted = completedAt !== null || bestStatus === 'ACCEPTED' || bestScore >= passingScore;
+  const isAttempted = submissionCount > 0;
+  const isAssigned = Boolean(raw.isAssigned ?? raw.is_assigned);
+  
+  let uiStatus = 'not_started';
+  if (isCompleted) uiStatus = 'completed';
+  else if (isAttempted) uiStatus = 'attempted';
+  else if (isAssigned) uiStatus = 'assigned';
+
+  return {
+    ...raw,
+    id: raw.id,
+    slug: raw.slug,
+    title: raw.title,
+    difficulty: raw.difficulty,
+    rating,
+    ratingLabel: raw.ratingLabel || clientGetRatingLabel(rating),
+    timeLimitMinutes: raw.timeLimitMinutes ?? raw.time_limit_minutes ?? 30,
+    maxScore: raw.maxScore ?? raw.max_score ?? 100,
+    passingScore,
+    bestScore,
+    bestStatus,
+    submissionCount,
+    lastSubmittedAt: raw.lastSubmittedAt ?? raw.last_submitted_at ?? null,
+    completedAt,
+    isCompleted,
+    isAttempted,
+    isAssigned,
+    uiStatus
+  };
+}
+
 function assignmentStatusLabel(status) {
   return {
     ASSIGNED: 'Đang giao',
@@ -399,33 +440,29 @@ function renderAdminAssignmentsTable(assignments) {
 
 function problemCards(problems) {
   if (!problems.length) return '<div class="empty">Chưa có bài tập nào được mở.</div>';
-  return `<div class="grid">${problems.map((p) => {
+  return `<div class="grid">${problems.map((raw) => {
+    const p = normalizeProblemItem(raw);
     const slug = p.slug;
     const title = p.title;
-    const rating = p.rating ?? 800;
-    const ratingLabel = p.ratingLabel ?? clientGetRatingLabel(rating);
-    const limitMinutes = p.timeLimitMinutes ?? p.time_limit_minutes ?? 30;
-    const bestScore = p.bestScore ?? p.best_score ?? 0;
-    const maxScore = p.maxScore ?? 100;
-    const passingScore = p.passingScore ?? 100;
-    
-    let isCompleted = p.isCompleted;
-    if (isCompleted === undefined) {
-      isCompleted = bestScore === 100 || bestScore >= passingScore;
-    }
-    const isAttempted = !isCompleted && bestScore > 0;
+    const rating = p.rating;
+    const ratingLabel = p.ratingLabel;
+    const limitMinutes = p.timeLimitMinutes;
+    const bestScore = p.bestScore;
+    const maxScore = p.maxScore;
     
     let statusClass = 'neutral';
     let statusLabel = 'Chưa làm';
-    if (isCompleted) {
-      statusClass = 'mint';
-      statusLabel = 'Đã hoàn thành';
-    } else if (isAttempted) {
-      statusClass = 'warm';
-      statusLabel = 'Đang làm';
-    }
     
-    const isAssigned = p.isAssigned ?? false;
+    if (p.uiStatus === 'completed') {
+      statusClass = 'mint';
+      statusLabel = 'Hoàn thành';
+    } else if (p.uiStatus === 'attempted') {
+      statusClass = 'warm';
+      statusLabel = 'Đã nộp';
+    } else if (p.uiStatus === 'assigned') {
+      statusClass = 'assigned';
+      statusLabel = 'Được giao';
+    }
 
     let ratingClass = 'r800';
     if (rating >= 1100 && rating <= 1300) ratingClass = 'r1100';
@@ -433,16 +470,19 @@ function problemCards(problems) {
     else if (rating >= 1700 && rating <= 1900) ratingClass = 'r1700';
     else if (rating >= 2000) ratingClass = 'r2000';
     
+    const showAssignedBadge = p.isAssigned && p.uiStatus !== 'assigned';
+    const scoreText = p.isAttempted ? `Điểm tốt nhất: ${bestScore}/${maxScore}` : `Điểm: ${bestScore}/${maxScore}`;
+    
     return `<article class="problem-card">
       <div class="card-badges">
         <span class="badge ${statusClass}">${statusLabel}</span>
-        ${isAssigned ? '<span class="badge assigned">Được giao</span>' : ''}
+        ${showAssignedBadge ? '<span class="badge assigned">Được giao</span>' : ''}
         <span class="badge ${ratingClass}">${rating} · ${escapeHtml(ratingLabel)}</span>
       </div>
       <h3>${escapeHtml(title)}</h3>
       <div class="problem-meta">
         <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="meta-icon" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${limitMinutes} phút</span>
-        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="meta-icon" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Điểm: ${bestScore}/${maxScore}</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="meta-icon" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> ${scoreText}</span>
       </div>
       <button class="btn small open-problem" data-slug="${escapeHtml(slug)}">Mở bài →</button>
     </article>`;
@@ -471,7 +511,7 @@ async function homeView() {
 async function problemsView() {
   // Initialize pagination & filter state
   state.problemsPage = {
-    tab: 'done',
+    tab: 'all',
     items: [],
     cursor: null,
     hasMore: false,
@@ -496,8 +536,11 @@ async function problemsView() {
     
     <!-- Tab Headers -->
     <div class="tabs-header" role="tablist">
-      <button class="tab-btn active" data-tab="done" role="tab" aria-selected="true">Đã làm</button>
+      <button class="tab-btn active" data-tab="all" role="tab" aria-selected="true">Tất cả</button>
       <button class="tab-btn" data-tab="todo" role="tab" aria-selected="false">Chưa làm</button>
+      <button class="tab-btn" data-tab="attempted" role="tab" aria-selected="false">Đã nộp</button>
+      <button class="tab-btn" data-tab="done" role="tab" aria-selected="false">Đã hoàn thành</button>
+      <button class="tab-btn" data-tab="assigned" role="tab" aria-selected="false">Được giao</button>
     </div>
     
     <!-- Filter Panel -->
@@ -595,7 +638,8 @@ async function problemsView() {
   const updateScoreFilterVisibility = () => {
     const scoreGroup = document.querySelector('#filter-group-score');
     if (scoreGroup) {
-      scoreGroup.style.display = state.problemsPage.tab === 'done' ? 'flex' : 'none';
+      const showScore = state.problemsPage.tab !== 'todo' && state.problemsPage.tab !== 'assigned';
+      scoreGroup.style.display = showScore ? 'flex' : 'none';
     }
   };
   updateScoreFilterVisibility();
@@ -871,6 +915,26 @@ function renderProblemsGrid() {
           if (todoBtn) todoBtn.click();
         };
       }
+    } else if (state.problemsPage.tab === 'attempted') {
+      emptyState.innerHTML = `
+        <div class="empty-prompt">
+          <p>Bạn chưa nộp bài tập nào trong mục này.</p>
+          <button class="btn" id="go-to-todo-tab">Xem danh sách chưa làm</button>
+        </div>
+      `;
+      const btn = document.querySelector('#go-to-todo-tab');
+      if (btn) {
+        btn.onclick = () => {
+          const todoBtn = document.querySelector('.tab-btn[data-tab="todo"]');
+          if (todoBtn) todoBtn.click();
+        };
+      }
+    } else if (state.problemsPage.tab === 'assigned') {
+      emptyState.innerHTML = `
+        <div class="empty-prompt">
+          <p>Bạn không có bài tập nào được giao ở mục này.</p>
+        </div>
+      `;
     } else {
       emptyState.innerHTML = '<div class="empty-prompt"><p>Không tìm thấy bài tập phù hợp với bộ lọc.</p></div>';
     }
@@ -917,16 +981,23 @@ async function openProblem(slug) {
   
   let problem = state.problemDetails[slug];
   let attempt;
+  let progress;
   if (problem) {
-    const res = await api('/api/attempts', { method:'POST', body:{ slug } });
-    attempt = res.attempt;
+    const [resA, resProg] = await Promise.all([
+      api('/api/attempts', { method:'POST', body:{ slug } }),
+      api(`/api/problems/${encodeURIComponent(slug)}/progress`)
+    ]);
+    attempt = resA.attempt;
+    progress = resProg.progress;
   } else {
-    const [resP, resA] = await Promise.all([
+    const [resP, resA, resProg] = await Promise.all([
       api(`/api/problems/${encodeURIComponent(slug)}`),
-      api('/api/attempts', { method:'POST', body:{ slug } })
+      api('/api/attempts', { method:'POST', body:{ slug } }),
+      api(`/api/problems/${encodeURIComponent(slug)}/progress`)
     ]);
     problem = resP.problem;
     attempt = resA.attempt;
+    progress = resProg.progress;
     state.problemDetails[slug] = problem;
   }
   
@@ -957,16 +1028,86 @@ async function openProblem(slug) {
   }
 
   const examples = (problem.examples || []).map((ex, i) => `<div class="example"><div class="example-head">Ví dụ ${i+1}</div><div class="example-grid"><div>Input<pre>${escapeHtml(ex.input)}</pre></div><div>Output<pre>${escapeHtml(ex.output)}</pre></div></div>${ex.explanation ? `<div style="padding:0 12px 12px" class="muted">${escapeHtml(ex.explanation)}</div>` : ''}</div>`).join('');
-  shell(`<div class="solve-mobile-tabs" role="tablist"><button class="active" id="show-problem" role="tab">Đề bài</button><button id="show-code" role="tab">Code & Shell</button></div><section class="solve-layout" id="solve-layout">
-    <article class="problem-pane" id="problem-pane"><span class="badge ${ratingClass}">${rating} · ${escapeHtml(ratingLabel)}</span><h2>${escapeHtml(problem.title)}</h2><div class="markdown">${markdown(problem.description)}</div><div class="section-head"><h3>Ví dụ</h3></div>${examples}</article>
-    <div class="solve-layout-resizer-h" id="resizer-h"></div>
-    <section class="editor-pane"><div class="editor-bar"><span><i class="python-dot"></i> PYTHON 3 · main.py</span><span class="timer" id="timer">--:--</span></div>
-      <div class="code-editor" id="code" aria-label="Mã nguồn Python"></div>
-      <div class="solve-layout-resizer-v" id="resizer-v"></div>
-      <section class="terminal" aria-label="Terminal"><div class="terminal-header"><div class="terminal-dots"><span></span><span></span><span></span></div><span class="terminal-title">Terminal — Python 3 <span id="python-status" style="font-size:11px; margin-left:8px; opacity:0.8; color: ${initialStatusColor}">${initialStatusText}</span></span><div class="terminal-actions"><button class="term-btn" id="clear-shell" title="Xóa terminal (clear)">⌫</button><button class="term-btn stop" id="stop" title="Ngắt tiến trình (Ctrl+C)" disabled>■ Stop</button><button class="term-btn run" id="run" title="Chạy thử (python main.py)">▶ Run</button><button class="term-btn submit" id="submit" title="Nộp bài chấm điểm">⬆ Nộp bài</button></div></div>
-        <div class="terminal-screen" id="terminal-host" tabindex="0" aria-label="Terminal Python tương tác"></div>
+  
+  const layoutHtml = `
+    <div class="solve-mobile-tabs" role="tablist">
+      <button class="active" id="show-problem" role="tab">Đề bài</button>
+      <button id="show-code" role="tab">Code & Shell</button>
+    </div>
+    <section class="solve-layout" id="solve-layout">
+      <article class="problem-pane" id="problem-pane">
+        <div class="problem-pane-container">
+          <div class="problem-pane-tabs" role="tablist">
+            <button class="active" id="tab-desc" role="tab" aria-selected="true">Đề bài</button>
+            <button id="tab-progress" role="tab" aria-selected="false">Lịch sử nộp bài</button>
+          </div>
+          
+          <div id="pane-desc" style="display: block;">
+            <span class="badge ${ratingClass}">${rating} · ${escapeHtml(ratingLabel)}</span>
+            <h2>${escapeHtml(problem.title)}</h2>
+            <div class="markdown">${markdown(problem.description)}</div>
+            <div class="section-head"><h3>Ví dụ</h3></div>
+            ${examples}
+          </div>
+          
+          <div id="pane-progress" style="display: none;">
+            ${getProgressHtml(progress)}
+          </div>
+        </div>
+      </article>
+      <div class="solve-layout-resizer-h" id="resizer-h"></div>
+      <section class="editor-pane">
+        <div class="editor-bar">
+          <span><i class="python-dot"></i> PYTHON 3 · main.py</span>
+          <span class="timer" id="timer">--:--</span>
+        </div>
+        <div class="code-editor" id="code" aria-label="Mã nguồn Python"></div>
+        <div class="solve-layout-resizer-v" id="resizer-v"></div>
+        <section class="terminal" aria-label="Terminal">
+          <div class="terminal-header">
+            <div class="terminal-dots"><span></span><span></span><span></span></div>
+            <span class="terminal-title">Terminal — Python 3 <span id="python-status" style="font-size:11px; margin-left:8px; opacity:0.8; color: ${initialStatusColor}">${initialStatusText}</span></span>
+            <div class="terminal-actions">
+              <button class="term-btn" id="clear-shell" title="Xóa terminal (clear)">⌫</button>
+              <button class="term-btn stop" id="stop" title="Ngắt tiến trình (Ctrl+C)" disabled>■ Stop</button>
+              <button class="term-btn run" id="run" title="Chạy thử (python main.py)">▶ Run</button>
+              <button class="term-btn submit" id="submit" title="Nộp bài chấm điểm">⬆ Nộp bài</button>
+            </div>
+          </div>
+          <div class="terminal-screen" id="terminal-host" tabindex="0" aria-label="Terminal Python tương tác"></div>
+        </section>
       </section>
-    </section></section>`, problem.title);
+    </section>
+  `;
+
+  shell(layoutHtml, problem.title);
+
+  const btnDesc = document.querySelector('#tab-desc');
+  const btnProgress = document.querySelector('#tab-progress');
+  const paneDesc = document.querySelector('#pane-desc');
+  const paneProgress = document.querySelector('#pane-progress');
+
+  if (btnDesc && btnProgress && paneDesc && paneProgress) {
+    btnDesc.onclick = () => {
+      btnDesc.classList.add('active');
+      btnDesc.setAttribute('aria-selected', 'true');
+      btnProgress.classList.remove('active');
+      btnProgress.setAttribute('aria-selected', 'false');
+      paneDesc.style.display = 'block';
+      paneProgress.style.display = 'none';
+    };
+    btnProgress.onclick = () => {
+      btnProgress.classList.add('active');
+      btnProgress.setAttribute('aria-selected', 'true');
+      btnDesc.classList.remove('active');
+      btnDesc.setAttribute('aria-selected', 'false');
+      paneDesc.style.display = 'none';
+      paneProgress.style.display = 'block';
+    };
+  }
+
+  bindProgressActions(progress);
+
   const pane = document.querySelector('#problem-pane');
   if (pane && window.renderMathInElement) {
     const renderMath = () => {
@@ -980,7 +1121,6 @@ async function openProblem(slug) {
         throwOnError: false
       });
     };
-    // Trì hoãn render LaTeX để tránh khóa UI thread và tăng tốc độ chuyển trang
     if (window.requestIdleCallback) {
       window.requestIdleCallback(renderMath);
     } else {
@@ -1069,12 +1209,36 @@ async function setupEditor() {
     event.target.disabled = true;
     state.terminal?.notice('Đang chấm trên các test ẩn…', '36');
     try {
+      const slug = state.current.slug;
       const data = await api('/api/submissions', { method:'POST', body:{ attemptId:state.attempt.id, code:state.editor.getValue() } });
       clearInterval(state.timer);
       state.page = 'submitted';
       const cacheKey = `simpleoj-code-${state.user.id}-${state.current.slug}`;
       localStorage.removeItem(cacheKey);
-      state.problems = null;
+
+      // Load new progress and update state
+      const updatedProgRes = await api(`/api/problems/${encodeURIComponent(slug)}/progress`);
+      const updatedProg = updatedProgRes.progress;
+      
+      // Update local cache
+      updateProblemProgressLocally(
+        slug,
+        updatedProg.bestScore,
+        updatedProg.bestStatus,
+        updatedProg.submissionCount,
+        updatedProg.completedAt,
+        updatedProg.isCompleted,
+        updatedProg.isAttempted,
+        updatedProg.isCompleted ? 'completed' : updatedProg.isAttempted ? 'attempted' : 'not_started'
+      );
+
+      // Update progress pane UI in the background if the user stays
+      const paneProgress = document.querySelector('#pane-progress');
+      if (paneProgress) {
+        paneProgress.innerHTML = getProgressHtml(updatedProg);
+        bindProgressActions(updatedProg);
+      }
+
       state.submissions = null;
       state.leaderboard = null;
       state.adminDashboard = null;
@@ -1097,6 +1261,253 @@ function resultModal(data) {
   document.body.insertAdjacentHTML('beforeend', `<div class="modal-backdrop" id="result-modal"><div class="modal"><span class="eyebrow">Kết quả chấm bài</span><h2>${s.score}/100 · ${statusLabel(s.status)}</h2><p class="muted">${s.passed_count}/${s.total_count} test đúng · thời gian ${formatDuration(s.duration_ms)}</p><div class="table-wrap"><table><thead><tr><th>Test</th><th>Kết quả</th><th>Chi tiết</th></tr></thead><tbody>${reports}</tbody></table></div><div class="modal-actions"><button class="btn secondary" id="result-stay">Ở lại xem code</button><button class="btn" id="result-close">Về danh sách bài</button></div></div></div>`);
   document.querySelector('#result-stay').onclick = () => { document.querySelector('#result-modal').remove(); };
   document.querySelector('#result-close').onclick = () => { document.querySelector('#result-modal').remove(); navigate('problems'); };
+}
+
+function getProgressHtml(p) {
+  const isCompleted = p.isCompleted;
+  const isAttempted = p.isAttempted;
+  const hasBestSub = p.bestSubmissionId !== null;
+  
+  return `
+    <div class="progress-panel" style="padding: 12px 0;">
+      <div class="progress-summary-card" style="background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+        <h4 style="margin: 0 0 10px 0; font-size: 1rem; color: var(--ink);">Trạng thái làm bài</h4>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--muted); font-size: 0.9rem;">Điểm tốt nhất:</span>
+            <strong style="color: var(--ink); font-size: 0.9rem;">${p.bestScore}/100</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="color: var(--muted); font-size: 0.9rem;">Kết quả tốt nhất:</span>
+            <span class="badge ${p.bestStatus === 'ACCEPTED' ? 'mint' : p.bestStatus ? 'red' : 'neutral'}">${statusLabel(p.bestStatus) || 'Chưa làm'}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--muted); font-size: 0.9rem;">Số lần nộp bài:</span>
+            <span style="color: var(--ink); font-weight: 600; font-size: 0.9rem;">${p.submissionCount} lần</span>
+          </div>
+          ${p.completedAt ? `
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--muted); font-size: 0.9rem;">Hoàn thành lúc:</span>
+            <span style="color: var(--ink); font-size: 0.85rem;">${formatDate(p.completedAt)}</span>
+          </div>` : ''}
+        </div>
+      </div>
+
+      ${p.submissionCount > 0 ? `
+      <div class="progress-actions" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
+        <button class="btn secondary block" id="btn-restore-last" style="justify-content: center; font-size: 0.9rem;">Khôi phục code đã nộp cuối</button>
+        ${hasBestSub ? `
+        <button class="btn block" id="btn-view-best" style="justify-content: center; font-size: 0.9rem;">Xem bài nộp tốt nhất</button>
+        ` : ''}
+      </div>
+      ` : '<div class="muted" style="text-align: center; margin-bottom: 24px; font-size: 0.9rem;">Bạn chưa nộp bài tập này lần nào.</div>'}
+
+      <h4 style="margin: 0 0 12px 0; font-size: 1rem; color: var(--ink);">Các bài nộp gần đây</h4>
+      <div class="submissions-list" style="display: flex; flex-direction: column; gap: 8px;">
+        ${p.recentSubmissions.length > 0 ? p.recentSubmissions.map(s => {
+          const isAccepted = s.status === 'ACCEPTED';
+          const statusClass = isAccepted ? 'mint' : 'red';
+          const scoreColor = isAccepted ? '#0a6946' : '#b43b31';
+          return `
+          <div class="submission-item" data-id="${s.id}" style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; transition: 0.15s;">
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+              <span class="badge ${statusClass}" style="align-self: flex-start; font-size: 9px; padding: 2px 6px;">${statusLabel(s.status)}</span>
+              <span style="font-size: 0.75rem; color: var(--muted);">${formatDate(s.createdAt)}</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+              <strong style="color: ${scoreColor}; font-size: 0.95rem;">${s.score}/100</strong>
+              <span style="font-size: 0.75rem; color: var(--muted);">${formatDuration(s.durationMs)}</span>
+            </div>
+          </div>
+          `;
+        }).join('') : '<div class="muted" style="text-align: center; padding: 12px; font-size: 0.85rem;">Không có bài nộp nào gần đây.</div>'}
+      </div>
+    </div>
+  `;
+}
+
+function bindProgressActions(prog) {
+  const btnRestore = document.querySelector('#btn-restore-last');
+  const btnViewBest = document.querySelector('#btn-view-best');
+  const subItems = document.querySelectorAll('.submission-item');
+
+  if (btnRestore) {
+    btnRestore.onclick = async () => {
+      if (!prog.recentSubmissions.length) return;
+      const confirmRestore = confirm('Bạn có chắc chắn muốn khôi phục mã nguồn đã nộp cuối cùng? Hành động này sẽ ghi đè lên trình soạn thảo hiện tại.');
+      if (confirmRestore) {
+        try {
+          toast('Đang khôi phục mã nguồn...');
+          const lastSub = prog.recentSubmissions[0];
+          const data = await api(`/api/submissions/${lastSub.id}`);
+          state.editor?.setValue(data.submission.code);
+          toast('Đã khôi phục mã nguồn cuối.');
+        } catch (e) {
+          toast(e.message, true);
+        }
+      }
+    };
+  }
+
+  if (btnViewBest && prog.bestSubmissionId) {
+    btnViewBest.onclick = () => {
+      showSubmissionDetailModal(prog.bestSubmissionId);
+    };
+  }
+
+  subItems.forEach(item => {
+    item.onclick = () => {
+      showSubmissionDetailModal(item.dataset.id);
+    };
+  });
+}
+
+function updateProblemProgressLocally(slug, bestScore, bestStatus, submissionCount, completedAt, isCompleted, isAttempted, uiStatus) {
+  const updateItem = (item) => {
+    if (item.slug === slug) {
+      return {
+        ...item,
+        bestScore,
+        bestStatus,
+        submissionCount,
+        completedAt,
+        isCompleted,
+        isAttempted,
+        uiStatus
+      };
+    }
+    return item;
+  };
+
+  if (Array.isArray(state.problems)) {
+    state.problems = state.problems.map(updateItem);
+  }
+  if (state.problemsPage && Array.isArray(state.problemsPage.items)) {
+    const tab = state.problemsPage.tab;
+    const shouldRemove = 
+      (tab === 'todo' && submissionCount > 0) ||
+      (tab === 'attempted' && isCompleted) ||
+      (tab === 'assigned' && isCompleted) ||
+      (tab === 'done' && !isCompleted);
+
+    if (shouldRemove) {
+      state.problemsPage.items = state.problemsPage.items.filter(item => item.slug !== slug);
+    } else {
+      state.problemsPage.items = state.problemsPage.items.map(updateItem);
+    }
+  }
+}
+
+async function showSubmissionDetailModal(submissionId) {
+  try {
+    toast('Đang tải chi tiết bài nộp...');
+    const data = await api(`/api/submissions/${submissionId}`);
+    const s = data.submission;
+    
+    let reportsList = [];
+    if (s.report) {
+      const reports = Array.isArray(s.report) ? s.report : JSON.parse(s.report);
+      reportsList = reports.map((r) => {
+        const hasPassed = r.passed;
+        const statusText = r.status || (hasPassed ? 'Accepted' : 'Wrong Answer');
+        const detailText = r.error || (hasPassed ? 'Khớp đáp án' : 'Sai đáp án');
+        
+        let ioDetails = '';
+        if (r.input !== undefined || r.expected !== undefined || r.actual !== undefined) {
+          ioDetails = `
+            <div style="margin-top: 8px; font-size: 0.8rem; background: rgba(0,0,0,0.03); border: 1px solid var(--line); border-radius: 6px; padding: 8px; font-family: var(--mono); max-height: 120px; overflow-y: auto;">
+              ${r.input !== undefined ? `<div><strong>Input:</strong> <pre style="margin:2px 0 6px 0; white-space:pre-wrap;">${escapeHtml(r.input)}</pre></div>` : ''}
+              ${r.expected !== undefined ? `<div><strong>Mong muốn:</strong> <pre style="margin:2px 0 6px 0; white-space:pre-wrap;">${escapeHtml(r.expected)}</pre></div>` : ''}
+              ${r.actual !== undefined ? `<div><strong>Thực tế:</strong> <pre style="margin:2px 0 0 0; white-space:pre-wrap;">${escapeHtml(r.actual)}</pre></div>` : ''}
+            </div>
+          `;
+        }
+
+        return `<tr>
+          <td>Test ${r.index}</td>
+          <td><span class="badge ${hasPassed ? 'mint' : 'red'}">${statusText}</span></td>
+          <td>
+            <div>${escapeHtml(detailText)}</div>
+            ${ioDetails}
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    const modalHtml = `
+      <div class="modal-backdrop" id="submission-detail-modal">
+        <div class="modal wide" style="max-height: 90vh; display: flex; flex-direction: column;">
+          <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 16px; flex-shrink: 0;">
+            <div>
+              <span class="eyebrow" style="margin: 0;">Chi tiết bài nộp</span>
+              <h2 style="margin: 4px 0 0 0;">${escapeHtml(s.title)}</h2>
+            </div>
+            <button class="close-sheet-btn" id="close-submission-modal" aria-label="Đóng">✕</button>
+          </div>
+          
+          <div class="modal-body" style="overflow-y: auto; flex: 1; padding-right: 4px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+              <div style="background: var(--paper); padding: 12px; border-radius: 8px; border: 1px solid var(--line);">
+                <div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">Kết quả</div>
+                <strong style="font-size: 1.2rem; color: ${s.status === 'ACCEPTED' ? '#0a6946' : '#b43b31'};">${s.score}/100 (${statusLabel(s.status)})</strong>
+              </div>
+              <div style="background: var(--paper); padding: 12px; border-radius: 8px; border: 1px solid var(--line);">
+                <div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 4px;">Thời gian nộp</div>
+                <strong>${formatDate(s.createdAt)}</strong>
+              </div>
+            </div>
+
+            <h4 style="margin: 0 0 8px 0; font-size: 1rem; color: var(--ink);">Mã nguồn</h4>
+            <div style="position: relative; margin-bottom: 20px;">
+              <pre style="background: #fdfdfd; border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-family: var(--mono); font-size: 0.85rem; overflow-x: auto; max-height: 250px; margin: 0; color: #000; line-height: 1.5; border-left: 4px solid var(--green-2);">${escapeHtml(s.code)}</pre>
+            </div>
+
+            <h4 style="margin: 0 0 8px 0; font-size: 1rem; color: var(--ink);">Kết quả các testcase</h4>
+            <div class="table-wrap" style="margin-bottom: 12px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width: 15%;">Test</th>
+                    <th style="width: 25%;">Trạng thái</th>
+                    <th>Chi tiết</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${reportsList || '<tr><td colspan="3" class="muted" style="text-align:center;">Không có dữ liệu testcase.</td></tr>'}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="modal-actions" style="border-top: 1px solid var(--line); padding-top: 16px; margin-top: 16px; flex-shrink: 0; display: flex; justify-content: flex-end; gap: 12px;">
+            <button class="btn secondary" id="btn-restore-this-code">Khôi phục code này</button>
+            <button class="btn" id="btn-close-submission-modal">Đóng</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    const modal = document.querySelector('#submission-detail-modal');
+
+    const closeModal = () => {
+      modal.remove();
+    };
+
+    modal.querySelector('#close-submission-modal').onclick = closeModal;
+    modal.querySelector('#btn-close-submission-modal').onclick = closeModal;
+    modal.querySelector('#btn-restore-this-code').onclick = async () => {
+      const confirmRestore = confirm('Bạn có chắc chắn muốn khôi phục mã nguồn này về trình soạn thảo hiện tại?');
+      if (confirmRestore) {
+        state.editor?.setValue(s.code);
+        toast('Đã khôi phục mã nguồn.');
+        closeModal();
+      }
+    };
+
+  } catch (error) {
+    toast(error.message, true);
+  }
 }
 
 async function historyView() {

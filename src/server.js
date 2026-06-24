@@ -14,7 +14,7 @@ import {
   setSession, validatePassword, verifyPassword
 } from './auth.js';
 import { cleanText, normalizeEmail, normalizeProblem, validEmail, validateProblem } from './validation.js';
-import { judgeSubmission, runPythonLocal } from './judge.js';
+import { judgeSubmission, runPythonLocal, parseRunnerError } from './judge.js';
 import { attachTerminalServer } from './terminal.js';
 
 const app = express();
@@ -151,33 +151,6 @@ app.get('/api/auth/me', (req, res) => res.json({ user: req.user || null }));
 
 app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
   const { tab, cursor, rating, minRating, maxRating, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo } = req.query;
-  if (!tab) {
-    const admin = req.user.role === 'ADMIN';
-    const { rows } = await query(
-      `SELECT p.id,p.slug,p.title,p.difficulty,p.rating,p.time_limit_minutes,p.execution_limit_ms,p.is_active,p.created_at,
-         COALESCE((SELECT MAX(s.score) FROM submissions s WHERE s.problem_id=p.id AND s.user_id=$1), 0)::int AS best_score,
-         CASE
-           WHEN EXISTS (
-             SELECT 1
-             FROM student_problem_assignments spa
-             WHERE spa.user_id = $1
-               AND spa.problem_id = p.id
-               AND spa.status = 'ASSIGNED'
-           )
-           AND NOT EXISTS (
-             SELECT 1
-             FROM user_problem_progress upp
-             WHERE upp.user_id = $1
-               AND upp.problem_id = p.id
-               AND (upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= 100)
-           )
-           THEN TRUE ELSE FALSE
-         END AS "isAssigned"
-       FROM problems p ${admin ? '' : 'WHERE p.is_active = TRUE'} ORDER BY p.created_at DESC`,
-      [req.user.id]
-    );
-    return res.json({ problems: rows });
-  }
 
   // Parse filters
   const parsedRating = rating !== undefined && rating !== '' ? Number(rating) : null;
@@ -193,12 +166,15 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
   // Default is_active check
   whereConditions.push('(p.is_active = TRUE OR $2 = \'ADMIN\')');
 
-  if (tab === 'done') {
-    whereConditions.push('upp.user_id = $1');
-    whereConditions.push('upp.completed_at IS NOT NULL');
-  } else {
-    // tab === 'todo'
-    whereConditions.push('(upp.completed_at IS NULL OR upp.user_id IS NULL)');
+  // Handle tab-specific filters
+  if (tab === 'todo') {
+    whereConditions.push('COALESCE(upp.submission_count, 0) = 0');
+  } else if (tab === 'attempted') {
+    whereConditions.push('COALESCE(upp.submission_count, 0) > 0 AND upp.completed_at IS NULL AND COALESCE(upp.best_score, 0) < p.passing_score AND COALESCE(upp.best_status, \'\') != \'ACCEPTED\'');
+  } else if (tab === 'done' || tab === 'completed') {
+    whereConditions.push('(upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= p.passing_score OR upp.best_status = \'ACCEPTED\')');
+  } else if (tab === 'assigned') {
+    whereConditions.push('aa.problem_id IS NOT NULL AND NOT (upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= p.passing_score OR upp.best_status = \'ACCEPTED\')');
   }
 
   // Filter rating
@@ -216,14 +192,15 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
   }
 
   // Filter scores
+  const isDoneTab = tab === 'done' || tab === 'completed';
   if (parsedMinScore !== null) {
     queryParams.push(parsedMinScore);
-    const col = tab === 'done' ? 'COALESCE(upp.best_score, 0)' : 'p.max_score';
+    const col = isDoneTab ? 'COALESCE(upp.best_score, 0)' : 'p.max_score';
     whereConditions.push(`${col} >= $${queryParams.length}`);
   }
   if (parsedMaxScore !== null) {
     queryParams.push(parsedMaxScore);
-    const col = tab === 'done' ? 'COALESCE(upp.best_score, 0)' : 'p.max_score';
+    const col = isDoneTab ? 'COALESCE(upp.best_score, 0)' : 'p.max_score';
     whereConditions.push(`${col} <= $${queryParams.length}`);
   }
 
@@ -242,7 +219,7 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
   let sortOrder = 'DESC'; // 'DESC' or 'ASC'
   let jsFieldName = '';
 
-  if (tab === 'done') {
+  if (isDoneTab) {
     if (sort === 'newest') {
       sortField = 'p.published_at';
       jsFieldName = 'publishedAt';
@@ -269,7 +246,6 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
       jsFieldName = 'completedAt';
     }
   } else {
-    // tab === 'todo'
     if (sort === 'newest') {
       sortField = 'p.published_at';
       jsFieldName = 'publishedAt';
@@ -285,12 +261,12 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
       sortOrder = 'ASC';
       jsFieldName = 'rating';
     } else if (sort === 'score_desc') {
-      sortField = 'p.max_score';
-      jsFieldName = 'maxScore';
+      sortField = 'COALESCE(upp.best_score, 0)';
+      jsFieldName = 'bestScore';
     } else if (sort === 'score_asc') {
-      sortField = 'p.max_score';
+      sortField = 'COALESCE(upp.best_score, 0)';
       sortOrder = 'ASC';
-      jsFieldName = 'maxScore';
+      jsFieldName = 'bestScore';
     } else {
       sortField = 'p.published_at';
       jsFieldName = 'publishedAt';
@@ -299,7 +275,7 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
 
   // Filter assigned
   if (assigned === 'only') {
-    whereConditions.push('aa.problem_id IS NOT NULL AND NOT (upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= 100)');
+    whereConditions.push('aa.problem_id IS NOT NULL AND NOT (upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= p.passing_score OR upp.best_status = \'ACCEPTED\')');
   } else if (assigned === 'free') {
     whereConditions.push('aa.problem_id IS NULL');
   }
@@ -327,7 +303,9 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
     }
   }
 
-  const limit = Math.min(20, Math.max(1, Number(req.query.limit || 10)));
+  // If no tab is specified, return all items without pagination for backward compatibility with loadProblems()
+  const usePagination = tab !== undefined && tab !== '';
+  const limit = usePagination ? Math.min(20, Math.max(1, Number(req.query.limit || 10))) : 10000;
   queryParams.push(limit + 1);
   const limitPlaceholder = `$${queryParams.length}`;
 
@@ -343,17 +321,36 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
       p.title,
       p.difficulty,
       p.rating,
+      p.source,
+      p.order_index AS "orderIndex",
+      p.published_at AS "publishedAt",
+      p.time_limit_minutes AS "timeLimitMinutes",
       p.max_score AS "maxScore",
       p.passing_score AS "passingScore",
       COALESCE(upp.best_score, 0)::int AS "bestScore",
       upp.best_status AS "bestStatus",
-      CASE WHEN upp.completed_at IS NOT NULL THEN TRUE ELSE FALSE END AS "isCompleted",
-      CASE WHEN aa.problem_id IS NOT NULL AND NOT (upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= 100) THEN TRUE ELSE FALSE END AS "isAssigned",
-      p.published_at AS "publishedAt",
+      COALESCE(upp.submission_count, 0)::int AS "submissionCount",
       upp.last_submitted_at AS "lastSubmittedAt",
       upp.completed_at AS "completedAt",
-      p.time_limit_minutes AS "timeLimitMinutes"
-    FROM ${tab === 'done' ? 'user_problem_progress upp JOIN problems p ON p.id = upp.problem_id' : 'problems p LEFT JOIN user_problem_progress upp ON upp.problem_id = p.id AND upp.user_id = $1'}
+      CASE
+        WHEN EXISTS (
+          SELECT 1
+          FROM student_problem_assignments spa
+          WHERE spa.user_id = $1
+            AND spa.problem_id = p.id
+            AND spa.status = 'ASSIGNED'
+        )
+        AND NOT EXISTS (
+          SELECT 1
+          FROM user_problem_progress upp
+          WHERE upp.user_id = $1
+            AND upp.problem_id = p.id
+            AND (upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= p.passing_score OR upp.best_status = 'ACCEPTED')
+        )
+        THEN TRUE ELSE FALSE
+      END AS "isAssigned"
+    FROM problems p
+    LEFT JOIN user_problem_progress upp ON upp.problem_id = p.id AND upp.user_id = $1
     LEFT JOIN active_assignments aa ON aa.problem_id = p.id
     WHERE ${whereConditions.join(' AND ')}
     ORDER BY ${sortField} ${sortOrder}, p.id ${sortOrder}
@@ -361,7 +358,7 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
   `;
 
   const { rows } = await query(querySql, queryParams);
-  const hasMore = rows.length > limit;
+  const hasMore = usePagination ? (rows.length > limit) : false;
   const rawItems = hasMore ? rows.slice(0, limit) : rows;
 
   function getRatingLabel(r) {
@@ -372,10 +369,44 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
     return 'Nâng cao';
   }
 
-  const items = rawItems.map((item) => ({
-    ...item,
-    ratingLabel: getRatingLabel(item.rating)
-  }));
+  const items = rawItems.map((item) => {
+    const submissionCount = Number(item.submissionCount || 0);
+    const bestScore = Number(item.bestScore || 0);
+    const bestStatus = item.bestStatus || null;
+    const completedAt = item.completedAt || null;
+    const passingScore = Number(item.passingScore || 100);
+
+    const isAttempted = submissionCount > 0;
+    const isCompleted = completedAt !== null || bestStatus === 'ACCEPTED' || bestScore >= passingScore;
+    const isAssigned = Boolean(item.isAssigned);
+    const uiStatus = isCompleted ? 'completed' : isAttempted ? 'attempted' : isAssigned ? 'assigned' : 'not_started';
+
+    return {
+      id: item.id,
+      slug: item.slug,
+      title: item.title,
+      difficulty: item.difficulty,
+      rating: item.rating,
+      ratingLabel: getRatingLabel(item.rating),
+      source: item.source,
+      orderIndex: item.orderIndex,
+      publishedAt: item.publishedAt,
+      timeLimitMinutes: item.timeLimitMinutes,
+      bestScore,
+      bestStatus,
+      submissionCount,
+      lastSubmittedAt: item.lastSubmittedAt,
+      completedAt,
+      isCompleted,
+      isAttempted,
+      isAssigned,
+      uiStatus
+    };
+  });
+
+  if (!usePagination) {
+    return res.json({ problems: items });
+  }
 
   let nextCursor = null;
   if (items.length > 0 && hasMore) {
@@ -428,7 +459,7 @@ app.post('/api/run', requireAuth, asyncRoute(async (req, res) => {
   const input = String(req.body.input || '').slice(0, 10000);
   if (!code.trim()) return res.status(400).json({ error: 'Chưa có code để chạy.' });
   const result = config.judgeServiceUrl
-    ? await judgeSubmission(code, [{ input, output: '' }], 2000)
+    ? await judgeSubmission(code, [{ input, output: '', isPublic: true }], 2000)
     : await runPythonLocal(code, input, 2000);
   if (config.judgeServiceUrl) {
     const report = result.reports[0];
@@ -562,6 +593,90 @@ app.get('/api/me/submissions', requireAuth, asyncRoute(async (req, res) => {
     [req.user.id]
   );
   res.json({ submissions: rows });
+}));
+
+app.get('/api/submissions/:id', requireAuth, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const { rows } = await query(
+    `SELECT s.id, s.problem_id AS "problemId", p.slug, p.title, s.code, s.status, s.score,
+            s.passed_count AS "passedCount", s.total_count AS "totalCount",
+            s.duration_ms AS "durationMs", s.report, s.created_at AS "createdAt",
+            s.user_id AS "userId"
+     FROM submissions s
+     JOIN problems p ON p.id = s.problem_id
+     WHERE s.id = $1`,
+    [id]
+  );
+  const submission = rows[0];
+  if (!submission) return res.status(404).json({ error: 'Không tìm thấy bài nộp.' });
+
+  if (req.user.role !== 'ADMIN' && submission.userId !== req.user.id) {
+    return res.status(403).json({ error: 'Không có quyền truy cập bài nộp này.' });
+  }
+
+  delete submission.userId;
+  res.json({ submission });
+}));
+
+app.get('/api/problems/:slug/progress', requireAuth, asyncRoute(async (req, res) => {
+  const { slug } = req.params;
+  const { rows: probRows } = await query(
+    `SELECT id, max_score, passing_score FROM problems WHERE slug = $1 AND (is_active = TRUE OR $2 = 'ADMIN')`,
+    [slug, req.user.role]
+  );
+  const problem = probRows[0];
+  if (!problem) return res.status(404).json({ error: 'Không tìm thấy bài tập.' });
+
+  const { rows: progressRows } = await query(
+    `SELECT
+       problem_id AS "problemId",
+       best_submission_id AS "bestSubmissionId",
+       best_score AS "bestScore",
+       best_status AS "bestStatus",
+       submission_count AS "submissionCount",
+       last_submitted_at AS "lastSubmittedAt",
+       completed_at AS "completedAt"
+     FROM user_problem_progress
+     WHERE user_id = $1 AND problem_id = $2`,
+    [req.user.id, problem.id]
+  );
+
+  const progressObj = progressRows[0];
+  const submissionCount = Number(progressObj?.submissionCount || 0);
+  const bestScore = Number(progressObj?.bestScore || 0);
+  const bestStatus = progressObj?.bestStatus || null;
+  const completedAt = progressObj?.completedAt || null;
+  const passingScore = Number(problem.passing_score || 100);
+
+  const isAttempted = submissionCount > 0;
+  const isCompleted = completedAt !== null || bestStatus === 'ACCEPTED' || bestScore >= passingScore;
+
+  const { rows: recentSubmissions } = await query(
+    `SELECT id, status, score,
+            passed_count AS "passedCount", total_count AS "totalCount",
+            duration_ms AS "durationMs", created_at AS "createdAt"
+     FROM submissions
+     WHERE user_id = $1 AND problem_id = $2
+     ORDER BY created_at DESC
+     LIMIT 50`,
+    [req.user.id, problem.id]
+  );
+
+  res.json({
+    progress: {
+      problemId: problem.id,
+      slug,
+      bestSubmissionId: progressObj?.bestSubmissionId || null,
+      bestScore,
+      bestStatus,
+      submissionCount,
+      lastSubmittedAt: progressObj?.lastSubmittedAt || null,
+      completedAt,
+      isAttempted,
+      isCompleted,
+      recentSubmissions
+    }
+  });
 }));
 
 app.get('/api/leaderboard', requireAuth, asyncRoute(async (_req, res) => {

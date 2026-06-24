@@ -1048,3 +1048,49 @@ body.resizing-v {
     transition: none !important;
   }
 }
+
+/* Solve screen progress pane and list styles */
+.problem-pane-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.problem-pane-tabs {
+  display: flex;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  flex-shrink: 0;
+}
+.problem-pane-tabs button {
+  background: none;
+  border: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+.problem-pane-tabs button.active {
+  color: var(--green-2);
+  border-bottom-color: var(--green-2);
+  font-weight: 700;
+}
+.submission-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.submission-item:hover {
+  border-color: var(--green-2) !important;
+  background-color: rgba(35, 106, 81, 0.04) !important;
+}

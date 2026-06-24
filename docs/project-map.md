@@ -37,16 +37,18 @@ This file contains the directory tree and full code contents of the non-ignored 
   - 📄 codeforces-vi-problems.js (11.0 KB)
   - 📄 config.js (1.4 KB)
   - 📄 db.js (0.6 KB)
-  - 📄 judge.js (10.8 KB)
+  - 📄 judge.js (11.0 KB)
   - 📄 python-runner.py (3.7 KB)
-  - 📄 server.js (39.6 KB)
+  - 📄 server.js (42.3 KB)
   - 📄 terminal-runner.py (4.7 KB)
   - 📄 terminal.js (19.7 KB)
-  - 📄 validation.js (3.9 KB)
+  - 📄 validation.js (7.7 KB)
 - 📁 **test/**
+  - 📄 admin-import.test.js (7.1 KB)
   - 📄 core.test.js (3.1 KB)
   - 📄 errors.test.js (3.6 KB)
-  - 📄 judge-compare.test.js (3.8 KB)
+  - 📄 judge-compare.test.js (4.6 KB)
+  - 📄 submission-flow.test.js (11.1 KB)
 - 📄 vercel.json (0.1 KB)
 ```
 
@@ -1377,7 +1379,7 @@ import { config } from './config.js';
 const runnerPath = path.join(path.dirname(fileURLToPath(import.meta.url)), 'python-runner.py');
 
 function normalizeOutput(value) {
-  return String(value ?? '').replace(/\r\n/g, '\n').trim();
+  return String(value ?? '').replace(/\r\n/g, '\n');
 }
 
 export async function runPythonLocal(code, input, limitMs = 1500) {
@@ -1545,6 +1547,16 @@ function getErrorMessage(tracebackStr) {
   return lines[lines.length - 1] || 'Lỗi thực thi chương trình.';
 }
 
+function parseStrictNumber(token) {
+  if (!token) return NaN;
+  if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(token)) {
+    return NaN;
+  }
+  const val = Number(token);
+  if (isNaN(val) || !isFinite(val)) return NaN;
+  return val;
+}
+
 export function compareOutput(actualRaw, expectedRaw, options = {}) {
   const compareMode = options.compareMode || 'token';
   const numberTolerance = options.numberTolerance ?? 1e-6;
@@ -1601,11 +1613,11 @@ export function compareOutput(actualRaw, expectedRaw, options = {}) {
       const aToken = actualTokens[i];
       const eToken = expectedTokens[i];
 
-      const aNum = parseFloat(aToken);
-      const eNum = parseFloat(eToken);
+      const aNum = parseStrictNumber(aToken);
+      const eNum = parseStrictNumber(eToken);
 
-      const isANum = !isNaN(aNum) && isFinite(aNum);
-      const isENum = !isNaN(eNum) && isFinite(eNum);
+      const isANum = !isNaN(aNum);
+      const isENum = !isNaN(eNum);
 
       if (isANum && isENum) {
         if (Math.abs(aNum - eNum) > numberTolerance) {
@@ -1806,6 +1818,8 @@ if __name__ == "__main__":
 import path from 'node:path';
 import http from 'node:http';
 import { fileURLToPath } from 'node:url';
+import fs from 'node:fs/promises';
+import { spawn } from 'node:child_process';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
@@ -1863,8 +1877,55 @@ function isCompletedSubmission(score, status, passingScore) {
 }
 
 app.get('/api/health', asyncRoute(async (_req, res) => {
-  await query('SELECT 1');
-  res.json({ ok: true, judge: config.judgeServiceUrl ? 'remote' : 'local' });
+  let dbOk = false;
+  let migrationsOk = false;
+  try {
+    await query('SELECT 1');
+    dbOk = true;
+    
+    const migrationsDir = path.join(root, 'migrations');
+    const files = (await fs.readdir(migrationsDir)).filter((name) => name.endsWith('.sql'));
+    const { rows } = await query('SELECT filename FROM schema_migrations');
+    const applied = new Set(rows.map(r => r.filename));
+    migrationsOk = files.every(f => applied.has(f));
+  } catch (err) {
+    console.error('Health check DB error:', err);
+  }
+
+  let runnerOk = false;
+  try {
+    const runnerPath = path.join(root, 'src', 'python-runner.py');
+    await fs.access(runnerPath);
+    runnerOk = true;
+  } catch (err) {
+    console.error('Health check runner access error:', err);
+  }
+
+  let pythonOk = false;
+  if (!config.judgeServiceUrl) {
+    try {
+      const proc = spawn(config.pythonCommand, ['--version']);
+      pythonOk = await new Promise((resolve) => {
+        proc.on('error', () => resolve(false));
+        proc.on('close', (code) => resolve(code === 0));
+      });
+    } catch (err) {
+      console.error('Health check python spawn error:', err);
+      pythonOk = false;
+    }
+  } else {
+    pythonOk = true;
+  }
+
+  const ok = dbOk && migrationsOk && runnerOk && pythonOk;
+  res.status(ok ? 200 : 500).json({
+    ok,
+    database: dbOk,
+    migrations: migrationsOk,
+    runner: runnerOk,
+    python: pythonOk,
+    judge: config.judgeServiceUrl ? 'remote' : 'local'
+  });
 }));
 
 app.post('/api/auth/register', asyncRoute(async (req, res) => {
@@ -2188,9 +2249,17 @@ app.post('/api/run', requireAuth, asyncRoute(async (req, res) => {
     : await runPythonLocal(code, input, 2000);
   if (config.judgeServiceUrl) {
     const report = result.reports[0];
-    return res.json({ output: report.actual || '', error: report.error });
+    const isSystemOrRuntimeError = report.status !== 'Accepted' && report.status !== 'Wrong Answer';
+    return res.json({ output: report.actual || '', error: isSystemOrRuntimeError ? report.error : null });
   }
-  res.json(result);
+  const errorModel = parseRunnerError(result, 2000);
+  let error = null;
+  if (errorModel) {
+    error = errorModel.safeForUser
+      ? `${errorModel.status}: ${errorModel.message}${errorModel.line ? ` (dòng ${errorModel.line})` : ''}`
+      : 'Runner error: không thể khởi động môi trường chạy Python';
+  }
+  res.json({ output: result.output, error });
 }));
 
 app.post('/api/submissions', requireAuth, asyncRoute(async (req, res) => {
@@ -2413,11 +2482,38 @@ app.delete('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) 
 app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res) => {
   const items = Array.isArray(req.body) ? req.body : req.body.problems;
   if (!Array.isArray(items) || !items.length || items.length > 100) return res.status(400).json({ error: 'File cần chứa từ 1 đến 100 bài.' });
-  const normalized = items.map((item) => normalizeProblem({ ...item, slug: item.slug || item.id }));
-  const invalid = normalized.find((p) => validateProblem(p).length);
-  if (invalid) return res.status(400).json({ error: `Bài ${invalid.slug || '(không tên)'} không hợp lệ.` });
+  
+  const validationErrors = [];
+  const normalized = [];
+  for (let i = 0; i < items.length; i++) {
+    const pRaw = items[i];
+    const p = normalizeProblem({ ...pRaw, slug: pRaw.slug || pRaw.id });
+    normalized.push(p);
+    const errs = validateProblem(p);
+    if (errs.length) {
+      const name = p.title || p.slug || `Bài ${i + 1}`;
+      validationErrors.push(`Bài "${name}": ${errs.join(' ')}`);
+    }
+  }
+
+  if (validationErrors.length) {
+    return res.status(400).json({ error: validationErrors.join(' | ') });
+  }
+
+  let createdCount = 0;
+  let updatedCount = 0;
+  const slugsAffected = [];
+
   await transaction(async (client) => {
     for (const p of normalized) {
+      const existing = await client.query('SELECT id FROM problems WHERE slug = $1', [p.slug]);
+      const isUpdate = existing.rows.length > 0;
+      if (isUpdate) {
+        updatedCount += 1;
+      } else {
+        createdCount += 1;
+      }
+
       const { rows } = await client.query(
         `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by,compare_mode,number_tolerance)
          VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16,$17,$18)
@@ -2444,6 +2540,8 @@ app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res)
           p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id, p.compareMode, p.numberTolerance]
       );
       const problemId = rows[0].id;
+      slugsAffected.push(p.slug);
+
       await client.query('DELETE FROM problem_testcases WHERE problem_id=$1', [problemId]);
       for (const tc of p.testcases) {
         await client.query(
@@ -2454,7 +2552,14 @@ app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res)
       }
     }
   });
-  res.json({ imported: normalized.length });
+
+  res.json({
+    imported: normalized.length,
+    created: createdCount,
+    updated: updatedCount,
+    errors: [],
+    slugs: slugsAffected
+  });
 }));
 
 app.get('/api/admin/users', requireAdmin, asyncRoute(async (_req, res) => {
@@ -2796,7 +2901,10 @@ app.use((error, _req, res, _next) => {
 const server = http.createServer(app);
 attachTerminalServer(server);
 
-if (!process.env.VERCEL) server.listen(config.port, '0.0.0.0', () => console.log(`SimpleOJ listening on http://0.0.0.0:${config.port}`));
+const isTest = process.env.NODE_ENV === 'test' || process.execArgv.includes('--test') || (process.argv && process.argv.some(arg => arg.includes('test')));
+if (!process.env.VERCEL && !isTest) {
+  server.listen(config.port, '0.0.0.0', () => console.log(`SimpleOJ listening on http://0.0.0.0:${config.port}`));
+}
 
 export default app;
 export { server };
@@ -3547,7 +3655,7 @@ export function validEmail(email) {
 
 export function normalizeProblem(body) {
   const examples = Array.isArray(body.examples) ? body.examples.slice(0, 10) : [];
-  const testcases = Array.isArray(body.testcases) ? body.testcases.slice(0, 50) : [];
+  const testcases = Array.isArray(body.testcases) ? body.testcases.slice(0, 200) : [];
   
   let rating = 800;
   if (body.rating !== undefined && body.rating !== '') {
@@ -3565,56 +3673,364 @@ export function normalizeProblem(body) {
   }
 
   return {
-    slug: cleanText(body.slug ?? body.id, 80).toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-|-$/g, ''),
-    title: cleanText(body.title, 180),
+    slug: body.slug !== undefined ? String(body.slug).trim().toLowerCase() : (body.id !== undefined ? String(body.id).trim().toLowerCase() : ''),
+    title: body.title !== undefined ? String(body.title).trim() : '',
     difficulty: cleanText(body.difficulty || 'Dễ', 40),
     rating: rating,
-    maxScore: Number(body.maxScore ?? body.max_score ?? 100),
-    passingScore: Number(body.passingScore ?? body.passing_score ?? 100),
+    maxScore: body.maxScore ?? body.max_score ?? 100,
+    passingScore: body.passingScore ?? body.passing_score ?? 100,
     publishedAt: body.publishedAt ?? body.published_at ? new Date(body.publishedAt ?? body.published_at).toISOString() : new Date().toISOString(),
     source: body.source ? String(body.source).trim().slice(0, 1000) : null,
-    orderIndex: Number(body.orderIndex ?? body.order_index ?? 0),
-    description: String(body.description || '').trim().slice(0, 30000),
+    orderIndex: body.orderIndex ?? body.order_index ?? 0,
+    description: body.description !== undefined ? String(body.description).trim() : '',
     starterCode: String(body.starterCode ?? body.template ?? '').slice(0, 20000),
     examples: examples.map((x) => ({
-      input: String(x.input ?? '').slice(0, 10000),
-      output: String(x.output ?? '').slice(0, 10000),
-      explanation: cleanText(x.explanation, 1000)
+      input: x.input !== undefined ? String(x.input).slice(0, 10000) : '',
+      output: x.output !== undefined ? String(x.output).slice(0, 10000) : '',
+      explanation: x.explanation !== undefined ? cleanText(x.explanation, 1000) : ''
     })),
     testcases: testcases.map((x, idx) => ({
-      input: String(x.input ?? '').slice(0, 10000),
-      output: String(x.output ?? x.expected_output ?? '').slice(0, 10000),
-      explanation: cleanText(x.explanation, 1000),
+      input: x.input !== undefined ? String(x.input).slice(0, 10000) : '',
+      output: (x.output !== undefined || x.expected_output !== undefined)
+        ? String(x.output ?? x.expected_output ?? '').slice(0, 10000)
+        : undefined,
+      explanation: x.explanation !== undefined ? cleanText(x.explanation, 1000) : '',
       isPublic: Boolean(x.isPublic ?? x.is_public ?? false),
-      weight: Number(x.weight ?? 1),
-      orderIndex: Number(x.orderIndex ?? x.order_index ?? idx)
+      weight: x.weight !== undefined ? Number(x.weight) : 1,
+      orderIndex: x.orderIndex ?? x.order_index ?? idx
     })),
-    timeLimitMinutes: Math.min(240, Math.max(1, Number(body.timeLimitMinutes ?? body.time_limit_minutes ?? 30))),
-    executionLimitMs: Math.min(5000, Math.max(250, Number(body.executionLimitMs ?? body.execution_limit_ms ?? 1500))),
+    timeLimitMinutes: body.timeLimitMinutes ?? body.time_limit_minutes ?? 30,
+    executionLimitMs: body.executionLimitMs ?? body.execution_limit_ms ?? 1500,
     isActive: body.isActive ?? body.is_active ?? true,
     compareMode: cleanText(body.compareMode ?? (body.compare_mode || 'token'), 20),
-    numberTolerance: Number(body.numberTolerance ?? body.number_tolerance ?? 1e-6)
+    numberTolerance: body.numberTolerance ?? body.number_tolerance ?? 1e-6
   };
 }
 
 export function validateProblem(problem) {
   const errors = [];
-  if (!problem.slug) errors.push('Slug không hợp lệ.');
-  if (!problem.title) errors.push('Thiếu tên bài.');
-  if (!problem.description) errors.push('Thiếu đề bài.');
-  if (!problem.testcases.length) errors.push('Cần ít nhất một test case.');
-  if (problem.rating === undefined || isNaN(problem.rating) || problem.rating < 800 || problem.rating > 3500 || problem.rating % 100 !== 0) {
+  
+  // Validate slug
+  if (!problem.slug) {
+    errors.push('Slug không được để trống.');
+  } else {
+    if (problem.slug.length < 2 || problem.slug.length > 100) {
+      errors.push('Slug phải từ 2 đến 100 ký tự.');
+    }
+    if (/[^a-z0-9_-]/.test(problem.slug)) {
+      errors.push('Slug chỉ được chứa ký tự thường (a-z), số (0-9), dấu gạch ngang (-) và gạch dưới (_).');
+    }
+  }
+
+  // Validate title
+  if (!problem.title) {
+    errors.push('Thiếu tên bài.');
+  } else if (problem.title.length > 200) {
+    errors.push('Tên bài không được vượt quá 200 ký tự.');
+  }
+
+  // Validate description
+  if (!problem.description) {
+    errors.push('Thiếu đề bài.');
+  }
+
+  // Validate rating
+  const rating = Number(problem.rating);
+  if (problem.rating === undefined || isNaN(rating) || !Number.isInteger(rating) || rating < 800 || rating > 3500 || rating % 100 !== 0) {
     errors.push('Rating không hợp lệ (phải từ 800 đến 3500 và chia hết cho 100).');
   }
-  if (problem.compareMode && !['exact', 'trim', 'token', 'number'].includes(problem.compareMode)) {
+
+  // Validate passing score
+  const passingScore = Number(problem.passingScore);
+  if (problem.passingScore === undefined || isNaN(passingScore) || !Number.isInteger(passingScore) || passingScore < 0 || passingScore > 100) {
+    errors.push('Passing score phải là số nguyên từ 0 đến 100.');
+  }
+
+  // Validate max score
+  const maxScore = Number(problem.maxScore);
+  if (problem.maxScore === undefined || isNaN(maxScore) || !Number.isInteger(maxScore) || maxScore < 1 || maxScore > 100) {
+    errors.push('Max score phải là số nguyên từ 1 đến 100.');
+  }
+
+  // Validate time limit minutes
+  const timeLimitMinutes = Number(problem.timeLimitMinutes);
+  if (problem.timeLimitMinutes === undefined || isNaN(timeLimitMinutes) || !Number.isInteger(timeLimitMinutes) || timeLimitMinutes < 1 || timeLimitMinutes > 240) {
+    errors.push('Thời gian giới hạn (phút) phải là số nguyên từ 1 đến 240.');
+  }
+
+  // Validate execution limit ms
+  const executionLimitMs = Number(problem.executionLimitMs);
+  if (problem.executionLimitMs === undefined || isNaN(executionLimitMs) || !Number.isInteger(executionLimitMs) || executionLimitMs < 250 || executionLimitMs > 5000) {
+    errors.push('Giới hạn thực thi (ms) phải là số nguyên từ 250 đến 5000.');
+  }
+
+  // Validate compare mode
+  if (!problem.compareMode || !['exact', 'trim', 'token', 'number'].includes(problem.compareMode)) {
     errors.push('Compare mode không hợp lệ.');
   }
-  if (problem.compareMode === 'number' && (isNaN(problem.numberTolerance) || problem.numberTolerance <= 0 || problem.numberTolerance > 1)) {
-    errors.push('Number tolerance phải lớn hơn 0 và nhỏ hơn hoặc bằng 1.');
+
+  // Validate number tolerance
+  const numberTolerance = Number(problem.numberTolerance);
+  if (problem.compareMode === 'number') {
+    if (problem.numberTolerance === undefined || isNaN(numberTolerance) || numberTolerance < 0 || numberTolerance > 1) {
+      errors.push('Number tolerance phải lớn hơn hoặc bằng 0 và nhỏ hơn hoặc bằng 1.');
+    }
   }
+
+  // Validate examples
+  if (!Array.isArray(problem.examples)) {
+    errors.push('Examples phải là một danh sách (array).');
+  } else {
+    for (let i = 0; i < problem.examples.length; i++) {
+      const ex = problem.examples[i];
+      if (typeof ex.input !== 'string' || typeof ex.output !== 'string') {
+        errors.push(`Ví dụ thứ ${i + 1} phải chứa input và output dưới dạng chuỗi (string).`);
+      }
+    }
+  }
+
+  // Validate testcases
+  if (!Array.isArray(problem.testcases) || !problem.testcases.length) {
+    errors.push('Cần ít nhất một test case.');
+  } else if (problem.testcases.length > 200) {
+    errors.push('Số lượng testcase không được vượt quá 200.');
+  } else {
+    for (let i = 0; i < problem.testcases.length; i++) {
+      const tc = problem.testcases[i];
+      if (typeof tc.input !== 'string') {
+        errors.push(`Testcase thứ ${i + 1} có input không hợp lệ (phải là chuỗi).`);
+      }
+      if (tc.output === undefined) {
+        errors.push(`Testcase thứ ${i + 1} thiếu expected output.`);
+      } else if (typeof tc.output !== 'string') {
+        errors.push(`Testcase thứ ${i + 1} có output không hợp lệ (phải là chuỗi).`);
+      }
+      const weight = Number(tc.weight);
+      if (tc.weight === undefined || isNaN(weight) || !Number.isInteger(weight) || weight < 1 || weight > 100) {
+        errors.push(`Testcase thứ ${i + 1} có trọng số (weight) không hợp lệ (phải là số nguyên từ 1 đến 100).`);
+      }
+      if (typeof tc.isPublic !== 'boolean') {
+        errors.push(`Testcase thứ ${i + 1} có trường isPublic không hợp lệ (phải là boolean).`);
+      }
+    }
+  }
+
   return errors;
 }
 
+```
+
+### File: `test/admin-import.test.js`
+
+```javascript
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import http from 'node:http';
+import jwt from 'jsonwebtoken';
+import app from '../src/server.js';
+import { query } from '../src/db.js';
+import { config } from '../src/config.js';
+
+test('Admin Import API integration', async (t) => {
+  let server;
+  let port;
+  let cookieHeader;
+  let adminId;
+
+  t.before(async () => {
+    // Start temporary test server
+    server = http.createServer(app);
+    await new Promise((resolve) => server.listen(0, resolve));
+    port = server.address().port;
+
+    // Get an existing admin user from DB
+    const { rows } = await query("SELECT id FROM users WHERE role = 'ADMIN' LIMIT 1");
+    if (!rows[0]) {
+      throw new Error('No admin user found in database. Seed the database first.');
+    }
+    adminId = rows[0].id;
+    const token = jwt.sign({ sub: adminId, role: 'ADMIN' }, config.jwtSecret, { expiresIn: '1h' });
+    cookieHeader = `simpleoj_session=${token}`;
+  });
+
+  t.after(async () => {
+    if (server) {
+      await new Promise((resolve) => server.close(resolve));
+    }
+  });
+
+  await t.test('Import 2 valid problems successfully', async () => {
+    // Delete potential leftovers
+    await query("DELETE FROM problems WHERE slug IN ('test-import-1', 'test-import-2')");
+
+    const payload = [
+      {
+        slug: 'test-import-1',
+        title: 'Test Import 1',
+        description: 'Description 1',
+        rating: 1000,
+        testcases: [{ input: '1', output: '1', weight: 1, isPublic: true }]
+      },
+      {
+        slug: 'test-import-2',
+        title: 'Test Import 2',
+        description: 'Description 2',
+        rating: 1200,
+        testcases: [{ input: '2', output: '2', weight: 10, isPublic: false }]
+      }
+    ];
+
+    const res = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: cookieHeader },
+      body: JSON.stringify(payload)
+    });
+
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(data.imported, 2);
+    assert.equal(data.created, 2);
+    assert.equal(data.updated, 0);
+
+    // Verify DB insertion
+    const dbRes = await query("SELECT id, title, rating FROM problems WHERE slug = 'test-import-1'");
+    assert.equal(dbRes.rows.length, 1);
+    assert.equal(dbRes.rows[0].title, 'Test Import 1');
+  });
+
+  await t.test('Import 1 valid + 1 invalid fails and rolls back (atomic)', async () => {
+    // Delete potential leftovers
+    await query("DELETE FROM problems WHERE slug IN ('test-valid-atomic', 'test-invalid-atomic')");
+
+    const payload = [
+      {
+        slug: 'test-valid-atomic',
+        title: 'Valid Problem',
+        description: 'Valid Desc',
+        rating: 1000,
+        testcases: [{ input: '1', output: '1', weight: 1, isPublic: true }]
+      },
+      {
+        slug: 'test-invalid-atomic',
+        title: 'Invalid Problem',
+        description: 'Invalid because of negative weight',
+        rating: 1200,
+        testcases: [{ input: '2', output: '2', weight: -5, isPublic: false }] // Negative weight fails validation
+      }
+    ];
+
+    const res = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: cookieHeader },
+      body: JSON.stringify(payload)
+    });
+
+    assert.equal(res.status, 400);
+    
+    // Verify none were written to the DB
+    const validCheck = await query("SELECT id FROM problems WHERE slug = 'test-valid-atomic'");
+    assert.equal(validCheck.rows.length, 0);
+
+    const invalidCheck = await query("SELECT id FROM problems WHERE slug = 'test-invalid-atomic'");
+    assert.equal(invalidCheck.rows.length, 0);
+  });
+
+  await t.test('Re-import same slug updates details and replaces testcases', async () => {
+    // Clean up
+    await query("DELETE FROM problems WHERE slug = 'test-update-slug'");
+
+    const firstPayload = [
+      {
+        slug: 'test-update-slug',
+        title: 'Initial Title',
+        description: 'Description',
+        rating: 800,
+        testcases: [
+          { input: 'a', output: '1', weight: 1, isPublic: true },
+          { input: 'b', output: '2', weight: 2, isPublic: false }
+        ]
+      }
+    ];
+
+    const res1 = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: cookieHeader },
+      body: JSON.stringify(firstPayload)
+    });
+    assert.equal(res1.status, 200);
+
+    // Second payload updates title and has 3 new testcases
+    const secondPayload = [
+      {
+        slug: 'test-update-slug',
+        title: 'Updated Title',
+        description: 'Description',
+        rating: 1000,
+        testcases: [
+          { input: 'c', output: '3', weight: 5, isPublic: true },
+          { input: 'd', output: '4', weight: 5, isPublic: true },
+          { input: 'e', output: '5', weight: 5, isPublic: true }
+        ]
+      }
+    ];
+
+    const res2 = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: cookieHeader },
+      body: JSON.stringify(secondPayload)
+    });
+
+    assert.equal(res2.status, 200);
+    const data = await res2.json();
+    assert.equal(data.imported, 1);
+    assert.equal(data.created, 0);
+    assert.equal(data.updated, 1);
+
+    // Verify DB update
+    const prob = await query("SELECT id, title, rating FROM problems WHERE slug = 'test-update-slug'");
+    assert.equal(prob.rows[0].title, 'Updated Title');
+    assert.equal(prob.rows[0].rating, 1000);
+
+    // Verify old testcases are deleted and only new ones exist (3 total)
+    const tcs = await query("SELECT input, expected_output, weight FROM problem_testcases WHERE problem_id = $1 ORDER BY order_index ASC", [prob.rows[0].id]);
+    assert.equal(tcs.rows.length, 3);
+    assert.equal(tcs.rows[0].input, 'c');
+    assert.equal(tcs.rows[1].input, 'd');
+    assert.equal(tcs.rows[2].input, 'e');
+  });
+
+  await t.test('Import old JSON format using id, expected_output, and is_public works', async () => {
+    await query("DELETE FROM problems WHERE slug = 'old-format-slug'");
+
+    const payload = [
+      {
+        id: 'old-format-slug',
+        title: 'Old Format Problem',
+        description: 'Description',
+        difficultyLevel: 2, // Maps to 1200 rating
+        template: 'print("Hello")',
+        testcases: [
+          { input: 'in', expected_output: 'out', is_public: true }
+        ]
+      }
+    ];
+
+    const res = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: cookieHeader },
+      body: JSON.stringify(payload)
+    });
+
+    assert.equal(res.status, 200);
+    const dbRes = await query("SELECT id, rating, starter_code FROM problems WHERE slug = 'old-format-slug'");
+    assert.equal(dbRes.rows[0].rating, 1200);
+    assert.equal(dbRes.rows[0].starter_code, 'print("Hello")');
+
+    const tcRes = await query("SELECT expected_output, is_public FROM problem_testcases WHERE problem_id = $1", [dbRes.rows[0].id]);
+    assert.equal(tcRes.rows[0].expected_output, 'out');
+    assert.equal(tcRes.rows[0].is_public, true);
+  });
+});
 ```
 
 ### File: `test/core.test.js`
@@ -3788,20 +4204,28 @@ import assert from 'node:assert/strict';
 import { compareOutput, judgeSubmission } from '../src/judge.js';
 
 test('compareOutput - exact mode', () => {
-  assert.deepEqual(compareOutput('hello\n', 'hello\n', { compareMode: 'exact' }), { ok: true, reason: 'Khớp hoàn toàn' });
-  assert.equal(compareOutput('hello\n', 'hello', { compareMode: 'exact' }).ok, false);
-  assert.equal(compareOutput('hello  world', 'hello world', { compareMode: 'exact' }).ok, false);
+  // Exact mode matches character-for-character, preserving newlines and spaces
+  assert.deepEqual(compareOutput('Hello\n', 'Hello\n', { compareMode: 'exact' }), { ok: true, reason: 'Khớp hoàn toàn' });
+  
+  // Trailing newline difference
+  const newlineDiff = compareOutput('Hello', 'Hello\n', { compareMode: 'exact' });
+  assert.equal(newlineDiff.ok, false);
+  
+  // Spaces difference
+  assert.equal(compareOutput('Hello  world', 'Hello world', { compareMode: 'exact' }).ok, false);
 });
 
 test('compareOutput - trim mode', () => {
-  assert.deepEqual(compareOutput('  hello\n', 'hello', { compareMode: 'trim' }), { ok: true, reason: 'Khớp sau khi trim' });
-  assert.equal(compareOutput('hello\nworld', 'hello  world', { compareMode: 'trim' }).ok, false);
+  // Trim mode ignores leading/trailing whitespaces and newlines
+  assert.deepEqual(compareOutput('  Hello\n', 'Hello', { compareMode: 'trim' }), { ok: true, reason: 'Khớp sau khi trim' });
+  assert.equal(compareOutput('Hello\nworld', 'Hello  world', { compareMode: 'trim' }).ok, false);
 });
 
 test('compareOutput - token mode', () => {
-  assert.deepEqual(compareOutput('hello   world', 'hello\nworld', { compareMode: 'token' }), { ok: true, reason: 'Khớp tokens' });
+  // Token mode splits by whitespace, ignoring spacing layout differences
+  assert.deepEqual(compareOutput('1\n2 3', '1 2 3', { compareMode: 'token' }), { ok: true, reason: 'Khớp tokens' });
   
-  const lenMismatch = compareOutput('hello world', 'hello', { compareMode: 'token' });
+  const lenMismatch = compareOutput('1 2 3', '1 2', { compareMode: 'token' });
   assert.equal(lenMismatch.ok, false);
   assert.match(lenMismatch.reason, /Số lượng token không khớp/);
 
@@ -3811,39 +4235,44 @@ test('compareOutput - token mode', () => {
 });
 
 test('compareOutput - number mode', () => {
-  // Test numeric comparison with tolerance
-  assert.deepEqual(compareOutput('3.14159', '3.1415926', { compareMode: 'number', numberTolerance: 1e-5 }), { ok: true, reason: 'Khớp số và ký tự' });
+  // Float tolerance comparison
+  assert.deepEqual(compareOutput('3.141592', '3.141593', { compareMode: 'number', numberTolerance: 1e-5 }), { ok: true, reason: 'Khớp số và ký tự' });
   
-  const outOfTolerance = compareOutput('3.14159', '3.1415926', { compareMode: 'number', numberTolerance: 1e-8 });
+  const outOfTolerance = compareOutput('3.141592', '3.15', { compareMode: 'number', numberTolerance: 1e-5 });
   assert.equal(outOfTolerance.ok, false);
   assert.match(outOfTolerance.reason, /độ lệch tối đa/);
 
-  assert.equal(compareOutput('4.00', '4', { compareMode: 'number' }).ok, true);
-  
-  // Mixed text and numeric
-  assert.equal(compareOutput('hello 3.14', 'hello 3.15', { compareMode: 'number', numberTolerance: 0.02 }).ok, true);
-  assert.equal(compareOutput('hello 3.14', 'hello 3.15', { compareMode: 'number', numberTolerance: 0.005 }).ok, false);
-  
-  // Non-numeric token mismatch
-  const txtMismatch = compareOutput('hello 3.14', 'world 3.14', { compareMode: 'number', numberTolerance: 0.02 });
-  assert.equal(txtMismatch.ok, false);
-  assert.match(txtMismatch.reason, /Token thứ 1 không khớp/);
+  // Strict numeric parser checks
+  // Accept standard formats: 1, -1, 3.14, -0.5, .5, 1e-6, -2.5E+8
+  assert.equal(compareOutput('1', '1.0', { compareMode: 'number' }).ok, true);
+  assert.equal(compareOutput('-1', '-1.0', { compareMode: 'number' }).ok, true);
+  assert.equal(compareOutput('3.14', '3.1400', { compareMode: 'number' }).ok, true);
+  assert.equal(compareOutput('-0.5', '-0.5', { compareMode: 'number' }).ok, true);
+  assert.equal(compareOutput('.5', '0.5', { compareMode: 'number' }).ok, true);
+  assert.equal(compareOutput('1e-6', '0.000001', { compareMode: 'number' }).ok, true);
+  assert.equal(compareOutput('-2.5E+8', '-250000000', { compareMode: 'number' }).ok, true);
 
-  // Token count mismatch in number mode
-  const lenMismatch = compareOutput('1 2 3', '1 2', { compareMode: 'number' });
-  assert.equal(lenMismatch.ok, false);
-  assert.match(lenMismatch.reason, /Số lượng token không khớp/);
+  // Reject partials/infinities/NaN: 3abc, 1.2.3, abc, Infinity, NaN
+  // They fall back to string comparison, so "3abc" !== "3"
+  const partialMismatch = compareOutput('3abc', '3', { compareMode: 'number' });
+  assert.equal(partialMismatch.ok, false);
+
+  const infMismatch = compareOutput('Infinity', 'Infinity', { compareMode: 'number' });
+  // Fallback to exact string match for non-numeric tokens
+  assert.equal(infMismatch.ok, true); // identical string matches
+  assert.equal(compareOutput('Infinity', '1000', { compareMode: 'number' }).ok, false);
+
+  // Mixed tokens fallback to string check
+  assert.equal(compareOutput('hello 3.14', 'hello 3.14', { compareMode: 'number' }).ok, true);
+  assert.equal(compareOutput('hello 3.14', 'world 3.14', { compareMode: 'number' }).ok, false);
 });
 
-test('judgeSubmission - weighted score calculation', async () => {
-  // If input is 1, output 1 (correct, weight 1)
-  // If input is 2, output 5 instead of 4 (wrong, weight 3)
-  // Total weight = 4. Passed weight = 1. Score should be 25.
+test('judgeSubmission - weighted score & private testcases masking', async () => {
   const code = 'import sys\nx = int(sys.stdin.read().strip())\nif x == 1:\n    print(1)\nelse:\n    print(5)\n';
   
   const testcases = [
-    { input: '1', output: '1', weight: 1, isPublic: true },
-    { input: '2', output: '4', weight: 3, isPublic: false }
+    { input: '1', output: '1\n', weight: 1, isPublic: true },
+    { input: '2', output: '4\n', weight: 3, isPublic: false }
   ];
 
   const result = await judgeSubmission(code, testcases, 1500, true, { compareMode: 'token' });
@@ -3852,18 +4281,308 @@ test('judgeSubmission - weighted score calculation', async () => {
   assert.equal(result.passed, 1);
   assert.equal(result.total, 2);
   
-  // Verify public/private report contents
+  // Public testcase: retains inputs/outputs
   const reportPublic = result.reports[0];
   assert.equal(reportPublic.passed, true);
   assert.equal(reportPublic.input, '1');
-  assert.equal(reportPublic.expected, '1');
-  assert.equal(reportPublic.actual, '1');
+  assert.equal(reportPublic.expected, '1\n'); // normalized newline but no trim
+  assert.equal(reportPublic.actual, '1\n');
 
+  // Private testcase: masks inputs/outputs
   const reportPrivate = result.reports[1];
   assert.equal(reportPrivate.passed, false);
   assert.equal(reportPrivate.input, undefined);
   assert.equal(reportPrivate.expected, undefined);
   assert.equal(reportPrivate.actual, undefined);
+});
+```
+
+### File: `test/submission-flow.test.js`
+
+```javascript
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import http from 'node:http';
+import jwt from 'jsonwebtoken';
+import app from '../src/server.js';
+import { query } from '../src/db.js';
+import { config } from '../src/config.js';
+
+test('Submission Flow Integration Tests', async (t) => {
+  let server;
+  let port;
+  let adminId;
+  let studentId;
+  let studentCookie;
+
+  t.before(async () => {
+    // Start temporary test server
+    server = http.createServer(app);
+    await new Promise((resolve) => server.listen(0, resolve));
+    port = server.address().port;
+
+    // Get or create a student user
+    const { rows: existingStudents } = await query("SELECT id FROM users WHERE role = 'STUDENT' LIMIT 1");
+    if (existingStudents[0]) {
+      studentId = existingStudents[0].id;
+    } else {
+      const email = `test-student-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`;
+      const { rows: insertedStudent } = await query(
+        `INSERT INTO users (email, password_hash, full_name, role)
+         VALUES ($1, 'dummy_hash', 'Test Student', 'STUDENT')
+         RETURNING id`,
+        [email]
+      );
+      studentId = insertedStudent[0].id;
+    }
+
+    // Get an existing admin user from DB
+    const { rows: existingAdmins } = await query("SELECT id FROM users WHERE role = 'ADMIN' LIMIT 1");
+    if (!existingAdmins[0]) {
+      throw new Error('No admin user found in database. Seed the database first.');
+    }
+    adminId = existingAdmins[0].id;
+
+    // Generate student cookie
+    const token = jwt.sign({ sub: studentId, role: 'STUDENT' }, config.jwtSecret, { expiresIn: '1h' });
+    studentCookie = `simpleoj_session=${token}`;
+  });
+
+  t.after(async () => {
+    if (server) {
+      await new Promise((resolve) => server.close(resolve));
+    }
+  });
+
+  // Helper to setup a test problem with testcases and assignment
+  async function setupTestProblem({ compareMode, numberTolerance, passingScore, testcases, withAssignment = true }) {
+    const slug = `test-flow-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+    const { rows: probRows } = await query(
+      `INSERT INTO problems (slug, title, description, rating, max_score, passing_score, compare_mode, number_tolerance, created_by, is_active)
+       VALUES ($1, 'Flow Problem', 'Solve it', 1200, 100, $2, $3, $4, $5, TRUE)
+       RETURNING id`,
+      [slug, passingScore, compareMode, numberTolerance, adminId]
+    );
+    const problemId = probRows[0].id;
+
+    for (let i = 0; i < testcases.length; i++) {
+      const tc = testcases[i];
+      await query(
+        `INSERT INTO problem_testcases (problem_id, input, expected_output, is_public, weight, order_index)
+         VALUES ($1, $2, $3, $4, $5, $6)`,
+        [problemId, tc.input, tc.output, tc.isPublic, tc.weight, i]
+      );
+    }
+
+    if (withAssignment) {
+      await query(
+        `INSERT INTO student_problem_assignments (user_id, problem_id, status)
+         VALUES ($1, $2, 'ASSIGNED')`,
+        [studentId, problemId]
+      );
+    }
+
+    return { slug, problemId };
+  }
+
+  async function cleanTestProblem(problemId) {
+    await query("DELETE FROM student_problem_assignments WHERE problem_id = $1", [problemId]);
+    await query("DELETE FROM user_problem_progress WHERE problem_id = $1", [problemId]);
+    await query("DELETE FROM problems WHERE id = $1", [problemId]);
+  }
+
+  await t.test('Submit correct student solution scoring 100 and completing assignment', async () => {
+    const testcases = [
+      { input: '1\n', output: '2\n', isPublic: true, weight: 1 },
+      { input: '2\n', output: '4\n', isPublic: false, weight: 3 }
+    ];
+    const { slug, problemId } = await setupTestProblem({
+      compareMode: 'token',
+      numberTolerance: 1e-6,
+      passingScore: 80,
+      testcases
+    });
+
+    try {
+      // 1. Create attempt
+      const attemptRes = await fetch(`http://localhost:${port}/api/attempts`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', cookie: studentCookie },
+        body: JSON.stringify({ slug })
+      });
+      assert.equal(attemptRes.status, 201);
+      const attemptData = await attemptRes.json();
+      const attemptId = attemptData.attempt.id;
+
+      // 2. Submit solution
+      // Correct solution: read number x, print x * 2
+      const code = 'import sys\nx = int(sys.stdin.read().strip())\nprint(x * 2)\n';
+      const submitRes = await fetch(`http://localhost:${port}/api/submissions`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', cookie: studentCookie },
+        body: JSON.stringify({ attemptId, code })
+      });
+      assert.equal(submitRes.status, 201);
+      const submitData = await submitRes.json();
+
+      // Assert submission details
+      assert.equal(submitData.submission.score, 100);
+      assert.equal(submitData.submission.status, 'ACCEPTED');
+
+      // Assert report values and masking
+      const reports = submitData.reports;
+      assert.equal(reports.length, 2);
+      
+      // Public testcase: input/output visible
+      assert.equal(reports[0].passed, true);
+      assert.equal(reports[0].input, '1\n');
+      assert.equal(reports[0].expected, '2\n');
+      assert.equal(reports[0].actual, '2\n');
+
+      // Private testcase: input/output masked
+      assert.equal(reports[1].passed, true);
+      assert.equal(reports[1].input, undefined);
+      assert.equal(reports[1].expected, undefined);
+      assert.equal(reports[1].actual, undefined);
+
+      // Verify progress updated & completed
+      const progress = await query("SELECT completed_at, best_score FROM user_problem_progress WHERE user_id=$1 AND problem_id=$2", [studentId, problemId]);
+      assert.equal(progress.rows[0].best_score, 100);
+      assert.ok(progress.rows[0].completed_at !== null);
+
+      // Verify assignment completed
+      const assignment = await query("SELECT status FROM student_problem_assignments WHERE user_id=$1 AND problem_id=$2", [studentId, problemId]);
+      assert.equal(assignment.rows[0].status, 'COMPLETED');
+    } finally {
+      await cleanTestProblem(problemId);
+    }
+  });
+
+  await t.test('Submit partial solution, verifying weight score calculation and assignment status', async () => {
+    // 2 testcases with weights: TC1 (weight 1), TC2 (weight 3) -> TC1 is 25%, TC2 is 75%
+    const testcases = [
+      { input: '1\n', output: '2\n', isPublic: true, weight: 1 },
+      { input: '2\n', output: '4\n', isPublic: false, weight: 3 }
+    ];
+    const { slug, problemId } = await setupTestProblem({
+      compareMode: 'token',
+      numberTolerance: 1e-6,
+      passingScore: 80,
+      testcases
+    });
+
+    try {
+      // 1. Create attempt
+      const attemptRes = await fetch(`http://localhost:${port}/api/attempts`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', cookie: studentCookie },
+        body: JSON.stringify({ slug })
+      });
+      const attemptData = await attemptRes.json();
+      const attemptId = attemptData.attempt.id;
+
+      // 2. Submit solution that only passes TC1: prints 2 for any input
+      const code = 'print(2)\n';
+      const submitRes = await fetch(`http://localhost:${port}/api/submissions`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', cookie: studentCookie },
+        body: JSON.stringify({ attemptId, code })
+      });
+      assert.equal(submitRes.status, 201);
+      const submitData = await submitRes.json();
+
+      // Assert weight scoring: 1/4 -> 25% -> 25 score
+      assert.equal(submitData.submission.score, 25);
+      assert.equal(submitData.submission.status, 'WRONG_ANSWER');
+
+      // Assert report values and masking for wrong private testcase
+      const reports = submitData.reports;
+      assert.equal(reports.length, 2);
+
+      // TC1 (Public, Passed)
+      assert.equal(reports[0].passed, true);
+      assert.equal(reports[0].input, '1\n');
+      assert.equal(reports[0].expected, '2\n');
+      assert.equal(reports[0].actual, '2\n');
+
+      // TC2 (Private, Failed)
+      assert.equal(reports[1].passed, false);
+      assert.equal(reports[1].input, undefined);
+      assert.equal(reports[1].expected, undefined);
+      assert.equal(reports[1].actual, undefined);
+
+      // Since passingScore is 80 and score is 25, the assignment must NOT be completed
+      const assignment = await query("SELECT status FROM student_problem_assignments WHERE user_id=$1 AND problem_id=$2", [studentId, problemId]);
+      assert.equal(assignment.rows[0].status, 'ASSIGNED');
+
+      const progress = await query("SELECT completed_at FROM user_problem_progress WHERE user_id=$1 AND problem_id=$2", [studentId, problemId]);
+      assert.equal(progress.rows[0].completed_at, null);
+    } finally {
+      await cleanTestProblem(problemId);
+    }
+  });
+
+  await t.test('Submit partial solution achieving passing_score completes assignment', async () => {
+    // 2 testcases with weights: TC1 (weight 1), TC2 (weight 3) -> TC2 is 75%
+    const testcases = [
+      { input: '1\n', output: '2\n', isPublic: true, weight: 1 },
+      { input: '2\n', output: '4\n', isPublic: false, weight: 3 }
+    ];
+    // Passing score is 70
+    const { slug, problemId } = await setupTestProblem({
+      compareMode: 'token',
+      numberTolerance: 1e-6,
+      passingScore: 70,
+      testcases
+    });
+
+    try {
+      // 1. Create attempt
+      const attemptRes = await fetch(`http://localhost:${port}/api/attempts`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', cookie: studentCookie },
+        body: JSON.stringify({ slug })
+      });
+      const attemptData = await attemptRes.json();
+      const attemptId = attemptData.attempt.id;
+
+      // 2. Submit solution that only passes TC2: prints 4 for any input
+      const code = 'print(4)\n';
+      const submitRes = await fetch(`http://localhost:${port}/api/submissions`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', cookie: studentCookie },
+        body: JSON.stringify({ attemptId, code })
+      });
+      assert.equal(submitRes.status, 201);
+      const submitData = await submitRes.json();
+
+      // Assert weight scoring: 3/4 -> 75% -> 75 score
+      assert.equal(submitData.submission.score, 75);
+
+      // Since passingScore is 70 and score is 75 (score >= passingScore), the assignment MUST be COMPLETED
+      const assignment = await query("SELECT status FROM student_problem_assignments WHERE user_id=$1 AND problem_id=$2", [studentId, problemId]);
+      assert.equal(assignment.rows[0].status, 'COMPLETED');
+
+      const progress = await query("SELECT completed_at FROM user_problem_progress WHERE user_id=$1 AND problem_id=$2", [studentId, problemId]);
+      assert.ok(progress.rows[0].completed_at !== null);
+    } finally {
+      await cleanTestProblem(problemId);
+    }
+  });
+
+  await t.test('Verify that /api/health returns correct and safe health diagnostics', async () => {
+    const res = await fetch(`http://localhost:${port}/api/health`);
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(data.ok, true);
+    assert.equal(data.database, true);
+    assert.equal(data.migrations, true);
+    assert.equal(data.runner, true);
+    assert.equal(data.python, true);
+    assert.equal(data.judge, 'local');
+    assert.equal(data.jwtSecret, undefined);
+    assert.equal(data.databaseUrl, undefined);
+  });
 });
 ```
 
