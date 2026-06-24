@@ -43,6 +43,26 @@ async function insertCanonicalProblems(createdBy) {
   let skippedCount = 0;
 
   await transaction(async (client) => {
+    // Ensure default groups exist
+    const defaultGroups = [
+      { slug: 'bai-tap-co-ban', name: 'Bài tập cơ bản', type: 'BASIC', description: 'Các bài tập căn bản cho lập trình viên mới bắt đầu' },
+      { slug: 'bai-on-luyen', name: 'Bài ôn luyện', type: 'PRACTICE', description: 'Các bài tập thực hành nâng cao kỹ năng tư duy' }
+    ];
+    const groupSlugToId = {};
+    for (const g of defaultGroups) {
+      const existing = await client.query('SELECT id FROM problem_groups WHERE slug = $1', [g.slug]);
+      if (existing.rows[0]) {
+        groupSlugToId[g.slug] = existing.rows[0].id;
+      } else {
+        const insertRes = await client.query(
+          `INSERT INTO problem_groups (slug, name, description, group_type, color, icon)
+           VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`,
+          [g.slug, g.name, g.description, g.type, g.type === 'BASIC' ? '#2563eb' : '#10b981', g.type === 'BASIC' ? 'code' : 'practice']
+        );
+        groupSlugToId[g.slug] = insertRes.rows[0].id;
+      }
+    }
+
     for (const raw of canonicalProblems) {
       const p = normalizeProblem({
         ...raw,
@@ -99,6 +119,15 @@ async function insertCanonicalProblems(createdBy) {
             [problemId, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
           );
         }
+
+        // Assign to group
+        const targetGroupSlug = p.rating >= 900 ? 'bai-on-luyen' : 'bai-tap-co-ban';
+        const groupId = groupSlugToId[targetGroupSlug];
+        await client.query(
+          `INSERT INTO problem_group_items(group_id, problem_id, added_by)
+           VALUES ($1, $2, $3) ON CONFLICT DO NOTHING`,
+          [groupId, problemId, createdBy]
+        );
         
         // Add to existingProblems in memory for subsequent checks in this loop
         existingProblems.push({

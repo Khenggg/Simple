@@ -207,6 +207,10 @@ function shell(content, title = 'Tổng quan') {
         <button data-page="users" title="Học sinh">
           <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
           <span class="nav-label">Học sinh</span>
+        </button>
+        <button data-page="groups" title="Nhóm bài tập">
+          <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="nav-label">Nhóm bài tập</span>
         </button>` : ''}
       </nav>
       <div class="user-chip"><div class="user-avatar">${escapeHtml(state.user.full_name.trim().charAt(0).toUpperCase())}</div><div class="user-copy"><strong>${escapeHtml(state.user.full_name)}</strong><span>${escapeHtml(state.user.email)} · ${admin ? 'ADMIN' : 'HỌC SINH'}</span></div></div>
@@ -480,6 +484,9 @@ function problemCards(problems) {
         <span class="badge ${ratingClass}">${rating} · ${escapeHtml(ratingLabel)}</span>
       </div>
       <h3>${escapeHtml(title)}</h3>
+      <div class="problem-groups-list" style="margin-top: -6px; margin-bottom: 12px; display: flex; flex-wrap: wrap; gap: 4px;">
+        ${(p.groups || []).map(g => `<span class="group-chip" style="background-color: ${g.color || '#6b7280'}; margin: 0;">${escapeHtml(g.name)}</span>`).join('')}
+      </div>
       <div class="problem-meta">
         <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="meta-icon" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${limitMinutes} phút</span>
         <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="meta-icon" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> ${scoreText}</span>
@@ -512,6 +519,7 @@ async function problemsView() {
   // Initialize pagination & filter state
   state.problemsPage = {
     tab: 'all',
+    group: '',
     items: [],
     cursor: null,
     hasMore: false,
@@ -533,6 +541,9 @@ async function problemsView() {
         <h2>Chọn một vấn đề<br>đáng để giải.</h2>
       </div>
     </div>
+    
+    <!-- Group Cards Container -->
+    <div id="group-cards-container" class="group-cards-grid"></div>
     
     <!-- Tab Headers -->
     <div class="tabs-header" role="tablist">
@@ -804,6 +815,52 @@ async function problemsView() {
   filterApplyBtn.onclick = applyFiltersMobile;
   filterResetBtn.onclick = resetFilters;
 
+  // Fetch and render problem groups
+  const renderGroupCards = async () => {
+    const groupContainer = document.querySelector('#group-cards-container');
+    if (!groupContainer) return;
+    try {
+      const data = await api('/api/problem-groups');
+      const groups = data.groups || [];
+      if (groups.length === 0) {
+        groupContainer.style.display = 'none';
+        return;
+      }
+      groupContainer.style.display = 'grid';
+      groupContainer.innerHTML = groups.map(g => {
+        const isActive = state.problemsPage.group === g.slug ? 'active' : '';
+        const icon = g.icon || '📁';
+        return `
+          <div class="group-card ${isActive}" data-slug="${escapeHtml(g.slug)}">
+            <span class="group-icon">${escapeHtml(icon)}</span>
+            <div class="group-info">
+              <h4>${escapeHtml(g.name)}</h4>
+              <small>${g.problemCount} bài</small>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Bind click event
+      groupContainer.querySelectorAll('.group-card').forEach(card => {
+        card.onclick = () => {
+          const clickedSlug = card.dataset.slug;
+          if (state.problemsPage.group === clickedSlug) {
+            state.problemsPage.group = '';
+          } else {
+            state.problemsPage.group = clickedSlug;
+          }
+          renderGroupCards();
+          resetAndLoadProblems();
+        };
+      });
+    } catch (err) {
+      console.error('Failed to load problem groups:', err);
+    }
+  };
+
+  renderGroupCards();
+
   // Setup Infinite Scroll Observer
   setupInfiniteScrollObserver();
 
@@ -842,7 +899,7 @@ async function loadNextProblemsPage() {
   if (oldRetry) oldRetry.remove();
 
   try {
-    const { tab, cursor, minRating, maxRating, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo } = state.problemsPage;
+    const { tab, cursor, minRating, maxRating, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo, group } = state.problemsPage;
 
     // Build query params
     const params = new URLSearchParams({
@@ -858,6 +915,7 @@ async function loadNextProblemsPage() {
     if (sort) params.append('sort', sort);
     if (uploadedFrom) params.append('uploadedFrom', uploadedFrom);
     if (uploadedTo) params.append('uploadedTo', uploadedTo);
+    if (group) params.append('group', group);
 
     const data = await api(`/api/problems?${params.toString()}`);
 
@@ -1822,14 +1880,28 @@ function clientValidateProblem(problem) {
   return errors;
 }
 
-function problemModal(problem = null) {
-  const ratingOpts = Array.from({ length: 28 }, (_, i) => 800 + i * 100).map(r => `
-    <option value="${r}" ${(problem?.rating ?? 800) === r ? 'selected' : ''}>${r}</option>
-  `).join('');
+async function problemModal(problem = null) {
+  const [groupsData, ratingOptsRes] = await Promise.all([
+    api('/api/admin/problem-groups'),
+    Promise.resolve(Array.from({ length: 28 }, (_, i) => 800 + i * 100).map(r => `
+      <option value="${r}" ${(problem?.rating ?? 800) === r ? 'selected' : ''}>${r}</option>
+    `).join(''))
+  ]);
+  const groups = groupsData.groups || [];
+  const groupCheckboxes = groups.map(g => {
+    const checked = problem?.groupIds?.includes(g.id) ? 'checked' : '';
+    return `
+      <label class="group-select-item">
+        <input type="checkbox" name="groupIds" value="${escapeHtml(g.id)}" ${checked}>
+        <span>${escapeHtml(g.name)}</span>
+        ${!g.isActive ? ' <small class="muted">(Đã ẩn)</small>' : ''}
+      </label>
+    `;
+  }).join('');
 
   document.body.insertAdjacentHTML('beforeend', `<div class="modal-backdrop" id="problem-modal"><form class="modal wide" id="problem-form"><span class="eyebrow">${problem ? 'Chỉnh sửa' : 'Bài tập mới'}</span><h2>${problem ? escapeHtml(problem.title) : 'Tạo bài tập'}</h2><div class="form-grid">
     <div class="field"><label>Slug</label><input name="slug" value="${escapeHtml(problem?.slug || '')}" required></div><div class="field"><label>Tên bài</label><input name="title" value="${escapeHtml(problem?.title || '')}" required></div>
-    <div class="field"><label>Rating Codeforces</label><select name="rating" required>${ratingOpts}</select></div><div class="field"><label>Thời gian làm (phút)</label><input name="timeLimitMinutes" type="number" min="1" max="240" value="${problem?.time_limit_minutes || 30}"></div>
+    <div class="field"><label>Rating Codeforces</label><select name="rating" required>${ratingOptsRes}</select></div><div class="field"><label>Thời gian làm (phút)</label><input name="timeLimitMinutes" type="number" min="1" max="240" value="${problem?.time_limit_minutes || 30}"></div>
     <div class="field"><label>Passing Score</label><input name="passingScore" type="number" min="0" max="100" value="${problem?.passing_score ?? 100}"></div><div class="field"><label>Max Score</label><input name="maxScore" type="number" min="1" max="100" value="${problem?.max_score ?? 100}"></div>
     <div class="field"><label>Compare Mode</label>
       <select name="compareMode" id="compare-mode-select">
@@ -1842,6 +1914,12 @@ function problemModal(problem = null) {
     <div class="field" id="number-tolerance-field" style="display: ${(problem?.compare_mode === 'number') ? 'block' : 'none'};">
       <label>Number Tolerance</label>
       <input name="numberTolerance" type="number" min="0" max="1" step="any" value="${problem?.number_tolerance ?? 1e-6}">
+    </div>
+    <div class="field full">
+      <label>Nhóm bài tập (chọn ít nhất 1 nhóm)</label>
+      <div class="group-select-checkboxes">
+        ${groupCheckboxes}
+      </div>
     </div>
     <div class="field full"><label>Đề bài (Markdown)</label><textarea name="description" rows="8" required>${escapeHtml(problem?.description || '')}</textarea></div>
     <div class="field full"><label>Code mẫu</label><textarea name="starterCode" rows="6">${escapeHtml(problem?.starter_code || '# Viết lời giải tại đây\n')}</textarea></div>
@@ -1865,7 +1943,7 @@ function problemModal(problem = null) {
     const data = Object.fromEntries(new FormData(event.target));
     data.isActive = event.target.isActive.checked;
     data.rating = Number(data.rating || 800);
-    data.difficulty = clientGetRatingLabel(data.rating); // Auto map to difficulty text for backward compatibility
+    data.difficulty = clientGetRatingLabel(data.rating);
     data.passingScore = Number(data.passingScore ?? 100);
     data.maxScore = Number(data.maxScore ?? 100);
     data.compareMode = data.compareMode || 'token';
@@ -1877,6 +1955,13 @@ function problemModal(problem = null) {
       weight: Number(row.querySelector('.test-weight').value || 1)
     }));
     data.examples = problem?.examples || [];
+
+    const groupIds = [...modal.querySelectorAll('input[name="groupIds"]:checked')].map(cb => cb.value);
+    if (data.isActive && groupIds.length === 0) {
+      return toast('Bài tập hoạt động phải thuộc ít nhất 1 nhóm hoạt động.', true);
+    }
+    data.groupIds = groupIds;
+
     try {
       await api(problem ? `/api/admin/problems/${problem.id}` : '/api/admin/problems', { method: problem ? 'PUT' : 'POST', body: data });
       state.problems = null;
@@ -1887,8 +1972,18 @@ function problemModal(problem = null) {
   };
 }
 
-function importModal() {
-  document.body.insertAdjacentHTML('beforeend', `<div class="modal-backdrop" id="import-modal"><div class="modal"><span class="eyebrow">Nhập hàng loạt</span><h2>Import bài từ JSON</h2><p class="muted">Chấp nhận định dạng <code>problems.json</code> cũ hoặc mảng bài theo schema mới. Bài trùng slug sẽ được cập nhật.</p><div class="field"><label>Chọn file JSON</label><input type="file" id="json-file" accept="application/json,.json"></div><div id="import-preview"></div><div class="modal-actions"><button class="btn secondary" id="cancel-import">Hủy</button><button class="btn" id="do-import">Import</button></div></div></div>`);
+async function importModal() {
+  const groupsData = await api('/api/problem-groups');
+  const groups = groupsData.groups || [];
+  
+  const groupCheckboxes = groups.map(g => `
+    <label class="group-select-item">
+      <input type="checkbox" name="groupIds" value="${escapeHtml(g.id)}">
+      <span>${escapeHtml(g.name)}</span>
+    </label>
+  `).join('');
+
+  document.body.insertAdjacentHTML('beforeend', `<div class="modal-backdrop" id="import-modal"><div class="modal"><span class="eyebrow">Nhập hàng loạt</span><h2>Import bài từ JSON</h2><p class="muted">Chấp nhận định dạng <code>problems.json</code> cũ hoặc mảng bài theo schema mới. Bài trùng slug sẽ được cập nhật.</p><div class="field"><label>Chọn file JSON</label><input type="file" id="json-file" accept="application/json,.json"></div><div class="field"><label>Chọn nhóm bài tập cho các bài import (chọn ít nhất 1 nhóm)</label><div class="group-select-checkboxes">${groupCheckboxes}</div></div><div id="import-preview"></div><div class="modal-actions"><button class="btn secondary" id="cancel-import">Hủy</button><button class="btn" id="do-import">Import</button></div></div></div>`);
   const modal = document.querySelector('#import-modal');
   modal.querySelector('#cancel-import').onclick = () => modal.remove();
 
@@ -1928,8 +2023,19 @@ function importModal() {
 
   modal.querySelector('#do-import').onclick = async () => {
     const file = modal.querySelector('#json-file').files[0]; if (!file) return toast('Hãy chọn file JSON.', true);
+    
+    const groupIds = [...modal.querySelectorAll('input[name="groupIds"]:checked')].map(cb => cb.value);
+    if (groupIds.length === 0) {
+      return toast('Vui lòng chọn ít nhất 1 nhóm bài tập trước khi import để tránh bài tập mồ côi.', true);
+    }
+
     try {
-      const body = JSON.parse(await file.text());
+      const problems = JSON.parse(await file.text());
+      const body = {
+        problems: Array.isArray(problems) ? problems : (problems.problems || []),
+        groupIds
+      };
+      
       const result = await api('/api/admin/problems/import', { method: 'POST', body });
       state.problems = null;
       state.problemDetails = {};
@@ -1938,6 +2044,251 @@ function importModal() {
       toast(`Đã import thành công: ${result.imported} bài (Tạo mới: ${result.created}, Cập nhật: ${result.updated}).`);
       adminView();
     } catch (error) { toast(error.message, true); }
+  };
+}
+
+async function groupsView() {
+  const [groupsData, problemsData] = await Promise.all([
+    api('/api/admin/problem-groups'),
+    api('/api/problems')
+  ]);
+  const groups = groupsData.groups || [];
+  const problems = problemsData.problems || [];
+
+  const rows = groups.map((g) => {
+    const typeLabel = {
+      BASIC: 'Bài tập cơ bản',
+      PRACTICE: 'Bài ôn luyện',
+      ADVANCED: 'Bài nâng cao',
+      HSG: 'Bài thi HSG',
+      TOPIC: 'Bài theo chủ đề',
+      CUSTOM: 'Tùy chỉnh'
+    }[g.groupType] || g.groupType;
+
+    const statusBadge = g.isActive
+      ? '<span class="badge mint">Hoạt động</span>'
+      : '<span class="badge gray">Đã ẩn</span>';
+
+    return `
+      <tr>
+        <td><strong>${escapeHtml(g.name)}</strong><br><small class="muted">${escapeHtml(g.description || '—')}</small></td>
+        <td><code>${escapeHtml(g.slug)}</code></td>
+        <td>${escapeHtml(typeLabel)}</td>
+        <td>${g.problemCount} bài</td>
+        <td>${statusBadge}</td>
+        <td>${g.orderIndex}</td>
+        <td>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn small edit-group" data-id="${g.id}">Sửa</button>
+            ${g.isActive ? `<button class="btn small danger hide-group" data-id="${g.id}" data-name="${escapeHtml(g.name)}" data-count="${g.problemCount}">Ẩn nhóm</button>` : ''}
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  const tableHtml = rows.length
+    ? `<div class="table-wrap"><table>
+        <thead>
+          <tr>
+            <th>Tên nhóm</th>
+            <th>Slug</th>
+            <th>Loại nhóm</th>
+            <th>Số bài</th>
+            <th>Trạng thái</th>
+            <th>Thứ tự</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table></div>`
+    : '<div class="empty">Chưa có nhóm bài tập nào.</div>';
+
+  shell(`<section class="content">
+    <div class="hero-row">
+      <div>
+        <span class="eyebrow">Quản trị</span>
+        <h2>Quản lý nhóm bài tập.</h2>
+      </div>
+      <button class="btn" id="new-group">+ Tạo nhóm mới</button>
+    </div>
+    ${tableHtml}
+  </section>`, 'Nhóm bài tập');
+
+  document.querySelector('#new-group').onclick = () => groupModal(null, groups, problems);
+  
+  document.querySelectorAll('.edit-group').forEach((btn) => {
+    btn.onclick = () => {
+      const group = groups.find(g => g.id === btn.dataset.id);
+      groupModal(group, groups, problems);
+    };
+  });
+
+  document.querySelectorAll('.hide-group').forEach((btn) => {
+    btn.onclick = async () => {
+      const { id, name, count } = btn.dataset;
+      const problemCount = Number(count);
+      
+      if (problemCount > 0) {
+        const otherActiveGroups = groups.filter(g => g.id !== id && g.isActive);
+        if (otherActiveGroups.length > 0) {
+          const optionsHtml = otherActiveGroups.map(g => `<option value="${g.id}">${escapeHtml(g.name)}</option>`).join('');
+          
+          document.body.insertAdjacentHTML('beforeend', `
+            <div class="modal-backdrop" id="delete-confirm-modal">
+              <div class="modal" style="width: min(440px, 100%);">
+                <h3>Ẩn nhóm bài tập</h3>
+                <p class="muted" style="margin-top: 8px;">Nhóm <strong>${escapeHtml(name)}</strong> hiện đang có ${problemCount} bài tập. Bạn có muốn chuyển các bài tập này sang nhóm khác để tránh mồ côi?</p>
+                <div class="field" style="margin: 16px 0 20px 0;">
+                  <label>Chọn nhóm đích (hoặc bỏ qua)</label>
+                  <select id="move-target-select">
+                    <option value="">-- Không chuyển (Có thể lỗi nếu bài bị mồ côi) --</option>
+                    ${optionsHtml}
+                  </select>
+                </div>
+                <div class="modal-actions">
+                  <button class="btn secondary" id="btn-cancel-delete">Hủy</button>
+                  <button class="btn danger" id="btn-confirm-delete">Xác nhận ẩn</button>
+                </div>
+              </div>
+            </div>
+          `);
+          const dModal = document.querySelector('#delete-confirm-modal');
+          dModal.querySelector('#btn-cancel-delete').onclick = () => dModal.remove();
+          dModal.querySelector('#btn-confirm-delete').onclick = async () => {
+            const moveToGroupId = dModal.querySelector('#move-target-select').value || null;
+            dModal.remove();
+            try {
+              await api(`/api/admin/problem-groups/${id}`, {
+                method: 'DELETE',
+                body: moveToGroupId ? { moveToGroupId } : {}
+              });
+              toast('Đã ẩn nhóm bài tập.');
+              groupsView();
+            } catch (err) {
+              toast(err.message, true);
+            }
+          };
+          return;
+        }
+      }
+      
+      if (confirm(`Bạn có chắc chắn muốn ẩn nhóm "${name}"?`)) {
+        try {
+          await api(`/api/admin/problem-groups/${id}`, { method: 'DELETE' });
+          toast('Đã ẩn nhóm bài tập.');
+          groupsView();
+        } catch (err) {
+          toast(err.message, true);
+        }
+      }
+    };
+  });
+}
+
+function groupModal(group = null, allGroups, allProblems) {
+  const isEdit = !!group;
+  const activeProblems = allProblems.filter(p => p.isActive !== false);
+
+  const groupTypeOpts = [
+    { value: 'BASIC', label: 'Bài tập cơ bản' },
+    { value: 'PRACTICE', label: 'Bài ôn luyện' },
+    { value: 'ADVANCED', label: 'Bài nâng cao' },
+    { value: 'HSG', label: 'Bài thi HSG' },
+    { value: 'TOPIC', label: 'Bài theo chủ đề' },
+    { value: 'CUSTOM', label: 'Tùy chỉnh' }
+  ].map(t => `<option value="${t.value}" ${(group?.groupType || 'CUSTOM') === t.value ? 'selected' : ''}>${t.label}</option>`).join('');
+
+  const problemCheckboxes = activeProblems.map(p => {
+    const checked = group?.problemIds?.includes(p.id) ? 'checked' : '';
+    const rating = p.rating ?? 800;
+    return `
+      <label class="assignment-problem-item">
+        <input type="checkbox" name="problemIds" value="${escapeHtml(p.id)}" ${checked}>
+        <span class="assignment-problem-copy">
+          <strong>${escapeHtml(p.title)}</strong>
+          <small>${rating} · ${escapeHtml(clientGetRatingLabel(rating))}</small>
+        </span>
+      </label>
+    `;
+  }).join('');
+
+  document.body.insertAdjacentHTML('beforeend', `
+    <div class="modal-backdrop" id="group-modal">
+      <form class="modal wide" id="group-form">
+        <span class="eyebrow">${isEdit ? 'Chỉnh sửa' : 'Nhóm bài tập mới'}</span>
+        <h2>${isEdit ? 'Cập nhật nhóm' : 'Tạo nhóm mới'}</h2>
+        <div class="form-grid">
+          <div class="field"><label>Tên nhóm</label><input name="name" value="${escapeHtml(group?.name || '')}" required></div>
+          <div class="field"><label>Slug</label><input name="slug" value="${escapeHtml(group?.slug || '')}" ${isEdit ? 'disabled' : 'required'}></div>
+          <div class="field full"><label>Mô tả</label><textarea name="description" rows="3">${escapeHtml(group?.description || '')}</textarea></div>
+          <div class="field"><label>Loại nhóm</label><select name="groupType">${groupTypeOpts}</select></div>
+          <div class="field"><label>Thứ tự sắp xếp</label><input name="orderIndex" type="number" value="${group?.orderIndex ?? 0}"></div>
+          <div class="field"><label>Màu sắc (mã hex)</label><input name="color" placeholder="#3b82f6" value="${escapeHtml(group?.color || '')}"></div>
+          <div class="field"><label>Icon (emoji hoặc kí hiệu)</label><input name="icon" placeholder="📁" value="${escapeHtml(group?.icon || '')}"></div>
+          
+          ${isEdit ? `
+            <div class="field full">
+              <label><input name="isActive" type="checkbox" ${group.isActive ? 'checked' : ''}> Hoạt động (Hiện cho học sinh)</label>
+            </div>
+          ` : ''}
+
+          <div class="field full">
+            <label>Chọn bài tập cho nhóm (chọn ít nhất 1 bài)</label>
+            <div style="margin-bottom: 8px; font-size: 12px; color: #b43b31; font-weight: 600;" id="empty-group-warning">⚠️ Không được tạo nhóm rỗng. Hãy chọn ít nhất 1 bài tập.</div>
+            <div class="assignment-problem-picker" style="max-height: 240px;">
+              ${problemCheckboxes}
+            </div>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn secondary" id="cancel-group">Hủy</button>
+          <button class="btn" type="submit" id="btn-save-group">Lưu nhóm</button>
+        </div>
+      </form>
+    </div>
+  `);
+
+  const modal = document.querySelector('#group-modal');
+  modal.querySelector('#cancel-group').onclick = () => modal.remove();
+
+  const checkSelection = () => {
+    const selectedCount = modal.querySelectorAll('input[name="problemIds"]:checked').length;
+    const warning = modal.querySelector('#empty-group-warning');
+    const submitBtn = modal.querySelector('#btn-save-group');
+    if (selectedCount === 0) {
+      warning.style.display = 'block';
+      submitBtn.disabled = true;
+    } else {
+      warning.style.display = 'none';
+      submitBtn.disabled = false;
+    }
+  };
+  
+  modal.querySelectorAll('input[name="problemIds"]').forEach(cb => cb.onchange = checkSelection);
+  checkSelection();
+
+  modal.querySelector('#group-form').onsubmit = async (event) => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(event.target));
+    data.problemIds = [...modal.querySelectorAll('input[name="problemIds"]:checked')].map(cb => cb.value);
+    if (isEdit) {
+      data.isActive = event.target.isActive.checked;
+    }
+
+    try {
+      if (isEdit) {
+        await api(`/api/admin/problem-groups/${group.id}`, { method: 'PUT', body: data });
+        toast('Đã cập nhật nhóm bài tập.');
+      } else {
+        await api('/api/admin/problem-groups', { method: 'POST', body: data });
+        toast('Đã tạo nhóm bài tập mới.');
+      }
+      modal.remove();
+      groupsView();
+    } catch (error) {
+      toast(error.message, true);
+    }
   };
 }
 
@@ -2004,6 +2355,7 @@ async function navigate(page) {
     if (page === 'leaderboard') return await leaderboardView();
     if (page === 'admin' && state.user.role === 'ADMIN') return await adminView();
     if (page === 'users' && state.user.role === 'ADMIN') return await usersView();
+    if (page === 'groups' && state.user.role === 'ADMIN') return await groupsView();
     return await homeView();
   } catch (error) { toast(error.message, true); }
 }

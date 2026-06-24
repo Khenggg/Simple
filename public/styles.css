@@ -1094,3 +1094,112 @@ body.resizing-v {
   border-color: var(--green-2) !important;
   background-color: rgba(35, 106, 81, 0.04) !important;
 }
+
+/* ── Problem Groups & Collections Styling ── */
+.group-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.group-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(23,33,28,.02);
+}
+.group-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--green-2);
+  box-shadow: 0 8px 24px rgba(23,33,28,.06);
+}
+.group-card.active {
+  border-color: var(--green-2);
+  background: rgba(35, 106, 81, 0.06);
+  box-shadow: 0 8px 24px rgba(35, 106, 81, 0.08);
+}
+.group-icon {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #eae7db;
+  color: var(--green);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+.group-card.active .group-icon {
+  background: var(--green-2);
+  color: #fff;
+}
+.group-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.group-info h4 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.group-info small {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.group-chip {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  display: inline-block;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  color: #fff;
+  border: 1px solid transparent;
+}
+.group-chip-default {
+  background-color: #6b7280;
+}
+.group-select-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+}
+.group-select-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.group-select-item input {
+  width: auto !important;
+  margin: 0 !important;
+  cursor: pointer;
+}
+.group-select-item span {
+  font-weight: 600;
+}
+

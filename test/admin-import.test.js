@@ -11,6 +11,7 @@ test('Admin Import API integration', async (t) => {
   let port;
   let cookieHeader;
   let adminId;
+  let defaultGroupId;
 
   t.before(async () => {
     // Start temporary test server
@@ -26,6 +27,9 @@ test('Admin Import API integration', async (t) => {
     adminId = rows[0].id;
     const token = jwt.sign({ sub: adminId, role: 'ADMIN' }, config.jwtSecret, { expiresIn: '1h' });
     cookieHeader = `simpleoj_session=${token}`;
+
+    const groupRes = await query("SELECT id FROM problem_groups WHERE slug = 'bai-tap-co-ban' LIMIT 1");
+    defaultGroupId = groupRes.rows[0]?.id;
   });
 
   t.after(async () => {
@@ -58,7 +62,7 @@ test('Admin Import API integration', async (t) => {
     const res = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', cookie: cookieHeader },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({ problems: payload, groupIds: [defaultGroupId] })
     });
 
     assert.equal(res.status, 200);
@@ -97,7 +101,7 @@ test('Admin Import API integration', async (t) => {
     const res = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', cookie: cookieHeader },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({ problems: payload, groupIds: [defaultGroupId] })
     });
 
     assert.equal(res.status, 400);
@@ -130,7 +134,7 @@ test('Admin Import API integration', async (t) => {
     const res1 = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', cookie: cookieHeader },
-      body: JSON.stringify(firstPayload)
+      body: JSON.stringify({ problems: firstPayload, groupIds: [defaultGroupId] })
     });
     assert.equal(res1.status, 200);
 
@@ -152,7 +156,7 @@ test('Admin Import API integration', async (t) => {
     const res2 = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', cookie: cookieHeader },
-      body: JSON.stringify(secondPayload)
+      body: JSON.stringify({ problems: secondPayload, groupIds: [defaultGroupId] })
     });
 
     assert.equal(res2.status, 200);
@@ -193,7 +197,7 @@ test('Admin Import API integration', async (t) => {
     const res = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', cookie: cookieHeader },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({ problems: payload, groupIds: [defaultGroupId] })
     });
 
     assert.equal(res.status, 200);

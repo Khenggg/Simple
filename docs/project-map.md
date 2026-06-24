@@ -21,7 +21,7 @@ This file contains the directory tree and full code contents of the non-ignored 
   - 📄 user_problem_progress-before-cleanup-20260624-165640.json (3.1 KB)
   - 📄 user_problem_progress-before-cleanup-20260624-165800.json (3.1 KB)
 - 📁 **data/**
-  - 📄 canonical-problems.js (24.0 KB)
+  - 📄 canonical-problems.js (27.6 KB)
 - 📄 docker-compose.yml (0.3 KB)
 - 📄 Dockerfile (0.6 KB)
 - 📁 **docs/**
@@ -6126,6 +6126,73 @@ s = input()
       { input: "5 7\n100 90 80 70 60\n", output: "20\n", isPublic: false, weight: 2, orderIndex: 6 },
       { input: "2 10\n10 10\n", output: "1\n", isPublic: false, weight: 1, orderIndex: 7 },
       { input: "6 5\n1 5 10 15 20 25\n", output: "0\n", isPublic: false, weight: 1, orderIndex: 8 }
+    ]
+  },
+  {
+    slug: 'bai-20-giai-phuong-trinh-bac-hai',
+    title: 'Bài 20: Giải phương trình bậc hai',
+    difficulty: 'Dễ - Trung bình',
+    rating: 900,
+    source: 'SimpleOJ - Toán lớp 8/9',
+    description: `Viết chương trình giải phương trình bậc hai:
+
+$$ax^2 + bx + c = 0$$
+
+Trong bài này, luôn có:
+
+$$a \\ne 0$$
+
+### Dữ liệu vào
+Gồm 3 dòng:
+* Dòng 1 chứa số thực $a$.
+* Dòng 2 chứa số thực $b$.
+* Dòng 3 chứa số thực $c$.
+
+### Dữ liệu ra
+Chương trình cần in kết quả theo quy tắc sau:
+* Nếu phương trình có 2 nghiệm phân biệt, in:
+  * Dòng 1: số \`2\`
+  * Dòng 2: hai nghiệm \`x1 x2\`
+* Nếu phương trình có 1 nghiệm kép, in:
+  * Dòng 1: số \`1\`
+  * Dòng 2: nghiệm duy nhất
+* Nếu phương trình vô nghiệm trong tập số thực, in:
+  * Một dòng duy nhất chứa số \`0\`
+
+Với trường hợp có 2 nghiệm phân biệt:
+* \`x1\` là nghiệm tính theo nhánh dấu cộng: $x_1 = \\frac{-b + \\sqrt{\\Delta}}{2a}$
+* \`x2\` là nghiệm tính theo nhánh dấu trừ: $x_2 = \\frac{-b - \\sqrt{\\Delta}}{2a}$
+
+Kết quả số thực được chấp nhận nếu sai số không quá \`1e-6\`.
+
+### Lưu ý quan trọng
+Khi nộp bài trên hệ thống, học sinh chỉ in đúng kết quả yêu cầu.
+Không in các dòng gợi ý nhập như: \`nhập a:\`, \`nhập b:\`, \`nhập c:\`, \`x1=\`, \`x2=\`...`,
+    examples: [
+      { input: "3\n5\n2\n", output: "2\n-0.6666666667 -1\n", explanation: 'Phương trình có 2 nghiệm phân biệt.' },
+      { input: "1\n-2\n1\n", output: "1\n1\n", explanation: 'Phương trình có nghiệm kép.' },
+      { input: "1\n0\n1\n", output: "0\n", explanation: 'Delta âm nên phương trình vô nghiệm thực.' }
+    ],
+    starterCode: '',
+    compareMode: 'number',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 20,
+    testcases: [
+      { input: "3\n5\n2\n", output: "2\n-0.6666666667 -1\n", isPublic: true, weight: 1, orderIndex: 0, explanation: 'Phương trình có 2 nghiệm phân biệt.' },
+      { input: "1\n-2\n1\n", output: "1\n1\n", isPublic: true, weight: 1, orderIndex: 1, explanation: 'Phương trình có nghiệm kép.' },
+      { input: "1\n0\n1\n", output: "0\n", isPublic: true, weight: 1, orderIndex: 2, explanation: 'Delta âm nên phương trình vô nghiệm thực.' },
+      { input: "1\n-3\n2\n", output: "2\n2 1\n", isPublic: false, weight: 2, orderIndex: 3, explanation: '' },
+      { input: "1\n0\n-4\n", output: "2\n2 -2\n", isPublic: false, weight: 2, orderIndex: 4, explanation: '' },
+      { input: "-1\n0\n4\n", output: "2\n-2 2\n", isPublic: false, weight: 2, orderIndex: 5, explanation: '' },
+      { input: "1\n2\n5\n", output: "0\n", isPublic: false, weight: 2, orderIndex: 6, explanation: '' },
+      { input: "2\n-7\n3\n", output: "2\n3 0.5\n", isPublic: false, weight: 3, orderIndex: 7, explanation: '' },
+      { input: "5\n6\n1\n", output: "2\n-0.2 -1\n", isPublic: false, weight: 3, orderIndex: 8, explanation: '' },
+      { input: "1\n1\n0\n", output: "2\n0 -1\n", isPublic: false, weight: 2, orderIndex: 9, explanation: '' },
+      { input: "1\n-1\n-1\n", output: "2\n1.61803398875 -0.61803398875\n", isPublic: false, weight: 4, orderIndex: 10, explanation: '' },
+      { input: "4\n4\n1\n", output: "1\n-0.5\n", isPublic: false, weight: 3, orderIndex: 11, explanation: '' },
+      { input: "100\n0\n-1\n", output: "2\n0.1 -0.1\n", isPublic: false, weight: 3, orderIndex: 12, explanation: '' },
+      { input: "1000\n-3000\n2000\n", output: "2\n2 1\n", isPublic: false, weight: 3, orderIndex: 13, explanation: '' }
     ]
   }
 ];

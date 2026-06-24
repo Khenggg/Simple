@@ -16,6 +16,14 @@ import {
 import { cleanText, normalizeEmail, normalizeProblem, validEmail, validateProblem } from './validation.js';
 import { judgeSubmission, runPythonLocal, parseRunnerError } from './judge.js';
 import { attachTerminalServer } from './terminal.js';
+import {
+  assertActiveGroupsExist,
+  assertActiveProblemsExist,
+  assertGroupWillNotBeEmpty,
+  assertProblemsWillNotBeOrphaned,
+  assignProblemGroups,
+  syncGroupProblems
+} from './problem-groups.js';
 
 const app = express();
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -150,7 +158,7 @@ app.post('/api/auth/logout', (_req, res) => {
 app.get('/api/auth/me', (req, res) => res.json({ user: req.user || null }));
 
 app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
-  const { tab, cursor, rating, minRating, maxRating, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo } = req.query;
+  const { tab, cursor, rating, minRating, maxRating, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo, group, groupId } = req.query;
 
   // Parse filters
   const parsedRating = rating !== undefined && rating !== '' ? Number(rating) : null;
@@ -165,6 +173,26 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
 
   // Default is_active check
   whereConditions.push('(p.is_active = TRUE OR $2 = \'ADMIN\')');
+
+  // Filter by group slug
+  if (group) {
+    queryParams.push(group);
+    whereConditions.push(`p.id IN (
+      SELECT pgi.problem_id FROM problem_group_items pgi
+      JOIN problem_groups pg ON pg.id = pgi.group_id
+      WHERE pg.slug = $${queryParams.length} AND pg.is_active = TRUE
+    )`);
+  }
+
+  // Filter by group ID
+  if (groupId) {
+    queryParams.push(groupId);
+    whereConditions.push(`p.id IN (
+      SELECT pgi.problem_id FROM problem_group_items pgi
+      JOIN problem_groups pg ON pg.id = pgi.group_id
+      WHERE pg.id = $${queryParams.length} AND pg.is_active = TRUE
+    )`);
+  }
 
   // Handle tab-specific filters
   if (tab === 'todo') {
@@ -404,6 +432,34 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
     };
   });
 
+  // Fetch and attach groups
+  if (items.length > 0) {
+    const problemIds = items.map(item => item.id);
+    const { rows: groupRows } = await query(
+      `SELECT pgi.problem_id, pg.id, pg.slug, pg.name, pg.group_type AS "groupType", pg.color, pg.icon
+       FROM problem_group_items pgi
+       JOIN problem_groups pg ON pg.id = pgi.group_id
+       WHERE pgi.problem_id = ANY($1) AND pg.is_active = TRUE`,
+      [problemIds]
+    );
+    for (const item of items) {
+      item.groups = groupRows
+        .filter(gr => gr.problem_id === item.id)
+        .map(gr => ({
+          id: gr.id,
+          slug: gr.slug,
+          name: gr.name,
+          groupType: gr.groupType,
+          color: gr.color,
+          icon: gr.icon
+        }));
+    }
+  } else {
+    for (const item of items) {
+      item.groups = [];
+    }
+  }
+
   if (!usePagination) {
     return res.json({ problems: items });
   }
@@ -430,6 +486,195 @@ app.get('/api/problems/:slug', requireAuth, asyncRoute(async (req, res) => {
   );
   if (!rows[0]) return res.status(404).json({ error: 'Không tìm thấy bài tập.' });
   res.json({ problem: rows[0] });
+}));
+
+app.get('/api/problem-groups', requireAuth, asyncRoute(async (req, res) => {
+  const { rows } = await query(
+    `SELECT pg.id, pg.slug, pg.name, pg.description, pg.group_type AS "groupType",
+            pg.color, pg.icon, pg.order_index AS "orderIndex",
+            COUNT(p.id)::int AS "problemCount"
+     FROM problem_groups pg
+     JOIN problem_group_items pgi ON pgi.group_id = pg.id
+     JOIN problems p ON p.id = pgi.problem_id
+     WHERE pg.is_active = TRUE AND p.is_active = TRUE
+     GROUP BY pg.id, pg.slug, pg.name, pg.description, pg.group_type, pg.color, pg.icon, pg.order_index
+     ORDER BY pg.order_index ASC, pg.created_at DESC`
+  );
+  res.json({ groups: rows });
+}));
+
+app.get('/api/problem-groups/:slug/problems', requireAuth, asyncRoute(async (req, res) => {
+  const { slug } = req.params;
+  const { ratingMin, ratingMax, status, cursor } = req.query;
+
+  const { rows: groupRows } = await query(
+    'SELECT id, slug, name, description, group_type AS "groupType" FROM problem_groups WHERE slug = $1 AND is_active = TRUE',
+    [slug]
+  );
+  if (!groupRows[0]) {
+    return res.status(404).json({ error: 'Không tìm thấy nhóm bài tập.' });
+  }
+  const group = groupRows[0];
+
+  const parsedMinRating = ratingMin !== undefined && ratingMin !== '' ? Number(ratingMin) : null;
+  const parsedMaxRating = ratingMax !== undefined && ratingMax !== '' ? Number(ratingMax) : null;
+
+  const queryParams = [req.user.id, req.user.role, group.id];
+  const whereConditions = [
+    '(p.is_active = TRUE OR $2 = \'ADMIN\')',
+    `p.id IN (SELECT problem_id FROM problem_group_items WHERE group_id = $3)`
+  ];
+
+  if (status === 'todo') {
+    whereConditions.push('COALESCE(upp.submission_count, 0) = 0');
+  } else if (status === 'attempted') {
+    whereConditions.push("COALESCE(upp.submission_count, 0) > 0 AND upp.completed_at IS NULL AND COALESCE(upp.best_score, 0) < p.passing_score AND COALESCE(upp.best_status, '') != 'ACCEPTED'");
+  } else if (status === 'completed' || status === 'done') {
+    whereConditions.push("(upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= p.passing_score OR upp.best_status = 'ACCEPTED')");
+  }
+
+  if (parsedMinRating !== null) {
+    queryParams.push(parsedMinRating);
+    whereConditions.push(`p.rating >= $${queryParams.length}`);
+  }
+  if (parsedMaxRating !== null) {
+    queryParams.push(parsedMaxRating);
+    whereConditions.push(`p.rating <= $${queryParams.length}`);
+  }
+
+  const sortField = 'p.published_at';
+  const sortOrder = 'DESC';
+  const jsFieldName = 'publishedAt';
+
+  if (cursor) {
+    try {
+      const { val, id } = JSON.parse(Buffer.from(cursor, 'base64').toString('utf8'));
+      if (val !== undefined && id) {
+        queryParams.push(val);
+        const valPlaceholder = `$${queryParams.length}`;
+        queryParams.push(id);
+        const idPlaceholder = `$${queryParams.length}`;
+        whereConditions.push(
+          `(${sortField} < (${valPlaceholder}::timestamptz) OR (${sortField} = (${valPlaceholder}::timestamptz) AND p.id < ${idPlaceholder}))`
+        );
+      }
+    } catch (err) {
+      console.error('Failed to parse cursor:', err);
+    }
+  }
+
+  const limit = Math.min(20, Math.max(1, Number(req.query.limit || 10)));
+  queryParams.push(limit + 1);
+  const limitPlaceholder = `$${queryParams.length}`;
+
+  const querySql = `
+    SELECT
+      p.id,
+      p.slug,
+      p.title,
+      p.difficulty,
+      p.rating,
+      p.source,
+      p.order_index AS "orderIndex",
+      p.published_at AS "publishedAt",
+      p.time_limit_minutes AS "timeLimitMinutes",
+      p.max_score AS "maxScore",
+      p.passing_score AS "passingScore",
+      COALESCE(upp.best_score, 0)::int AS "bestScore",
+      upp.best_status AS "bestStatus",
+      COALESCE(upp.submission_count, 0)::int AS "submissionCount",
+      upp.last_submitted_at AS "lastSubmittedAt",
+      upp.completed_at AS "completedAt"
+    FROM problems p
+    LEFT JOIN user_problem_progress upp ON upp.problem_id = p.id AND upp.user_id = $1
+    WHERE ${whereConditions.join(' AND ')}
+    ORDER BY ${sortField} ${sortOrder}, p.id ${sortOrder}
+    LIMIT ${limitPlaceholder}
+  `;
+
+  const { rows } = await query(querySql, queryParams);
+  const hasMore = rows.length > limit;
+  const rawItems = hasMore ? rows.slice(0, limit) : rows;
+
+  function getRatingLabel(r) {
+    if (r >= 800 && r <= 1000) return 'Cơ bản';
+    if (r >= 1100 && r <= 1300) return 'Dễ';
+    if (r >= 1400 && r <= 1600) return 'Trung bình';
+    if (r >= 1700 && r <= 1900) return 'Khó';
+    return 'Nâng cao';
+  }
+
+  const items = rawItems.map((item) => {
+    const submissionCount = Number(item.submissionCount || 0);
+    const bestScore = Number(item.bestScore || 0);
+    const bestStatus = item.bestStatus || null;
+    const completedAt = item.completedAt || null;
+    const passingScore = Number(item.passingScore || 100);
+
+    const isAttempted = submissionCount > 0;
+    const isCompleted = completedAt !== null || bestStatus === 'ACCEPTED' || bestScore >= passingScore;
+
+    return {
+      id: item.id,
+      slug: item.slug,
+      title: item.title,
+      difficulty: item.difficulty,
+      rating: item.rating,
+      ratingLabel: getRatingLabel(item.rating),
+      source: item.source,
+      orderIndex: item.orderIndex,
+      publishedAt: item.publishedAt,
+      timeLimitMinutes: item.timeLimitMinutes,
+      bestScore,
+      bestStatus,
+      submissionCount,
+      lastSubmittedAt: item.lastSubmittedAt,
+      completedAt,
+      isCompleted,
+      isAttempted
+    };
+  });
+
+  if (items.length > 0) {
+    const problemIds = items.map(item => item.id);
+    const { rows: groupRows } = await query(
+      `SELECT pgi.problem_id, pg.id, pg.slug, pg.name, pg.group_type AS "groupType", pg.color, pg.icon
+       FROM problem_group_items pgi
+       JOIN problem_groups pg ON pg.id = pgi.group_id
+       WHERE pgi.problem_id = ANY($1) AND pg.is_active = TRUE`,
+      [problemIds]
+    );
+    for (const item of items) {
+      item.groups = groupRows
+        .filter(gr => gr.problem_id === item.id)
+        .map(gr => ({
+          id: gr.id,
+          slug: gr.slug,
+          name: gr.name,
+          groupType: gr.groupType,
+          color: gr.color,
+          icon: gr.icon
+        }));
+    }
+  } else {
+    for (const item of items) {
+      item.groups = [];
+    }
+  }
+
+  let nextCursor = null;
+  if (items.length > 0 && hasMore) {
+    const lastItem = items[items.length - 1];
+    const lastVal = lastItem[jsFieldName];
+    nextCursor = Buffer.from(JSON.stringify({ val: lastVal, id: lastItem.id })).toString('base64');
+  }
+
+  res.json({
+    group,
+    items,
+    nextCursor,
+    hasMore
+  });
 }));
 
 app.post('/api/attempts', requireAuth, asyncRoute(async (req, res) => {
@@ -707,11 +952,12 @@ app.get('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => 
   const { rows } = await query('SELECT * FROM problems WHERE id=$1', [req.params.id]);
   if (!rows[0]) return res.status(404).json({ error: 'Không tìm thấy bài.' });
   const problem = rows[0];
-  const { rows: testcases } = await query(
-    'SELECT input, expected_output AS output, explanation, is_public, weight, order_index FROM problem_testcases WHERE problem_id=$1 ORDER BY order_index ASC',
-    [problem.id]
-  );
-  problem.testcases = testcases;
+  const [testcasesRes, groupItemsRes] = await Promise.all([
+    query('SELECT input, expected_output AS output, explanation, is_public, weight, order_index FROM problem_testcases WHERE problem_id=$1 ORDER BY order_index ASC', [problem.id]),
+    query('SELECT group_id FROM problem_group_items WHERE problem_id=$1', [problem.id])
+  ]);
+  problem.testcases = testcasesRes.rows;
+  problem.groupIds = groupItemsRes.rows.map(gi => gi.group_id);
   res.json({ problem });
 }));
 
@@ -719,56 +965,118 @@ app.post('/api/admin/problems', requireAdmin, asyncRoute(async (req, res) => {
   const p = normalizeProblem(req.body);
   const errors = validateProblem(p);
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
-  const saved = await transaction(async (client) => {
-    const { rows } = await client.query(
-      `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by,compare_mode,number_tolerance)
-       VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16,$17,$18) RETURNING *`,
-      [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
-        p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id, p.compareMode, p.numberTolerance]
-    );
-    const problem = rows[0];
-    for (const tc of p.testcases) {
-      await client.query(
-        `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
-         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-        [problem.id, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+
+  const parsedGroupIds = parseUuidList(req.body.groupIds);
+  if (p.isActive && parsedGroupIds.length === 0) {
+    return res.status(400).json({ error: 'Bài tập hoạt động phải thuộc ít nhất 1 nhóm hoạt động.' });
+  }
+
+  try {
+    const saved = await transaction(async (client) => {
+      if (p.isActive) {
+        await assertActiveGroupsExist(client, parsedGroupIds);
+      }
+
+      const { rows } = await client.query(
+        `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by,compare_mode,number_tolerance)
+         VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16,$17,$18) RETURNING *`,
+        [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+          p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id, p.compareMode, p.numberTolerance]
       );
-    }
-    problem.testcases = p.testcases;
-    return problem;
-  });
-  res.status(201).json({ problem: saved });
+      const problem = rows[0];
+      for (const tc of p.testcases) {
+        await client.query(
+          `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
+           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+          [problem.id, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+        );
+      }
+      problem.testcases = p.testcases;
+
+      if (parsedGroupIds.length > 0) {
+        await assignProblemGroups(client, problem.id, parsedGroupIds, req.user.id);
+      }
+      problem.groupIds = parsedGroupIds;
+      return problem;
+    });
+    res.status(201).json({ problem: saved });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 }));
 
 app.put('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => {
   const p = normalizeProblem(req.body);
   const errors = validateProblem(p);
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
-  const saved = await transaction(async (client) => {
-    const { rows } = await client.query(
-      `UPDATE problems SET slug=$1,title=$2,difficulty=$3,rating=$4,max_score=$5,passing_score=$6,
-         published_at=$7,source=$8,order_index=$9,description=$10,starter_code=$11,examples=$12::jsonb,
-         time_limit_minutes=$13,execution_limit_ms=$14,is_active=$15,compare_mode=$16,number_tolerance=$17,updated_at=NOW()
-       WHERE id=$18 RETURNING *`,
-      [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
-        p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive,
-        p.compareMode, p.numberTolerance, req.params.id]
-    );
-    const problem = rows[0];
-    if (!problem) return null;
-    await client.query('DELETE FROM problem_testcases WHERE problem_id=$1', [problem.id]);
-    for (const tc of p.testcases) {
-      await client.query(
-        `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
-         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-        [problem.id, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+
+  const parsedGroupIds = parseUuidList(req.body.groupIds);
+  if (p.isActive && parsedGroupIds.length === 0) {
+    return res.status(400).json({ error: 'Bài tập hoạt động phải thuộc ít nhất 1 nhóm hoạt động.' });
+  }
+
+  try {
+    const saved = await transaction(async (client) => {
+      if (p.isActive) {
+        await assertActiveGroupsExist(client, parsedGroupIds);
+      }
+
+      const { rows } = await client.query(
+        `UPDATE problems SET slug=$1,title=$2,difficulty=$3,rating=$4,max_score=$5,passing_score=$6,
+           published_at=$7,source=$8,order_index=$9,description=$10,starter_code=$11,examples=$12::jsonb,
+           time_limit_minutes=$13,execution_limit_ms=$14,is_active=$15,compare_mode=$16,number_tolerance=$17,updated_at=NOW()
+         WHERE id=$18 RETURNING *`,
+        [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+          p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive,
+          p.compareMode, p.numberTolerance, req.params.id]
       );
-    }
-    problem.testcases = p.testcases;
-    return problem;
-  });
-  if (!saved) return res.status(404).json({ error: 'Không tìm thấy bài.' });
-  res.json({ problem: saved });
+      const problem = rows[0];
+      if (!problem) return null;
+      
+      await client.query('DELETE FROM problem_testcases WHERE problem_id=$1', [problem.id]);
+      for (const tc of p.testcases) {
+        await client.query(
+          `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
+           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+          [problem.id, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+        );
+      }
+      problem.testcases = p.testcases;
+
+      if (p.isActive) {
+        await assignProblemGroups(client, problem.id, parsedGroupIds, req.user.id);
+      } else {
+        const { rows: groupsContaining } = await client.query(
+          `SELECT group_id FROM problem_group_items WHERE problem_id = $1`,
+          [problem.id]
+        );
+        const groupIds = groupsContaining.map(r => r.group_id);
+        for (const gid of groupIds) {
+          const { rows: otherProbs } = await client.query(
+            `SELECT pgi.problem_id FROM problem_group_items pgi
+             JOIN problems p ON p.id = pgi.problem_id
+             WHERE pgi.group_id = $1 AND pgi.problem_id != $2 AND p.is_active = TRUE`,
+            [gid, problem.id]
+          );
+          const { rows: groupInfo } = await client.query('SELECT is_active FROM problem_groups WHERE id = $1', [gid]);
+          if (groupInfo[0]?.is_active && otherProbs.length === 0) {
+            throw new Error(`Không thể ẩn bài tập này vì nó là bài duy nhất trong nhóm hoạt động "${gid}". Hãy thêm bài khác vào nhóm trước.`);
+          }
+        }
+      }
+
+      if (parsedGroupIds.length > 0) {
+        await assignProblemGroups(client, problem.id, parsedGroupIds, req.user.id);
+      }
+      problem.groupIds = parsedGroupIds;
+      return problem;
+    });
+
+    if (!saved) return res.status(404).json({ error: 'Không tìm thấy bài.' });
+    res.json({ problem: saved });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 }));
 
 app.delete('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => {
@@ -780,7 +1088,10 @@ app.delete('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) 
 app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res) => {
   const items = Array.isArray(req.body) ? req.body : req.body.problems;
   if (!Array.isArray(items) || !items.length || items.length > 100) return res.status(400).json({ error: 'File cần chứa từ 1 đến 100 bài.' });
-  
+
+  const globalGroupIds = parseUuidList(req.body.groupIds);
+  const createMissingGroups = req.body.createMissingGroups === true || req.body.createMissingGroups === 'true';
+
   const validationErrors = [];
   const normalized = [];
   for (let i = 0; i < items.length; i++) {
@@ -792,6 +1103,12 @@ app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res)
       const name = p.title || p.slug || `Bài ${i + 1}`;
       validationErrors.push(`Bài "${name}": ${errs.join(' ')}`);
     }
+
+    const pGroupSlugs = Array.isArray(pRaw.groupSlugs) ? pRaw.groupSlugs.filter(Boolean) : [];
+    if (globalGroupIds.length === 0 && pGroupSlugs.length === 0) {
+      const name = p.title || p.slug || `Bài ${i + 1}`;
+      validationErrors.push(`Bài "${name}": Vui lòng chọn ít nhất 1 nhóm bài tập trước khi import để tránh bài tập mồ côi.`);
+    }
   }
 
   if (validationErrors.length) {
@@ -802,62 +1119,116 @@ app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res)
   let updatedCount = 0;
   const slugsAffected = [];
 
-  await transaction(async (client) => {
-    for (const p of normalized) {
-      const existing = await client.query('SELECT id FROM problems WHERE slug = $1', [p.slug]);
-      const isUpdate = existing.rows.length > 0;
-      if (isUpdate) {
-        updatedCount += 1;
-      } else {
-        createdCount += 1;
+  try {
+    await transaction(async (client) => {
+      if (globalGroupIds.length > 0) {
+        await assertActiveGroupsExist(client, globalGroupIds);
       }
 
-      const { rows } = await client.query(
-        `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by,compare_mode,number_tolerance)
-         VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16,$17,$18)
-         ON CONFLICT(slug) DO UPDATE SET
-           title=EXCLUDED.title,
-           difficulty=EXCLUDED.difficulty,
-           rating=EXCLUDED.rating,
-           max_score=EXCLUDED.max_score,
-           passing_score=EXCLUDED.passing_score,
-           published_at=EXCLUDED.published_at,
-           source=EXCLUDED.source,
-           order_index=EXCLUDED.order_index,
-           description=EXCLUDED.description,
-           starter_code=EXCLUDED.starter_code,
-           examples=EXCLUDED.examples,
-           time_limit_minutes=EXCLUDED.time_limit_minutes,
-           execution_limit_ms=EXCLUDED.execution_limit_ms,
-           is_active=EXCLUDED.is_active,
-           compare_mode=EXCLUDED.compare_mode,
-           number_tolerance=EXCLUDED.number_tolerance,
-           updated_at=NOW()
-         RETURNING id`,
-        [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
-          p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id, p.compareMode, p.numberTolerance]
-      );
-      const problemId = rows[0].id;
-      slugsAffected.push(p.slug);
+      const groupSlugToIdMap = {};
 
-      await client.query('DELETE FROM problem_testcases WHERE problem_id=$1', [problemId]);
-      for (const tc of p.testcases) {
-        await client.query(
-          `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
-           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-          [problemId, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+      for (let i = 0; i < normalized.length; i++) {
+        const p = normalized[i];
+        const pRaw = items[i];
+        const pGroupSlugs = Array.isArray(pRaw.groupSlugs) ? pRaw.groupSlugs.filter(Boolean) : [];
+
+        const resolvedGroupIds = [...globalGroupIds];
+
+        for (const slug of pGroupSlugs) {
+          if (groupSlugToIdMap[slug]) {
+            resolvedGroupIds.push(groupSlugToIdMap[slug]);
+            continue;
+          }
+
+          const { rows: grRows } = await client.query(
+            'SELECT id FROM problem_groups WHERE slug = $1 AND is_active = TRUE',
+            [slug]
+          );
+
+          if (grRows[0]) {
+            const gid = grRows[0].id;
+            groupSlugToIdMap[slug] = gid;
+            resolvedGroupIds.push(gid);
+          } else {
+            if (createMissingGroups) {
+              const { rows: insertedGr } = await client.query(
+                `INSERT INTO problem_groups (name, slug, description, group_type, color, icon, is_active, created_by)
+                 VALUES ($1, $2, $3, 'CUSTOM', '#6b7280', 'code', TRUE, $4) RETURNING id`,
+                [slug, slug, `Nhóm tự động tạo từ import bài tập`, req.user.id]
+              );
+              const gid = insertedGr[0].id;
+              groupSlugToIdMap[slug] = gid;
+              resolvedGroupIds.push(gid);
+            } else {
+              throw new Error(`Nhóm bài tập có slug "${slug}" không tồn tại hoặc đã bị ẩn.`);
+            }
+          }
+        }
+
+        const uniqueGroupIds = [...new Set(resolvedGroupIds)];
+        if (uniqueGroupIds.length === 0) {
+          throw new Error(`Bài "${p.title}" không thuộc nhóm nào.`);
+        }
+
+        const existing = await client.query('SELECT id FROM problems WHERE slug = $1', [p.slug]);
+        const isUpdate = existing.rows.length > 0;
+        if (isUpdate) {
+          updatedCount += 1;
+        } else {
+          createdCount += 1;
+        }
+
+        const { rows } = await client.query(
+          `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by,compare_mode,number_tolerance)
+           VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16,$17,$18)
+           ON CONFLICT(slug) DO UPDATE SET
+             title=EXCLUDED.title,
+             difficulty=EXCLUDED.difficulty,
+             rating=EXCLUDED.rating,
+             max_score=EXCLUDED.max_score,
+             passing_score=EXCLUDED.passing_score,
+             published_at=EXCLUDED.published_at,
+             source=EXCLUDED.source,
+             order_index=EXCLUDED.order_index,
+             description=EXCLUDED.description,
+             starter_code=EXCLUDED.starter_code,
+             examples=EXCLUDED.examples,
+             time_limit_minutes=EXCLUDED.time_limit_minutes,
+             execution_limit_ms=EXCLUDED.execution_limit_ms,
+             is_active=EXCLUDED.is_active,
+             compare_mode=EXCLUDED.compare_mode,
+             number_tolerance=EXCLUDED.number_tolerance,
+             updated_at=NOW()
+           RETURNING id`,
+          [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+            p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id, p.compareMode, p.numberTolerance]
         );
-      }
-    }
-  });
+        const problemId = rows[0].id;
+        slugsAffected.push(p.slug);
 
-  res.json({
-    imported: normalized.length,
-    created: createdCount,
-    updated: updatedCount,
-    errors: [],
-    slugs: slugsAffected
-  });
+        await client.query('DELETE FROM problem_testcases WHERE problem_id=$1', [problemId]);
+        for (const tc of p.testcases) {
+          await client.query(
+            `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
+             VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+            [problemId, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+          );
+        }
+
+        await assignProblemGroups(client, problemId, uniqueGroupIds, req.user.id);
+      }
+    });
+
+    res.json({
+      imported: normalized.length,
+      created: createdCount,
+      updated: updatedCount,
+      errors: [],
+      slugs: slugsAffected
+    });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 }));
 
 app.get('/api/admin/users', requireAdmin, asyncRoute(async (_req, res) => {
@@ -1155,6 +1526,196 @@ app.post('/api/admin/student-assignments/copy', requireAdmin, asyncRoute(async (
     skippedCompleted,
     skippedInactive
   });
+}));
+
+app.get('/api/admin/problem-groups', requireAdmin, asyncRoute(async (req, res) => {
+  const { rows } = await query(
+    `SELECT pg.id, pg.slug, pg.name, pg.description, pg.group_type AS "groupType",
+            pg.color, pg.icon, pg.order_index AS "orderIndex", pg.is_active AS "isActive",
+            COALESCE(ARRAY_REMOVE(ARRAY_AGG(pgi.problem_id), NULL), '{}') AS "problemIds",
+            COUNT(pgi.problem_id)::int AS "problemCount"
+     FROM problem_groups pg
+     LEFT JOIN problem_group_items pgi ON pgi.group_id = pg.id
+     GROUP BY pg.id, pg.slug, pg.name, pg.description, pg.group_type, pg.color, pg.icon, pg.order_index, pg.is_active
+     ORDER BY pg.order_index ASC, pg.created_at DESC`
+  );
+  res.json({ groups: rows });
+}));
+
+app.post('/api/admin/problem-groups', requireAdmin, asyncRoute(async (req, res) => {
+  const { name, slug, description, groupType, color, icon, orderIndex, problemIds } = req.body;
+  if (!name || !name.trim()) {
+    return res.status(400).json({ error: 'Tên nhóm bài tập không được để trống.' });
+  }
+  if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
+    return res.status(400).json({ error: 'Slug không hợp lệ (chỉ gồm chữ thường, số và dấu gạch ngang).' });
+  }
+  const parsedProblemIds = parseUuidList(problemIds);
+  if (parsedProblemIds.length === 0) {
+    return res.status(400).json({ error: 'Nhóm bài tập phải có ít nhất 1 bài. Không được tạo group trống.' });
+  }
+
+  try {
+    const saved = await transaction(async (client) => {
+      const { rows: existing } = await client.query('SELECT id FROM problem_groups WHERE slug = $1', [slug]);
+      if (existing[0]) {
+        throw new Error('Slug đã tồn tại. Vui lòng chọn slug khác.');
+      }
+
+      await assertActiveProblemsExist(client, parsedProblemIds);
+
+      const { rows: pgRows } = await client.query(
+        `INSERT INTO problem_groups (name, slug, description, group_type, color, icon, order_index, is_active, created_by)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, TRUE, $8) RETURNING *`,
+        [
+          name.trim(),
+          slug.trim(),
+          description || '',
+          groupType || 'CUSTOM',
+          color || '',
+          icon || '',
+          Number(orderIndex || 0),
+          req.user.id
+        ]
+      );
+      const newGroup = pgRows[0];
+
+      await syncGroupProblems(client, newGroup.id, parsedProblemIds, req.user.id);
+      newGroup.problemIds = parsedProblemIds;
+      return newGroup;
+    });
+
+    res.status(201).json({ group: saved });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}));
+
+app.put('/api/admin/problem-groups/:id', requireAdmin, asyncRoute(async (req, res) => {
+  const { name, description, groupType, color, icon, orderIndex, isActive, problemIds } = req.body;
+  if (!name || !name.trim()) {
+    return res.status(400).json({ error: 'Tên nhóm bài tập không được để trống.' });
+  }
+  const parsedProblemIds = parseUuidList(problemIds);
+  const activeStatus = isActive !== undefined ? Boolean(isActive) : true;
+
+  if (activeStatus && parsedProblemIds.length === 0) {
+    return res.status(400).json({ error: 'Nhóm bài tập phải có ít nhất 1 bài. Không được tạo group trống.' });
+  }
+
+  try {
+    const updated = await transaction(async (client) => {
+      await assertActiveProblemsExist(client, parsedProblemIds);
+
+      const { rows: pgRows } = await client.query(
+        `UPDATE problem_groups
+         SET name = $1, description = $2, group_type = $3, color = $4, icon = $5, order_index = $6, is_active = $7, updated_at = NOW()
+         WHERE id = $8 RETURNING *`,
+        [
+          name.trim(),
+          description || '',
+          groupType || 'CUSTOM',
+          color || '',
+          icon || '',
+          Number(orderIndex || 0),
+          activeStatus,
+          req.params.id
+        ]
+      );
+      const updatedGroup = pgRows[0];
+      if (!updatedGroup) {
+        throw new Error('Không tìm thấy nhóm bài tập.');
+      }
+
+      await syncGroupProblems(client, updatedGroup.id, parsedProblemIds, req.user.id);
+      
+      if (!activeStatus) {
+        await assertProblemsWillNotBeOrphaned(client, parsedProblemIds, updatedGroup.id);
+      }
+
+      updatedGroup.problemIds = parsedProblemIds;
+      return updatedGroup;
+    });
+
+    res.json({ group: updated });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}));
+
+app.delete('/api/admin/problem-groups/:id', requireAdmin, asyncRoute(async (req, res) => {
+  const { moveToGroupId } = req.body || {};
+  
+  try {
+    await transaction(async (client) => {
+      const { rows: groupRows } = await client.query('SELECT id, name, is_active FROM problem_groups WHERE id = $1', [req.params.id]);
+      if (!groupRows[0]) {
+        throw new Error('Không tìm thấy nhóm bài tập.');
+      }
+      
+      const { rows: itemRows } = await client.query('SELECT problem_id FROM problem_group_items WHERE group_id = $1', [req.params.id]);
+      const problemIds = itemRows.map(r => r.problem_id);
+
+      if (moveToGroupId) {
+        const { rows: targetRows } = await client.query('SELECT id FROM problem_groups WHERE id = $1 AND is_active = TRUE', [moveToGroupId]);
+        if (!targetRows[0]) {
+          throw new Error('Nhóm bài tập đích không tồn tại hoặc đã bị ẩn.');
+        }
+        
+        for (const pid of problemIds) {
+          await client.query(
+            `INSERT INTO problem_group_items (group_id, problem_id, added_by)
+             VALUES ($1, $2, $3)
+             ON CONFLICT (group_id, problem_id) DO NOTHING`,
+            [moveToGroupId, pid, req.user.id]
+          );
+        }
+      } else {
+        await assertProblemsWillNotBeOrphaned(client, problemIds, req.params.id);
+      }
+
+      await client.query(
+        `UPDATE problem_groups SET is_active = FALSE, updated_at = NOW() WHERE id = $1`,
+        [req.params.id]
+      );
+    });
+
+    res.json({ ok: true });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}));
+
+app.put('/api/admin/problems/:id/groups', requireAdmin, asyncRoute(async (req, res) => {
+  const { groupIds } = req.body;
+  const parsedGroupIds = parseUuidList(groupIds);
+  if (parsedGroupIds.length === 0) {
+    return res.status(400).json({ error: 'Bài tập phải thuộc ít nhất 1 nhóm hoạt động.' });
+  }
+
+  try {
+    await transaction(async (client) => {
+      const { rows: probRows } = await client.query('SELECT id FROM problems WHERE id = $1 AND is_active = TRUE', [req.params.id]);
+      if (!probRows[0]) {
+        throw new Error('Không tìm thấy bài tập hoặc bài tập đã bị ẩn.');
+      }
+
+      await assertActiveGroupsExist(client, parsedGroupIds);
+
+      await assignProblemGroups(client, req.params.id, parsedGroupIds, req.user.id);
+    });
+
+    const { rows } = await query(
+      `SELECT pg.id, pg.slug, pg.name, pg.group_type AS "groupType", pg.color, pg.icon
+       FROM problem_group_items pgi
+       JOIN problem_groups pg ON pg.id = pgi.group_id
+       WHERE pgi.problem_id = $1 AND pg.is_active = TRUE`,
+      [req.params.id]
+    );
+    res.json({ groups: rows });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 }));
 
 app.patch('/api/admin/users/:id', requireAdmin, asyncRoute(async (req, res) => {
