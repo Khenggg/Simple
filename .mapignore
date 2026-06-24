@@ -1,0 +1,21 @@
+# Folders to ignore
+.git/
+node_modules/
+.github/
+.vscode/
+.ai/
+tasks/
+scripts/
+image/
+public/
+
+# Files to ignore
+package-lock.json
+server.err.log
+server.out.log
+scratch-check-db.js
+scratch-import-images.js
+scratch-test-progress.js
+docs/project-map.md
+.gitignore
+README.md

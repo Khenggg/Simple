@@ -8,7 +8,7 @@ import { config } from './config.js';
 const runnerPath = path.join(path.dirname(fileURLToPath(import.meta.url)), 'python-runner.py');
 
 function normalizeOutput(value) {
-  return String(value ?? '').replace(/\r\n/g, '\n').trim();
+  return String(value ?? '').replace(/\r\n/g, '\n');
 }
 
 export async function runPythonLocal(code, input, limitMs = 1500) {
@@ -58,16 +58,17 @@ export async function runPythonLocal(code, input, limitMs = 1500) {
   });
 }
 
-async function runRemote(code, testcases, limitMs) {
+async function runRemote(code, testcases, limitMs, options = {}) {
   const response = await fetch(`${config.judgeServiceUrl.replace(/\/$/, '')}/internal/judge`, {
     method: 'POST',
     headers: { 'content-type': 'application/json', authorization: `Bearer ${config.judgeServiceToken}` },
-    body: JSON.stringify({ code, testcases, limitMs }),
+    body: JSON.stringify({ code, testcases, limitMs, options }),
     signal: AbortSignal.timeout(Math.max(10000, testcases.length * (limitMs + 1000)))
   });
   if (!response.ok) throw new Error(`Judge service trả về ${response.status}`);
   return response.json();
 }
+
 
 export function parseRunnerError(result, limitMs) {
   if (result.timedOut) {
@@ -175,24 +176,137 @@ function getErrorMessage(tracebackStr) {
   return lines[lines.length - 1] || 'Lỗi thực thi chương trình.';
 }
 
-export async function judgeSubmission(code, testcases, limitMs = 1500, forceLocal = false) {
-  if (config.judgeServiceUrl && !forceLocal) return runRemote(code, testcases, limitMs);
+function parseStrictNumber(token) {
+  if (!token) return NaN;
+  if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(token)) {
+    return NaN;
+  }
+  const val = Number(token);
+  if (isNaN(val) || !isFinite(val)) return NaN;
+  return val;
+}
+
+export function compareOutput(actualRaw, expectedRaw, options = {}) {
+  const compareMode = options.compareMode || 'token';
+  const numberTolerance = options.numberTolerance ?? 1e-6;
+
+  const actual = String(actualRaw ?? '').replace(/\r\n/g, '\n');
+  const expected = String(expectedRaw ?? '').replace(/\r\n/g, '\n');
+
+  if (compareMode === 'exact') {
+    return { ok: actual === expected, reason: actual === expected ? 'Khớp hoàn toàn' : 'Khác biệt ký tự hoặc khoảng trắng' };
+  }
+
+  if (compareMode === 'trim') {
+    const aTrim = actual.trim();
+    const eTrim = expected.trim();
+    return { ok: aTrim === eTrim, reason: aTrim === eTrim ? 'Khớp sau khi trim' : 'Khác biệt nội dung' };
+  }
+
+  const getTokens = (str) => {
+    return str.trim().split(/\s+/).filter(t => t.length > 0);
+  };
+
+  const actualTokens = getTokens(actual);
+  const expectedTokens = getTokens(expected);
+
+  if (compareMode === 'token') {
+    if (actualTokens.length !== expectedTokens.length) {
+      return { 
+        ok: false, 
+        reason: `Số lượng token không khớp (thực tế có ${actualTokens.length} tokens, mong muốn ${expectedTokens.length} tokens).`
+      };
+    }
+
+    for (let i = 0; i < actualTokens.length; i++) {
+      if (actualTokens[i] !== expectedTokens[i]) {
+        return {
+          ok: false,
+          reason: `Token thứ ${i + 1} không khớp: thực tế là "${actualTokens[i]}", mong muốn "${expectedTokens[i]}".`
+        };
+      }
+    }
+
+    return { ok: true, reason: 'Khớp tokens' };
+  }
+
+  if (compareMode === 'number') {
+    if (actualTokens.length !== expectedTokens.length) {
+      return { 
+        ok: false, 
+        reason: `Số lượng token không khớp (thực tế có ${actualTokens.length} tokens, mong muốn ${expectedTokens.length} tokens).`
+      };
+    }
+
+    for (let i = 0; i < actualTokens.length; i++) {
+      const aToken = actualTokens[i];
+      const eToken = expectedTokens[i];
+
+      const aNum = parseStrictNumber(aToken);
+      const eNum = parseStrictNumber(eToken);
+
+      const isANum = !isNaN(aNum);
+      const isENum = !isNaN(eNum);
+
+      if (isANum && isENum) {
+        if (Math.abs(aNum - eNum) > numberTolerance) {
+          return {
+            ok: false,
+            reason: `Giá trị số tại token thứ ${i + 1} không nằm trong độ lệch cho phép (thực tế ${aNum}, mong muốn ${eNum}, độ lệch tối đa ${numberTolerance}).`
+          };
+        }
+      } else {
+        if (aToken !== eToken) {
+          return {
+            ok: false,
+            reason: `Token thứ ${i + 1} không khớp: thực tế là "${aToken}", mong muốn "${eToken}".`
+          };
+        }
+      }
+    }
+
+    return { ok: true, reason: 'Khớp số và ký tự' };
+  }
+
+  return { ok: false, reason: 'Không hỗ trợ compare mode.' };
+}
+
+export async function judgeSubmission(code, testcases, limitMs = 1500, forceLocal = false, options = {}) {
+  if (config.judgeServiceUrl && !forceLocal) return runRemote(code, testcases, limitMs, options);
   const reports = [];
-  let passed = 0;
+  let totalWeight = 0;
+  let passedWeight = 0;
+  let passedCount = 0;
+
   for (let index = 0; index < testcases.length; index += 1) {
     const testcase = testcases[index];
+    const weight = Number(testcase.weight ?? 1);
+    totalWeight += weight;
+
     const result = await runPythonLocal(code, testcase.input, limitMs);
     const actual = normalizeOutput(result.output);
     const expected = normalizeOutput(testcase.output);
     
     const errorModel = parseRunnerError(result, limitMs);
-    const ok = !errorModel && actual === expected;
-    if (ok) passed += 1;
+    const compareResult = compareOutput(actual, expected, options);
+    const ok = !errorModel && compareResult.ok;
+    
+    if (ok) {
+      passedWeight += weight;
+      passedCount += 1;
+    }
     
     const reportItem = {
       index: index + 1,
       passed: ok,
     };
+
+    const isPublic = testcase.isPublic ?? testcase.is_public ?? false;
+    if (isPublic) {
+      reportItem.input = testcase.input;
+      reportItem.expected = expected;
+      reportItem.actual = actual;
+    }
 
     if (!ok) {
       if (errorModel) {
@@ -207,7 +321,7 @@ export async function judgeSubmission(code, testcases, limitMs = 1500, forceLoca
         }
       } else {
         reportItem.status = 'Wrong Answer';
-        reportItem.error = 'Sai đáp án (Wrong Answer)';
+        reportItem.error = compareResult.reason || 'Sai đáp án (Wrong Answer)';
       }
     } else {
       reportItem.status = 'Accepted';
@@ -217,5 +331,7 @@ export async function judgeSubmission(code, testcases, limitMs = 1500, forceLoca
     reports.push(reportItem);
   }
   const total = testcases.length;
-  return { passed, total, score: total ? Math.round((passed / total) * 100) : 0, reports };
+  const score = totalWeight ? Math.round((passedWeight / totalWeight) * 100) : 0;
+  return { passed: passedCount, total, score, reports };
 }
+

@@ -1356,8 +1356,59 @@ async function adminView() {
   await refreshAssignmentList();
 }
 
-function testRows(values = [{input:'',output:''}]) {
-  return values.map((t) => `<div class="test-row"><textarea placeholder="Input">${escapeHtml(t.input)}</textarea><textarea placeholder="Output">${escapeHtml(t.output)}</textarea><button type="button" class="btn small danger remove-test">×</button></div>`).join('');
+function testRows(values) {
+  const list = (Array.isArray(values) && values.length > 0) ? values : [{input:'',output:'',isPublic:false,weight:1}];
+  return list.map((t) => {
+    const isPublic = t.isPublic ?? t.is_public ?? false;
+    const weight = t.weight ?? 1;
+    const outputVal = t.output ?? t.expected_output ?? '';
+    return `<div class="test-row" style="border: 1px solid var(--border); padding: 12px; border-radius: 8px; margin-bottom: 8px; background: rgba(255,255,255,0.02); position: relative;">
+      <textarea placeholder="Đầu vào (Input)" class="test-input" style="width: 100%; min-height: 50px; margin-bottom: 6px; font-family: var(--mono); font-size: 0.85rem; padding: 6px; border-radius: 4px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); color: var(--text);">${escapeHtml(t.input)}</textarea>
+      <textarea placeholder="Kết quả mong muốn (Expected Output)" class="test-output" style="width: 100%; min-height: 50px; margin-bottom: 6px; font-family: var(--mono); font-size: 0.85rem; padding: 6px; border-radius: 4px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); color: var(--text);">${escapeHtml(outputVal)}</textarea>
+      <div style="display: flex; gap: 15px; align-items: center; font-size: 0.9rem; color: var(--text-mute);">
+        <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;"><input type="checkbox" class="test-public" ${isPublic ? 'checked' : ''}> Công khai (Public)</label>
+        <label style="display: flex; align-items: center; gap: 4px;">Trọng số: <input type="number" class="test-weight" min="1" max="100" value="${weight}" style="width: 55px; padding: 2px 4px; border-radius: 4px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); color: var(--text);"></label>
+      </div>
+      <button type="button" class="btn small danger remove-test" style="position: absolute; right: 12px; bottom: 12px; padding: 4px 8px;">×</button>
+      <div style="clear: both;"></div>
+    </div>`;
+  }).join('');
+}
+
+function clientValidateProblem(problem) {
+  const errors = [];
+  if (!problem.slug) errors.push('Slug không được để trống.');
+  else if (/[^a-z0-9_-]/.test(problem.slug)) errors.push('Slug chỉ được chứa chữ thường, số, dấu gạch ngang (-) và gạch dưới (_).');
+  
+  if (!problem.title) errors.push('Thiếu tên bài.');
+  if (!problem.description) errors.push('Thiếu đề bài.');
+  
+  const testcases = problem.testcases || [];
+  if (!Array.isArray(testcases) || !testcases.length) {
+    errors.push('Cần ít nhất một test case.');
+  } else {
+    testcases.forEach((tc, idx) => {
+      const outputVal = tc.output ?? tc.expected_output;
+      if (outputVal === undefined || outputVal === null) {
+        errors.push(`Testcase thứ ${idx + 1} thiếu expected output.`);
+      }
+      const weight = Number(tc.weight ?? 1);
+      if (isNaN(weight) || weight < 1 || weight > 100 || !Number.isInteger(weight)) {
+        errors.push(`Testcase thứ ${idx + 1} có trọng số không hợp lệ (phải từ 1 đến 100).`);
+      }
+    });
+  }
+  
+  const rating = Number(problem.rating ?? 800);
+  if (isNaN(rating) || rating < 800 || rating > 3500 || rating % 100 !== 0) {
+    errors.push('Rating phải là số nguyên từ 800 đến 3500 và chia hết cho 100.');
+  }
+  
+  if (problem.compareMode && !['exact', 'trim', 'token', 'number'].includes(problem.compareMode)) {
+    errors.push('Compare mode không hợp lệ.');
+  }
+  
+  return errors;
 }
 
 function problemModal(problem = null) {
@@ -1368,6 +1419,19 @@ function problemModal(problem = null) {
   document.body.insertAdjacentHTML('beforeend', `<div class="modal-backdrop" id="problem-modal"><form class="modal wide" id="problem-form"><span class="eyebrow">${problem ? 'Chỉnh sửa' : 'Bài tập mới'}</span><h2>${problem ? escapeHtml(problem.title) : 'Tạo bài tập'}</h2><div class="form-grid">
     <div class="field"><label>Slug</label><input name="slug" value="${escapeHtml(problem?.slug || '')}" required></div><div class="field"><label>Tên bài</label><input name="title" value="${escapeHtml(problem?.title || '')}" required></div>
     <div class="field"><label>Rating Codeforces</label><select name="rating" required>${ratingOpts}</select></div><div class="field"><label>Thời gian làm (phút)</label><input name="timeLimitMinutes" type="number" min="1" max="240" value="${problem?.time_limit_minutes || 30}"></div>
+    <div class="field"><label>Passing Score</label><input name="passingScore" type="number" min="0" max="100" value="${problem?.passing_score ?? 100}"></div><div class="field"><label>Max Score</label><input name="maxScore" type="number" min="1" max="100" value="${problem?.max_score ?? 100}"></div>
+    <div class="field"><label>Compare Mode</label>
+      <select name="compareMode" id="compare-mode-select">
+        <option value="token" ${(problem?.compare_mode || 'token') === 'token' ? 'selected' : ''}>Token Matching (Mặc định)</option>
+        <option value="exact" ${(problem?.compare_mode) === 'exact' ? 'selected' : ''}>Exact Character Match</option>
+        <option value="trim" ${(problem?.compare_mode) === 'trim' ? 'selected' : ''}>Trim Matching</option>
+        <option value="number" ${(problem?.compare_mode) === 'number' ? 'selected' : ''}>Float Number Match</option>
+      </select>
+    </div>
+    <div class="field" id="number-tolerance-field" style="display: ${(problem?.compare_mode === 'number') ? 'block' : 'none'};">
+      <label>Number Tolerance</label>
+      <input name="numberTolerance" type="number" min="0" max="1" step="any" value="${problem?.number_tolerance ?? 1e-6}">
+    </div>
     <div class="field full"><label>Đề bài (Markdown)</label><textarea name="description" rows="8" required>${escapeHtml(problem?.description || '')}</textarea></div>
     <div class="field full"><label>Code mẫu</label><textarea name="starterCode" rows="6">${escapeHtml(problem?.starter_code || '# Viết lời giải tại đây\n')}</textarea></div>
     <div class="field"><label>Giới hạn chạy mỗi test (ms)</label><input name="executionLimitMs" type="number" min="250" max="5000" value="${problem?.execution_limit_ms || 1500}"></div><div class="field"><label><input name="isActive" type="checkbox" ${problem?.is_active === false ? '' : 'checked'}> Mở cho học sinh</label></div>
@@ -1378,13 +1442,29 @@ function problemModal(problem = null) {
   bindRemove();
   modal.querySelector('#add-test').onclick = () => { modal.querySelector('#tests').insertAdjacentHTML('beforeend', testRows()); bindRemove(); };
   modal.querySelector('#cancel-problem').onclick = () => modal.remove();
+
+  const compareSelect = modal.querySelector('#compare-mode-select');
+  const toleranceField = modal.querySelector('#number-tolerance-field');
+  compareSelect.onchange = () => {
+    toleranceField.style.display = compareSelect.value === 'number' ? 'block' : 'none';
+  };
+
   modal.querySelector('#problem-form').onsubmit = async (event) => {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(event.target));
     data.isActive = event.target.isActive.checked;
     data.rating = Number(data.rating || 800);
     data.difficulty = clientGetRatingLabel(data.rating); // Auto map to difficulty text for backward compatibility
-    data.testcases = [...modal.querySelectorAll('.test-row')].map((row) => ({ input:row.children[0].value, output:row.children[1].value }));
+    data.passingScore = Number(data.passingScore ?? 100);
+    data.maxScore = Number(data.maxScore ?? 100);
+    data.compareMode = data.compareMode || 'token';
+    data.numberTolerance = Number(data.numberTolerance ?? 1e-6);
+    data.testcases = [...modal.querySelectorAll('.test-row')].map((row) => ({
+      input: row.querySelector('.test-input').value,
+      output: row.querySelector('.test-output').value,
+      isPublic: row.querySelector('.test-public').checked,
+      weight: Number(row.querySelector('.test-weight').value || 1)
+    }));
     data.examples = problem?.examples || [];
     try {
       await api(problem ? `/api/admin/problems/${problem.id}` : '/api/admin/problems', { method:problem ? 'PUT':'POST', body:data });
@@ -1397,9 +1477,44 @@ function problemModal(problem = null) {
 }
 
 function importModal() {
-  document.body.insertAdjacentHTML('beforeend', `<div class="modal-backdrop" id="import-modal"><div class="modal"><span class="eyebrow">Nhập hàng loạt</span><h2>Import bài từ JSON</h2><p class="muted">Chấp nhận định dạng <code>problems.json</code> cũ hoặc mảng bài theo schema mới. Bài trùng slug sẽ được cập nhật.</p><div class="field"><label>Chọn file JSON</label><input type="file" id="json-file" accept="application/json,.json"></div><div class="modal-actions"><button class="btn secondary" id="cancel-import">Hủy</button><button class="btn" id="do-import">Import</button></div></div></div>`);
+  document.body.insertAdjacentHTML('beforeend', `<div class="modal-backdrop" id="import-modal"><div class="modal"><span class="eyebrow">Nhập hàng loạt</span><h2>Import bài từ JSON</h2><p class="muted">Chấp nhận định dạng <code>problems.json</code> cũ hoặc mảng bài theo schema mới. Bài trùng slug sẽ được cập nhật.</p><div class="field"><label>Chọn file JSON</label><input type="file" id="json-file" accept="application/json,.json"></div><div id="import-preview"></div><div class="modal-actions"><button class="btn secondary" id="cancel-import">Hủy</button><button class="btn" id="do-import">Import</button></div></div></div>`);
   const modal = document.querySelector('#import-modal');
   modal.querySelector('#cancel-import').onclick = () => modal.remove();
+  
+  modal.querySelector('#json-file').onchange = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const body = JSON.parse(text);
+      const items = Array.isArray(body) ? body : (body.problems || []);
+      
+      let allErrors = [];
+      items.forEach((p, idx) => {
+        const name = p.title || p.slug || `Bài ${idx + 1}`;
+        const errs = clientValidateProblem(p);
+        if (errs.length) {
+          allErrors.push(`<strong>${escapeHtml(name)}</strong>: ${errs.map(e => `<div>• ${escapeHtml(e)}</div>`).join('')}`);
+        }
+      });
+
+      const previewArea = modal.querySelector('#import-preview');
+      if (allErrors.length) {
+        previewArea.innerHTML = `<div class="import-errors" style="color: #ef4444; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); padding: 10px; border-radius: 8px; max-height: 150px; overflow-y: auto; font-size: 0.85rem; margin-top: 10px;">
+          <strong>Có lỗi validation trước khi submit:</strong>
+          ${allErrors.join('<div style="margin-top:5px;"></div>')}
+        </div>`;
+        modal.querySelector('#do-import').disabled = true;
+      } else {
+        previewArea.innerHTML = `<div style="color: #10b981; margin-top: 10px; font-size: 0.85rem;">✓ File hợp lệ (${items.length} bài sẵn sàng import).</div>`;
+        modal.querySelector('#do-import').disabled = false;
+      }
+    } catch (e) {
+      modal.querySelector('#import-preview').innerHTML = `<div style="color: #ef4444; margin-top: 10px; font-size: 0.85rem;">Lỗi định dạng file JSON: ${escapeHtml(e.message)}</div>`;
+      modal.querySelector('#do-import').disabled = true;
+    }
+  };
+
   modal.querySelector('#do-import').onclick = async () => {
     const file = modal.querySelector('#json-file').files[0]; if(!file) return toast('Hãy chọn file JSON.',true);
     try {
@@ -1408,7 +1523,9 @@ function importModal() {
       state.problems = null;
       state.problemDetails = {};
       state.adminDashboard = null;
-      modal.remove(); toast(`Đã import ${result.imported} bài.`); adminView();
+      modal.remove();
+      toast(`Đã import thành công: ${result.imported} bài (Tạo mới: ${result.created}, Cập nhật: ${result.updated}).`);
+      adminView();
     } catch(error) { toast(error.message,true); }
   };
 }

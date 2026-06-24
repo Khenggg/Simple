@@ -1,6 +1,8 @@
 import path from 'node:path';
 import http from 'node:http';
 import { fileURLToPath } from 'node:url';
+import fs from 'node:fs/promises';
+import { spawn } from 'node:child_process';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
@@ -58,8 +60,55 @@ function isCompletedSubmission(score, status, passingScore) {
 }
 
 app.get('/api/health', asyncRoute(async (_req, res) => {
-  await query('SELECT 1');
-  res.json({ ok: true, judge: config.judgeServiceUrl ? 'remote' : 'local' });
+  let dbOk = false;
+  let migrationsOk = false;
+  try {
+    await query('SELECT 1');
+    dbOk = true;
+    
+    const migrationsDir = path.join(root, 'migrations');
+    const files = (await fs.readdir(migrationsDir)).filter((name) => name.endsWith('.sql'));
+    const { rows } = await query('SELECT filename FROM schema_migrations');
+    const applied = new Set(rows.map(r => r.filename));
+    migrationsOk = files.every(f => applied.has(f));
+  } catch (err) {
+    console.error('Health check DB error:', err);
+  }
+
+  let runnerOk = false;
+  try {
+    const runnerPath = path.join(root, 'src', 'python-runner.py');
+    await fs.access(runnerPath);
+    runnerOk = true;
+  } catch (err) {
+    console.error('Health check runner access error:', err);
+  }
+
+  let pythonOk = false;
+  if (!config.judgeServiceUrl) {
+    try {
+      const proc = spawn(config.pythonCommand, ['--version']);
+      pythonOk = await new Promise((resolve) => {
+        proc.on('error', () => resolve(false));
+        proc.on('close', (code) => resolve(code === 0));
+      });
+    } catch (err) {
+      console.error('Health check python spawn error:', err);
+      pythonOk = false;
+    }
+  } else {
+    pythonOk = true;
+  }
+
+  const ok = dbOk && migrationsOk && runnerOk && pythonOk;
+  res.status(ok ? 200 : 500).json({
+    ok,
+    database: dbOk,
+    migrations: migrationsOk,
+    runner: runnerOk,
+    python: pythonOk,
+    judge: config.judgeServiceUrl ? 'remote' : 'local'
+  });
 }));
 
 app.post('/api/auth/register', asyncRoute(async (req, res) => {
@@ -383,16 +432,24 @@ app.post('/api/run', requireAuth, asyncRoute(async (req, res) => {
     : await runPythonLocal(code, input, 2000);
   if (config.judgeServiceUrl) {
     const report = result.reports[0];
-    return res.json({ output: report.actual || '', error: report.error });
+    const isSystemOrRuntimeError = report.status !== 'Accepted' && report.status !== 'Wrong Answer';
+    return res.json({ output: report.actual || '', error: isSystemOrRuntimeError ? report.error : null });
   }
-  res.json(result);
+  const errorModel = parseRunnerError(result, 2000);
+  let error = null;
+  if (errorModel) {
+    error = errorModel.safeForUser
+      ? `${errorModel.status}: ${errorModel.message}${errorModel.line ? ` (dòng ${errorModel.line})` : ''}`
+      : 'Runner error: không thể khởi động môi trường chạy Python';
+  }
+  res.json({ output: result.output, error });
 }));
 
 app.post('/api/submissions', requireAuth, asyncRoute(async (req, res) => {
   const code = String(req.body.code || '').slice(0, 30000);
   if (!code.trim()) return res.status(400).json({ error: 'Chưa có code để nộp.' });
   const attemptResult = await query(
-    `SELECT a.*,p.execution_limit_ms,p.id AS problem_id,p.passing_score
+    `SELECT a.*,p.execution_limit_ms,p.id AS problem_id,p.passing_score,p.compare_mode,p.number_tolerance
      FROM attempts a JOIN problems p ON p.id=a.problem_id
      WHERE a.id=$1 AND a.user_id=$2`,
     [req.body.attemptId, req.user.id]
@@ -403,7 +460,7 @@ app.post('/api/submissions', requireAuth, asyncRoute(async (req, res) => {
 
   // Query test cases from problem_testcases
   const { rows: testcases } = await query(
-    `SELECT input, expected_output AS output FROM problem_testcases WHERE problem_id=$1 ORDER BY order_index ASC`,
+    `SELECT input, expected_output AS output, is_public, weight FROM problem_testcases WHERE problem_id=$1 ORDER BY order_index ASC`,
     [attempt.problem_id]
   );
 
@@ -413,7 +470,10 @@ app.post('/api/submissions', requireAuth, asyncRoute(async (req, res) => {
   let judged = { passed: 0, total: testcases.length, score: 0, reports: [] };
   let status = 'EXPIRED';
   if (!expired) {
-    judged = await judgeSubmission(code, testcases, attempt.execution_limit_ms);
+    judged = await judgeSubmission(code, testcases, attempt.execution_limit_ms, false, {
+      compareMode: attempt.compare_mode,
+      numberTolerance: attempt.number_tolerance
+    });
     const hadTimeout = judged.reports.some((r) => r.status === 'Time Limit Exceeded');
     const hadOutputLimit = judged.reports.some((r) => r.status === 'Output Limit Exceeded');
     const hadMemoryLimit = judged.reports.some((r) => r.status === 'Memory Limit Exceeded');
@@ -546,10 +606,10 @@ app.post('/api/admin/problems', requireAdmin, asyncRoute(async (req, res) => {
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
   const saved = await transaction(async (client) => {
     const { rows } = await client.query(
-      `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by)
-       VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16) RETURNING *`,
+      `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by,compare_mode,number_tolerance)
+       VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16,$17,$18) RETURNING *`,
       [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
-        p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id]
+        p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id, p.compareMode, p.numberTolerance]
     );
     const problem = rows[0];
     for (const tc of p.testcases) {
@@ -573,10 +633,11 @@ app.put('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => 
     const { rows } = await client.query(
       `UPDATE problems SET slug=$1,title=$2,difficulty=$3,rating=$4,max_score=$5,passing_score=$6,
          published_at=$7,source=$8,order_index=$9,description=$10,starter_code=$11,examples=$12::jsonb,
-         time_limit_minutes=$13,execution_limit_ms=$14,is_active=$15,updated_at=NOW()
-       WHERE id=$16 RETURNING *`,
+         time_limit_minutes=$13,execution_limit_ms=$14,is_active=$15,compare_mode=$16,number_tolerance=$17,updated_at=NOW()
+       WHERE id=$18 RETURNING *`,
       [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
-        p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.params.id]
+        p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive,
+        p.compareMode, p.numberTolerance, req.params.id]
     );
     const problem = rows[0];
     if (!problem) return null;
@@ -604,14 +665,41 @@ app.delete('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) 
 app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res) => {
   const items = Array.isArray(req.body) ? req.body : req.body.problems;
   if (!Array.isArray(items) || !items.length || items.length > 100) return res.status(400).json({ error: 'File cần chứa từ 1 đến 100 bài.' });
-  const normalized = items.map((item) => normalizeProblem({ ...item, slug: item.slug || item.id }));
-  const invalid = normalized.find((p) => validateProblem(p).length);
-  if (invalid) return res.status(400).json({ error: `Bài ${invalid.slug || '(không tên)'} không hợp lệ.` });
+  
+  const validationErrors = [];
+  const normalized = [];
+  for (let i = 0; i < items.length; i++) {
+    const pRaw = items[i];
+    const p = normalizeProblem({ ...pRaw, slug: pRaw.slug || pRaw.id });
+    normalized.push(p);
+    const errs = validateProblem(p);
+    if (errs.length) {
+      const name = p.title || p.slug || `Bài ${i + 1}`;
+      validationErrors.push(`Bài "${name}": ${errs.join(' ')}`);
+    }
+  }
+
+  if (validationErrors.length) {
+    return res.status(400).json({ error: validationErrors.join(' | ') });
+  }
+
+  let createdCount = 0;
+  let updatedCount = 0;
+  const slugsAffected = [];
+
   await transaction(async (client) => {
     for (const p of normalized) {
+      const existing = await client.query('SELECT id FROM problems WHERE slug = $1', [p.slug]);
+      const isUpdate = existing.rows.length > 0;
+      if (isUpdate) {
+        updatedCount += 1;
+      } else {
+        createdCount += 1;
+      }
+
       const { rows } = await client.query(
-        `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by)
-         VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16)
+        `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by,compare_mode,number_tolerance)
+         VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16,$17,$18)
          ON CONFLICT(slug) DO UPDATE SET
            title=EXCLUDED.title,
            difficulty=EXCLUDED.difficulty,
@@ -627,12 +715,16 @@ app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res)
            time_limit_minutes=EXCLUDED.time_limit_minutes,
            execution_limit_ms=EXCLUDED.execution_limit_ms,
            is_active=EXCLUDED.is_active,
+           compare_mode=EXCLUDED.compare_mode,
+           number_tolerance=EXCLUDED.number_tolerance,
            updated_at=NOW()
          RETURNING id`,
         [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
-          p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id]
+          p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id, p.compareMode, p.numberTolerance]
       );
       const problemId = rows[0].id;
+      slugsAffected.push(p.slug);
+
       await client.query('DELETE FROM problem_testcases WHERE problem_id=$1', [problemId]);
       for (const tc of p.testcases) {
         await client.query(
@@ -643,7 +735,14 @@ app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res)
       }
     }
   });
-  res.json({ imported: normalized.length });
+
+  res.json({
+    imported: normalized.length,
+    created: createdCount,
+    updated: updatedCount,
+    errors: [],
+    slugs: slugsAffected
+  });
 }));
 
 app.get('/api/admin/users', requireAdmin, asyncRoute(async (_req, res) => {
@@ -957,7 +1056,8 @@ app.post('/internal/judge', asyncRoute(async (req, res) => {
   if (!config.judgeServiceToken || token !== config.judgeServiceToken) return res.status(401).json({ error: 'Unauthorized' });
   const code = String(req.body.code || '').slice(0, 30000);
   const testcases = Array.isArray(req.body.testcases) ? req.body.testcases.slice(0, 30) : [];
-  res.json(await judgeSubmission(code, testcases, Number(req.body.limitMs) || 1500, true));
+  const options = req.body.options || {};
+  res.json(await judgeSubmission(code, testcases, Number(req.body.limitMs) || 1500, true, options));
 }));
 
 app.use('/vendor/monaco/vs', express.static(path.join(root, 'node_modules', 'monaco-editor', 'min', 'vs'), {
@@ -984,7 +1084,10 @@ app.use((error, _req, res, _next) => {
 const server = http.createServer(app);
 attachTerminalServer(server);
 
-if (!process.env.VERCEL) server.listen(config.port, '0.0.0.0', () => console.log(`SimpleOJ listening on http://0.0.0.0:${config.port}`));
+const isTest = process.env.NODE_ENV === 'test' || process.execArgv.includes('--test') || (process.argv && process.argv.some(arg => arg.includes('test')));
+if (!process.env.VERCEL && !isTest) {
+  server.listen(config.port, '0.0.0.0', () => console.log(`SimpleOJ listening on http://0.0.0.0:${config.port}`));
+}
 
 export default app;
 export { server };
