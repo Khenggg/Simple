@@ -11,10 +11,10 @@ window.state = state;
 
 let monacoReady;
 
-const escapeHtml = (value = '') => String(value).replace(/[&<>'"]/g, (char) => ({ '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;' })[char]);
-const formatDate = (value) => new Intl.DateTimeFormat('vi-VN', { dateStyle:'short', timeStyle:'short' }).format(new Date(value));
+const escapeHtml = (value = '') => String(value).replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char]);
+const formatDate = (value) => new Intl.DateTimeFormat('vi-VN', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(value));
 const formatDuration = (ms) => `${Math.floor(ms / 60000)}p ${Math.floor((ms % 60000) / 1000)}s`;
-const statusLabel = (s) => ({ ACCEPTED:'Đúng (Accepted)', WRONG_ANSWER:'Sai đáp án (Wrong Answer)', RUNTIME_ERROR:'Lỗi thực thi (Runtime Error)', TIME_LIMIT:'Quá thời gian (Time Limit Exceeded)', EXPIRED:'Hết giờ (Expired)', OUTPUT_LIMIT:'Vượt giới hạn Output (Output Limit Exceeded)', MEMORY_LIMIT:'Vượt giới hạn bộ nhớ (Memory Limit Exceeded)' })[s] || s;
+const statusLabel = (s) => ({ ACCEPTED: 'Đúng (Accepted)', WRONG_ANSWER: 'Sai đáp án (Wrong Answer)', RUNTIME_ERROR: 'Lỗi thực thi (Runtime Error)', TIME_LIMIT: 'Quá thời gian (Time Limit Exceeded)', EXPIRED: 'Hết giờ (Expired)', OUTPUT_LIMIT: 'Vượt giới hạn Output (Output Limit Exceeded)', MEMORY_LIMIT: 'Vượt giới hạn bộ nhớ (Memory Limit Exceeded)' })[s] || s;
 
 function toast(message, error = false) {
   toastEl.textContent = message;
@@ -69,20 +69,20 @@ function loadMonaco() {
       monaco.editor.defineTheme('thonny-light', {
         base: 'vs', inherit: true,
         rules: [
-          { token:'keyword', foreground:'7F0055', fontStyle:'bold' },
-          { token:'keyword.python', foreground:'7F0055', fontStyle:'bold' },
-          { token:'type.identifier', foreground:'00008B', fontStyle:'bold' },
-          { token:'identifier.function', foreground:'00008B', fontStyle:'bold' },
-          { token:'string', foreground:'006400' },
-          { token:'number', foreground:'B04600' },
-          { token:'comment', foreground:'A9A9A9' }
+          { token: 'keyword', foreground: '7F0055', fontStyle: 'bold' },
+          { token: 'keyword.python', foreground: '7F0055', fontStyle: 'bold' },
+          { token: 'type.identifier', foreground: '00008B', fontStyle: 'bold' },
+          { token: 'identifier.function', foreground: '00008B', fontStyle: 'bold' },
+          { token: 'string', foreground: '006400' },
+          { token: 'number', foreground: 'B04600' },
+          { token: 'comment', foreground: 'A9A9A9' }
         ],
         colors: {
-          'editor.background':'#FDFDFD', 'editor.foreground':'#000000',
-          'editorGutter.background':'#E0E0E0', 'editorLineNumber.foreground':'#777777',
-          'editorLineNumber.activeForeground':'#000000', 'editor.lineHighlightBackground':'#F5F5F5',
-          'editor.selectionBackground':'#B9D7F6', 'editorCursor.foreground':'#000000',
-          'editorIndentGuide.background1':'#E8E8E8'
+          'editor.background': '#FDFDFD', 'editor.foreground': '#000000',
+          'editorGutter.background': '#E0E0E0', 'editorLineNumber.foreground': '#777777',
+          'editorLineNumber.activeForeground': '#000000', 'editor.lineHighlightBackground': '#F5F5F5',
+          'editor.selectionBackground': '#B9D7F6', 'editorCursor.foreground': '#000000',
+          'editorIndentGuide.background1': '#E8E8E8'
         }
       });
       resolve(monaco);
@@ -95,7 +95,7 @@ async function api(url, options = {}) {
   const response = await fetch(url, {
     credentials: 'include',
     ...options,
-    headers: { 'content-type':'application/json', ...(options.headers || {}) },
+    headers: { 'content-type': 'application/json', ...(options.headers || {}) },
     body: options.body && typeof options.body !== 'string' ? JSON.stringify(options.body) : options.body
   });
   const data = await response.json().catch(() => ({}));
@@ -136,7 +136,7 @@ function markdown(source) {
   value = value.replace(/^### (.+)$/gm, '<h3>$1</h3>').replace(/^## (.+)$/gm, '<h2>$1</h2>');
   value = value.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/`([^`]+)`/g, '<code>$1</code>');
   value = value.replace(/^[-*] (.+)$/gm, '<li>$1</li>').replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>');
-  return value.split(/\n{2,}/).map((block) => /^<(h|ul)/.test(block) ? block : `<p>${block.replace(/\n/g,'<br>')}</p>`).join('');
+  return value.split(/\n{2,}/).map((block) => /^<(h|ul)/.test(block) ? block : `<p>${block.replace(/\n/g, '<br>')}</p>`).join('');
 }
 
 function authView(register = false) {
@@ -168,7 +168,7 @@ function authView(register = false) {
     button.disabled = true;
     try {
       const body = Object.fromEntries(new FormData(event.target));
-      const data = await api(`/api/auth/${register ? 'register' : 'login'}`, { method:'POST', body });
+      const data = await api(`/api/auth/${register ? 'register' : 'login'}`, { method: 'POST', body });
       state.user = data.user;
       await navigate('home');
       if (typeof PyodideManager !== 'undefined') PyodideManager.preload();
@@ -219,7 +219,7 @@ function shell(content, title = 'Tổng quan') {
   });
   const shellEl = document.querySelector('#shell');
   const sidebar = document.querySelector('#sidebar');
-  
+
   const closeMobileNav = () => {
     sidebar.classList.remove('open');
     shellEl.classList.remove('nav-open');
@@ -227,7 +227,7 @@ function shell(content, title = 'Tổng quan') {
     // Accessibility: return focus to hamburger menu
     document.querySelector('#menu')?.focus();
   };
-  
+
   const openMobileNav = () => {
     sidebar.classList.add('open');
     shellEl.classList.add('nav-open');
@@ -257,7 +257,7 @@ function shell(content, title = 'Tổng quan') {
     if (state.page === 'solve') {
       if (!confirm('Bạn đang trong lượt làm bài và chưa nộp bài. Đăng xuất sẽ mất mã nguồn hiện tại. Bạn có chắc chắn muốn đăng xuất?')) return;
     }
-    await api('/api/auth/logout', { method:'POST' });
+    await api('/api/auth/logout', { method: 'POST' });
     if (typeof PyodideManager !== 'undefined') PyodideManager.terminate();
     state.user = null;
     state.problems = null;
@@ -327,11 +327,11 @@ function normalizeProblemItem(raw) {
   const submissionCount = Number(raw.submissionCount ?? raw.submission_count ?? 0);
   const completedAt = raw.completedAt ?? raw.completed_at ?? null;
   const bestStatus = raw.bestStatus ?? raw.best_status ?? null;
-  
+
   const isCompleted = completedAt !== null || bestStatus === 'ACCEPTED' || bestScore >= passingScore;
   const isAttempted = submissionCount > 0;
   const isAssigned = Boolean(raw.isAssigned ?? raw.is_assigned);
-  
+
   let uiStatus = 'not_started';
   if (isCompleted) uiStatus = 'completed';
   else if (isAttempted) uiStatus = 'attempted';
@@ -449,10 +449,10 @@ function problemCards(problems) {
     const limitMinutes = p.timeLimitMinutes;
     const bestScore = p.bestScore;
     const maxScore = p.maxScore;
-    
+
     let statusClass = 'neutral';
     let statusLabel = 'Chưa làm';
-    
+
     if (p.uiStatus === 'completed') {
       statusClass = 'mint';
       statusLabel = 'Hoàn thành';
@@ -469,10 +469,10 @@ function problemCards(problems) {
     else if (rating >= 1400 && rating <= 1600) ratingClass = 'r1400';
     else if (rating >= 1700 && rating <= 1900) ratingClass = 'r1700';
     else if (rating >= 2000) ratingClass = 'r2000';
-    
+
     const showAssignedBadge = p.isAssigned && p.uiStatus !== 'assigned';
     const scoreText = p.isAttempted ? `Điểm tốt nhất: ${bestScore}/${maxScore}` : `Điểm: ${bestScore}/${maxScore}`;
-    
+
     return `<article class="problem-card">
       <div class="card-badges">
         <span class="badge ${statusClass}">${statusLabel}</span>
@@ -499,13 +499,13 @@ async function homeView() {
   shell(`<section class="content">
     <div class="hero-row"><div><span class="eyebrow">Phòng luyện hôm nay</span><h2>Chào ${escapeHtml(state.user.full_name.split(' ').slice(-1)[0])},<br>mình viết gì đây?</h2></div><p class="muted">Mỗi lần chạy là một giả thuyết.<br>Mỗi lần sai là thêm một dữ kiện.</p></div>
     <div class="stats"><div class="stat"><b>${problems.length}</b><span>Bài đang mở</span></div><div class="stat"><b>${accepted}</b><span>Bài đã giải đúng</span></div><div class="stat"><b>${submissions.length}</b><span>Lượt nộp gần đây</span></div></div>
-    <div class="section-head"><h3>Bài tập mới</h3><button class="text-btn" id="all-problems">Xem tất cả →</button></div>${problemCards(problems.slice(0,6))}
+    <div class="section-head"><h3>Bài tập mới</h3><button class="text-btn" id="all-problems">Xem tất cả →</button></div>${problemCards(problems.slice(0, 6))}
   </section>`);
   document.querySelector('#all-problems').onclick = () => navigate('problems');
   bindProblemButtons();
-  
+
   // Preload Monaco Editor in background to eliminate delay
-  loadMonaco().catch(() => {});
+  loadMonaco().catch(() => { });
 }
 
 async function problemsView() {
@@ -654,7 +654,7 @@ async function problemsView() {
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
       state.problemsPage.tab = btn.dataset.tab;
-      
+
       updateScoreFilterVisibility();
       resetAndLoadProblems();
     };
@@ -780,7 +780,7 @@ async function problemsView() {
     state.problemsPage.maxScore = maxScoreInput.value;
     state.problemsPage.uploadedFrom = dateFromInput.value;
     state.problemsPage.uploadedTo = dateToInput.value;
-    
+
     closeFilter();
     resetAndLoadProblems();
   };
@@ -793,7 +793,7 @@ async function problemsView() {
     maxScoreInput.value = '';
     dateFromInput.value = '';
     dateToInput.value = '';
-    
+
     if (window.innerWidth <= 768) {
       applyFiltersMobile();
     } else {
@@ -815,35 +815,35 @@ function resetAndLoadProblems() {
   state.problemsPage.items = [];
   state.problemsPage.cursor = null;
   state.problemsPage.hasMore = false;
-  
+
   const grid = document.querySelector('#problems-grid');
   if (grid) grid.innerHTML = '';
-  
+
   const oldRetry = document.querySelector('#retry-loading');
   if (oldRetry) oldRetry.remove();
-  
+
   document.querySelector('#problems-empty').style.display = 'none';
   document.querySelector('#problems-no-more').style.display = 'none';
-  
+
   // Safe area: prevent scroll issue on bottom sheet and reset to top
   window.scrollTo({ top: 0, behavior: 'instant' });
-  
+
   loadNextProblemsPage();
 }
 
 async function loadNextProblemsPage() {
   if (state.problemsPage.loading) return;
   state.problemsPage.loading = true;
-  
+
   const loadingIndicator = document.querySelector('#problems-loading');
   if (loadingIndicator) loadingIndicator.style.display = 'flex';
-  
+
   const oldRetry = document.querySelector('#retry-loading');
   if (oldRetry) oldRetry.remove();
-  
+
   try {
     const { tab, cursor, minRating, maxRating, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo } = state.problemsPage;
-    
+
     // Build query params
     const params = new URLSearchParams({
       tab,
@@ -858,13 +858,13 @@ async function loadNextProblemsPage() {
     if (sort) params.append('sort', sort);
     if (uploadedFrom) params.append('uploadedFrom', uploadedFrom);
     if (uploadedTo) params.append('uploadedTo', uploadedTo);
-    
+
     const data = await api(`/api/problems?${params.toString()}`);
-    
+
     state.problemsPage.items.push(...data.items);
     state.problemsPage.cursor = data.nextCursor;
     state.problemsPage.hasMore = data.hasMore;
-    
+
     renderProblemsGrid();
   } catch (error) {
     toast(error.message, true);
@@ -891,16 +891,16 @@ function renderProblemsGrid() {
   const grid = document.querySelector('#problems-grid');
   const emptyState = document.querySelector('#problems-empty');
   const noMoreState = document.querySelector('#problems-no-more');
-  
+
   if (!grid) return;
-  
+
   const items = state.problemsPage.items;
-  
+
   if (items.length === 0) {
     grid.innerHTML = '';
     emptyState.style.display = 'block';
     noMoreState.style.display = 'none';
-    
+
     if (state.problemsPage.tab === 'done') {
       emptyState.innerHTML = `
         <div class="empty-prompt">
@@ -940,10 +940,10 @@ function renderProblemsGrid() {
     }
   } else {
     emptyState.style.display = 'none';
-    
+
     grid.innerHTML = problemCards(items);
     bindProblemButtons();
-    
+
     if (!state.problemsPage.hasMore) {
       noMoreState.style.display = 'block';
     } else {
@@ -955,7 +955,7 @@ function renderProblemsGrid() {
 function setupInfiniteScrollObserver() {
   const trigger = document.querySelector('#infinite-scroll-trigger');
   if (!trigger) return;
-  
+
   const observer = new IntersectionObserver((entries) => {
     const entry = entries[0];
     if (entry.isIntersecting && state.problemsPage.hasMore && !state.problemsPage.loading) {
@@ -971,20 +971,20 @@ async function openProblem(slug) {
   clearInterval(state.timer);
   state.editor?.dispose(); state.editor = null;
   state.terminal?.dispose(); state.terminal = null;
-  
+
   // Show a loading indicator instantly inside the content area for immediate visual feedback
   const mainEl = document.querySelector('.main');
   if (mainEl) {
     mainEl.innerHTML = `<header class="topbar"><button class="mobile-menu" id="menu" aria-label="Mở menu">☰</button><h1>Đang chuẩn bị phòng luyện...</h1><button class="text-btn" id="logout">Đăng xuất</button></header>
       <div class="loading-container"><div class="loading-spinner"></div></div>`;
   }
-  
+
   let problem = state.problemDetails[slug];
   let attempt;
   let progress;
   if (problem) {
     const [resA, resProg] = await Promise.all([
-      api('/api/attempts', { method:'POST', body:{ slug } }),
+      api('/api/attempts', { method: 'POST', body: { slug } }),
       api(`/api/problems/${encodeURIComponent(slug)}/progress`)
     ]);
     attempt = resA.attempt;
@@ -992,7 +992,7 @@ async function openProblem(slug) {
   } else {
     const [resP, resA, resProg] = await Promise.all([
       api(`/api/problems/${encodeURIComponent(slug)}`),
-      api('/api/attempts', { method:'POST', body:{ slug } }),
+      api('/api/attempts', { method: 'POST', body: { slug } }),
       api(`/api/problems/${encodeURIComponent(slug)}/progress`)
     ]);
     problem = resP.problem;
@@ -1000,7 +1000,7 @@ async function openProblem(slug) {
     progress = resProg.progress;
     state.problemDetails[slug] = problem;
   }
-  
+
   state.current = problem; state.attempt = attempt; state.page = 'solve';
   const rating = problem.rating ?? 800;
   const ratingLabel = clientGetRatingLabel(rating);
@@ -1027,8 +1027,8 @@ async function openProblem(slug) {
     initialStatusColor = '#b43b31';
   }
 
-  const examples = (problem.examples || []).map((ex, i) => `<div class="example"><div class="example-head">Ví dụ ${i+1}</div><div class="example-grid"><div>Input<pre>${escapeHtml(ex.input)}</pre></div><div>Output<pre>${escapeHtml(ex.output)}</pre></div></div>${ex.explanation ? `<div style="padding:0 12px 12px" class="muted">${escapeHtml(ex.explanation)}</div>` : ''}</div>`).join('');
-  
+  const examples = (problem.examples || []).map((ex, i) => `<div class="example"><div class="example-head">Ví dụ ${i + 1}</div><div class="example-grid"><div>Input<pre>${escapeHtml(ex.input)}</pre></div><div>Output<pre>${escapeHtml(ex.output)}</pre></div></div>${ex.explanation ? `<div style="padding:0 12px 12px" class="muted">${escapeHtml(ex.explanation)}</div>` : ''}</div>`).join('');
+
   const layoutHtml = `
     <div class="solve-mobile-tabs" role="tablist">
       <button class="active" id="show-problem" role="tab">Đề bài</button>
@@ -1113,10 +1113,10 @@ async function openProblem(slug) {
     const renderMath = () => {
       window.renderMathInElement(pane, {
         delimiters: [
-          {left: '$$', right: '$$', display: true},
-          {left: '$', right: '$', display: false},
-          {left: '\\(', right: '\\)', display: false},
-          {left: '\\[', right: '\\[', display: true}
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false },
+          { left: '\\[', right: '\\[', display: true }
         ],
         throwOnError: false
       });
@@ -1138,11 +1138,11 @@ async function setupEditor() {
   const cacheKey = `simpleoj-code-${state.user.id}-${state.current.slug}`;
   const savedCode = localStorage.getItem(cacheKey);
   state.editor = monaco.editor.create(editorHost, {
-    value: savedCode || state.current.starter_code, language:'python', theme:'thonny-light', automaticLayout:true,
-    fontFamily:'Consolas, "DM Mono", monospace', fontSize:14, lineHeight:22, tabSize:4,
-    insertSpaces:true, minimap:{enabled:false}, scrollBeyondLastLine:false, smoothScrolling:true,
-    padding:{top:10,bottom:10}, renderLineHighlight:'all', overviewRulerLanes:0,
-    scrollbar:{verticalScrollbarSize:10,horizontalScrollbarSize:10}, wordWrap:'off'
+    value: savedCode || state.current.starter_code, language: 'python', theme: 'thonny-light', automaticLayout: true,
+    fontFamily: 'Consolas, "DM Mono", monospace', fontSize: 14, lineHeight: 22, tabSize: 4,
+    insertSpaces: true, minimap: { enabled: false }, scrollBeyondLastLine: false, smoothScrolling: true,
+    padding: { top: 10, bottom: 10 }, renderLineHighlight: 'all', overviewRulerLanes: 0,
+    scrollbar: { verticalScrollbarSize: 10, horizontalScrollbarSize: 10 }, wordWrap: 'off'
   });
   let saveTimeout = null;
   state.editor.onDidChangeModelContent(() => {
@@ -1210,7 +1210,7 @@ async function setupEditor() {
     state.terminal?.notice('Đang chấm trên các test ẩn…', '36');
     try {
       const slug = state.current.slug;
-      const data = await api('/api/submissions', { method:'POST', body:{ attemptId:state.attempt.id, code:state.editor.getValue() } });
+      const data = await api('/api/submissions', { method: 'POST', body: { attemptId: state.attempt.id, code: state.editor.getValue() } });
       clearInterval(state.timer);
       state.page = 'submitted';
       const cacheKey = `simpleoj-code-${state.user.id}-${state.current.slug}`;
@@ -1219,7 +1219,7 @@ async function setupEditor() {
       // Load new progress and update state
       const updatedProgRes = await api(`/api/problems/${encodeURIComponent(slug)}/progress`);
       const updatedProg = updatedProgRes.progress;
-      
+
       // Update local cache
       updateProblemProgressLocally(
         slug,
@@ -1267,7 +1267,7 @@ function getProgressHtml(p) {
   const isCompleted = p.isCompleted;
   const isAttempted = p.isAttempted;
   const hasBestSub = p.bestSubmissionId !== null;
-  
+
   return `
     <div class="progress-panel" style="padding: 12px 0;">
       <div class="progress-summary-card" style="background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
@@ -1305,10 +1305,10 @@ function getProgressHtml(p) {
       <h4 style="margin: 0 0 12px 0; font-size: 1rem; color: var(--ink);">Các bài nộp gần đây</h4>
       <div class="submissions-list" style="display: flex; flex-direction: column; gap: 8px;">
         ${p.recentSubmissions.length > 0 ? p.recentSubmissions.map(s => {
-          const isAccepted = s.status === 'ACCEPTED';
-          const statusClass = isAccepted ? 'mint' : 'red';
-          const scoreColor = isAccepted ? '#0a6946' : '#b43b31';
-          return `
+    const isAccepted = s.status === 'ACCEPTED';
+    const statusClass = isAccepted ? 'mint' : 'red';
+    const scoreColor = isAccepted ? '#0a6946' : '#b43b31';
+    return `
           <div class="submission-item" data-id="${s.id}" style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; transition: 0.15s;">
             <div style="display: flex; flex-direction: column; gap: 4px;">
               <span class="badge ${statusClass}" style="align-self: flex-start; font-size: 9px; padding: 2px 6px;">${statusLabel(s.status)}</span>
@@ -1320,7 +1320,7 @@ function getProgressHtml(p) {
             </div>
           </div>
           `;
-        }).join('') : '<div class="muted" style="text-align: center; padding: 12px; font-size: 0.85rem;">Không có bài nộp nào gần đây.</div>'}
+  }).join('') : '<div class="muted" style="text-align: center; padding: 12px; font-size: 0.85rem;">Không có bài nộp nào gần đây.</div>'}
       </div>
     </div>
   `;
@@ -1384,7 +1384,7 @@ function updateProblemProgressLocally(slug, bestScore, bestStatus, submissionCou
   }
   if (state.problemsPage && Array.isArray(state.problemsPage.items)) {
     const tab = state.problemsPage.tab;
-    const shouldRemove = 
+    const shouldRemove =
       (tab === 'todo' && submissionCount > 0) ||
       (tab === 'attempted' && isCompleted) ||
       (tab === 'assigned' && isCompleted) ||
@@ -1403,7 +1403,7 @@ async function showSubmissionDetailModal(submissionId) {
     toast('Đang tải chi tiết bài nộp...');
     const data = await api(`/api/submissions/${submissionId}`);
     const s = data.submission;
-    
+
     let reportsList = [];
     if (s.report) {
       const reports = Array.isArray(s.report) ? s.report : JSON.parse(s.report);
@@ -1411,7 +1411,7 @@ async function showSubmissionDetailModal(submissionId) {
         const hasPassed = r.passed;
         const statusText = r.status || (hasPassed ? 'Accepted' : 'Wrong Answer');
         const detailText = r.error || (hasPassed ? 'Khớp đáp án' : 'Sai đáp án');
-        
+
         let ioDetails = '';
         if (r.input !== undefined || r.expected !== undefined || r.actual !== undefined) {
           ioDetails = `
@@ -1518,7 +1518,7 @@ async function historyView() {
 
 async function leaderboardView() {
   const leaderboard = await loadLeaderboard();
-  const rows = leaderboard.map((u,i) => `<tr><td><strong>${i+1}</strong></td><td>${escapeHtml(u.full_name)}</td><td>${u.solved}</td><td>${u.total_score}</td></tr>`).join('');
+  const rows = leaderboard.map((u, i) => `<tr><td><strong>${i + 1}</strong></td><td>${escapeHtml(u.full_name)}</td><td>${u.solved}</td><td>${u.total_score}</td></tr>`).join('');
   shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Bảng thành tích</span><h2>Tiến bộ không phải<br>một cuộc đua.</h2></div></div><div class="table-wrap"><table><thead><tr><th>Hạng</th><th>Học sinh</th><th>Bài hoàn thành</th><th>Tổng điểm tốt nhất</th></tr></thead><tbody>${rows}</tbody></table></div></section>`, 'Bảng xếp hạng');
 }
 
@@ -1768,7 +1768,7 @@ async function adminView() {
 }
 
 function testRows(values) {
-  const list = (Array.isArray(values) && values.length > 0) ? values : [{input:'',output:'',isPublic:false,weight:1}];
+  const list = (Array.isArray(values) && values.length > 0) ? values : [{ input: '', output: '', isPublic: false, weight: 1 }];
   return list.map((t) => {
     const isPublic = t.isPublic ?? t.is_public ?? false;
     const weight = t.weight ?? 1;
@@ -1790,10 +1790,10 @@ function clientValidateProblem(problem) {
   const errors = [];
   if (!problem.slug) errors.push('Slug không được để trống.');
   else if (/[^a-z0-9_-]/.test(problem.slug)) errors.push('Slug chỉ được chứa chữ thường, số, dấu gạch ngang (-) và gạch dưới (_).');
-  
+
   if (!problem.title) errors.push('Thiếu tên bài.');
   if (!problem.description) errors.push('Thiếu đề bài.');
-  
+
   const testcases = problem.testcases || [];
   if (!Array.isArray(testcases) || !testcases.length) {
     errors.push('Cần ít nhất một test case.');
@@ -1809,21 +1809,21 @@ function clientValidateProblem(problem) {
       }
     });
   }
-  
+
   const rating = Number(problem.rating ?? 800);
   if (isNaN(rating) || rating < 800 || rating > 3500 || rating % 100 !== 0) {
     errors.push('Rating phải là số nguyên từ 800 đến 3500 và chia hết cho 100.');
   }
-  
+
   if (problem.compareMode && !['exact', 'trim', 'token', 'number'].includes(problem.compareMode)) {
     errors.push('Compare mode không hợp lệ.');
   }
-  
+
   return errors;
 }
 
 function problemModal(problem = null) {
-  const ratingOpts = Array.from({length: 28}, (_, i) => 800 + i * 100).map(r => `
+  const ratingOpts = Array.from({ length: 28 }, (_, i) => 800 + i * 100).map(r => `
     <option value="${r}" ${(problem?.rating ?? 800) === r ? 'selected' : ''}>${r}</option>
   `).join('');
 
@@ -1878,12 +1878,12 @@ function problemModal(problem = null) {
     }));
     data.examples = problem?.examples || [];
     try {
-      await api(problem ? `/api/admin/problems/${problem.id}` : '/api/admin/problems', { method:problem ? 'PUT':'POST', body:data });
+      await api(problem ? `/api/admin/problems/${problem.id}` : '/api/admin/problems', { method: problem ? 'PUT' : 'POST', body: data });
       state.problems = null;
       state.problemDetails = {};
       state.adminDashboard = null;
       modal.remove(); toast('Đã lưu bài tập.'); adminView();
-    } catch(error) { toast(error.message,true); }
+    } catch (error) { toast(error.message, true); }
   };
 }
 
@@ -1891,7 +1891,7 @@ function importModal() {
   document.body.insertAdjacentHTML('beforeend', `<div class="modal-backdrop" id="import-modal"><div class="modal"><span class="eyebrow">Nhập hàng loạt</span><h2>Import bài từ JSON</h2><p class="muted">Chấp nhận định dạng <code>problems.json</code> cũ hoặc mảng bài theo schema mới. Bài trùng slug sẽ được cập nhật.</p><div class="field"><label>Chọn file JSON</label><input type="file" id="json-file" accept="application/json,.json"></div><div id="import-preview"></div><div class="modal-actions"><button class="btn secondary" id="cancel-import">Hủy</button><button class="btn" id="do-import">Import</button></div></div></div>`);
   const modal = document.querySelector('#import-modal');
   modal.querySelector('#cancel-import').onclick = () => modal.remove();
-  
+
   modal.querySelector('#json-file').onchange = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -1899,7 +1899,7 @@ function importModal() {
       const text = await file.text();
       const body = JSON.parse(text);
       const items = Array.isArray(body) ? body : (body.problems || []);
-      
+
       let allErrors = [];
       items.forEach((p, idx) => {
         const name = p.title || p.slug || `Bài ${idx + 1}`;
@@ -1927,34 +1927,34 @@ function importModal() {
   };
 
   modal.querySelector('#do-import').onclick = async () => {
-    const file = modal.querySelector('#json-file').files[0]; if(!file) return toast('Hãy chọn file JSON.',true);
+    const file = modal.querySelector('#json-file').files[0]; if (!file) return toast('Hãy chọn file JSON.', true);
     try {
       const body = JSON.parse(await file.text());
-      const result = await api('/api/admin/problems/import',{method:'POST',body});
+      const result = await api('/api/admin/problems/import', { method: 'POST', body });
       state.problems = null;
       state.problemDetails = {};
       state.adminDashboard = null;
       modal.remove();
       toast(`Đã import thành công: ${result.imported} bài (Tạo mới: ${result.created}, Cập nhật: ${result.updated}).`);
       adminView();
-    } catch(error) { toast(error.message,true); }
+    } catch (error) { toast(error.message, true); }
   };
 }
 
 async function usersView() {
   const users = await loadAdminUsers();
-  const rows = users.map((u) => `<tr><td><strong>${escapeHtml(u.full_name)}</strong><br><span class="muted">${escapeHtml(u.email)}</span></td><td><select class="role" data-id="${u.id}"><option ${u.role==='STUDENT'?'selected':''}>STUDENT</option><option ${u.role==='ADMIN'?'selected':''}>ADMIN</option></select></td><td>${u.submissions}</td><td><label><input type="checkbox" class="active-user" data-id="${u.id}" ${u.is_active?'checked':''}> Hoạt động</label></td><td><button class="btn small save-user" data-id="${u.id}">Lưu</button></td></tr>`).join('');
+  const rows = users.map((u) => `<tr><td><strong>${escapeHtml(u.full_name)}</strong><br><span class="muted">${escapeHtml(u.email)}</span></td><td><select class="role" data-id="${u.id}"><option ${u.role === 'STUDENT' ? 'selected' : ''}>STUDENT</option><option ${u.role === 'ADMIN' ? 'selected' : ''}>ADMIN</option></select></td><td>${u.submissions}</td><td><label><input type="checkbox" class="active-user" data-id="${u.id}" ${u.is_active ? 'checked' : ''}> Hoạt động</label></td><td><button class="btn small save-user" data-id="${u.id}">Lưu</button></td></tr>`).join('');
   shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Tài khoản</span><h2>Học sinh & quyền truy cập.</h2></div></div><div class="table-wrap"><table><thead><tr><th>Tài khoản</th><th>Vai trò</th><th>Lượt nộp</th><th>Trạng thái</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></section>`, 'Học sinh');
   document.querySelectorAll('.save-user').forEach((b) => b.onclick = async () => {
     const role = document.querySelector(`.role[data-id="${b.dataset.id}"]`).value;
     const isActive = document.querySelector(`.active-user[data-id="${b.dataset.id}"]`).checked;
     try {
-      await api(`/api/admin/users/${b.dataset.id}`,{method:'PATCH',body:{role,isActive}});
+      await api(`/api/admin/users/${b.dataset.id}`, { method: 'PATCH', body: { role, isActive } });
       state.adminUsers = null;
       state.adminDashboard = null;
       state.leaderboard = null;
       toast('Đã cập nhật tài khoản.');
-    } catch(error) { toast(error.message,true); }
+    } catch (error) { toast(error.message, true); }
   });
 }
 
@@ -1968,19 +1968,19 @@ async function navigate(page) {
       return;
     }
   }
-  
+
   // Close mobile nav drawer and reset scroll-lock if open
   const sidebar = document.querySelector('#sidebar');
   const shellEl = document.querySelector('#shell');
   if (sidebar) sidebar.classList.remove('open');
   if (shellEl) shellEl.classList.remove('nav-open');
   document.body.style.overflow = '';
-  
+
   // Highlight the clicked tab instantly for immediate visual feedback
   document.querySelectorAll('[data-page]').forEach((button) => {
     button.classList.toggle('active', button.dataset.page === page);
   });
-  
+
   // Show a loading spinner instantly inside the content area
   const mainEl = document.querySelector('.main');
   if (mainEl) {
@@ -1992,7 +1992,7 @@ async function navigate(page) {
   state.editor?.dispose(); state.editor = null;
   state.terminal?.dispose(); state.terminal = null;
   state.page = page;
-  
+
   if (state.user && (page === 'home' || page === 'problems')) {
     if (typeof PyodideManager !== 'undefined') PyodideManager.preload();
   }
@@ -2005,7 +2005,7 @@ async function navigate(page) {
     if (page === 'admin' && state.user.role === 'ADMIN') return await adminView();
     if (page === 'users' && state.user.role === 'ADMIN') return await usersView();
     return await homeView();
-  } catch (error) { toast(error.message,true); }
+  } catch (error) { toast(error.message, true); }
 }
 
 try {
@@ -2101,7 +2101,7 @@ function initResizers() {
       let newWidth = startWidth + dx;
       const minWidth = 280;
       const maxWidth = window.innerWidth - 450;
-      
+
       if (newWidth < minWidth) newWidth = minWidth;
       if (newWidth > maxWidth) newWidth = maxWidth;
 

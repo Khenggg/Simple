@@ -7,6 +7,21 @@ This file contains the directory tree and full code contents of the non-ignored 
 ```markdown
 - 📄 .env (0.5 KB)
 - 📄 .env.example (0.6 KB)
+- 📁 **backups/**
+  - 📄 attempts-before-cleanup-20260624-165640.json (9.5 KB)
+  - 📄 attempts-before-cleanup-20260624-165800.json (9.5 KB)
+  - 📄 problems-before-cleanup-20260624-165640.json (31.6 KB)
+  - 📄 problems-before-cleanup-20260624-165800.json (31.6 KB)
+  - 📄 problem_testcases-before-cleanup-20260624-165640.json (27.7 KB)
+  - 📄 problem_testcases-before-cleanup-20260624-165800.json (27.7 KB)
+  - 📄 student_problem_assignments-before-cleanup-20260624-165640.json (7.6 KB)
+  - 📄 student_problem_assignments-before-cleanup-20260624-165800.json (7.6 KB)
+  - 📄 submissions-before-cleanup-20260624-165640.json (14.4 KB)
+  - 📄 submissions-before-cleanup-20260624-165800.json (14.4 KB)
+  - 📄 user_problem_progress-before-cleanup-20260624-165640.json (3.1 KB)
+  - 📄 user_problem_progress-before-cleanup-20260624-165800.json (3.1 KB)
+- 📁 **data/**
+  - 📄 canonical-problems.js (24.0 KB)
 - 📄 docker-compose.yml (0.3 KB)
 - 📄 Dockerfile (0.6 KB)
 - 📁 **docs/**
@@ -32,7 +47,7 @@ This file contains the directory tree and full code contents of the non-ignored 
 - 📄 scratch-retrieve.js (0.3 KB)
 - 📁 **scripts/**
   - 📄 migrate.js (1.1 KB)
-  - 📄 seed.js (3.2 KB)
+  - 📄 seed.js (4.3 KB)
 - 📁 **src/**
   - 📄 auth.js (2.1 KB)
   - 📄 codeforces-vi-problems.js (11.0 KB)
@@ -90,6 +105,6030 @@ TERMINAL_MAX_OUTPUT_BYTES=100000
 # Vercel: trỏ tới một SimpleOJ instance trên Render dùng làm judge service.
 # JUDGE_SERVICE_URL=https://your-judge.onrender.com
 # JUDGE_SERVICE_TOKEN=replace-with-a-long-random-token
+```
+
+### File: `backups/attempts-before-cleanup-20260624-165640.json`
+
+```json
+[
+  {
+    "id": "84ae9154-2d0b-49ca-b096-746dbd828b81",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T19:02:21.967Z",
+    "deadline_at": "2026-06-19T19:32:21.967Z",
+    "submitted_at": "2026-06-19T19:06:14.344Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "06ada14c-2fd7-4033-bdfd-1221dae15a30",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T19:12:24.118Z",
+    "deadline_at": "2026-06-19T19:42:24.118Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "866e6204-2e69-495e-bfda-5e81a2e410b0",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "started_at": "2026-06-19T19:12:56.064Z",
+    "deadline_at": "2026-06-19T19:42:56.064Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "42fd4e5c-ec61-405a-936e-87ddc10ba536",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "started_at": "2026-06-19T19:13:33.401Z",
+    "deadline_at": "2026-06-19T19:43:33.401Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "f103cfdf-a22c-48bf-b165-0d278044acb0",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T20:06:06.595Z",
+    "deadline_at": "2026-06-19T20:36:06.595Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "706e6aa9-f2b7-443b-ae62-5fc8ae16653f",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "started_at": "2026-06-19T20:15:53.921Z",
+    "deadline_at": "2026-06-19T20:45:53.921Z",
+    "submitted_at": "2026-06-19T20:45:38.306Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "90762349-8381-4b32-830a-5508c5186834",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "started_at": "2026-06-19T20:47:12.369Z",
+    "deadline_at": "2026-06-19T21:17:12.369Z",
+    "submitted_at": "2026-06-19T20:47:38.413Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "7d775c15-6305-4cdf-ae82-65965983e078",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T21:31:40.366Z",
+    "deadline_at": "2026-06-19T22:01:40.366Z",
+    "submitted_at": "2026-06-19T21:52:05.200Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "f89c3068-1858-4348-8e72-a74a9107304f",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "started_at": "2026-06-19T21:39:38.469Z",
+    "deadline_at": "2026-06-19T22:09:38.469Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "43f176ed-8190-4be2-82c3-d88822e0c759",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "started_at": "2026-06-19T21:54:51.746Z",
+    "deadline_at": "2026-06-19T22:24:51.746Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "ddb983cb-f35b-4098-9d48-d7122d68379f",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T22:17:55.641Z",
+    "deadline_at": "2026-06-19T22:47:55.641Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "ac3cd1d0-2c1f-46b7-9957-d0bf182f8964",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "started_at": "2026-06-19T22:19:43.418Z",
+    "deadline_at": "2026-06-19T22:49:43.418Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "9d88d119-3d65-42ad-acc5-ba3057c03cc7",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-19T22:40:06.618Z",
+    "deadline_at": "2026-06-19T23:10:06.618Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "7e7f5b2a-7ee3-48c7-919a-7936310eae5d",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "started_at": "2026-06-19T22:41:16.819Z",
+    "deadline_at": "2026-06-19T23:11:16.819Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "c6658799-ce9f-4181-9627-698492fc5e63",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "started_at": "2026-06-19T22:47:45.042Z",
+    "deadline_at": "2026-06-19T23:17:45.042Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "f498e579-3e90-4b4a-acea-ab74f1084b5d",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "started_at": "2026-06-19T22:59:34.228Z",
+    "deadline_at": "2026-06-19T23:29:34.228Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "e0e04a36-3354-41d7-8ac8-507759f69f85",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T23:17:04.066Z",
+    "deadline_at": "2026-06-19T23:47:04.066Z",
+    "submitted_at": "2026-06-19T23:17:05.181Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "3dd7fe79-c3ef-44aa-9b4b-bfe65ce34436",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T23:17:38.249Z",
+    "deadline_at": "2026-06-19T23:47:38.249Z",
+    "submitted_at": "2026-06-19T23:17:39.339Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "09f27bb1-98a4-42db-855e-62a01a962f85",
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "started_at": "2026-06-19T23:18:57.027Z",
+    "deadline_at": "2026-06-19T23:48:57.027Z",
+    "submitted_at": "2026-06-19T23:18:58.122Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "f33e0cb4-041f-49a3-b39b-4364f84741c4",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "started_at": "2026-06-19T23:27:02.679Z",
+    "deadline_at": "2026-06-19T23:57:02.679Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "cd6b584a-1841-41eb-9de9-dcfaeb69acf3",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "started_at": "2026-06-19T23:41:40.369Z",
+    "deadline_at": "2026-06-20T00:11:40.369Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "14809094-d459-4c89-bb48-55d11851ba38",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "started_at": "2026-06-19T23:43:17.102Z",
+    "deadline_at": "2026-06-20T00:13:17.102Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "5be143db-e0cf-4ce0-bb8c-33a0191334c1",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-20T06:17:50.874Z",
+    "deadline_at": "2026-06-20T06:47:50.874Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "9c09c1e1-e2c9-48fa-b9f1-24a8568640e7",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-20T06:56:00.710Z",
+    "deadline_at": "2026-06-20T07:26:00.710Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "a44be3aa-8f7b-4c61-a116-21e091299402",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "started_at": "2026-06-20T07:22:12.034Z",
+    "deadline_at": "2026-06-20T07:52:12.034Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "79ee6de5-e04c-40db-9810-5f61cdec1727",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "started_at": "2026-06-20T07:33:29.328Z",
+    "deadline_at": "2026-06-20T08:03:29.328Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "f08c3b47-a819-4175-bb63-e7c0eb8ea8e6",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "started_at": "2026-06-20T11:52:38.957Z",
+    "deadline_at": "2026-06-20T12:22:38.957Z",
+    "submitted_at": "2026-06-20T11:58:28.606Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "ca4c3a60-cacd-460f-a880-8d944da8904d",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "started_at": "2026-06-20T11:58:37.753Z",
+    "deadline_at": "2026-06-20T12:28:37.753Z",
+    "submitted_at": "2026-06-20T12:01:08.613Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "562dd191-c7a6-4bae-8087-227201d88287",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "started_at": "2026-06-20T12:05:52.164Z",
+    "deadline_at": "2026-06-20T12:35:52.164Z",
+    "submitted_at": "2026-06-20T12:07:19.729Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "5808c6b1-aebb-4480-8de1-6e5f4c4d8f5a",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "started_at": "2026-06-24T09:32:08.032Z",
+    "deadline_at": "2026-06-24T10:02:08.032Z",
+    "submitted_at": "2026-06-24T09:34:23.314Z",
+    "status": "SUBMITTED"
+  }
+]
+```
+
+### File: `backups/attempts-before-cleanup-20260624-165800.json`
+
+```json
+[
+  {
+    "id": "84ae9154-2d0b-49ca-b096-746dbd828b81",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T19:02:21.967Z",
+    "deadline_at": "2026-06-19T19:32:21.967Z",
+    "submitted_at": "2026-06-19T19:06:14.344Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "06ada14c-2fd7-4033-bdfd-1221dae15a30",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T19:12:24.118Z",
+    "deadline_at": "2026-06-19T19:42:24.118Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "866e6204-2e69-495e-bfda-5e81a2e410b0",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "started_at": "2026-06-19T19:12:56.064Z",
+    "deadline_at": "2026-06-19T19:42:56.064Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "42fd4e5c-ec61-405a-936e-87ddc10ba536",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "started_at": "2026-06-19T19:13:33.401Z",
+    "deadline_at": "2026-06-19T19:43:33.401Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "f103cfdf-a22c-48bf-b165-0d278044acb0",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T20:06:06.595Z",
+    "deadline_at": "2026-06-19T20:36:06.595Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "706e6aa9-f2b7-443b-ae62-5fc8ae16653f",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "started_at": "2026-06-19T20:15:53.921Z",
+    "deadline_at": "2026-06-19T20:45:53.921Z",
+    "submitted_at": "2026-06-19T20:45:38.306Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "90762349-8381-4b32-830a-5508c5186834",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "started_at": "2026-06-19T20:47:12.369Z",
+    "deadline_at": "2026-06-19T21:17:12.369Z",
+    "submitted_at": "2026-06-19T20:47:38.413Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "7d775c15-6305-4cdf-ae82-65965983e078",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T21:31:40.366Z",
+    "deadline_at": "2026-06-19T22:01:40.366Z",
+    "submitted_at": "2026-06-19T21:52:05.200Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "f89c3068-1858-4348-8e72-a74a9107304f",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "started_at": "2026-06-19T21:39:38.469Z",
+    "deadline_at": "2026-06-19T22:09:38.469Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "43f176ed-8190-4be2-82c3-d88822e0c759",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "started_at": "2026-06-19T21:54:51.746Z",
+    "deadline_at": "2026-06-19T22:24:51.746Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "ddb983cb-f35b-4098-9d48-d7122d68379f",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T22:17:55.641Z",
+    "deadline_at": "2026-06-19T22:47:55.641Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "ac3cd1d0-2c1f-46b7-9957-d0bf182f8964",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "started_at": "2026-06-19T22:19:43.418Z",
+    "deadline_at": "2026-06-19T22:49:43.418Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "9d88d119-3d65-42ad-acc5-ba3057c03cc7",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-19T22:40:06.618Z",
+    "deadline_at": "2026-06-19T23:10:06.618Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "7e7f5b2a-7ee3-48c7-919a-7936310eae5d",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "started_at": "2026-06-19T22:41:16.819Z",
+    "deadline_at": "2026-06-19T23:11:16.819Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "c6658799-ce9f-4181-9627-698492fc5e63",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "started_at": "2026-06-19T22:47:45.042Z",
+    "deadline_at": "2026-06-19T23:17:45.042Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "f498e579-3e90-4b4a-acea-ab74f1084b5d",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "started_at": "2026-06-19T22:59:34.228Z",
+    "deadline_at": "2026-06-19T23:29:34.228Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "e0e04a36-3354-41d7-8ac8-507759f69f85",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T23:17:04.066Z",
+    "deadline_at": "2026-06-19T23:47:04.066Z",
+    "submitted_at": "2026-06-19T23:17:05.181Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "3dd7fe79-c3ef-44aa-9b4b-bfe65ce34436",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T23:17:38.249Z",
+    "deadline_at": "2026-06-19T23:47:38.249Z",
+    "submitted_at": "2026-06-19T23:17:39.339Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "09f27bb1-98a4-42db-855e-62a01a962f85",
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "started_at": "2026-06-19T23:18:57.027Z",
+    "deadline_at": "2026-06-19T23:48:57.027Z",
+    "submitted_at": "2026-06-19T23:18:58.122Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "f33e0cb4-041f-49a3-b39b-4364f84741c4",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "started_at": "2026-06-19T23:27:02.679Z",
+    "deadline_at": "2026-06-19T23:57:02.679Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "cd6b584a-1841-41eb-9de9-dcfaeb69acf3",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "started_at": "2026-06-19T23:41:40.369Z",
+    "deadline_at": "2026-06-20T00:11:40.369Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "14809094-d459-4c89-bb48-55d11851ba38",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "started_at": "2026-06-19T23:43:17.102Z",
+    "deadline_at": "2026-06-20T00:13:17.102Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "5be143db-e0cf-4ce0-bb8c-33a0191334c1",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-20T06:17:50.874Z",
+    "deadline_at": "2026-06-20T06:47:50.874Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "9c09c1e1-e2c9-48fa-b9f1-24a8568640e7",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-20T06:56:00.710Z",
+    "deadline_at": "2026-06-20T07:26:00.710Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "a44be3aa-8f7b-4c61-a116-21e091299402",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "started_at": "2026-06-20T07:22:12.034Z",
+    "deadline_at": "2026-06-20T07:52:12.034Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "79ee6de5-e04c-40db-9810-5f61cdec1727",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "started_at": "2026-06-20T07:33:29.328Z",
+    "deadline_at": "2026-06-20T08:03:29.328Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "f08c3b47-a819-4175-bb63-e7c0eb8ea8e6",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "started_at": "2026-06-20T11:52:38.957Z",
+    "deadline_at": "2026-06-20T12:22:38.957Z",
+    "submitted_at": "2026-06-20T11:58:28.606Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "ca4c3a60-cacd-460f-a880-8d944da8904d",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "started_at": "2026-06-20T11:58:37.753Z",
+    "deadline_at": "2026-06-20T12:28:37.753Z",
+    "submitted_at": "2026-06-20T12:01:08.613Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "562dd191-c7a6-4bae-8087-227201d88287",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "started_at": "2026-06-20T12:05:52.164Z",
+    "deadline_at": "2026-06-20T12:35:52.164Z",
+    "submitted_at": "2026-06-20T12:07:19.729Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "5808c6b1-aebb-4480-8de1-6e5f4c4d8f5a",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "started_at": "2026-06-24T09:32:08.032Z",
+    "deadline_at": "2026-06-24T10:02:08.032Z",
+    "submitted_at": "2026-06-24T09:34:23.314Z",
+    "status": "SUBMITTED"
+  }
+]
+```
+
+### File: `backups/problems-before-cleanup-20260624-165640.json`
+
+```json
+[
+  {
+    "id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "slug": "sum",
+    "title": "Bài 1: Tính tổng hai số",
+    "difficulty": "Dễ",
+    "description": "Viết chương trình nhập vào hai số nguyên $a$ và $b$ (cách nhau bởi một khoảng trắng) từ bàn phím. In ra màn hình tổng của hai số đó.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa hai số nguyên $a$ và $b$ ($-10^9 \\le a, b \\le 10^9$).\n\n### Định dạng dữ liệu đầu ra:\n* In ra một số nguyên duy nhất là tổng của $a$ và $b$.",
+    "starter_code": "# Nhập dữ liệu đầu vào và chuyển thành số nguyên\na, b = map(int, input().split())\n\n# Tính toán và in kết quả\nprint(a + b)\n",
+    "examples": [
+      {
+        "input": "3 5",
+        "output": "8",
+        "explanation": "Tổng của 3 và 5 là 8."
+      },
+      {
+        "input": "-2 10",
+        "output": "8",
+        "explanation": "Tổng của -2 và 10 là 8."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": false,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T18:43:55.017Z",
+    "updated_at": "2026-06-20T06:19:02.524Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-19T19:38:50.482Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "slug": "watermelon",
+    "title": "Bài 2: Chia dưa hấu (Watermelon)",
+    "difficulty": "800 (Codeforces)",
+    "description": "Pete và Billy mua được một quả dưa hấu nặng $w$ kg. Họ rất thích các số chẵn và muốn chia quả dưa hấu này thành **hai phần đều có cân nặng là số chẵn dương** (không nhất thiết phải bằng nhau). \n\nHãy giúp họ kiểm tra xem có thể chia như vậy được không. Nếu có in ra `YES`, ngược lại in ra `NO`.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa số nguyên $w$ ($1 \\le w \\le 100$) — cân nặng của quả dưa hấu.\n\n### Định dạng dữ liệu đầu ra:\n* In ra `YES` nếu có thể chia quả dưa thành hai phần có số cân là số chẵn dương. Ngược lại, in ra `NO`.",
+    "starter_code": "# Nhập cân nặng w của quả dưa\nw = int(input())\n\n# Hãy viết code kiểm tra ở đây\n",
+    "examples": [
+      {
+        "input": "8",
+        "output": "YES",
+        "explanation": "Quả dưa hấu nặng 8kg có thể chia thành hai phần nặng 2kg và 6kg (hoặc 4kg và 4kg)."
+      },
+      {
+        "input": "2",
+        "output": "NO",
+        "explanation": "Quả dưa hấu nặng 2kg chỉ có thể chia thành hai phần là 1kg và 1kg. Mà số 1 không phải số chẵn, nên kết quả là NO."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": false,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T18:43:55.092Z",
+    "updated_at": "2026-06-20T06:18:42.620Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-19T19:38:50.482Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "slug": "case_count",
+    "title": "Đếm chữ Hoa - chữ Thường",
+    "difficulty": "Cơ bản",
+    "description": "Viết chương trình nhập vào một chuỗi ký tự $S$ gồm cả chữ hoa, chữ thường và chữ số. Hãy đếm xem có bao nhiêu chữ cái viết hoa và bao nhiêu chữ cái viết thường xuất hiện trong chuỗi.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa chuỗi ký tự $S$ (độ dài không quá 100 ký tự).\n\n### Định dạng dữ liệu đầu ra:\n* Một dòng chứa hai số nguyên cách nhau bởi khoảng trắng: Số lượng chữ cái viết hoa và số lượng chữ cái viết thường.",
+    "starter_code": "# Nhập chuỗi ký tự\ns = input()\n\n# Hãy đếm chữ hoa và chữ thường rồi in ra kết quả\n",
+    "examples": [
+      {
+        "input": "CodeForces",
+        "output": "2 8",
+        "explanation": "Chuỗi 'CodeForces' có 2 chữ hoa ('C', 'F') và 8 chữ thường ('o', 'd', 'e', 'o', 'r', 'c', 'e', 's')."
+      },
+      {
+        "input": "Python3.10",
+        "output": "1 5",
+        "explanation": "Chuỗi 'Python3.10' có 1 chữ hoa ('P') và 5 chữ thường ('y', 't', 'h', 'o', 'n'). Các chữ số và dấu chấm không được đếm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T18:43:55.166Z",
+    "updated_at": "2026-06-20T06:21:14.676Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:21:14.643Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "slug": "cf-11a-increasing-sequence",
+    "title": "Làm dãy tăng dần",
+    "difficulty": "Cơ bản",
+    "description": "Cho một dãy b gồm n phần tử và một số dương d. Trong mỗi bước, bạn được chọn một phần tử bất kỳ và cộng thêm d vào nó. Hãy tìm số bước ít nhất để biến dãy thành dãy tăng nghiêm ngặt.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa n và d.\n* Dòng 2 chứa dãy b gồm n số nguyên.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số bước nhỏ nhất cần thực hiện.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "4 2\n1 3 3 2",
+        "output": "3",
+        "explanation": "Có thể tăng phần tử thứ 3 và thứ 4 để thu được dãy tăng."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:21.350Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:21.317Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "slug": "cf-26a-almost-prime",
+    "title": "Đếm số gần nguyên tố",
+    "difficulty": "Cơ bản",
+    "description": "Một số được gọi là gần nguyên tố nếu nó có đúng hai ước nguyên tố phân biệt. Ví dụ 6, 18 và 24 là gần nguyên tố, còn 4, 8, 9, 42 thì không.\n\nHãy đếm xem có bao nhiêu số gần nguyên tố trong đoạn từ 1 đến n, kể cả hai đầu mút.\n\n### Định dạng dữ liệu đầu vào:\n* Một số nguyên n, 1 <= n <= 3000.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số lượng số gần nguyên tố từ 1 đến n.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "10",
+        "output": "2",
+        "explanation": "Các số gần nguyên tố không vượt quá 10 là 6 và 10."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:12.641Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:12.610Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "slug": "cf-32b-borze",
+    "title": "Giải mã Borze",
+    "difficulty": "Cơ bản",
+    "description": "Mã Borze dùng chuỗi ký hiệu . , -. và -- để biểu diễn số ở hệ tam phân. Quy ước là:\n* . tương ứng với 0\n* -. tương ứng với 1\n* -- tương ứng với 2\n\nHãy giải mã chuỗi Borze đã cho.\n\n### Định dạng dữ liệu đầu vào:\n* Một chuỗi Borze hợp lệ.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số tam phân tương ứng.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": ".-.--",
+        "output": "012",
+        "explanation": "Chuỗi được đọc lần lượt thành 0, 1, 2."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:46.798Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:46.766Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "slug": "cf-38a-army",
+    "title": "Quân hàm và số năm",
+    "difficulty": "Cơ bản",
+    "description": "Hệ thống quân hàm của Berland có n bậc, đánh số từ 1 đến n. Để đi từ bậc i lên bậc i + 1 cần d_i năm. Vasya vừa đạt bậc a và muốn lên bậc b.\n\nHãy tính tổng số năm Vasya còn phải phục vụ.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa n.\n* Dòng 2 chứa n - 1 số nguyên d_i.\n* Dòng 3 chứa hai số nguyên a và b.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số năm cần thiết để đi từ a lên b.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "3\n5 6\n1 2",
+        "output": "5",
+        "explanation": "Từ bậc 1 lên bậc 2 mất 5 năm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:56.407Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:56.375Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "slug": "cf-41a-translation",
+    "title": "Dịch ngược một từ",
+    "difficulty": "Cơ bản",
+    "description": "Trong ngôn ngữ Berland và Birland, một từ có nghĩa giống nhau nếu nó bị viết ngược lại. Ví dụ code tương ứng với edoc.\n\nHãy kiểm tra xem từ t có phải là từ s viết ngược hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa từ s.\n* Dòng 2 chứa từ t.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu t là s viết ngược, ngược lại in NO.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "code\nedoc",
+        "output": "YES",
+        "explanation": "edoc là code viết ngược."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:21:03.386Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:21:03.354Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "slug": "cf-4a-watermelon",
+    "title": "Chia dưa hấu",
+    "difficulty": "Cơ bản",
+    "description": "Cho trọng lượng w của một quả dưa hấu. Hãy kiểm tra xem có thể chia w thành hai phần nguyên dương, và cả hai phần đều có cân nặng chẵn hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Một số nguyên w, 1 <= w <= 100.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu chia được, ngược lại in NO.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "8",
+        "output": "YES",
+        "explanation": "Có thể chia thành 2 và 6."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:31.579Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:31.546Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "slug": "cf-59a-word",
+    "title": "Chuẩn hóa chữ hoa/thường",
+    "difficulty": "Cơ bản",
+    "description": "Vasya muốn chuẩn hóa một từ sao cho toàn bộ ký tự đều là chữ thường hoặc toàn bộ là chữ hoa. Nếu số chữ hoa nhiều hơn số chữ thường thì đổi cả từ sang chữ hoa, ngược lại đổi sang chữ thường. Nếu hai bên bằng nhau thì cũng đổi sang chữ thường.\n\n### Định dạng dữ liệu đầu vào:\n* Một từ chỉ gồm chữ cái Latin hoa và thường.\n\n### Định dạng dữ liệu đầu ra:\n* In ra từ sau khi đã chuẩn hóa.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "HoUse",
+        "output": "house",
+        "explanation": "Số chữ thường nhiều hơn nên đổi sang chữ thường."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:21:22.500Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:21:22.468Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "slug": "cf-6a-triangle",
+    "title": "Tam giác, đoạn thẳng hay bất khả thi",
+    "difficulty": "Cơ bản",
+    "description": "Cho bốn thanh gỗ có độ dài khác nhau. Hãy chọn đúng ba thanh để xem có thể tạo thành:\n* TRIANGLE nếu tạo được tam giác không suy biến.\n* SEGMENT nếu không tạo được tam giác không suy biến nhưng tạo được tam giác suy biến.\n* IMPOSSIBLE nếu không thể tạo thành bất kỳ tam giác nào.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng gồm bốn số nguyên dương.\n\n### Định dạng dữ liệu đầu ra:\n* In TRIANGLE, SEGMENT hoặc IMPOSSIBLE.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "4 2 1 3",
+        "output": "TRIANGLE",
+        "explanation": "Chọn 4, 2 và 3 thì có thể tạo tam giác."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:19:45.578Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:19:45.546Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "slug": "cf-96a-football",
+    "title": "Tình huống bóng đá nguy hiểm",
+    "difficulty": "Cơ bản",
+    "description": "Petya biểu diễn trạng thái trận bóng bằng một chuỗi chỉ gồm 0 và 1. Nếu tồn tại ít nhất 7 ký tự giống nhau đứng liên tiếp thì trạng thái đó được coi là nguy hiểm.\n\nHãy xác định xem trạng thái hiện tại có nguy hiểm hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Một chuỗi không rỗng chỉ gồm ký tự 0 và 1.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu trạng thái nguy hiểm, ngược lại in NO.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "001001",
+        "output": "NO",
+        "explanation": "Không có đoạn nào dài tới 7 ký tự giống nhau."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:19:36.567Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:19:36.535Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "slug": "cf-9a-die-roll",
+    "title": "Xác suất của Dot",
+    "difficulty": "Cơ bản",
+    "description": "Yakko và Wakko đã tung xúc xắc và nhận được lần lượt Y và W điểm. Dot sẽ thắng nếu số của cô ấy không nhỏ hơn cả hai người kia, vì nếu bằng điểm thì Dot vẫn được tính là thắng.\n\nHãy in xác suất Dot chiến thắng dưới dạng phân số tối giản A/B. Nếu xác suất bằng 0 hãy in 0/1, nếu bằng 1 hãy in 1/1.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng chứa hai số nguyên Y và W.\n\n### Định dạng dữ liệu đầu ra:\n* In ra phân số tối giản biểu diễn xác suất Dot thắng.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "4 2",
+        "output": "1/2",
+        "explanation": "Dot thắng nếu tung được 4, 5 hoặc 6."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:39.338Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:39.305Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "slug": "bai-1-2-chia-qua",
+    "title": "Bài 1.2: Tính tiền mua quà chia đều",
+    "difficulty": "Dễ",
+    "description": "Để chuẩn bị quà khen thưởng, giáo viên mua một số hộp quà với tổng số tiền là $T$ đồng (số thực). Hãy nhập sĩ số lớp $N$ (số nguyên) và tổng số tiền $T$ (số thực). Tính trung bình mỗi bạn trong lớp sẽ được nhận phần quà trị giá bao nhiêu tiền?\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số nguyên $N$ ($1 \\le N \\le 1000$) — sĩ số lớp.\n* Dòng 2: Số thực $T$ ($0 \\le T \\le 10^9$) — tổng số tiền mua quà.\n\n### Định dạng dữ liệu đầu ra:\n* In ra một dòng duy nhất theo định dạng: `Trung binh moi hoc sinh nhan qua tri gia: <gia_tri> dong`\n\n### Ví dụ:\n**Đầu vào:**\n```\n40\n500000.5\n```\n**Đầu ra:**\n```\nTrung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong\n```",
+    "starter_code": "# Nhập sĩ số lớp N (số nguyên)\nN = int(input())\n# Nhập tổng số tiền T (số thực)\nT = float(input())\n\n# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được\n",
+    "examples": [
+      {
+        "input": "40\n500000.5",
+        "output": "Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong",
+        "explanation": "Tổng số tiền là 500000.5 chia cho sĩ số 40 học sinh được 12500.0125."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:44.151Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "slug": "bai-1-3-so-sanh-nam-nu",
+    "title": "Bài 1.3: So sánh số lượng Nam và Nữ",
+    "difficulty": "Dễ",
+    "description": "Nhập sĩ số lớp $N$ (số nguyên) và số học sinh Nam trong lớp (số nguyên). Hãy kiểm tra xem số bạn Nam hay số bạn Nữ trong lớp nhiều hơn và in kết quả ra màn hình.\n\n* Nếu số bạn Nữ nhiều hơn số bạn Nam, in ra: `Số bạn Nữ nhiều hơn số bạn Nam`\n* Nếu số bạn Nam nhiều hơn số bạn Nữ, in ra: `Số bạn Nam nhiều hơn số bạn Nữ`\n* Nếu hai bên bằng nhau, in ra: `Số bạn Nam bằng số bạn Nữ`\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số nguyên $N$ ($1 \\le N \\le 1000$) — sĩ số lớp.\n* Dòng 2: Số nguyên $M$ ($0 \\le M \\le N$) — số học sinh Nam.\n\n### Định dạng dữ liệu đầu ra:\n* In ra màn hình dòng thông báo so sánh tương ứng.\n\n### Ví dụ:\n**Đầu vào:**\n```\n35\n15\n```\n**Đầu ra:**\n```\nSố bạn Nữ nhiều hơn số bạn Nam\n```",
+    "starter_code": "# Nhập sĩ số lớp N\nN = int(input())\n# Nhập số bạn Nam\nnam = int(input())\n\n# Hãy kiểm tra xem số bạn Nam hay số bạn Nữ nhiều hơn và in kết quả ra màn hình\n",
+    "examples": [
+      {
+        "input": "35\n15",
+        "output": "Số bạn Nữ nhiều hơn số bạn Nam",
+        "explanation": "Sĩ số 35, Nam 15 nên Nữ = 20. Số Nữ (20) nhiều hơn số Nam (15)."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:45.583Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "slug": "bai-2-2-chu-vi-manh-vuon",
+    "title": "Bài 2.2: Tính chu vi mảnh vườn làm tròn",
+    "difficulty": "Dễ",
+    "description": "Nhập vào hai số thực $a$ và $b$ lần lượt là chiều dài và chiều rộng của một khu vườn hình chữ nhật. Hãy tính chu vi của khu vườn đó dưới dạng số thực, sau đó in thêm kết quả chu vi đã được làm tròn xuống dưới dạng số nguyên (bằng cách ép kiểu `int()`).\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số thực $a$ ($a > 0$) — chiều dài khu vườn.\n* Dòng 2: Số thực $b$ ($b > 0$) — chiều rộng khu vườn.\n\n### Định dạng dữ liệu đầu ra:\n* Dòng 1: `Chu vi (so thuc): <gia_tri_so_thuc>`\n* Dòng 2: `Chu vi (so nguyen): <gia_tri_so_nguyen>`\n\n### Ví dụ:\n**Đầu vào:**\n```\n10.5\n4.2\n```\n**Đầu ra:**\n```\nChu vi (so thuc): 29.4\nChu vi (so nguyen): 29\n```",
+    "starter_code": "# Nhập chiều dài a và chiều rộng b\na = float(input())\nb = float(input())\n\n# Tính chu vi thực và chu vi làm tròn xuống dưới dạng số nguyên rồi in ra màn hình\n",
+    "examples": [
+      {
+        "input": "10.5\n4.2",
+        "output": "Chu vi (so thuc): 29.4\nChu vi (so nguyen): 29",
+        "explanation": "Chu vi thực = (10.5 + 4.2) * 2 = 29.4. Chu vi làm tròn xuống = int(29.4) = 29."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:46.480Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "slug": "bai-2-3-kiem-tra-chia-het",
+    "title": "Bài 2.3: Kiểm tra chia hết",
+    "difficulty": "Dễ",
+    "description": "Nhập vào 2 số nguyên $a$ và $b$. Kiểm tra xem $a$ có chia hết cho $b$ hay không.\n\n* Nếu có, in ra: `a chia het cho b`\n* Nếu không, in ra: `a khong chia het cho b`\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số nguyên $a$.\n* Dòng 2: Số nguyên $b$ ($b \\ne 0$).\n\n### Định dạng dữ liệu đầu ra:\n* In ra màn hình kết quả thông báo tương ứng.\n\n### Ví dụ:\n**Đầu vào:**\n```\n10\n3\n```\n**Đầu ra:**\n```\na khong chia het cho b\n```",
+    "starter_code": "# Nhập a và b\na = int(input())\nb = int(input())\n\n# Kiểm tra xem a có chia hết cho b hay không và in thông báo ra màn hình\n",
+    "examples": [
+      {
+        "input": "10\n3",
+        "output": "a khong chia het cho b",
+        "explanation": "10 không chia hết cho 3."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:47.165Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "slug": "bai-3-2-doi-met-sang-cm",
+    "title": "Bài 3.2: Chuyển đổi mét sang centimet",
+    "difficulty": "Dễ",
+    "description": "Nhập vào chiều cao của một bạn học sinh dưới dạng số thực với đơn vị là mét (ví dụ: 1.35m). Hãy đổi chiều cao đó sang đơn vị centimet (dưới dạng số nguyên) bằng cách nhân với 100 và sử dụng hàm `int()`.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng chứa số thực $h$ ($0 < h < 3.0$) — chiều cao tính bằng mét.\n\n### Định dạng dữ liệu đầu ra:\n* In ra kết quả dưới dạng: `Chieu cao cua ban la: <gia_tri_cm> cm`\n\n### Ví dụ:\n**Đầu vào:**\n```\n1.42\n```\n**Đầu ra:**\n```\nChieu cao cua ban la: 142 cm\n```",
+    "starter_code": "# Nhập chiều cao tính bằng mét (số thực)\nh = float(input())\n\n# Đổi sang centimet (số nguyên) và in ra màn hình đúng định dạng\n",
+    "examples": [
+      {
+        "input": "1.42",
+        "output": "Chieu cao cua ban la: 142 cm",
+        "explanation": "1.42 mét = 1.42 * 100 = 142 cm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:47.848Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "slug": "bai-3-3-sap-xep-hai-so",
+    "title": "Bài 3.3: Sắp xếp hai số",
+    "difficulty": "Dễ",
+    "description": "Nhập vào hai số nguyên $a$ và $b$. Nếu $a > b$, hãy hoán đổi giá trị của chúng để $a$ nhận giá trị nhỏ hơn và $b$ nhận giá trị lớn hơn. In ra giá trị của $a$ và $b$ sau khi đã sắp xếp.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số nguyên $a$.\n* Dòng 2: Số nguyên $b$.\n\n### Định dạng dữ liệu đầu ra:\n* In ra kết quả dưới dạng: `Sau khi sap xep: a = <gia_tri_a>, b = <gia_tri_b>`\n\n### Ví dụ:\n**Đầu vào:**\n```\n8\n3\n```\n**Đầu ra:**\n```\nSau khi sap xep: a = 3, b = 8\n```",
+    "starter_code": "# Nhập hai số nguyên a và b\na = int(input())\nb = int(input())\n\n# Hoán đổi giá trị nếu a > b để sắp xếp tăng dần và in ra màn hình\n",
+    "examples": [
+      {
+        "input": "8\n3",
+        "output": "Sau khi sap xep: a = 3, b = 8",
+        "explanation": "8 > 3 nên hoán đổi để a=3, b=8."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:48.534Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "9c6a4ea5-544f-4852-9a98-93863bc1bc39",
+    "slug": "test-import-1",
+    "title": "Test Import 1",
+    "difficulty": "Dễ",
+    "description": "Description 1",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T09:49:38.013Z",
+    "updated_at": "2026-06-24T09:49:38.013Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-24T09:49:37.889Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "20340f08-f287-4f2a-9e93-1c0af1588284",
+    "slug": "test-import-2",
+    "title": "Test Import 2",
+    "difficulty": "Dễ",
+    "description": "Description 2",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T09:49:38.013Z",
+    "updated_at": "2026-06-24T09:49:38.013Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-24T09:49:37.890Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "7d69e3a3-76b8-4be2-89f5-8abab96957e8",
+    "slug": "test-update-slug",
+    "title": "Updated Title",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T09:49:41.432Z",
+    "updated_at": "2026-06-24T09:49:43.085Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-24T09:49:42.965Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "512be09c-4e31-47f0-9660-5c950ab31f5d",
+    "slug": "old-format-slug",
+    "title": "Old Format Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "print(\"Hello\")",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T09:49:46.012Z",
+    "updated_at": "2026-06-24T09:49:46.012Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-24T09:49:45.877Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problems-before-cleanup-20260624-165800.json`
+
+```json
+[
+  {
+    "id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "slug": "sum",
+    "title": "Bài 1: Tính tổng hai số",
+    "difficulty": "Dễ",
+    "description": "Viết chương trình nhập vào hai số nguyên $a$ và $b$ (cách nhau bởi một khoảng trắng) từ bàn phím. In ra màn hình tổng của hai số đó.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa hai số nguyên $a$ và $b$ ($-10^9 \\le a, b \\le 10^9$).\n\n### Định dạng dữ liệu đầu ra:\n* In ra một số nguyên duy nhất là tổng của $a$ và $b$.",
+    "starter_code": "# Nhập dữ liệu đầu vào và chuyển thành số nguyên\na, b = map(int, input().split())\n\n# Tính toán và in kết quả\nprint(a + b)\n",
+    "examples": [
+      {
+        "input": "3 5",
+        "output": "8",
+        "explanation": "Tổng của 3 và 5 là 8."
+      },
+      {
+        "input": "-2 10",
+        "output": "8",
+        "explanation": "Tổng của -2 và 10 là 8."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": false,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T18:43:55.017Z",
+    "updated_at": "2026-06-20T06:19:02.524Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-19T19:38:50.482Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "slug": "watermelon",
+    "title": "Bài 2: Chia dưa hấu (Watermelon)",
+    "difficulty": "800 (Codeforces)",
+    "description": "Pete và Billy mua được một quả dưa hấu nặng $w$ kg. Họ rất thích các số chẵn và muốn chia quả dưa hấu này thành **hai phần đều có cân nặng là số chẵn dương** (không nhất thiết phải bằng nhau). \n\nHãy giúp họ kiểm tra xem có thể chia như vậy được không. Nếu có in ra `YES`, ngược lại in ra `NO`.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa số nguyên $w$ ($1 \\le w \\le 100$) — cân nặng của quả dưa hấu.\n\n### Định dạng dữ liệu đầu ra:\n* In ra `YES` nếu có thể chia quả dưa thành hai phần có số cân là số chẵn dương. Ngược lại, in ra `NO`.",
+    "starter_code": "# Nhập cân nặng w của quả dưa\nw = int(input())\n\n# Hãy viết code kiểm tra ở đây\n",
+    "examples": [
+      {
+        "input": "8",
+        "output": "YES",
+        "explanation": "Quả dưa hấu nặng 8kg có thể chia thành hai phần nặng 2kg và 6kg (hoặc 4kg và 4kg)."
+      },
+      {
+        "input": "2",
+        "output": "NO",
+        "explanation": "Quả dưa hấu nặng 2kg chỉ có thể chia thành hai phần là 1kg và 1kg. Mà số 1 không phải số chẵn, nên kết quả là NO."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": false,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T18:43:55.092Z",
+    "updated_at": "2026-06-20T06:18:42.620Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-19T19:38:50.482Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "slug": "case_count",
+    "title": "Đếm chữ Hoa - chữ Thường",
+    "difficulty": "Cơ bản",
+    "description": "Viết chương trình nhập vào một chuỗi ký tự $S$ gồm cả chữ hoa, chữ thường và chữ số. Hãy đếm xem có bao nhiêu chữ cái viết hoa và bao nhiêu chữ cái viết thường xuất hiện trong chuỗi.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa chuỗi ký tự $S$ (độ dài không quá 100 ký tự).\n\n### Định dạng dữ liệu đầu ra:\n* Một dòng chứa hai số nguyên cách nhau bởi khoảng trắng: Số lượng chữ cái viết hoa và số lượng chữ cái viết thường.",
+    "starter_code": "# Nhập chuỗi ký tự\ns = input()\n\n# Hãy đếm chữ hoa và chữ thường rồi in ra kết quả\n",
+    "examples": [
+      {
+        "input": "CodeForces",
+        "output": "2 8",
+        "explanation": "Chuỗi 'CodeForces' có 2 chữ hoa ('C', 'F') và 8 chữ thường ('o', 'd', 'e', 'o', 'r', 'c', 'e', 's')."
+      },
+      {
+        "input": "Python3.10",
+        "output": "1 5",
+        "explanation": "Chuỗi 'Python3.10' có 1 chữ hoa ('P') và 5 chữ thường ('y', 't', 'h', 'o', 'n'). Các chữ số và dấu chấm không được đếm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T18:43:55.166Z",
+    "updated_at": "2026-06-20T06:21:14.676Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:21:14.643Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "slug": "cf-11a-increasing-sequence",
+    "title": "Làm dãy tăng dần",
+    "difficulty": "Cơ bản",
+    "description": "Cho một dãy b gồm n phần tử và một số dương d. Trong mỗi bước, bạn được chọn một phần tử bất kỳ và cộng thêm d vào nó. Hãy tìm số bước ít nhất để biến dãy thành dãy tăng nghiêm ngặt.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa n và d.\n* Dòng 2 chứa dãy b gồm n số nguyên.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số bước nhỏ nhất cần thực hiện.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "4 2\n1 3 3 2",
+        "output": "3",
+        "explanation": "Có thể tăng phần tử thứ 3 và thứ 4 để thu được dãy tăng."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:21.350Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:21.317Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "slug": "cf-26a-almost-prime",
+    "title": "Đếm số gần nguyên tố",
+    "difficulty": "Cơ bản",
+    "description": "Một số được gọi là gần nguyên tố nếu nó có đúng hai ước nguyên tố phân biệt. Ví dụ 6, 18 và 24 là gần nguyên tố, còn 4, 8, 9, 42 thì không.\n\nHãy đếm xem có bao nhiêu số gần nguyên tố trong đoạn từ 1 đến n, kể cả hai đầu mút.\n\n### Định dạng dữ liệu đầu vào:\n* Một số nguyên n, 1 <= n <= 3000.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số lượng số gần nguyên tố từ 1 đến n.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "10",
+        "output": "2",
+        "explanation": "Các số gần nguyên tố không vượt quá 10 là 6 và 10."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:12.641Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:12.610Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "slug": "cf-32b-borze",
+    "title": "Giải mã Borze",
+    "difficulty": "Cơ bản",
+    "description": "Mã Borze dùng chuỗi ký hiệu . , -. và -- để biểu diễn số ở hệ tam phân. Quy ước là:\n* . tương ứng với 0\n* -. tương ứng với 1\n* -- tương ứng với 2\n\nHãy giải mã chuỗi Borze đã cho.\n\n### Định dạng dữ liệu đầu vào:\n* Một chuỗi Borze hợp lệ.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số tam phân tương ứng.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": ".-.--",
+        "output": "012",
+        "explanation": "Chuỗi được đọc lần lượt thành 0, 1, 2."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:46.798Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:46.766Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "slug": "cf-38a-army",
+    "title": "Quân hàm và số năm",
+    "difficulty": "Cơ bản",
+    "description": "Hệ thống quân hàm của Berland có n bậc, đánh số từ 1 đến n. Để đi từ bậc i lên bậc i + 1 cần d_i năm. Vasya vừa đạt bậc a và muốn lên bậc b.\n\nHãy tính tổng số năm Vasya còn phải phục vụ.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa n.\n* Dòng 2 chứa n - 1 số nguyên d_i.\n* Dòng 3 chứa hai số nguyên a và b.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số năm cần thiết để đi từ a lên b.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "3\n5 6\n1 2",
+        "output": "5",
+        "explanation": "Từ bậc 1 lên bậc 2 mất 5 năm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:56.407Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:56.375Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "slug": "cf-41a-translation",
+    "title": "Dịch ngược một từ",
+    "difficulty": "Cơ bản",
+    "description": "Trong ngôn ngữ Berland và Birland, một từ có nghĩa giống nhau nếu nó bị viết ngược lại. Ví dụ code tương ứng với edoc.\n\nHãy kiểm tra xem từ t có phải là từ s viết ngược hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa từ s.\n* Dòng 2 chứa từ t.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu t là s viết ngược, ngược lại in NO.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "code\nedoc",
+        "output": "YES",
+        "explanation": "edoc là code viết ngược."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:21:03.386Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:21:03.354Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "slug": "cf-4a-watermelon",
+    "title": "Chia dưa hấu",
+    "difficulty": "Cơ bản",
+    "description": "Cho trọng lượng w của một quả dưa hấu. Hãy kiểm tra xem có thể chia w thành hai phần nguyên dương, và cả hai phần đều có cân nặng chẵn hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Một số nguyên w, 1 <= w <= 100.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu chia được, ngược lại in NO.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "8",
+        "output": "YES",
+        "explanation": "Có thể chia thành 2 và 6."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:31.579Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:31.546Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "slug": "cf-59a-word",
+    "title": "Chuẩn hóa chữ hoa/thường",
+    "difficulty": "Cơ bản",
+    "description": "Vasya muốn chuẩn hóa một từ sao cho toàn bộ ký tự đều là chữ thường hoặc toàn bộ là chữ hoa. Nếu số chữ hoa nhiều hơn số chữ thường thì đổi cả từ sang chữ hoa, ngược lại đổi sang chữ thường. Nếu hai bên bằng nhau thì cũng đổi sang chữ thường.\n\n### Định dạng dữ liệu đầu vào:\n* Một từ chỉ gồm chữ cái Latin hoa và thường.\n\n### Định dạng dữ liệu đầu ra:\n* In ra từ sau khi đã chuẩn hóa.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "HoUse",
+        "output": "house",
+        "explanation": "Số chữ thường nhiều hơn nên đổi sang chữ thường."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:21:22.500Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:21:22.468Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "slug": "cf-6a-triangle",
+    "title": "Tam giác, đoạn thẳng hay bất khả thi",
+    "difficulty": "Cơ bản",
+    "description": "Cho bốn thanh gỗ có độ dài khác nhau. Hãy chọn đúng ba thanh để xem có thể tạo thành:\n* TRIANGLE nếu tạo được tam giác không suy biến.\n* SEGMENT nếu không tạo được tam giác không suy biến nhưng tạo được tam giác suy biến.\n* IMPOSSIBLE nếu không thể tạo thành bất kỳ tam giác nào.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng gồm bốn số nguyên dương.\n\n### Định dạng dữ liệu đầu ra:\n* In TRIANGLE, SEGMENT hoặc IMPOSSIBLE.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "4 2 1 3",
+        "output": "TRIANGLE",
+        "explanation": "Chọn 4, 2 và 3 thì có thể tạo tam giác."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:19:45.578Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:19:45.546Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "slug": "cf-96a-football",
+    "title": "Tình huống bóng đá nguy hiểm",
+    "difficulty": "Cơ bản",
+    "description": "Petya biểu diễn trạng thái trận bóng bằng một chuỗi chỉ gồm 0 và 1. Nếu tồn tại ít nhất 7 ký tự giống nhau đứng liên tiếp thì trạng thái đó được coi là nguy hiểm.\n\nHãy xác định xem trạng thái hiện tại có nguy hiểm hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Một chuỗi không rỗng chỉ gồm ký tự 0 và 1.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu trạng thái nguy hiểm, ngược lại in NO.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "001001",
+        "output": "NO",
+        "explanation": "Không có đoạn nào dài tới 7 ký tự giống nhau."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:19:36.567Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:19:36.535Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "slug": "cf-9a-die-roll",
+    "title": "Xác suất của Dot",
+    "difficulty": "Cơ bản",
+    "description": "Yakko và Wakko đã tung xúc xắc và nhận được lần lượt Y và W điểm. Dot sẽ thắng nếu số của cô ấy không nhỏ hơn cả hai người kia, vì nếu bằng điểm thì Dot vẫn được tính là thắng.\n\nHãy in xác suất Dot chiến thắng dưới dạng phân số tối giản A/B. Nếu xác suất bằng 0 hãy in 0/1, nếu bằng 1 hãy in 1/1.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng chứa hai số nguyên Y và W.\n\n### Định dạng dữ liệu đầu ra:\n* In ra phân số tối giản biểu diễn xác suất Dot thắng.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "4 2",
+        "output": "1/2",
+        "explanation": "Dot thắng nếu tung được 4, 5 hoặc 6."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:39.338Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:39.305Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "slug": "bai-1-2-chia-qua",
+    "title": "Bài 1.2: Tính tiền mua quà chia đều",
+    "difficulty": "Dễ",
+    "description": "Để chuẩn bị quà khen thưởng, giáo viên mua một số hộp quà với tổng số tiền là $T$ đồng (số thực). Hãy nhập sĩ số lớp $N$ (số nguyên) và tổng số tiền $T$ (số thực). Tính trung bình mỗi bạn trong lớp sẽ được nhận phần quà trị giá bao nhiêu tiền?\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số nguyên $N$ ($1 \\le N \\le 1000$) — sĩ số lớp.\n* Dòng 2: Số thực $T$ ($0 \\le T \\le 10^9$) — tổng số tiền mua quà.\n\n### Định dạng dữ liệu đầu ra:\n* In ra một dòng duy nhất theo định dạng: `Trung binh moi hoc sinh nhan qua tri gia: <gia_tri> dong`\n\n### Ví dụ:\n**Đầu vào:**\n```\n40\n500000.5\n```\n**Đầu ra:**\n```\nTrung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong\n```",
+    "starter_code": "# Nhập sĩ số lớp N (số nguyên)\nN = int(input())\n# Nhập tổng số tiền T (số thực)\nT = float(input())\n\n# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được\n",
+    "examples": [
+      {
+        "input": "40\n500000.5",
+        "output": "Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong",
+        "explanation": "Tổng số tiền là 500000.5 chia cho sĩ số 40 học sinh được 12500.0125."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:44.151Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "slug": "bai-1-3-so-sanh-nam-nu",
+    "title": "Bài 1.3: So sánh số lượng Nam và Nữ",
+    "difficulty": "Dễ",
+    "description": "Nhập sĩ số lớp $N$ (số nguyên) và số học sinh Nam trong lớp (số nguyên). Hãy kiểm tra xem số bạn Nam hay số bạn Nữ trong lớp nhiều hơn và in kết quả ra màn hình.\n\n* Nếu số bạn Nữ nhiều hơn số bạn Nam, in ra: `Số bạn Nữ nhiều hơn số bạn Nam`\n* Nếu số bạn Nam nhiều hơn số bạn Nữ, in ra: `Số bạn Nam nhiều hơn số bạn Nữ`\n* Nếu hai bên bằng nhau, in ra: `Số bạn Nam bằng số bạn Nữ`\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số nguyên $N$ ($1 \\le N \\le 1000$) — sĩ số lớp.\n* Dòng 2: Số nguyên $M$ ($0 \\le M \\le N$) — số học sinh Nam.\n\n### Định dạng dữ liệu đầu ra:\n* In ra màn hình dòng thông báo so sánh tương ứng.\n\n### Ví dụ:\n**Đầu vào:**\n```\n35\n15\n```\n**Đầu ra:**\n```\nSố bạn Nữ nhiều hơn số bạn Nam\n```",
+    "starter_code": "# Nhập sĩ số lớp N\nN = int(input())\n# Nhập số bạn Nam\nnam = int(input())\n\n# Hãy kiểm tra xem số bạn Nam hay số bạn Nữ nhiều hơn và in kết quả ra màn hình\n",
+    "examples": [
+      {
+        "input": "35\n15",
+        "output": "Số bạn Nữ nhiều hơn số bạn Nam",
+        "explanation": "Sĩ số 35, Nam 15 nên Nữ = 20. Số Nữ (20) nhiều hơn số Nam (15)."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:45.583Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "slug": "bai-2-2-chu-vi-manh-vuon",
+    "title": "Bài 2.2: Tính chu vi mảnh vườn làm tròn",
+    "difficulty": "Dễ",
+    "description": "Nhập vào hai số thực $a$ và $b$ lần lượt là chiều dài và chiều rộng của một khu vườn hình chữ nhật. Hãy tính chu vi của khu vườn đó dưới dạng số thực, sau đó in thêm kết quả chu vi đã được làm tròn xuống dưới dạng số nguyên (bằng cách ép kiểu `int()`).\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số thực $a$ ($a > 0$) — chiều dài khu vườn.\n* Dòng 2: Số thực $b$ ($b > 0$) — chiều rộng khu vườn.\n\n### Định dạng dữ liệu đầu ra:\n* Dòng 1: `Chu vi (so thuc): <gia_tri_so_thuc>`\n* Dòng 2: `Chu vi (so nguyen): <gia_tri_so_nguyen>`\n\n### Ví dụ:\n**Đầu vào:**\n```\n10.5\n4.2\n```\n**Đầu ra:**\n```\nChu vi (so thuc): 29.4\nChu vi (so nguyen): 29\n```",
+    "starter_code": "# Nhập chiều dài a và chiều rộng b\na = float(input())\nb = float(input())\n\n# Tính chu vi thực và chu vi làm tròn xuống dưới dạng số nguyên rồi in ra màn hình\n",
+    "examples": [
+      {
+        "input": "10.5\n4.2",
+        "output": "Chu vi (so thuc): 29.4\nChu vi (so nguyen): 29",
+        "explanation": "Chu vi thực = (10.5 + 4.2) * 2 = 29.4. Chu vi làm tròn xuống = int(29.4) = 29."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:46.480Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "slug": "bai-2-3-kiem-tra-chia-het",
+    "title": "Bài 2.3: Kiểm tra chia hết",
+    "difficulty": "Dễ",
+    "description": "Nhập vào 2 số nguyên $a$ và $b$. Kiểm tra xem $a$ có chia hết cho $b$ hay không.\n\n* Nếu có, in ra: `a chia het cho b`\n* Nếu không, in ra: `a khong chia het cho b`\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số nguyên $a$.\n* Dòng 2: Số nguyên $b$ ($b \\ne 0$).\n\n### Định dạng dữ liệu đầu ra:\n* In ra màn hình kết quả thông báo tương ứng.\n\n### Ví dụ:\n**Đầu vào:**\n```\n10\n3\n```\n**Đầu ra:**\n```\na khong chia het cho b\n```",
+    "starter_code": "# Nhập a và b\na = int(input())\nb = int(input())\n\n# Kiểm tra xem a có chia hết cho b hay không và in thông báo ra màn hình\n",
+    "examples": [
+      {
+        "input": "10\n3",
+        "output": "a khong chia het cho b",
+        "explanation": "10 không chia hết cho 3."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:47.165Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "slug": "bai-3-2-doi-met-sang-cm",
+    "title": "Bài 3.2: Chuyển đổi mét sang centimet",
+    "difficulty": "Dễ",
+    "description": "Nhập vào chiều cao của một bạn học sinh dưới dạng số thực với đơn vị là mét (ví dụ: 1.35m). Hãy đổi chiều cao đó sang đơn vị centimet (dưới dạng số nguyên) bằng cách nhân với 100 và sử dụng hàm `int()`.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng chứa số thực $h$ ($0 < h < 3.0$) — chiều cao tính bằng mét.\n\n### Định dạng dữ liệu đầu ra:\n* In ra kết quả dưới dạng: `Chieu cao cua ban la: <gia_tri_cm> cm`\n\n### Ví dụ:\n**Đầu vào:**\n```\n1.42\n```\n**Đầu ra:**\n```\nChieu cao cua ban la: 142 cm\n```",
+    "starter_code": "# Nhập chiều cao tính bằng mét (số thực)\nh = float(input())\n\n# Đổi sang centimet (số nguyên) và in ra màn hình đúng định dạng\n",
+    "examples": [
+      {
+        "input": "1.42",
+        "output": "Chieu cao cua ban la: 142 cm",
+        "explanation": "1.42 mét = 1.42 * 100 = 142 cm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:47.848Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "slug": "bai-3-3-sap-xep-hai-so",
+    "title": "Bài 3.3: Sắp xếp hai số",
+    "difficulty": "Dễ",
+    "description": "Nhập vào hai số nguyên $a$ và $b$. Nếu $a > b$, hãy hoán đổi giá trị của chúng để $a$ nhận giá trị nhỏ hơn và $b$ nhận giá trị lớn hơn. In ra giá trị của $a$ và $b$ sau khi đã sắp xếp.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số nguyên $a$.\n* Dòng 2: Số nguyên $b$.\n\n### Định dạng dữ liệu đầu ra:\n* In ra kết quả dưới dạng: `Sau khi sap xep: a = <gia_tri_a>, b = <gia_tri_b>`\n\n### Ví dụ:\n**Đầu vào:**\n```\n8\n3\n```\n**Đầu ra:**\n```\nSau khi sap xep: a = 3, b = 8\n```",
+    "starter_code": "# Nhập hai số nguyên a và b\na = int(input())\nb = int(input())\n\n# Hoán đổi giá trị nếu a > b để sắp xếp tăng dần và in ra màn hình\n",
+    "examples": [
+      {
+        "input": "8\n3",
+        "output": "Sau khi sap xep: a = 3, b = 8",
+        "explanation": "8 > 3 nên hoán đổi để a=3, b=8."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:48.534Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "9c6a4ea5-544f-4852-9a98-93863bc1bc39",
+    "slug": "test-import-1",
+    "title": "Test Import 1",
+    "difficulty": "Dễ",
+    "description": "Description 1",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T09:49:38.013Z",
+    "updated_at": "2026-06-24T09:49:38.013Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-24T09:49:37.889Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "20340f08-f287-4f2a-9e93-1c0af1588284",
+    "slug": "test-import-2",
+    "title": "Test Import 2",
+    "difficulty": "Dễ",
+    "description": "Description 2",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T09:49:38.013Z",
+    "updated_at": "2026-06-24T09:49:38.013Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-24T09:49:37.890Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "7d69e3a3-76b8-4be2-89f5-8abab96957e8",
+    "slug": "test-update-slug",
+    "title": "Updated Title",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T09:49:41.432Z",
+    "updated_at": "2026-06-24T09:49:43.085Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-24T09:49:42.965Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "512be09c-4e31-47f0-9660-5c950ab31f5d",
+    "slug": "old-format-slug",
+    "title": "Old Format Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "print(\"Hello\")",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T09:49:46.012Z",
+    "updated_at": "2026-06-24T09:49:46.012Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-24T09:49:45.877Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problem_testcases-before-cleanup-20260624-165640.json`
+
+```json
+[
+  {
+    "id": "268c2a57-1276-4181-b465-1f93f6ab88a3",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "CodeForces",
+    "expected_output": "2 8",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:21:14.676Z"
+  },
+  {
+    "id": "0e933ecd-532d-4d61-a7d4-a150884f2893",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "Python3.10",
+    "expected_output": "1 5",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:21:14.676Z"
+  },
+  {
+    "id": "976cc137-ba69-438a-9abc-1e2c3ec3303d",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "HELLO",
+    "expected_output": "5 0",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:21:14.676Z"
+  },
+  {
+    "id": "f3cab951-5947-49a4-947c-38630fe9909a",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "world",
+    "expected_output": "0 5",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:21:14.676Z"
+  },
+  {
+    "id": "a2810927-8a54-40af-b3a6-c5071efc402b",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "123456",
+    "expected_output": "0 0",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T06:21:14.676Z"
+  },
+  {
+    "id": "b7c46c42-0e82-40a6-aa7f-b2e6bdc6c1be",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "10\n3",
+    "expected_output": "a khong chia het cho b",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "414bbc9f-c4e9-46b9-ac7b-b7617dad324a",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "12\n4",
+    "expected_output": "a chia het cho b",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "c19a9bac-66d4-4f88-bb05-87c0ad47949e",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "-15\n5",
+    "expected_output": "a chia het cho b",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "aa7204cc-80e4-42db-90b7-5ed0a5774eed",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "0\n7",
+    "expected_output": "a chia het cho b",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "db1b3f78-7df5-412b-91d5-dded6a42d3ac",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "7\n10",
+    "expected_output": "a khong chia het cho b",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "b6c639bf-0ba4-4b7f-a9de-b1eaf65d3f41",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "8",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:20:31.579Z"
+  },
+  {
+    "id": "f1d4b3cd-1cf0-425d-8cb3-8460861ad219",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "2",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:20:31.579Z"
+  },
+  {
+    "id": "c892c75d-464f-477c-b655-8ec4cd8d89fd",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "3",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:20:31.579Z"
+  },
+  {
+    "id": "f00a933e-4565-4d3b-a86e-93ea4f904799",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "100",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:20:31.579Z"
+  },
+  {
+    "id": "71e4cee0-c83d-4353-bb46-3d43b4a144fa",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "35\n15",
+    "expected_output": "Số bạn Nữ nhiều hơn số bạn Nam",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "3e2d9654-36c5-43a9-b7c2-1217cedf3e39",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "35\n20",
+    "expected_output": "Số bạn Nam nhiều hơn số bạn Nữ",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "fdda4b95-31a5-4ed6-b5ed-41300dbf9692",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "30\n15",
+    "expected_output": "Số bạn Nam bằng số bạn Nữ",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "cf342de4-a42f-400b-96b1-a6f8a6aff0cd",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "40\n0",
+    "expected_output": "Số bạn Nữ nhiều hơn số bạn Nam",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "1ca87d64-a7f8-46cc-a944-4d4752163b25",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "40\n40",
+    "expected_output": "Số bạn Nam nhiều hơn số bạn Nữ",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "fe222ccc-3e3a-4a03-80c0-892de07c4a61",
+    "problem_id": "20340f08-f287-4f2a-9e93-1c0af1588284",
+    "input": "2",
+    "expected_output": "2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 10,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:49:38.013Z"
+  },
+  {
+    "id": "d25eda27-878e-496d-9a70-976a05e9c272",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "40\n500000.5",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "3b0d2e9f-5fb3-4693-be2e-a0843f57cd23",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "30\n300000.0",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 10000.0 dong",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "4b7209b4-94f4-4163-97a2-fdefe5b637c8",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "45\n900000.0",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 20000.0 dong",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "3e813d41-b8eb-4214-bc46-226e31590ea1",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "13\n150000.25",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 11538.48076923077 dong",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "12532c53-9d69-4b67-8d97-d5da3dea76ed",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "1\n99.9",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 99.9 dong",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "e58a4bd5-8913-45e6-8335-ab4e76c83fed",
+    "problem_id": "512be09c-4e31-47f0-9660-5c950ab31f5d",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:49:46.012Z"
+  },
+  {
+    "id": "38bc1088-a46b-46e5-acf2-084cecf8d58d",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "10.5\n4.2",
+    "expected_output": "Chu vi (so thuc): 29.4\nChu vi (so nguyen): 29",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "1dda0414-45a2-4130-99c6-bcc7da1c2edc",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "5.0\n3.0",
+    "expected_output": "Chu vi (so thuc): 16.0\nChu vi (so nguyen): 16",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "943f1e1d-470e-4378-912b-e8144fcc368b",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "2.25\n1.15",
+    "expected_output": "Chu vi (so thuc): 6.8\nChu vi (so nguyen): 6",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "401f6681-f586-4aa7-8a2e-7072b9898232",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "100.123\n50.456",
+    "expected_output": "Chu vi (so thuc): 301.158\nChu vi (so nguyen): 301",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "774ef14b-a90d-4b13-8af7-db703c6a9576",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "0.5\n0.25",
+    "expected_output": "Chu vi (so thuc): 1.5\nChu vi (so nguyen): 1",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "2c5d5ec8-49b6-4988-b57b-7f838db5fd41",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "3\n5 6\n1 3",
+    "expected_output": "11",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:20:56.407Z"
+  },
+  {
+    "id": "da4b4a9c-dc66-40e3-a942-4da9b4b74f0b",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "4\n1 2 3\n2 4",
+    "expected_output": "5",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:20:56.407Z"
+  },
+  {
+    "id": "b61316c9-f375-4e6f-81e8-5dec8222d686",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "5\n1 2 3 4\n1 5",
+    "expected_output": "10",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:20:56.407Z"
+  },
+  {
+    "id": "79b944fb-03cb-40fd-bdbd-2747ed0b69d0",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "2\n7\n1 2",
+    "expected_output": "7",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:20:56.407Z"
+  },
+  {
+    "id": "2c8d4a93-bb5e-4688-80fa-49b3a8b680e3",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "code\nedoc",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:21:03.386Z"
+  },
+  {
+    "id": "d34833cf-3ebe-4c16-ba54-d22d8f8a894b",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "abb\naba",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:21:03.386Z"
+  },
+  {
+    "id": "43be2a3d-0d12-427b-a205-7960eff58f93",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "abc\ncba",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:21:03.386Z"
+  },
+  {
+    "id": "7af7e413-c8cd-4e21-82e6-6da1555b8e1f",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "code\ncode",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:21:03.386Z"
+  },
+  {
+    "id": "813ec24d-27b9-44b6-ab1d-a477a1f08f4a",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "1.42",
+    "expected_output": "Chieu cao cua ban la: 142 cm",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "9a0a6bef-51d9-4ed3-803a-3b21bab3be94",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "1.35",
+    "expected_output": "Chieu cao cua ban la: 135 cm",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "dc75273e-0e8d-4fbd-b035-21710244048e",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "1.7",
+    "expected_output": "Chieu cao cua ban la: 170 cm",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "a1ccf903-3598-4877-8e0e-e1d3a825389f",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "0.85",
+    "expected_output": "Chieu cao cua ban la: 85 cm",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "7a9a2795-ff96-4b12-a7f9-2ecefefcd927",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "2.05",
+    "expected_output": "Chieu cao cua ban la: 205 cm",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "84885eb9-de46-42a3-b9e8-f88cb35f9a75",
+    "problem_id": "7d69e3a3-76b8-4be2-89f5-8abab96957e8",
+    "input": "c",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:49:43.085Z"
+  },
+  {
+    "id": "07f5c379-d56d-4e51-8d33-aadd823a7141",
+    "problem_id": "7d69e3a3-76b8-4be2-89f5-8abab96957e8",
+    "input": "d",
+    "expected_output": "4",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:49:43.085Z"
+  },
+  {
+    "id": "3387ff4c-2627-4e0c-8235-2315885ea418",
+    "problem_id": "7d69e3a3-76b8-4be2-89f5-8abab96957e8",
+    "input": "e",
+    "expected_output": "5",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:49:43.085Z"
+  },
+  {
+    "id": "5f9a6cca-dbdd-49de-b62b-aea71fef0b67",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "input": "8",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "d0fe2258-8df7-4837-ad22-8e77980dd1d3",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "input": "2",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "fecf658d-aa0a-4e60-8f93-7db8e2eb1391",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "input": "3",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "4160894a-a6f0-4be6-84e7-e439c8755cb9",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "input": "100",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "5473c5b8-fb28-4830-a640-97f7a8ada369",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "input": "4",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "a1bd2610-5f62-41f0-a98d-ab4fb8f8fe27",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": ".-.--",
+    "expected_output": "012",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:20:46.798Z"
+  },
+  {
+    "id": "4ff45bee-6542-4a43-92a8-41a19abc1398",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": "--.",
+    "expected_output": "20",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:20:46.798Z"
+  },
+  {
+    "id": "2f2f8ac6-16a2-41a5-9dd2-02ea6c74e5a9",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": ".",
+    "expected_output": "0",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:20:46.798Z"
+  },
+  {
+    "id": "b6d6a572-ba33-47ec-a53f-ee3349d39f12",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": "-..-.--",
+    "expected_output": "1012",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:20:46.798Z"
+  },
+  {
+    "id": "ea919917-bc59-49c4-8941-31879ef0868c",
+    "problem_id": "9c6a4ea5-544f-4852-9a98-93863bc1bc39",
+    "input": "1",
+    "expected_output": "1",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:49:38.013Z"
+  },
+  {
+    "id": "aae1255b-c592-4027-bae1-d7b5d67b6809",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "1",
+    "expected_output": "0",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:20:12.641Z"
+  },
+  {
+    "id": "2202c0b2-f53a-48ce-be10-419817129fec",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "10",
+    "expected_output": "2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:20:12.641Z"
+  },
+  {
+    "id": "84eb02ec-373a-474b-8467-c7a85a23f300",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "21",
+    "expected_output": "8",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:20:12.641Z"
+  },
+  {
+    "id": "e8a1ddea-e0a3-4ecd-9583-121349cbc1ff",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "30",
+    "expected_output": "12",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:20:12.641Z"
+  },
+  {
+    "id": "3768dfe1-dcde-42b2-91ac-f893f193412f",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "3 5",
+    "expected_output": "8",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "6cb64d4b-9beb-4b89-be24-189dd5058480",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "-2 10",
+    "expected_output": "8",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "6922c65b-7ca7-4f83-818d-fe7d5fc2acd6",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "0 0",
+    "expected_output": "0",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "c40ec098-51e7-4d9a-83d5-428e011c1596",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "999999 1",
+    "expected_output": "1000000",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "39a65767-7406-4382-b7ef-37df1e79b840",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "-100 -200",
+    "expected_output": "-300",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "2e6b5ccc-da3c-4865-bf59-2ca56635f8e4",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "4 2",
+    "expected_output": "1/2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:20:39.338Z"
+  },
+  {
+    "id": "c371f73e-c15c-410b-a5a7-e3439ebb11f8",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "3 3",
+    "expected_output": "2/3",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:20:39.338Z"
+  },
+  {
+    "id": "a25a9262-b60a-479a-9920-7ae851b1915b",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "6 6",
+    "expected_output": "1/6",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:20:39.338Z"
+  },
+  {
+    "id": "015d40eb-2f22-466d-98f7-31e7d8c74723",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "1 1",
+    "expected_output": "1/1",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:20:39.338Z"
+  },
+  {
+    "id": "b682976e-335d-4215-b2a5-55a963ed7e85",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "4 2 1 3",
+    "expected_output": "TRIANGLE",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:19:45.578Z"
+  },
+  {
+    "id": "a3323c11-04f7-4203-864e-abc51f348574",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "7 2 2 4",
+    "expected_output": "SEGMENT",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:19:45.578Z"
+  },
+  {
+    "id": "55118f12-965f-4104-94d4-8ef59f1f6fbf",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "3 5 9 1",
+    "expected_output": "IMPOSSIBLE",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:19:45.578Z"
+  },
+  {
+    "id": "3131e286-5c62-4311-acae-8078d4df9801",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "5 5 5 8",
+    "expected_output": "TRIANGLE",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:19:45.578Z"
+  },
+  {
+    "id": "730077e2-d283-4f3c-b3fb-16854060df6d",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "001001",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:19:36.567Z"
+  },
+  {
+    "id": "b9befa62-5ce6-4e79-9044-ba374d03bd7a",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "1000000001",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:19:36.567Z"
+  },
+  {
+    "id": "017a3c45-f680-4c43-9a32-ca12d2379393",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "1111111",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:19:36.567Z"
+  },
+  {
+    "id": "4eeb75de-a053-4f90-8571-20753d4756bc",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "0101010",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:19:36.567Z"
+  },
+  {
+    "id": "4d416f05-4713-4c49-9d15-8da3a37f903f",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "4 2\n1 3 3 2",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:20:21.350Z"
+  },
+  {
+    "id": "39cac933-3794-4f29-823d-5087a207cb99",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "2 1\n4 1",
+    "expected_output": "4",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:20:21.350Z"
+  },
+  {
+    "id": "0cdaa9d6-b161-4ea3-af8e-5f2b7e312be3",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "3 5\n10 10 10",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:20:21.350Z"
+  },
+  {
+    "id": "a70d4eb9-faa1-4af9-9f51-7e6bc0e92614",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "4 10\n1 2 3 4",
+    "expected_output": "0",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:20:21.350Z"
+  },
+  {
+    "id": "2629b88d-e7ef-49bd-9382-ec3dd7364a74",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "HoUse",
+    "expected_output": "house",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:21:22.500Z"
+  },
+  {
+    "id": "ec6eca89-5241-41cd-a2e0-72c5a3a861d0",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "ViP",
+    "expected_output": "VIP",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:21:22.500Z"
+  },
+  {
+    "id": "0b5682a7-88c6-4f1b-b469-97e353532b39",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "maTRIx",
+    "expected_output": "matrix",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:21:22.500Z"
+  },
+  {
+    "id": "c8773b4d-efbd-41a5-b5b4-9bbacccf12b4",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "abCD",
+    "expected_output": "abcd",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:21:22.500Z"
+  },
+  {
+    "id": "c88f59cf-b7fa-4252-b9c0-16c12f943cc7",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "8\n3",
+    "expected_output": "Sau khi sap xep: a = 3, b = 8",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "17fb5fbc-ae68-41cf-aa78-9f80d202ff64",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "3\n8",
+    "expected_output": "Sau khi sap xep: a = 3, b = 8",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "6cbd1877-4392-47f0-9567-8769d261a704",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "5\n5",
+    "expected_output": "Sau khi sap xep: a = 5, b = 5",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "d50df5d6-db52-41fd-a868-ca7f02432993",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "-10\n20",
+    "expected_output": "Sau khi sap xep: a = -10, b = 20",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "ca3b1404-b8c2-4778-81d1-79bd9f41848b",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "50\n-50",
+    "expected_output": "Sau khi sap xep: a = -50, b = 50",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  }
+]
+```
+
+### File: `backups/problem_testcases-before-cleanup-20260624-165800.json`
+
+```json
+[
+  {
+    "id": "268c2a57-1276-4181-b465-1f93f6ab88a3",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "CodeForces",
+    "expected_output": "2 8",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:21:14.676Z"
+  },
+  {
+    "id": "0e933ecd-532d-4d61-a7d4-a150884f2893",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "Python3.10",
+    "expected_output": "1 5",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:21:14.676Z"
+  },
+  {
+    "id": "976cc137-ba69-438a-9abc-1e2c3ec3303d",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "HELLO",
+    "expected_output": "5 0",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:21:14.676Z"
+  },
+  {
+    "id": "f3cab951-5947-49a4-947c-38630fe9909a",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "world",
+    "expected_output": "0 5",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:21:14.676Z"
+  },
+  {
+    "id": "a2810927-8a54-40af-b3a6-c5071efc402b",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "123456",
+    "expected_output": "0 0",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T06:21:14.676Z"
+  },
+  {
+    "id": "b7c46c42-0e82-40a6-aa7f-b2e6bdc6c1be",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "10\n3",
+    "expected_output": "a khong chia het cho b",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "414bbc9f-c4e9-46b9-ac7b-b7617dad324a",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "12\n4",
+    "expected_output": "a chia het cho b",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "c19a9bac-66d4-4f88-bb05-87c0ad47949e",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "-15\n5",
+    "expected_output": "a chia het cho b",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "aa7204cc-80e4-42db-90b7-5ed0a5774eed",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "0\n7",
+    "expected_output": "a chia het cho b",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "db1b3f78-7df5-412b-91d5-dded6a42d3ac",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "7\n10",
+    "expected_output": "a khong chia het cho b",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "b6c639bf-0ba4-4b7f-a9de-b1eaf65d3f41",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "8",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:20:31.579Z"
+  },
+  {
+    "id": "f1d4b3cd-1cf0-425d-8cb3-8460861ad219",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "2",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:20:31.579Z"
+  },
+  {
+    "id": "c892c75d-464f-477c-b655-8ec4cd8d89fd",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "3",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:20:31.579Z"
+  },
+  {
+    "id": "f00a933e-4565-4d3b-a86e-93ea4f904799",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "100",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:20:31.579Z"
+  },
+  {
+    "id": "71e4cee0-c83d-4353-bb46-3d43b4a144fa",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "35\n15",
+    "expected_output": "Số bạn Nữ nhiều hơn số bạn Nam",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "3e2d9654-36c5-43a9-b7c2-1217cedf3e39",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "35\n20",
+    "expected_output": "Số bạn Nam nhiều hơn số bạn Nữ",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "fdda4b95-31a5-4ed6-b5ed-41300dbf9692",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "30\n15",
+    "expected_output": "Số bạn Nam bằng số bạn Nữ",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "cf342de4-a42f-400b-96b1-a6f8a6aff0cd",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "40\n0",
+    "expected_output": "Số bạn Nữ nhiều hơn số bạn Nam",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "1ca87d64-a7f8-46cc-a944-4d4752163b25",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "40\n40",
+    "expected_output": "Số bạn Nam nhiều hơn số bạn Nữ",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "fe222ccc-3e3a-4a03-80c0-892de07c4a61",
+    "problem_id": "20340f08-f287-4f2a-9e93-1c0af1588284",
+    "input": "2",
+    "expected_output": "2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 10,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:49:38.013Z"
+  },
+  {
+    "id": "d25eda27-878e-496d-9a70-976a05e9c272",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "40\n500000.5",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "3b0d2e9f-5fb3-4693-be2e-a0843f57cd23",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "30\n300000.0",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 10000.0 dong",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "4b7209b4-94f4-4163-97a2-fdefe5b637c8",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "45\n900000.0",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 20000.0 dong",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "3e813d41-b8eb-4214-bc46-226e31590ea1",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "13\n150000.25",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 11538.48076923077 dong",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "12532c53-9d69-4b67-8d97-d5da3dea76ed",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "1\n99.9",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 99.9 dong",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "e58a4bd5-8913-45e6-8335-ab4e76c83fed",
+    "problem_id": "512be09c-4e31-47f0-9660-5c950ab31f5d",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:49:46.012Z"
+  },
+  {
+    "id": "38bc1088-a46b-46e5-acf2-084cecf8d58d",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "10.5\n4.2",
+    "expected_output": "Chu vi (so thuc): 29.4\nChu vi (so nguyen): 29",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "1dda0414-45a2-4130-99c6-bcc7da1c2edc",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "5.0\n3.0",
+    "expected_output": "Chu vi (so thuc): 16.0\nChu vi (so nguyen): 16",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "943f1e1d-470e-4378-912b-e8144fcc368b",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "2.25\n1.15",
+    "expected_output": "Chu vi (so thuc): 6.8\nChu vi (so nguyen): 6",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "401f6681-f586-4aa7-8a2e-7072b9898232",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "100.123\n50.456",
+    "expected_output": "Chu vi (so thuc): 301.158\nChu vi (so nguyen): 301",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "774ef14b-a90d-4b13-8af7-db703c6a9576",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "0.5\n0.25",
+    "expected_output": "Chu vi (so thuc): 1.5\nChu vi (so nguyen): 1",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "2c5d5ec8-49b6-4988-b57b-7f838db5fd41",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "3\n5 6\n1 3",
+    "expected_output": "11",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:20:56.407Z"
+  },
+  {
+    "id": "da4b4a9c-dc66-40e3-a942-4da9b4b74f0b",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "4\n1 2 3\n2 4",
+    "expected_output": "5",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:20:56.407Z"
+  },
+  {
+    "id": "b61316c9-f375-4e6f-81e8-5dec8222d686",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "5\n1 2 3 4\n1 5",
+    "expected_output": "10",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:20:56.407Z"
+  },
+  {
+    "id": "79b944fb-03cb-40fd-bdbd-2747ed0b69d0",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "2\n7\n1 2",
+    "expected_output": "7",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:20:56.407Z"
+  },
+  {
+    "id": "2c8d4a93-bb5e-4688-80fa-49b3a8b680e3",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "code\nedoc",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:21:03.386Z"
+  },
+  {
+    "id": "d34833cf-3ebe-4c16-ba54-d22d8f8a894b",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "abb\naba",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:21:03.386Z"
+  },
+  {
+    "id": "43be2a3d-0d12-427b-a205-7960eff58f93",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "abc\ncba",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:21:03.386Z"
+  },
+  {
+    "id": "7af7e413-c8cd-4e21-82e6-6da1555b8e1f",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "code\ncode",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:21:03.386Z"
+  },
+  {
+    "id": "813ec24d-27b9-44b6-ab1d-a477a1f08f4a",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "1.42",
+    "expected_output": "Chieu cao cua ban la: 142 cm",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "9a0a6bef-51d9-4ed3-803a-3b21bab3be94",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "1.35",
+    "expected_output": "Chieu cao cua ban la: 135 cm",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "dc75273e-0e8d-4fbd-b035-21710244048e",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "1.7",
+    "expected_output": "Chieu cao cua ban la: 170 cm",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "a1ccf903-3598-4877-8e0e-e1d3a825389f",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "0.85",
+    "expected_output": "Chieu cao cua ban la: 85 cm",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "7a9a2795-ff96-4b12-a7f9-2ecefefcd927",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "2.05",
+    "expected_output": "Chieu cao cua ban la: 205 cm",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "84885eb9-de46-42a3-b9e8-f88cb35f9a75",
+    "problem_id": "7d69e3a3-76b8-4be2-89f5-8abab96957e8",
+    "input": "c",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:49:43.085Z"
+  },
+  {
+    "id": "07f5c379-d56d-4e51-8d33-aadd823a7141",
+    "problem_id": "7d69e3a3-76b8-4be2-89f5-8abab96957e8",
+    "input": "d",
+    "expected_output": "4",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:49:43.085Z"
+  },
+  {
+    "id": "3387ff4c-2627-4e0c-8235-2315885ea418",
+    "problem_id": "7d69e3a3-76b8-4be2-89f5-8abab96957e8",
+    "input": "e",
+    "expected_output": "5",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:49:43.085Z"
+  },
+  {
+    "id": "5f9a6cca-dbdd-49de-b62b-aea71fef0b67",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "input": "8",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "d0fe2258-8df7-4837-ad22-8e77980dd1d3",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "input": "2",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "fecf658d-aa0a-4e60-8f93-7db8e2eb1391",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "input": "3",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "4160894a-a6f0-4be6-84e7-e439c8755cb9",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "input": "100",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "5473c5b8-fb28-4830-a640-97f7a8ada369",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "input": "4",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "a1bd2610-5f62-41f0-a98d-ab4fb8f8fe27",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": ".-.--",
+    "expected_output": "012",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:20:46.798Z"
+  },
+  {
+    "id": "4ff45bee-6542-4a43-92a8-41a19abc1398",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": "--.",
+    "expected_output": "20",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:20:46.798Z"
+  },
+  {
+    "id": "2f2f8ac6-16a2-41a5-9dd2-02ea6c74e5a9",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": ".",
+    "expected_output": "0",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:20:46.798Z"
+  },
+  {
+    "id": "b6d6a572-ba33-47ec-a53f-ee3349d39f12",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": "-..-.--",
+    "expected_output": "1012",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:20:46.798Z"
+  },
+  {
+    "id": "ea919917-bc59-49c4-8941-31879ef0868c",
+    "problem_id": "9c6a4ea5-544f-4852-9a98-93863bc1bc39",
+    "input": "1",
+    "expected_output": "1",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:49:38.013Z"
+  },
+  {
+    "id": "aae1255b-c592-4027-bae1-d7b5d67b6809",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "1",
+    "expected_output": "0",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:20:12.641Z"
+  },
+  {
+    "id": "2202c0b2-f53a-48ce-be10-419817129fec",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "10",
+    "expected_output": "2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:20:12.641Z"
+  },
+  {
+    "id": "84eb02ec-373a-474b-8467-c7a85a23f300",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "21",
+    "expected_output": "8",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:20:12.641Z"
+  },
+  {
+    "id": "e8a1ddea-e0a3-4ecd-9583-121349cbc1ff",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "30",
+    "expected_output": "12",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:20:12.641Z"
+  },
+  {
+    "id": "3768dfe1-dcde-42b2-91ac-f893f193412f",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "3 5",
+    "expected_output": "8",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "6cb64d4b-9beb-4b89-be24-189dd5058480",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "-2 10",
+    "expected_output": "8",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "6922c65b-7ca7-4f83-818d-fe7d5fc2acd6",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "0 0",
+    "expected_output": "0",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "c40ec098-51e7-4d9a-83d5-428e011c1596",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "999999 1",
+    "expected_output": "1000000",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "39a65767-7406-4382-b7ef-37df1e79b840",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "-100 -200",
+    "expected_output": "-300",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "id": "2e6b5ccc-da3c-4865-bf59-2ca56635f8e4",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "4 2",
+    "expected_output": "1/2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:20:39.338Z"
+  },
+  {
+    "id": "c371f73e-c15c-410b-a5a7-e3439ebb11f8",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "3 3",
+    "expected_output": "2/3",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:20:39.338Z"
+  },
+  {
+    "id": "a25a9262-b60a-479a-9920-7ae851b1915b",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "6 6",
+    "expected_output": "1/6",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:20:39.338Z"
+  },
+  {
+    "id": "015d40eb-2f22-466d-98f7-31e7d8c74723",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "1 1",
+    "expected_output": "1/1",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:20:39.338Z"
+  },
+  {
+    "id": "b682976e-335d-4215-b2a5-55a963ed7e85",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "4 2 1 3",
+    "expected_output": "TRIANGLE",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:19:45.578Z"
+  },
+  {
+    "id": "a3323c11-04f7-4203-864e-abc51f348574",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "7 2 2 4",
+    "expected_output": "SEGMENT",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:19:45.578Z"
+  },
+  {
+    "id": "55118f12-965f-4104-94d4-8ef59f1f6fbf",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "3 5 9 1",
+    "expected_output": "IMPOSSIBLE",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:19:45.578Z"
+  },
+  {
+    "id": "3131e286-5c62-4311-acae-8078d4df9801",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "5 5 5 8",
+    "expected_output": "TRIANGLE",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:19:45.578Z"
+  },
+  {
+    "id": "730077e2-d283-4f3c-b3fb-16854060df6d",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "001001",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:19:36.567Z"
+  },
+  {
+    "id": "b9befa62-5ce6-4e79-9044-ba374d03bd7a",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "1000000001",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:19:36.567Z"
+  },
+  {
+    "id": "017a3c45-f680-4c43-9a32-ca12d2379393",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "1111111",
+    "expected_output": "YES",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:19:36.567Z"
+  },
+  {
+    "id": "4eeb75de-a053-4f90-8571-20753d4756bc",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "0101010",
+    "expected_output": "NO",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:19:36.567Z"
+  },
+  {
+    "id": "4d416f05-4713-4c49-9d15-8da3a37f903f",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "4 2\n1 3 3 2",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:20:21.350Z"
+  },
+  {
+    "id": "39cac933-3794-4f29-823d-5087a207cb99",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "2 1\n4 1",
+    "expected_output": "4",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:20:21.350Z"
+  },
+  {
+    "id": "0cdaa9d6-b161-4ea3-af8e-5f2b7e312be3",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "3 5\n10 10 10",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:20:21.350Z"
+  },
+  {
+    "id": "a70d4eb9-faa1-4af9-9f51-7e6bc0e92614",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "4 10\n1 2 3 4",
+    "expected_output": "0",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:20:21.350Z"
+  },
+  {
+    "id": "2629b88d-e7ef-49bd-9382-ec3dd7364a74",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "HoUse",
+    "expected_output": "house",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T06:21:22.500Z"
+  },
+  {
+    "id": "ec6eca89-5241-41cd-a2e0-72c5a3a861d0",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "ViP",
+    "expected_output": "VIP",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T06:21:22.500Z"
+  },
+  {
+    "id": "0b5682a7-88c6-4f1b-b469-97e353532b39",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "maTRIx",
+    "expected_output": "matrix",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T06:21:22.500Z"
+  },
+  {
+    "id": "c8773b4d-efbd-41a5-b5b4-9bbacccf12b4",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "abCD",
+    "expected_output": "abcd",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T06:21:22.500Z"
+  },
+  {
+    "id": "c88f59cf-b7fa-4252-b9c0-16c12f943cc7",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "8\n3",
+    "expected_output": "Sau khi sap xep: a = 3, b = 8",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "17fb5fbc-ae68-41cf-aa78-9f80d202ff64",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "3\n8",
+    "expected_output": "Sau khi sap xep: a = 3, b = 8",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "6cbd1877-4392-47f0-9567-8769d261a704",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "5\n5",
+    "expected_output": "Sau khi sap xep: a = 5, b = 5",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "d50df5d6-db52-41fd-a868-ca7f02432993",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "-10\n20",
+    "expected_output": "Sau khi sap xep: a = -10, b = 20",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "ca3b1404-b8c2-4778-81d1-79bd9f41848b",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "50\n-50",
+    "expected_output": "Sau khi sap xep: a = -50, b = 50",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  }
+]
+```
+
+### File: `backups/student_problem_assignments-before-cleanup-20260624-165640.json`
+
+```json
+[
+  {
+    "id": "ec78234a-e948-4183-abf3-20cfe7ade4ae",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "COMPLETED",
+    "note": "Bai mau de test chuc nang phan bo",
+    "assigned_at": "2026-06-19T23:15:24.529Z",
+    "completed_at": "2026-06-19T23:17:39.339Z",
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-19T23:15:24.529Z",
+    "updated_at": "2026-06-19T23:17:39.339Z"
+  },
+  {
+    "id": "3421f9fd-93fb-41de-bd72-0d4a3f96b67e",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "Bai mau de test chuc nang phan bo",
+    "assigned_at": "2026-06-19T23:15:24.689Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-19T23:15:24.689Z",
+    "updated_at": "2026-06-19T23:16:22.525Z"
+  },
+  {
+    "id": "31de5eb9-677c-4a79-8089-a584c57c29ff",
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "CANCELLED",
+    "note": "Bai mau de test chuc nang phan bo",
+    "assigned_at": "2026-06-19T23:18:01.691Z",
+    "completed_at": null,
+    "cancelled_at": "2026-06-19T23:18:02.776Z",
+    "copied_from_user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "copied_from_assignment_id": "3421f9fd-93fb-41de-bd72-0d4a3f96b67e",
+    "created_at": "2026-06-19T23:18:01.691Z",
+    "updated_at": "2026-06-19T23:18:02.776Z"
+  },
+  {
+    "id": "a432e0e7-df1c-4477-9215-f06df0f734b2",
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "COMPLETED",
+    "note": "Bai mau de test chuc nang phan bo",
+    "assigned_at": "2026-06-19T23:18:20.441Z",
+    "completed_at": "2026-06-19T23:18:58.122Z",
+    "cancelled_at": null,
+    "copied_from_user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "copied_from_assignment_id": "3421f9fd-93fb-41de-bd72-0d4a3f96b67e",
+    "created_at": "2026-06-19T23:18:20.441Z",
+    "updated_at": "2026-06-19T23:18:58.122Z"
+  },
+  {
+    "id": "d7ce8df5-0ff0-455b-b1ad-d06590aaf53e",
+    "user_id": "8ae0731b-ef11-4742-aed4-43836100a270",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-19T23:34:57.181Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-19T23:34:57.181Z",
+    "updated_at": "2026-06-19T23:34:57.181Z"
+  },
+  {
+    "id": "b2f076d9-2976-4e35-bc7f-6dc987d2a862",
+    "user_id": "8ae0731b-ef11-4742-aed4-43836100a270",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-19T23:34:57.181Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-19T23:34:57.181Z",
+    "updated_at": "2026-06-19T23:34:57.181Z"
+  },
+  {
+    "id": "f2b67383-c404-4f4f-895a-6cb60e56e179",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "e238a931-e689-48f7-bcc5-cd0a71c91d54",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "e24aca69-b80e-4d4a-b545-c2d9da911c1c",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "20348a20-c886-4410-a485-d7c9d31edc18",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "4a23c90b-8a87-4c34-81d8-a56f95f5dbf8",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "85c30946-fa9f-483a-a4e8-0e3d8272fa0a",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "d77cced0-99dd-40d3-8760-c1319fa268a6",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "95e88e36-bcf2-48e6-98c9-4036b238393a",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  }
+]
+```
+
+### File: `backups/student_problem_assignments-before-cleanup-20260624-165800.json`
+
+```json
+[
+  {
+    "id": "ec78234a-e948-4183-abf3-20cfe7ade4ae",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "COMPLETED",
+    "note": "Bai mau de test chuc nang phan bo",
+    "assigned_at": "2026-06-19T23:15:24.529Z",
+    "completed_at": "2026-06-19T23:17:39.339Z",
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-19T23:15:24.529Z",
+    "updated_at": "2026-06-19T23:17:39.339Z"
+  },
+  {
+    "id": "3421f9fd-93fb-41de-bd72-0d4a3f96b67e",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "Bai mau de test chuc nang phan bo",
+    "assigned_at": "2026-06-19T23:15:24.689Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-19T23:15:24.689Z",
+    "updated_at": "2026-06-19T23:16:22.525Z"
+  },
+  {
+    "id": "31de5eb9-677c-4a79-8089-a584c57c29ff",
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "CANCELLED",
+    "note": "Bai mau de test chuc nang phan bo",
+    "assigned_at": "2026-06-19T23:18:01.691Z",
+    "completed_at": null,
+    "cancelled_at": "2026-06-19T23:18:02.776Z",
+    "copied_from_user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "copied_from_assignment_id": "3421f9fd-93fb-41de-bd72-0d4a3f96b67e",
+    "created_at": "2026-06-19T23:18:01.691Z",
+    "updated_at": "2026-06-19T23:18:02.776Z"
+  },
+  {
+    "id": "a432e0e7-df1c-4477-9215-f06df0f734b2",
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "COMPLETED",
+    "note": "Bai mau de test chuc nang phan bo",
+    "assigned_at": "2026-06-19T23:18:20.441Z",
+    "completed_at": "2026-06-19T23:18:58.122Z",
+    "cancelled_at": null,
+    "copied_from_user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "copied_from_assignment_id": "3421f9fd-93fb-41de-bd72-0d4a3f96b67e",
+    "created_at": "2026-06-19T23:18:20.441Z",
+    "updated_at": "2026-06-19T23:18:58.122Z"
+  },
+  {
+    "id": "d7ce8df5-0ff0-455b-b1ad-d06590aaf53e",
+    "user_id": "8ae0731b-ef11-4742-aed4-43836100a270",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-19T23:34:57.181Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-19T23:34:57.181Z",
+    "updated_at": "2026-06-19T23:34:57.181Z"
+  },
+  {
+    "id": "b2f076d9-2976-4e35-bc7f-6dc987d2a862",
+    "user_id": "8ae0731b-ef11-4742-aed4-43836100a270",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-19T23:34:57.181Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-19T23:34:57.181Z",
+    "updated_at": "2026-06-19T23:34:57.181Z"
+  },
+  {
+    "id": "f2b67383-c404-4f4f-895a-6cb60e56e179",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "e238a931-e689-48f7-bcc5-cd0a71c91d54",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "e24aca69-b80e-4d4a-b545-c2d9da911c1c",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "20348a20-c886-4410-a485-d7c9d31edc18",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "4a23c90b-8a87-4c34-81d8-a56f95f5dbf8",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "85c30946-fa9f-483a-a4e8-0e3d8272fa0a",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "d77cced0-99dd-40d3-8760-c1319fa268a6",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  },
+  {
+    "id": "95e88e36-bcf2-48e6-98c9-4036b238393a",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-20T11:50:43.758Z"
+  }
+]
+```
+
+### File: `backups/submissions-before-cleanup-20260624-165640.json`
+
+```json
+[
+  {
+    "id": "33073056-b8e5-49e6-b8c7-bdd47bd05a4c",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "attempt_id": "84ae9154-2d0b-49ca-b096-746dbd828b81",
+    "code": "# Nhập dữ liệu đầu vào và chuyển thành số nguyên\na, b = map(int, input().split())\n\n# Tính toán và in kết quả\nprint(a + b)\n",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 231691,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T19:06:14.344Z"
+  },
+  {
+    "id": "385b1fe4-e882-49a8-99a9-ebf537e5988f",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "attempt_id": "706e6aa9-f2b7-443b-ae62-5fc8ae16653f",
+    "code": "# Nhập cân nặng w của quả dưa\nw = int(input())\n\n# Hãy viết code kiểm tra ở đây\nif (w % 2 ==0):\n    print(\"YES\")\nelse:\n    print(\"NO\")",
+    "status": "WRONG_ANSWER",
+    "score": 80,
+    "passed_count": 4,
+    "total_count": 5,
+    "duration_ms": 1783350,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T20:45:38.306Z"
+  },
+  {
+    "id": "1185f3ec-fa99-4adb-b6e6-d1b6b2bfe233",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "attempt_id": "90762349-8381-4b32-830a-5508c5186834",
+    "code": "# Nhập cân nặng w của quả dưa\nw = int(input())\n\n# Hãy viết code kiểm tra ở đây\nif (w % 2 ==0 and w != 2):\n    print(\"YES\")\nelse:\n    print(\"NO\")",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 25032,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T20:47:38.413Z"
+  },
+  {
+    "id": "677db9d6-96dc-4538-bf88-80322494050e",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "attempt_id": "7d775c15-6305-4cdf-ae82-65965983e078",
+    "code": "# Nhập dữ liệu đầu vào và chuyển thành số nguyên\na, b = map(int, input().split())\n\n# Tính toán và in kết quả\nprint(a + b)\n",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 1223723,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T21:52:05.200Z"
+  },
+  {
+    "id": "15803837-4dfc-4419-a91e-100cb8be9c86",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "attempt_id": "e0e04a36-3354-41d7-8ac8-507759f69f85",
+    "code": "a = int(input())\nb = int(input())\nprint(a + b)",
+    "status": "RUNTIME_ERROR",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 5,
+    "duration_ms": 479,
+    "report": [
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '3 5' (dòng 1)",
+        "index": 1,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      },
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '-2 10' (dòng 1)",
+        "index": 2,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      },
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '0 0' (dòng 1)",
+        "index": 3,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      },
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '999999 1' (dòng 1)",
+        "index": 4,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      },
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '-100 -200' (dòng 1)",
+        "index": 5,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      }
+    ],
+    "created_at": "2026-06-19T23:17:05.181Z"
+  },
+  {
+    "id": "d806a1a6-d52d-4c7f-b9b7-0a722a3a4ab6",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "attempt_id": "3dd7fe79-c3ef-44aa-9b4b-bfe65ce34436",
+    "code": "a, b = map(int, input().split())\nprint(a + b)",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 497,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T23:17:39.339Z"
+  },
+  {
+    "id": "5f4ffed0-f948-423e-adbc-2c0082d41aff",
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "attempt_id": "09f27bb1-98a4-42db-855e-62a01a962f85",
+    "code": "n = int(input())\nprint('YES' if n % 2 == 0 and n > 2 else 'NO')",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 430,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T23:18:58.122Z"
+  },
+  {
+    "id": "b7ec79fa-4785-400f-bb8f-8bf5eb2e6eae",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "attempt_id": "f08c3b47-a819-4175-bb63-e7c0eb8ea8e6",
+    "code": "# Nhập sĩ số lớp N (số nguyên)\nN = int(input())\n# Nhập tổng số tiền T (số thực)\nT = float(input())\n\n# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được\nvalue = float(T/N)\nprint(\"Trung binh moi hoc sin nhan qua tri gia\",value)",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 5,
+    "duration_ms": 348607,
+    "report": [
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 1,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-20T11:58:28.606Z"
+  },
+  {
+    "id": "50e15e79-6e3a-48a6-9686-dbe7e3aa6fe1",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "attempt_id": "ca4c3a60-cacd-460f-a880-8d944da8904d",
+    "code": "# Nhập sĩ số lớp N (số nguyên)\nN = int(input())\n# Nhập tổng số tiền T (số thực)\nT = float(input())\n\n# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được\nvalue=float(T/N)\n\nprint(\"Trung binh moi hoc sinh nhan qua tri gia:\",value,\"dong\")",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 5,
+    "duration_ms": 149651,
+    "report": [
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 1,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-20T12:01:08.613Z"
+  },
+  {
+    "id": "028063c9-98c1-4f15-b654-eae782c6691a",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "attempt_id": "562dd191-c7a6-4bae-8087-227201d88287",
+    "code": "# Nhập sĩ số lớp N (số nguyên)\nN = int(input())\n# Nhập tổng số tiền T (số thực)\nT = float(input())\n\n# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được\nvalue=float(T/N)\nprint(\"Trung binh moi hoc sinh nhan quan tri gia:\",value,\"dong\")",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 5,
+    "duration_ms": 86516,
+    "report": [
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 1,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-20T12:07:19.729Z"
+  },
+  {
+    "id": "ac6c0ae1-0cbb-46f0-978c-ed336e2375b6",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "attempt_id": "5808c6b1-aebb-4480-8de1-6e5f4c4d8f5a",
+    "code": "# Nhập chiều cao tính bằng mét (số thực)\nh = float(input())\n\n# Đổi sang centimet (số nguyên) và in ra màn hình đúng định dạng\nprint(\"Chieu cao cua ban la:\",int(h*100),\"cm\")",
+    "status": "WRONG_ANSWER",
+    "score": 80,
+    "passed_count": 4,
+    "total_count": 5,
+    "duration_ms": 133688,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "input": "1.42",
+        "actual": "Chieu cao cua ban la: 142 cm\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "Chieu cao cua ban la: 142 cm"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Token thứ 6 không khớp: thực tế là \"204\", mong muốn \"205\".",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-24T09:34:23.314Z"
+  }
+]
+```
+
+### File: `backups/submissions-before-cleanup-20260624-165800.json`
+
+```json
+[
+  {
+    "id": "33073056-b8e5-49e6-b8c7-bdd47bd05a4c",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "attempt_id": "84ae9154-2d0b-49ca-b096-746dbd828b81",
+    "code": "# Nhập dữ liệu đầu vào và chuyển thành số nguyên\na, b = map(int, input().split())\n\n# Tính toán và in kết quả\nprint(a + b)\n",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 231691,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T19:06:14.344Z"
+  },
+  {
+    "id": "385b1fe4-e882-49a8-99a9-ebf537e5988f",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "attempt_id": "706e6aa9-f2b7-443b-ae62-5fc8ae16653f",
+    "code": "# Nhập cân nặng w của quả dưa\nw = int(input())\n\n# Hãy viết code kiểm tra ở đây\nif (w % 2 ==0):\n    print(\"YES\")\nelse:\n    print(\"NO\")",
+    "status": "WRONG_ANSWER",
+    "score": 80,
+    "passed_count": 4,
+    "total_count": 5,
+    "duration_ms": 1783350,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T20:45:38.306Z"
+  },
+  {
+    "id": "1185f3ec-fa99-4adb-b6e6-d1b6b2bfe233",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "attempt_id": "90762349-8381-4b32-830a-5508c5186834",
+    "code": "# Nhập cân nặng w của quả dưa\nw = int(input())\n\n# Hãy viết code kiểm tra ở đây\nif (w % 2 ==0 and w != 2):\n    print(\"YES\")\nelse:\n    print(\"NO\")",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 25032,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T20:47:38.413Z"
+  },
+  {
+    "id": "677db9d6-96dc-4538-bf88-80322494050e",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "attempt_id": "7d775c15-6305-4cdf-ae82-65965983e078",
+    "code": "# Nhập dữ liệu đầu vào và chuyển thành số nguyên\na, b = map(int, input().split())\n\n# Tính toán và in kết quả\nprint(a + b)\n",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 1223723,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T21:52:05.200Z"
+  },
+  {
+    "id": "15803837-4dfc-4419-a91e-100cb8be9c86",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "attempt_id": "e0e04a36-3354-41d7-8ac8-507759f69f85",
+    "code": "a = int(input())\nb = int(input())\nprint(a + b)",
+    "status": "RUNTIME_ERROR",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 5,
+    "duration_ms": 479,
+    "report": [
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '3 5' (dòng 1)",
+        "index": 1,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      },
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '-2 10' (dòng 1)",
+        "index": 2,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      },
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '0 0' (dòng 1)",
+        "index": 3,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      },
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '999999 1' (dòng 1)",
+        "index": 4,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      },
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '-100 -200' (dòng 1)",
+        "index": 5,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      }
+    ],
+    "created_at": "2026-06-19T23:17:05.181Z"
+  },
+  {
+    "id": "d806a1a6-d52d-4c7f-b9b7-0a722a3a4ab6",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "attempt_id": "3dd7fe79-c3ef-44aa-9b4b-bfe65ce34436",
+    "code": "a, b = map(int, input().split())\nprint(a + b)",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 497,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T23:17:39.339Z"
+  },
+  {
+    "id": "5f4ffed0-f948-423e-adbc-2c0082d41aff",
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "attempt_id": "09f27bb1-98a4-42db-855e-62a01a962f85",
+    "code": "n = int(input())\nprint('YES' if n % 2 == 0 and n > 2 else 'NO')",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 430,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T23:18:58.122Z"
+  },
+  {
+    "id": "b7ec79fa-4785-400f-bb8f-8bf5eb2e6eae",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "attempt_id": "f08c3b47-a819-4175-bb63-e7c0eb8ea8e6",
+    "code": "# Nhập sĩ số lớp N (số nguyên)\nN = int(input())\n# Nhập tổng số tiền T (số thực)\nT = float(input())\n\n# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được\nvalue = float(T/N)\nprint(\"Trung binh moi hoc sin nhan qua tri gia\",value)",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 5,
+    "duration_ms": 348607,
+    "report": [
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 1,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-20T11:58:28.606Z"
+  },
+  {
+    "id": "50e15e79-6e3a-48a6-9686-dbe7e3aa6fe1",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "attempt_id": "ca4c3a60-cacd-460f-a880-8d944da8904d",
+    "code": "# Nhập sĩ số lớp N (số nguyên)\nN = int(input())\n# Nhập tổng số tiền T (số thực)\nT = float(input())\n\n# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được\nvalue=float(T/N)\n\nprint(\"Trung binh moi hoc sinh nhan qua tri gia:\",value,\"dong\")",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 5,
+    "duration_ms": 149651,
+    "report": [
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 1,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-20T12:01:08.613Z"
+  },
+  {
+    "id": "028063c9-98c1-4f15-b654-eae782c6691a",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "attempt_id": "562dd191-c7a6-4bae-8087-227201d88287",
+    "code": "# Nhập sĩ số lớp N (số nguyên)\nN = int(input())\n# Nhập tổng số tiền T (số thực)\nT = float(input())\n\n# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được\nvalue=float(T/N)\nprint(\"Trung binh moi hoc sinh nhan quan tri gia:\",value,\"dong\")",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 5,
+    "duration_ms": 86516,
+    "report": [
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 1,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-20T12:07:19.729Z"
+  },
+  {
+    "id": "ac6c0ae1-0cbb-46f0-978c-ed336e2375b6",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "attempt_id": "5808c6b1-aebb-4480-8de1-6e5f4c4d8f5a",
+    "code": "# Nhập chiều cao tính bằng mét (số thực)\nh = float(input())\n\n# Đổi sang centimet (số nguyên) và in ra màn hình đúng định dạng\nprint(\"Chieu cao cua ban la:\",int(h*100),\"cm\")",
+    "status": "WRONG_ANSWER",
+    "score": 80,
+    "passed_count": 4,
+    "total_count": 5,
+    "duration_ms": 133688,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "input": "1.42",
+        "actual": "Chieu cao cua ban la: 142 cm\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "Chieu cao cua ban la: 142 cm"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Token thứ 6 không khớp: thực tế là \"204\", mong muốn \"205\".",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-24T09:34:23.314Z"
+  }
+]
+```
+
+### File: `backups/user_problem_progress-before-cleanup-20260624-165640.json`
+
+```json
+[
+  {
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "best_submission_id": "d806a1a6-d52d-4c7f-b9b7-0a722a3a4ab6",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 2,
+    "first_started_at": "2026-06-19T23:17:05.181Z",
+    "last_submitted_at": "2026-06-19T23:17:39.339Z",
+    "completed_at": "2026-06-19T23:17:39.339Z",
+    "updated_at": "2026-06-19T23:17:39.339Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "best_submission_id": null,
+    "best_score": 0,
+    "best_status": null,
+    "submission_count": 0,
+    "first_started_at": "2026-06-19T19:13:33.401Z",
+    "last_submitted_at": null,
+    "completed_at": null,
+    "updated_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "best_submission_id": "b7ec79fa-4785-400f-bb8f-8bf5eb2e6eae",
+    "best_score": 0,
+    "best_status": "WRONG_ANSWER",
+    "submission_count": 3,
+    "first_started_at": "2026-06-20T11:58:28.606Z",
+    "last_submitted_at": "2026-06-20T12:07:19.729Z",
+    "completed_at": null,
+    "updated_at": "2026-06-20T12:07:19.729Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "best_submission_id": "ac6c0ae1-0cbb-46f0-978c-ed336e2375b6",
+    "best_score": 80,
+    "best_status": "WRONG_ANSWER",
+    "submission_count": 1,
+    "first_started_at": "2026-06-24T09:34:23.314Z",
+    "last_submitted_at": "2026-06-24T09:34:23.314Z",
+    "completed_at": null,
+    "updated_at": "2026-06-24T09:34:23.314Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "best_submission_id": "1185f3ec-fa99-4adb-b6e6-d1b6b2bfe233",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 2,
+    "first_started_at": "2026-06-19T19:12:56.064Z",
+    "last_submitted_at": "2026-06-19T20:47:38.413Z",
+    "completed_at": "2026-06-19T20:47:38.413Z",
+    "updated_at": "2026-06-19T21:52:46.123Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "best_submission_id": "33073056-b8e5-49e6-b8c7-bdd47bd05a4c",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 2,
+    "first_started_at": "2026-06-19T19:02:21.967Z",
+    "last_submitted_at": "2026-06-19T21:52:05.200Z",
+    "completed_at": "2026-06-19T19:06:14.344Z",
+    "updated_at": "2026-06-19T21:52:46.123Z"
+  },
+  {
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "best_submission_id": "5f4ffed0-f948-423e-adbc-2c0082d41aff",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 1,
+    "first_started_at": "2026-06-19T23:18:58.122Z",
+    "last_submitted_at": "2026-06-19T23:18:58.122Z",
+    "completed_at": "2026-06-19T23:18:58.122Z",
+    "updated_at": "2026-06-19T23:18:58.122Z"
+  }
+]
+```
+
+### File: `backups/user_problem_progress-before-cleanup-20260624-165800.json`
+
+```json
+[
+  {
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "best_submission_id": "d806a1a6-d52d-4c7f-b9b7-0a722a3a4ab6",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 2,
+    "first_started_at": "2026-06-19T23:17:05.181Z",
+    "last_submitted_at": "2026-06-19T23:17:39.339Z",
+    "completed_at": "2026-06-19T23:17:39.339Z",
+    "updated_at": "2026-06-19T23:17:39.339Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "best_submission_id": null,
+    "best_score": 0,
+    "best_status": null,
+    "submission_count": 0,
+    "first_started_at": "2026-06-19T19:13:33.401Z",
+    "last_submitted_at": null,
+    "completed_at": null,
+    "updated_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "best_submission_id": "b7ec79fa-4785-400f-bb8f-8bf5eb2e6eae",
+    "best_score": 0,
+    "best_status": "WRONG_ANSWER",
+    "submission_count": 3,
+    "first_started_at": "2026-06-20T11:58:28.606Z",
+    "last_submitted_at": "2026-06-20T12:07:19.729Z",
+    "completed_at": null,
+    "updated_at": "2026-06-20T12:07:19.729Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "best_submission_id": "ac6c0ae1-0cbb-46f0-978c-ed336e2375b6",
+    "best_score": 80,
+    "best_status": "WRONG_ANSWER",
+    "submission_count": 1,
+    "first_started_at": "2026-06-24T09:34:23.314Z",
+    "last_submitted_at": "2026-06-24T09:34:23.314Z",
+    "completed_at": null,
+    "updated_at": "2026-06-24T09:34:23.314Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "best_submission_id": "1185f3ec-fa99-4adb-b6e6-d1b6b2bfe233",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 2,
+    "first_started_at": "2026-06-19T19:12:56.064Z",
+    "last_submitted_at": "2026-06-19T20:47:38.413Z",
+    "completed_at": "2026-06-19T20:47:38.413Z",
+    "updated_at": "2026-06-19T21:52:46.123Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "best_submission_id": "33073056-b8e5-49e6-b8c7-bdd47bd05a4c",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 2,
+    "first_started_at": "2026-06-19T19:02:21.967Z",
+    "last_submitted_at": "2026-06-19T21:52:05.200Z",
+    "completed_at": "2026-06-19T19:06:14.344Z",
+    "updated_at": "2026-06-19T21:52:46.123Z"
+  },
+  {
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "8bc6e649-2c85-459e-a1bf-8d063bf2103e",
+    "best_submission_id": "5f4ffed0-f948-423e-adbc-2c0082d41aff",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 1,
+    "first_started_at": "2026-06-19T23:18:58.122Z",
+    "last_submitted_at": "2026-06-19T23:18:58.122Z",
+    "completed_at": "2026-06-19T23:18:58.122Z",
+    "updated_at": "2026-06-19T23:18:58.122Z"
+  }
+]
+```
+
+### File: `data/canonical-problems.js`
+
+```javascript
+export const canonicalProblems = [
+  {
+    slug: 'sum',
+    title: 'Tính tổng hai số',
+    difficulty: 'Dễ',
+    rating: 800,
+    source: 'SimpleOJ Starter',
+    description: `Viết chương trình nhập vào hai số nguyên $a$ và $b$ (cách nhau bởi một khoảng trắng) từ bàn phím. In ra màn hình tổng của hai số đó.
+
+### Định dạng dữ liệu đầu vào:
+* Một dòng duy nhất chứa hai số nguyên $a$ và $b$ ($-10^9 \\le a, b \\le 10^9$).
+
+### Định dạng dữ liệu đầu ra:
+* In ra một số nguyên duy nhất là tổng của $a$ và $b$.`,
+    examples: [
+      { input: '3 5\n', output: '8\n', explanation: 'Tổng của 3 và 5 là 8.' },
+      { input: '-2 10\n', output: '8\n', explanation: 'Tổng của -2 và 10 là 8.' }
+    ],
+    starterCode: `# Nhập dữ liệu đầu vào và chuyển thành số nguyên
+a, b = map(int, input().split())
+
+# Tính toán và in kết quả
+print(a + b)
+`,
+    compareMode: 'token',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 1,
+    testcases: [
+      { input: '3 5\n', output: '8\n', isPublic: true, weight: 1, orderIndex: 0 },
+      { input: '-2 10\n', output: '8\n', isPublic: true, weight: 1, orderIndex: 1 },
+      { input: '0 0\n', output: '0\n', isPublic: false, weight: 1, orderIndex: 2 },
+      { input: '999999 1\n', output: '1000000\n', isPublic: false, weight: 1, orderIndex: 3 },
+      { input: '-100 -200\n', output: '-300\n', isPublic: false, weight: 1, orderIndex: 4 },
+      { input: '1000000000 1000000000\n', output: '2000000000\n', isPublic: false, weight: 2, orderIndex: 5 },
+      { input: '-1000000000 1000000000\n', output: '0\n', isPublic: false, weight: 2, orderIndex: 6 },
+      { input: '-1000000000 -1000000000\n', output: '-2000000000\n', isPublic: false, weight: 2, orderIndex: 7 }
+    ]
+  },
+  {
+    slug: 'cf-4a-watermelon',
+    title: 'Chia dưa hấu (Watermelon)',
+    difficulty: 'Dễ',
+    rating: 800,
+    source: 'Codeforces 4A - Watermelon',
+    description: `Pete và Billy mua được một quả dưa hấu nặng $w$ kg. Họ rất thích các số chẵn và muốn chia quả dưa hấu này thành **hai phần đều có cân nặng là số chẵn dương** (không nhất thiết phải bằng nhau). 
+
+Hãy giúp họ kiểm tra xem có thể chia như vậy được không. Nếu có in ra \`YES\`, ngược lại in ra \`NO\`.
+
+### Định dạng dữ liệu đầu vào:
+* Một dòng duy nhất chứa số nguyên $w$ ($1 \\le w \\le 100$) — cân nặng của quả dưa hấu.
+
+### Định dạng dữ liệu đầu ra:
+* In ra \`YES\` nếu có thể chia quả dưa thành hai phần có số cân là số chẵn dương. Ngược lại, in ra \`NO\`.`,
+    examples: [
+      { input: '8\n', output: 'YES\n', explanation: 'Quả dưa hấu nặng 8kg có thể chia thành hai phần nặng 2kg và 6kg (hoặc 4kg và 4kg).' },
+      { input: '2\n', output: 'NO\n', explanation: 'Quả dưa hấu nặng 2kg chỉ có thể chia thành hai phần là 1kg và 1kg. Mà số 1 không phải số chẵn, nên kết quả là NO.' }
+    ],
+    starterCode: `# Nhập cân nặng w của quả dưa
+w = int(input())
+
+# Hãy viết code kiểm tra ở đây
+`,
+    compareMode: 'token',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 2,
+    testcases: [
+      { input: '8\n', output: 'YES\n', isPublic: true, weight: 1, orderIndex: 0 },
+      { input: '2\n', output: 'NO\n', isPublic: true, weight: 1, orderIndex: 1 },
+      { input: '1\n', output: 'NO\n', isPublic: false, weight: 1, orderIndex: 2 },
+      { input: '3\n', output: 'NO\n', isPublic: false, weight: 1, orderIndex: 3 },
+      { input: '4\n', output: 'YES\n', isPublic: false, weight: 2, orderIndex: 4 },
+      { input: '6\n', output: 'YES\n', isPublic: false, weight: 1, orderIndex: 5 },
+      { input: '99\n', output: 'NO\n', isPublic: false, weight: 1, orderIndex: 6 },
+      { input: '100\n', output: 'YES\n', isPublic: false, weight: 1, orderIndex: 7 },
+      { input: '12\n', output: 'YES\n', isPublic: false, weight: 1, orderIndex: 8 },
+      { input: '50\n', output: 'YES\n', isPublic: false, weight: 1, orderIndex: 9 }
+    ]
+  },
+  {
+    slug: 'case_count',
+    title: 'Đếm chữ Hoa - chữ Thường',
+    difficulty: 'Dễ - Trung bình',
+    rating: 800,
+    source: 'SimpleOJ Starter',
+    description: `Viết chương trình nhập vào một chuỗi ký tự $S$ gồm cả chữ hoa, chữ thường và chữ số. Hãy đếm xem có bao nhiêu chữ cái viết hoa và bao nhiêu chữ cái viết thường xuất hiện trong chuỗi.
+
+### Định dạng dữ liệu đầu vào:
+* Một dòng duy nhất chứa chuỗi ký tự $S$ (độ dài không quá 100 ký tự).
+
+### Định dạng dữ liệu đầu ra:
+* Một dòng chứa hai số nguyên cách nhau bởi khoảng trắng: Số lượng chữ cái viết hoa và số lượng chữ cái viết thường.`,
+    examples: [
+      { input: 'CodeForces\n', output: '2 8\n', explanation: "Chuỗi 'CodeForces' có 2 chữ hoa ('C', 'F') và 8 chữ thường ('o', 'd', 'e', 'o', 'r', 'c', 'e', 's')." },
+      { input: 'Python3.10\n', output: '1 5\n', explanation: "Chuỗi 'Python3.10' có 1 chữ hoa ('P') và 5 chữ thường ('y', 't', 'h', 'o', 'n'). Các chữ số và dấu chấm không được đếm." }
+    ],
+    starterCode: `# Nhập chuỗi ký tự
+s = input()
+
+# Hãy đếm chữ hoa và chữ thường rồi in ra kết quả
+`,
+    compareMode: 'token',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 3,
+    testcases: [
+      { input: 'CodeForces\n', output: '2 8\n', isPublic: true, weight: 1, orderIndex: 0 },
+      { input: 'Python3.10\n', output: '1 5\n', isPublic: true, weight: 1, orderIndex: 1 },
+      { input: 'HELLO\n', output: '5 0\n', isPublic: false, weight: 1, orderIndex: 2 },
+      { input: 'world\n', output: '0 5\n', isPublic: false, weight: 1, orderIndex: 3 },
+      { input: '123456\n', output: '0 0\n', isPublic: false, weight: 1, orderIndex: 4 },
+      { input: 'AaBbCc\n', output: '3 3\n', isPublic: false, weight: 2, orderIndex: 5 },
+      { input: 'aA1!bB2@cC\n', output: '3 3\n', isPublic: false, weight: 2, orderIndex: 6 },
+      { input: 'Z\n', output: '1 0\n', isPublic: false, weight: 1, orderIndex: 7 },
+      { input: 'z\n', output: '0 1\n', isPublic: false, weight: 1, orderIndex: 8 },
+      { input: 'ShortString\n', output: '2 9\n', isPublic: false, weight: 1, orderIndex: 9 }
+    ]
+  },
+  {
+    slug: 'cf-9a-die-roll',
+    title: 'Xác suất của Dot',
+    difficulty: 'Dễ',
+    rating: 800,
+    source: 'Codeforces 9A - Die Roll',
+    description: `Yakko và Wakko đã tung xúc xắc và nhận được lần lượt Y và W điểm. Dot sẽ thắng nếu số của cô ấy không nhỏ hơn cả hai người kia, vì nếu bằng điểm thì Dot vẫn được tính là thắng.
+
+Hãy in xác suất Dot chiến thắng dưới dạng phân số tối giản A/B. Nếu xác suất bằng 0 hãy in 0/1, nếu bằng 1 hãy in 1/1.
+
+### Định dạng dữ liệu đầu vào:
+* Một dòng chứa hai số nguyên Y và W.
+
+### Định dạng dữ liệu đầu ra:
+* In ra phân số tối giản biểu diễn xác suất Dot thắng.`,
+    examples: [
+      { input: '4 2\n', output: '1/2\n', explanation: 'Dot thắng nếu tung được 4, 5 hoặc 6.' },
+      { input: '3 3\n', output: '2/3\n', explanation: 'Dot thắng nếu tung được 3, 4, 5 hoặc 6.' }
+    ],
+    starterCode: `# Nhập Y và W
+y, w = map(int, input().split())
+
+# Hãy tính và in ra phân số tối giản
+`,
+    compareMode: 'token',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 4,
+    testcases: [
+      { input: '4 2\n', output: '1/2\n', isPublic: true, weight: 1, orderIndex: 0 },
+      { input: '3 3\n', output: '2/3\n', isPublic: true, weight: 1, orderIndex: 1 },
+      { input: '6 6\n', output: '1/6\n', isPublic: false, weight: 1, orderIndex: 2 },
+      { input: '1 1\n', output: '1/1\n', isPublic: false, weight: 1, orderIndex: 3 },
+      { input: '5 2\n', output: '1/3\n', isPublic: false, weight: 1, orderIndex: 4 },
+      { input: '2 5\n', output: '1/3\n', isPublic: false, weight: 1, orderIndex: 5 },
+      { input: '1 6\n', output: '1/6\n', isPublic: false, weight: 1, orderIndex: 6 },
+      { input: '6 1\n', output: '1/6\n', isPublic: false, weight: 1, orderIndex: 7 },
+      { input: '3 4\n', output: '1/2\n', isPublic: false, weight: 2, orderIndex: 8 },
+      { input: '5 6\n', output: '1/6\n', isPublic: false, weight: 2, orderIndex: 9 }
+    ]
+  },
+  {
+    slug: 'cf-32b-borze',
+    title: 'Giải mã Borze',
+    difficulty: 'Dễ',
+    rating: 800,
+    source: 'Codeforces 32B - Borze',
+    description: `Mã Borze dùng chuỗi ký hiệu . , -. và -- để biểu diễn số ở hệ tam phân. Quy ước là:
+* . tương ứng với 0
+* -. tương ứng với 1
+* -- tương ứng với 2
+
+Hãy giải mã chuỗi Borze đã cho.
+
+### Định dạng dữ liệu đầu vào:
+* Một chuỗi Borze hợp lệ.
+
+### Định dạng dữ liệu đầu ra:
+* In ra số tam phân tương ứng.`,
+    examples: [
+      { input: '.-.--\n', output: '012\n', explanation: 'Chuỗi được đọc lần lượt thành 0, 1, 2.' },
+      { input: '--.\n', output: '20\n', explanation: 'Chuỗi được đọc lần lượt thành 2, 0.' }
+    ],
+    starterCode: `# Nhập chuỗi Borze
+s = input()
+
+# Hãy giải mã và in kết quả
+`,
+    compareMode: 'token',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 5,
+    testcases: [
+      { input: '.-.--\n', output: '012\n', isPublic: true, weight: 1, orderIndex: 0 },
+      { input: '--.\n', output: '20\n', isPublic: true, weight: 1, orderIndex: 1 },
+      { input: '.\n', output: '0\n', isPublic: false, weight: 1, orderIndex: 2 },
+      { input: '-..-.--\n', output: '1012\n', isPublic: false, weight: 1, orderIndex: 3 },
+      { input: '----.\n', output: '220\n', isPublic: false, weight: 1, orderIndex: 4 },
+      { input: '-.---.\n', output: '121\n', isPublic: false, weight: 1, orderIndex: 5 },
+      { input: '...\n', output: '000\n', isPublic: false, weight: 2, orderIndex: 6 },
+      { input: '--------\n', output: '2222\n', isPublic: false, weight: 2, orderIndex: 7 },
+      { input: '....\n', output: '0000\n', isPublic: false, weight: 2, orderIndex: 8 }
+    ]
+  },
+  {
+    slug: 'cf-38a-army',
+    title: 'Quân hàm và số năm',
+    difficulty: 'Dễ',
+    rating: 800,
+    source: 'Codeforces 38A - Army',
+    description: `Hệ thống quân hàm của Berland có n bậc, đánh số từ 1 đến n. Để đi từ bậc i lên bậc i + 1 cần d_i năm. Vasya vừa đạt bậc a và muốn lên bậc b.
+
+Hãy tính tổng số năm Vasya còn phải phục vụ.
+
+### Định dạng dữ liệu đầu vào:
+* Dòng 1 chứa n.
+* Dòng 2 chứa n - 1 số nguyên d_i.
+* Dòng 3 chứa hai số nguyên a và b.
+
+### Định dạng dữ liệu đầu ra:
+* In ra số năm cần thiết để đi từ a lên b.`,
+    examples: [
+      { input: "3\n5 6\n1 2\n", output: "5\n", explanation: 'Từ bậc 1 lên bậc 2 mất 5 năm.' },
+      { input: "4\n1 2 3\n2 4\n", output: "5\n", explanation: 'Từ bậc 2 lên bậc 4 mất 2 + 3 = 5 năm.' }
+    ],
+    starterCode: `# Viết mã nguồn ở đây
+`,
+    compareMode: 'token',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 6,
+    testcases: [
+      { input: "3\n5 6\n1 2\n", output: "5\n", isPublic: true, weight: 1, orderIndex: 0 },
+      { input: "4\n1 2 3\n2 4\n", output: "5\n", isPublic: true, weight: 1, orderIndex: 1 },
+      { input: "3\n5 6\n1 3\n", output: "11\n", isPublic: false, weight: 1, orderIndex: 2 },
+      { input: "5\n1 2 3 4\n1 5\n", output: "10\n", isPublic: false, weight: 1, orderIndex: 3 },
+      { input: "2\n7\n1 2\n", output: "7\n", isPublic: false, weight: 1, orderIndex: 4 },
+      { input: "6\n2 3 4 5 6\n2 5\n", output: "12\n", isPublic: false, weight: 2, orderIndex: 5 },
+      { input: "6\n2 3 4 5 6\n1 6\n", output: "20\n", isPublic: false, weight: 2, orderIndex: 6 },
+      { input: "10\n1 1 1 1 1 1 1 1 1\n3 8\n", output: "5\n", isPublic: false, weight: 2, orderIndex: 7 }
+    ]
+  },
+  {
+    slug: 'cf-41a-translation',
+    title: 'Dịch ngược một từ',
+    difficulty: 'Dễ',
+    rating: 800,
+    source: 'Codeforces 41A - Translation',
+    description: `Trong ngôn ngữ Berland và Birland, một từ có nghĩa giống nhau nếu nó bị viết ngược lại. Ví dụ code tương ứng với edoc.
+
+Hãy kiểm tra xem từ t có phải là từ s viết ngược hay không.
+
+### Định dạng dữ liệu đầu vào:
+* Dòng 1 chứa từ s.
+* Dòng 2 chứa từ t.
+
+### Định dạng dữ liệu đầu ra:
+* In YES nếu t là s viết ngược, ngược lại in NO.`,
+    examples: [
+      { input: "code\nedoc\n", output: "YES\n", explanation: 'edoc là code viết ngược.' },
+      { input: "abb\naba\n", output: "NO\n", explanation: 'aba không phải là abb viết ngược.' }
+    ],
+    starterCode: `# Nhập s và t
+s = input()
+t = input()
+
+# Hãy kiểm tra và in kết quả
+`,
+    compareMode: 'token',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 7,
+    testcases: [
+      { input: "code\nedoc\n", output: "YES\n", isPublic: true, weight: 1, orderIndex: 0 },
+      { input: "abb\naba\n", output: "NO\n", isPublic: true, weight: 1, orderIndex: 1 },
+      { input: "abc\ncba\n", output: "YES\n", isPublic: false, weight: 1, orderIndex: 2 },
+      { input: "code\ncode\n", output: "NO\n", isPublic: false, weight: 1, orderIndex: 3 },
+      { input: "a\na\n", output: "YES\n", isPublic: false, weight: 1, orderIndex: 4 },
+      { input: "ab\nba\n", output: "YES\n", isPublic: false, weight: 1, orderIndex: 5 },
+      { input: "ab\nab\n", output: "NO\n", isPublic: false, weight: 1, orderIndex: 6 },
+      { input: "hello\nolleh\n", output: "YES\n", isPublic: false, weight: 2, orderIndex: 7 },
+      { input: "heLlo\nolleh\n", output: "NO\n", isPublic: false, weight: 2, orderIndex: 8 },
+      { input: "verylongword\ndrowgnolyrev\n", output: "YES\n", isPublic: false, weight: 2, orderIndex: 9 }
+    ]
+  },
+  {
+    slug: 'cf-59a-word',
+    title: 'Chuẩn hóa chữ hoa/thường',
+    difficulty: 'Dễ',
+    rating: 800,
+    source: 'Codeforces 59A - Word',
+    description: `Vasya muốn chuẩn hóa một từ sao cho toàn bộ ký tự đều là chữ thường hoặc toàn bộ là chữ hoa. Nếu số chữ hoa nhiều hơn số chữ thường thì đổi cả từ sang chữ hoa, ngược lại đổi sang chữ thường. Nếu hai bên bằng nhau thì cũng đổi sang chữ thường.
+
+### Định dạng dữ liệu đầu vào:
+* Một từ chỉ gồm chữ cái Latin hoa và thường.
+
+### Định dạng dữ liệu đầu ra:
+* In ra từ sau khi đã chuẩn hóa.`,
+    examples: [
+      { input: 'HoUse\n', output: 'house\n', explanation: 'Số chữ thường nhiều hơn nên đổi sang chữ thường.' },
+      { input: 'ViP\n', output: 'VIP\n', explanation: 'Số chữ hoa nhiều hơn nên đổi sang chữ hoa.' }
+    ],
+    starterCode: `# Nhập từ s
+s = input()
+
+# Hãy chuẩn hóa và in kết quả
+`,
+    compareMode: 'token',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 8,
+    testcases: [
+      { input: 'HoUse\n', output: 'house\n', isPublic: true, weight: 1, orderIndex: 0 },
+      { input: 'ViP\n', output: 'VIP\n', isPublic: true, weight: 1, orderIndex: 1 },
+      { input: 'maTRIx\n', output: 'matrix\n', isPublic: false, weight: 1, orderIndex: 2 },
+      { input: 'abCD\n', output: 'abcd\n', isPublic: false, weight: 1, orderIndex: 3 },
+      { input: 'A\n', output: 'A\n', isPublic: false, weight: 1, orderIndex: 4 },
+      { input: 'a\n', output: 'a\n', isPublic: false, weight: 1, orderIndex: 5 },
+      { input: 'HELLo\n', output: 'HELLO\n', isPublic: false, weight: 2, orderIndex: 6 },
+      { input: 'hellO\n', output: 'hello\n', isPublic: false, weight: 2, orderIndex: 7 },
+      { input: 'CODE\n', output: 'CODE\n', isPublic: false, weight: 1, orderIndex: 8 },
+      { input: 'code\n', output: 'code\n', isPublic: false, weight: 1, orderIndex: 9 }
+    ]
+  },
+  {
+    slug: 'cf-6a-triangle',
+    title: 'Tam giác, đoạn thẳng hay bất khả thi',
+    difficulty: 'Dễ - Trung bình',
+    rating: 900,
+    source: 'Codeforces 6A - Triangle',
+    description: `Cho bốn thanh gỗ có độ dài khác nhau. Hãy chọn đúng ba thanh để xem có thể tạo thành:
+* TRIANGLE nếu tạo được tam giác không suy biến.
+* SEGMENT nếu không tạo được tam giác không suy biến nhưng tạo được tam giác suy biến.
+* IMPOSSIBLE nếu không thể tạo thành bất kỳ tam giác nào.
+
+### Định dạng dữ liệu đầu vào:
+* Một dòng gồm bốn số nguyên dương.
+
+### Định dạng dữ liệu đầu ra:
+* In TRIANGLE, SEGMENT hoặc IMPOSSIBLE.`,
+    examples: [
+      { input: '4 2 1 3\n', output: 'TRIANGLE\n', explanation: 'Chọn 4, 2 và 3 thì có thể tạo tam giác.' },
+      { input: '7 2 2 4\n', output: 'SEGMENT\n', explanation: 'Không tạo được tam giác không suy biến nhưng tạo được tam giác suy biến (2, 2, 4).' }
+    ],
+    starterCode: `# Nhập 4 số nguyên
+sides = list(map(int, input().split()))
+
+# Hãy kiểm tra và in kết quả
+`,
+    compareMode: 'token',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 9,
+    testcases: [
+      { input: '4 2 1 3\n', output: 'TRIANGLE\n', isPublic: true, weight: 1, orderIndex: 0 },
+      { input: '7 2 2 4\n', output: 'SEGMENT\n', isPublic: true, weight: 1, orderIndex: 1 },
+      { input: '3 5 9 1\n', output: 'IMPOSSIBLE\n', isPublic: false, weight: 1, orderIndex: 2 },
+      { input: '5 5 5 8\n', output: 'TRIANGLE\n', isPublic: false, weight: 1, orderIndex: 3 },
+      { input: '2 2 2 2\n', output: 'TRIANGLE\n', isPublic: false, weight: 1, orderIndex: 4 },
+      { input: '1 2 3 4\n', output: 'TRIANGLE\n', isPublic: false, weight: 2, orderIndex: 5 },
+      { input: '1 2 4 8\n', output: 'IMPOSSIBLE\n', isPublic: false, weight: 2, orderIndex: 6 },
+      { input: '3 4 5 10\n', output: 'TRIANGLE\n', isPublic: false, weight: 2, orderIndex: 7 },
+      { input: '10 20 30 40\n', output: 'TRIANGLE\n', isPublic: false, weight: 2, orderIndex: 8 },
+      { input: '10 20 30 50\n', output: 'SEGMENT\n', isPublic: false, weight: 2, orderIndex: 9 }
+    ]
+  },
+  {
+    slug: 'cf-26a-almost-prime',
+    title: 'Đếm số gần nguyên tố',
+    difficulty: 'Dễ - Trung bình',
+    rating: 900,
+    source: 'Codeforces 26A - Almost Prime',
+    description: `Một số được gọi là gần nguyên tố nếu nó có đúng hai ước nguyên tố phân biệt. Ví dụ 6, 18 và 24 là gần nguyên tố, còn 4, 8, 9, 42 thì không.
+
+Hãy đếm xem có bao nhiêu số gần nguyên tố trong đoạn từ 1 đến n, kể cả hai đầu mút.
+
+### Định dạng dữ liệu đầu vào:
+* Một số nguyên n, 1 <= n <= 3000.
+
+### Định dạng dữ liệu đầu ra:
+* In ra số lượng số gần nguyên tố từ 1 đến n.`,
+    examples: [
+      { input: '10\n', output: '2\n', explanation: 'Các số gần nguyên tố không vượt quá 10 là 6 và 10.' },
+      { input: '21\n', output: '8\n', explanation: 'Có 8 số gần nguyên tố từ 1 đến 21.' }
+    ],
+    starterCode: `# Nhập n
+n = int(input())
+
+# Hãy tính và in ra số lượng số gần nguyên tố
+`,
+    compareMode: 'token',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 10,
+    testcases: [
+      { input: '10\n', output: '2\n', isPublic: true, weight: 1, orderIndex: 0 },
+      { input: '21\n', output: '8\n', isPublic: true, weight: 1, orderIndex: 1 },
+      { input: '1\n', output: '0\n', isPublic: false, weight: 1, orderIndex: 2 },
+      { input: '5\n', output: '0\n', isPublic: false, weight: 1, orderIndex: 3 },
+      { input: '6\n', output: '1\n', isPublic: false, weight: 1, orderIndex: 4 },
+      { input: '30\n', output: '12\n', isPublic: false, weight: 2, orderIndex: 5 },
+      { input: '100\n', output: '56\n', isPublic: false, weight: 2, orderIndex: 6 },
+      { input: '500\n', output: '266\n', isPublic: false, weight: 2, orderIndex: 7 },
+      { input: '3000\n', output: '1375\n', isPublic: false, weight: 2, orderIndex: 8 }
+    ]
+  },
+  {
+    slug: 'cf-96a-football',
+    title: 'Tình huống bóng đá nguy hiểm',
+    difficulty: 'Dễ - Trung bình',
+    rating: 900,
+    source: 'Codeforces 96A - Football',
+    description: `Petya biểu diễn trạng thái trận bóng bằng một chuỗi chỉ gồm 0 và 1. Nếu tồn tại ít nhất 7 ký tự giống nhau đứng liên tiếp thì trạng thái đó được coi là nguy hiểm.
+
+Hãy xác định xem trạng thái hiện tại có nguy hiểm hay không.
+
+### Định dạng dữ liệu đầu vào:
+* Một chuỗi không rỗng chỉ gồm ký tự 0 và 1.
+
+### Định dạng dữ liệu đầu ra:
+* In YES nếu trạng thái nguy hiểm, ngược lại in NO.`,
+    examples: [
+      { input: '001001\n', output: 'NO\n', explanation: 'Không có đoạn nào dài tới 7 ký tự giống nhau.' },
+      { input: '1000000001\n', output: 'YES\n', explanation: 'Tồn tại 8 ký tự 0 liên tiếp đứng giữa.' }
+    ],
+    starterCode: `# Nhập chuỗi
+s = input()
+
+# Hãy kiểm tra và in kết quả
+`,
+    compareMode: 'token',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 11,
+    testcases: [
+      { input: '001001\n', output: 'NO\n', isPublic: true, weight: 1, orderIndex: 0 },
+      { input: '1000000001\n', output: 'YES\n', isPublic: true, weight: 1, orderIndex: 1 },
+      { input: '1111111\n', output: 'YES\n', isPublic: false, weight: 1, orderIndex: 2 },
+      { input: '0101010\n', output: 'NO\n', isPublic: false, weight: 1, orderIndex: 3 },
+      { input: '0000000\n', output: 'YES\n', isPublic: false, weight: 1, orderIndex: 4 },
+      { input: '000000111111\n', output: 'NO\n', isPublic: false, weight: 2, orderIndex: 5 },
+      { input: '0000001111111\n', output: 'YES\n', isPublic: false, weight: 2, orderIndex: 6 },
+      { input: '10101010101010\n', output: 'NO\n', isPublic: false, weight: 2, orderIndex: 7 },
+      { input: '1111110000000\n', output: 'YES\n', isPublic: false, weight: 2, orderIndex: 8 },
+      { input: '1111110111111\n', output: 'NO\n', isPublic: false, weight: 1, orderIndex: 9 }
+    ]
+  },
+  {
+    slug: 'cf-11a-increasing-sequence',
+    title: 'Làm dãy tăng dần',
+    difficulty: 'Dễ - Trung bình',
+    rating: 900,
+    source: 'Codeforces 11A - Increasing Sequence',
+    description: `Cho một dãy b gồm n phần tử và một số dương d. Trong mỗi bước, bạn được chọn một phần tử bất kỳ và cộng thêm d vào nó. Hãy tìm số bước ít nhất để biến dãy thành dãy tăng nghiêm ngặt.
+
+### Định dạng dữ liệu đầu vào:
+* Dòng 1 chứa n và d.
+* Dòng 2 chứa dãy b gồm n số nguyên.
+
+### Định dạng dữ liệu đầu ra:
+* In ra số bước nhỏ nhất cần thực hiện.`,
+    examples: [
+      { input: "4 2\n1 3 3 2\n", output: "3\n", explanation: 'Có thể tăng phần tử thứ 3 và thứ 4 để thu được dãy tăng.' },
+      { input: "2 1\n4 1\n", output: "4\n", explanation: 'Tăng phần tử thứ hai 4 lần (1 -> 5).' }
+    ],
+    starterCode: `# Nhập dữ liệu
+`,
+    compareMode: 'token',
+    numberTolerance: 1e-6,
+    isActive: true,
+    orderIndex: 12,
+    testcases: [
+      { input: "4 2\n1 3 3 2\n", output: "3\n", isPublic: true, weight: 1, orderIndex: 0 },
+      { input: "2 1\n4 1\n", output: "4\n", isPublic: true, weight: 1, orderIndex: 1 },
+      { input: "3 5\n10 10 10\n", output: "3\n", isPublic: false, weight: 1, orderIndex: 2 },
+      { input: "4 10\n1 2 3 4\n", output: "0\n", isPublic: false, weight: 1, orderIndex: 3 },
+      { input: "5 3\n1 1 1 1 1\n", output: "10\n", isPublic: false, weight: 2, orderIndex: 4 },
+      { input: "3 100\n1000 500 100\n", output: "17\n", isPublic: false, weight: 2, orderIndex: 5 },
+      { input: "5 7\n100 90 80 70 60\n", output: "20\n", isPublic: false, weight: 2, orderIndex: 6 },
+      { input: "2 10\n10 10\n", output: "1\n", isPublic: false, weight: 1, orderIndex: 7 },
+      { input: "6 5\n1 5 10 15 20 25\n", output: "0\n", isPublic: false, weight: 1, orderIndex: 8 }
+    ]
+  }
+];
 ```
 
 ### File: `docker-compose.yml`
@@ -844,12 +6883,13 @@ import 'dotenv/config';
 import { pool, transaction } from '../src/db.js';
 import { hashPassword } from '../src/auth.js';
 import { normalizeProblem } from '../src/validation.js';
-import { codeforcesViProblems } from '../src/codeforces-vi-problems.js';
+import { canonicalProblems } from '../data/canonical-problems.js';
 
 const email = String(process.env.ADMIN_EMAIL || '').trim().toLowerCase();
 const password = process.env.ADMIN_PASSWORD || '';
 const name = process.env.ADMIN_NAME || 'Quản trị viên';
 
+// Seed Admin
 if (email && password) {
   await pool.query(
     `INSERT INTO users(email, password_hash, full_name, role)
@@ -862,50 +6902,98 @@ if (email && password) {
   console.log('Skip admin seed: set ADMIN_EMAIL and ADMIN_PASSWORD.');
 }
 
-async function insertMissingProblems(items, createdBy) {
-  let inserted = 0;
+// Title normalization helper
+function normalizeTitle(title) {
+  return String(title || '')
+    .toLowerCase()
+    .replace(/bài\s+\d+:/gi, '')
+    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+async function insertCanonicalProblems(createdBy) {
+  // Load existing problems for title comparisons
+  const existingRes = await pool.query('SELECT id, slug, title, source FROM problems');
+  const existingProblems = existingRes.rows;
+
+  let insertedCount = 0;
+  let skippedCount = 0;
+
   await transaction(async (client) => {
-    for (const raw of items) {
+    for (const raw of canonicalProblems) {
       const p = normalizeProblem({
         ...raw,
-        slug: raw.slug ?? raw.id,
-        timeLimitMinutes: raw.timeLimitMinutes ?? raw.time_limit_minutes ?? 30,
-        executionLimitMs: raw.executionLimitMs ?? raw.execution_limit_ms ?? 1500
+        timeLimitMinutes: raw.timeLimitMinutes ?? 30,
+        executionLimitMs: raw.executionLimitMs ?? 1500
       });
+
+      // 1. Check same slug
+      const hasSameSlug = existingProblems.some(ep => ep.slug === p.slug);
+      if (hasSameSlug) {
+        console.log(`ℹ️ Bỏ qua bài seed (Slug đã tồn tại): ${p.slug}`);
+        skippedCount++;
+        continue;
+      }
+
+      // 2. Check same source
+      if (p.source) {
+        const hasSameSource = existingProblems.some(ep => ep.source === p.source);
+        if (hasSameSource) {
+          console.log(`ℹ️ Bỏ qua bài seed (Nguồn trùng lặp): ${p.slug} (Source: ${p.source})`);
+          skippedCount++;
+          continue;
+        }
+      }
+
+      // 3. Check same normalized title
+      const normPTitle = normalizeTitle(p.title);
+      const hasSameTitle = existingProblems.some(ep => normalizeTitle(ep.title) === normPTitle);
+      if (hasSameTitle) {
+        console.log(`ℹ️ Bỏ qua bài seed (Tiêu đề trùng lặp): ${p.slug} (Title: ${p.title})`);
+        skippedCount++;
+        continue;
+      }
+
+      // Insert new problem
       const { rows } = await client.query(
         `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by)
          VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16)
-         ON CONFLICT(slug) DO NOTHING
          RETURNING id`,
-        [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
-          p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, createdBy]
+        [
+          p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+          p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, createdBy
+        ]
       );
+      
       const problemId = rows[0]?.id;
-      if (!problemId) continue;
-      inserted += 1;
-      for (const tc of p.testcases) {
-        await client.query(
-          `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
-           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-          [problemId, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
-        );
+      if (problemId) {
+        insertedCount++;
+        // Insert its testcases
+        for (const tc of p.testcases) {
+          await client.query(
+            `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
+             VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+            [problemId, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+          );
+        }
+        
+        // Add to existingProblems in memory for subsequent checks in this loop
+        existingProblems.push({
+          id: problemId,
+          slug: p.slug,
+          title: p.title,
+          source: p.source
+        });
       }
     }
   });
-  return inserted;
+
+  console.log(`Seeding complete: Seeded ${insertedCount} new problems. Skipped ${skippedCount} duplicate/existing problems.`);
 }
 
-const count = await pool.query('SELECT COUNT(*)::int AS count FROM problems');
 const admin = await pool.query("SELECT id FROM users WHERE role = 'ADMIN' ORDER BY created_at LIMIT 1");
-if (count.rows[0].count === 0) {
-  const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-  const source = JSON.parse(await fs.readFile(path.join(root, 'problems.json'), 'utf8'));
-  const inserted = await insertMissingProblems(source.map((raw) => ({ ...raw, slug: raw.id, timeLimitMinutes: 30, executionLimitMs: 1500 })), admin.rows[0]?.id || null);
-  console.log(`Seeded ${inserted} starter problems.`);
-}
-
-const codeforcesInserted = await insertMissingProblems(codeforcesViProblems, admin.rows[0]?.id || null);
-console.log(`Seeded ${codeforcesInserted} Codeforces problems.`);
+await insertCanonicalProblems(admin.rows[0]?.id || null);
 
 await pool.end();
 ```

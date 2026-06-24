@@ -302,7 +302,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
   terminal.open(host);
 
   const isSupported = window.crossOriginIsolated === true && typeof SharedArrayBuffer !== 'undefined';
-  
+
   let disposed = false;
   let running = false;
   let replMode = false;
@@ -313,7 +313,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
   let cursorIndex = 0;
   let history = [];
   let historyIndex = 0;
-  
+
   // States: 'COMMAND' | 'LOADING' | 'RUNNING' | 'WAITING_INPUT' | 'REPL' | 'FAILED'
   let terminalState = 'COMMAND';
   let activePrompt = '$ ';
@@ -450,11 +450,11 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
     terminal.write('^C\r\n');
     currentLine = '';
     cursorIndex = 0;
-    
+
     if (running || terminalState === 'RUNNING' || terminalState === 'WAITING_INPUT') {
       PyodideManager.interrupt();
     }
-    
+
     running = false;
     commandPending = false;
     onRunningChange?.(false);
@@ -466,7 +466,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
       terminalState = 'COMMAND';
       activePrompt = '$ ';
     }
-    
+
     terminal.write(activePrompt);
   };
 
@@ -522,7 +522,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
         terminal.writeln('\x1b[90mPython 3 REPL (Basic Mode). Gõ exit() hoặc quit() để thoát.\x1b[0m');
         terminal.write(activePrompt);
       };
-      
+
       if (state === 'ready') {
         enterRepl();
       } else {
@@ -597,7 +597,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
     running = false;
     commandPending = false;
     onRunningChange?.(false);
-    
+
     if (res.error) {
       if (res.error === 'TIMEOUT') {
         if (res.timeout === 'input') {
@@ -613,7 +613,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
     } else if (res.interrupted) {
       // already printed ^C
     }
-    
+
     if (replMode) {
       terminalState = 'REPL';
       activePrompt = '>>> ';
@@ -621,7 +621,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
       terminalState = 'COMMAND';
       activePrompt = '$ ';
     }
-    
+
     terminal.write(activePrompt);
     terminal.focus();
   };
@@ -633,7 +633,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
     onRunningChange?.(true);
 
     const state = PyodideManager.getState();
-    
+
     const startRun = () => {
       PyodideManager.runCode(
         code,
@@ -695,7 +695,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
   if (!isSupported) {
     terminal.writeln(`\x1b[31m[Trình duyệt hiện không hỗ trợ Terminal tương tác. Bạn vẫn có thể Submit để chấm trên server.]\x1b[0m`);
     terminal.write('$ ');
-    
+
     const handleUnsupportedShell = (data) => {
       if (data === '\r' || data === '\n') {
         const cmd = currentLine.trim().replace(/\s+/g, ' ');
@@ -768,7 +768,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
   // Handle keys and paste inside onData
   terminal.onData((data) => {
     if (disposed) return;
-    
+
     // Ignore keys during execution, except Ctrl+C
     if (terminalState === 'RUNNING' || terminalState === 'LOADING') {
       if (data === '\x03') {
@@ -845,7 +845,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
         }
         event.preventDefault();
         event.stopPropagation();
-        
+
         if (key === 'c') {
           handleCtrlC();
         } else if (key === 'a') {
