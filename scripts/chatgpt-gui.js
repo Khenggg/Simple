@@ -1,6 +1,6 @@
 import express from 'express';
 import { spawn, execSync, exec } from 'child_process';
-import { existsSync, readFileSync, statSync } from 'fs';
+import { existsSync, readFileSync, statSync, writeFileSync, mkdirSync } from 'fs';
 import { join, resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import WebSocket from 'ws';
@@ -756,7 +756,13 @@ app.post('/api/retrieve', async (_req, res) => {
 
     const content = evalRes?.result?.value;
     if (content) {
-      res.json({ success: true, message: 'Đã lấy câu trả lời thành công.', content });
+      const tasksDir = join(REPO_ROOT, 'tasks');
+      if (!existsSync(tasksDir)) {
+        mkdirSync(tasksDir, { recursive: true });
+      }
+      writeFileSync(join(tasksDir, 'latest-retrieved.txt'), content, 'utf8');
+      writeFileSync(join(tasksDir, 'retrieved-prompt-response.txt'), content, 'utf8');
+      res.json({ success: true, message: 'Đã lấy câu trả lời và ghi vào file thành công.', content });
     } else {
       res.json({ success: false, error: 'Chưa thấy câu trả lời nào từ Assistant trên trang.' });
     }

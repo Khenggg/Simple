@@ -123,3 +123,11 @@ scripts/prepare-codex-handoff.sh
 scripts/codex-handoff-resume.sh
 scripts/repo-harness/
 # END: repo-harness generated-runtime
+
+# Local SimpleOJ backups, logs, and scratch scripts
+.ai/
+backups/
+*.log
+scratch-*.js
+tasks/latest-retrieved.txt
+tasks/retrieved-prompt-response.txt
