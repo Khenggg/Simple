@@ -84,7 +84,7 @@ const ALLOWED_EXTENSIONS = new Set([
 ]);
 
 const ALLOWED_FILENAMES = new Set([
-  '.env', '.env.example', '.env.local', 'pom.xml', '.gitignore', 'README.md', 'Dockerfile', 'docker-compose.yml', 'render.yaml', 'vercel.json'
+  '.env.example', 'pom.xml', '.gitignore', 'README.md', 'Dockerfile', 'docker-compose.yml', 'render.yaml', 'vercel.json'
 ]);
 
 const filesToInclude = [];

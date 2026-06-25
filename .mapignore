@@ -8,6 +8,8 @@ tasks/
 scripts/
 image/
 public/
+backups/
+.agents/
 
 # Files to ignore
 package-lock.json
@@ -19,3 +21,7 @@ scratch-test-progress.js
 docs/project-map.md
 .gitignore
 README.md
+.env
+.env.local
+.env.*.local
+scratch-retrieve.js

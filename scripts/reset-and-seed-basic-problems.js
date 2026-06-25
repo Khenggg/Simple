@@ -511,10 +511,42 @@ const tablesToReset = [
   'problems'
 ];
 
+function isLocalDatabaseUrl(url) {
+  const value = String(url || '').toLowerCase();
+  return (
+    value.includes('localhost') ||
+    value.includes('127.0.0.1') ||
+    value.includes('host.docker.internal') ||
+    value.includes('simpleoj_test')
+  );
+}
+
+function assertSafeToApply(isApply) {
+  if (!isApply) return;
+
+  const dbUrl = process.env.DATABASE_URL || '';
+  const allowRealReset = process.env.ALLOW_REAL_DB_RESET === 'true';
+  const confirmed = process.env.CONFIRM_RESET_BASIC_PROBLEMS === 'YES';
+
+  if (isLocalDatabaseUrl(dbUrl)) return;
+
+  if (allowRealReset && confirmed) {
+    console.warn('⚠️ Running destructive reset against non-local DB because ALLOW_REAL_DB_RESET=true and CONFIRM_RESET_BASIC_PROBLEMS=YES.');
+    return;
+  }
+
+  throw new Error(
+    'Refusing to run --apply against non-local database. ' +
+    'Use a local/test database, or set ALLOW_REAL_DB_RESET=true and CONFIRM_RESET_BASIC_PROBLEMS=YES intentionally.'
+  );
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const isApply = args.includes('--apply');
   const isDryRun = args.includes('--dry-run') || !isApply;
+
+  assertSafeToApply(isApply);
 
   if (isApply) {
     console.log('🚀 Running in APPLY mode: Database modifications will be committed.');

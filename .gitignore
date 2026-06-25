@@ -131,3 +131,7 @@ backups/
 scratch-*.js
 tasks/latest-retrieved.txt
 tasks/retrieved-prompt-response.txt
+.env.local
+.env.*.local
+docs/project-map.md
+scratch-retrieve.js

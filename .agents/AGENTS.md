@@ -1,15 +1,18 @@
 # SimpleOJ Project Rules & Deployment
 
 ## Auto-Deploy Hook URL
-When pushing changes to the repository, trigger the Render auto-deploy webhook by executing an HTTP GET request to this URL:
-`https://api.render.com/deploy/srv-d8qor4flk1mc73aun7jg?key=agsshFp9xhU`
+
+Set this in local/private environment only:
+`RENDER_DEPLOY_HOOK_URL=...`
+
+Do not include the actual key or URL in this file.
 
 Example command (PowerShell):
 ```powershell
-Invoke-RestMethod -Uri "https://api.render.com/deploy/srv-d8qor4flk1mc73aun7jg?key=agsshFp9xhU" -Method Get
+Invoke-RestMethod -Uri $env:RENDER_DEPLOY_HOOK_URL -Method Get
 ```
 
 Example command (cURL):
 ```bash
-curl -X GET "https://api.render.com/deploy/srv-d8qor4flk1mc73aun7jg?key=agsshFp9xhU"
+curl -X GET "$RENDER_DEPLOY_HOOK_URL"
 ```

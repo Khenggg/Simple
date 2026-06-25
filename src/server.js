@@ -1368,7 +1368,15 @@ app.get('/api/admin/users/:id', requireAdmin, asyncRoute(async (req, res) => {
   const stats = statsRows[0];
 
   const { rows: subRows } = await query(`
-    SELECT s.id, s.problem_id, s.score, s.status, s.runtime_ms, s.created_at, p.title AS problem_title, p.slug AS problem_slug
+    SELECT
+      s.id,
+      s.problem_id,
+      s.score,
+      s.status,
+      s.duration_ms AS "durationMs",
+      s.created_at AS "createdAt",
+      p.title AS "problemTitle",
+      p.slug AS "problemSlug"
     FROM submissions s
     JOIN problems p ON p.id = s.problem_id
     WHERE s.user_id = $1
@@ -1397,12 +1405,12 @@ app.get('/api/admin/users/:id', requireAdmin, asyncRoute(async (req, res) => {
       recentSubmissions: subRows.map(r => ({
         id: r.id,
         problemId: r.problem_id,
-        problemTitle: r.problem_title,
-        problemSlug: r.problem_slug,
+        problemTitle: r.problemTitle,
+        problemSlug: r.problemSlug,
         score: r.score,
         status: r.status,
-        runtimeMs: r.runtime_ms,
-        createdAt: r.created_at
+        durationMs: r.durationMs,
+        createdAt: r.createdAt
       })),
       activeAssignments: assignRows.map(r => ({
         id: r.id,
