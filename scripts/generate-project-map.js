@@ -22,9 +22,21 @@ if (existsSync(IGNORE_FILE)) {
 const WHITELISTED_FILES = new Set([
   'scripts/migrate.js',
   'scripts/seed.js',
+  'scripts/reset-and-seed-basic-problems.js',
+  'scripts/backfill-problem-groups.js',
+  'scripts/check-problem-group-integrity.js',
+  'scripts/cleanup-duplicate-problems.js',
+  'scripts/replace-testcases.js',
+  'scripts/upsert-bai-20-quadratic.js',
+  'scripts/verify-canonical-testcases.js',
+  'scripts/generate-project-map.js',
+  'scripts/upload-project-map.js',
   'src/python-runner.py',
   'src/terminal-runner.py',
-  'public/index.html'
+  'public/index.html',
+  'public/app.js',
+  'public/styles.css',
+  'public/terminal-client.js'
 ]);
 
 function isOrContainsWhitelisted(relPath, isDir) {
