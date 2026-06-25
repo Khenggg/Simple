@@ -62,6 +62,20 @@ def main():
     sys.stdin = io.StringIO(str(payload.get("input", "")))
     sys.stdout = output
     sys.stderr = output
+
+    suppress_prompts = payload.get("suppressInputPrompts", True)
+    if suppress_prompts:
+        _original_input = builtins.input
+        def oj_input(prompt=""):
+            line = sys.stdin.readline()
+            if line == "":
+                raise EOFError("EOF when reading a line")
+            if line.endswith("\n"):
+                line = line[:-1]
+            if line.endswith("\r"):
+                line = line[:-1]
+            return line
+        builtins.input = oj_input
     
     is_running_user_code = True
     try:
@@ -88,6 +102,8 @@ def main():
             error = "".join(tb_lines)
     finally:
         is_running_user_code = False
+        if suppress_prompts:
+            builtins.input = _original_input
         sys.stdin, sys.stdout, sys.stderr = old_stdin, old_stdout, old_stderr
     text = output.getvalue()
     result = {"output": text[:20000], "error": error, "truncated": len(text) > 20000}

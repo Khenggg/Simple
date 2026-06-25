@@ -11,7 +11,7 @@ function normalizeOutput(value) {
   return String(value ?? '').replace(/\r\n/g, '\n');
 }
 
-export async function runPythonLocal(code, input, limitMs = 1500) {
+export async function runPythonLocal(code, input, limitMs = 1500, suppressInputPrompts = true) {
   const workdir = await fs.mkdtemp(path.join(os.tmpdir(), 'simpleoj-'));
   const dropPrivileges = process.platform !== 'win32' && typeof process.getuid === 'function' && process.getuid() === 0;
   if (dropPrivileges) await fs.chown(workdir, 65534, 65534);
@@ -54,7 +54,7 @@ export async function runPythonLocal(code, input, limitMs = 1500) {
         finish({ output: '', error: 'Runner error: không thể khởi động môi trường chạy Python' });
       }
     });
-    child.stdin.end(JSON.stringify({ code, input, limitMs }));
+    child.stdin.end(JSON.stringify({ code, input, limitMs, suppressInputPrompts }));
   });
 }
 
@@ -62,7 +62,15 @@ async function runRemote(code, testcases, limitMs, options = {}) {
   const response = await fetch(`${config.judgeServiceUrl.replace(/\/$/, '')}/internal/judge`, {
     method: 'POST',
     headers: { 'content-type': 'application/json', authorization: `Bearer ${config.judgeServiceToken}` },
-    body: JSON.stringify({ code, testcases, limitMs, options }),
+    body: JSON.stringify({
+      code,
+      testcases,
+      limitMs,
+      options: {
+        ...options,
+        suppressInputPrompts: options.suppressInputPrompts !== false
+      }
+    }),
     signal: AbortSignal.timeout(Math.max(10000, testcases.length * (limitMs + 1000)))
   });
   if (!response.ok) throw new Error(`Judge service trả về ${response.status}`);
@@ -283,7 +291,8 @@ export async function judgeSubmission(code, testcases, limitMs = 1500, forceLoca
     const weight = Number(testcase.weight ?? 1);
     totalWeight += weight;
 
-    const result = await runPythonLocal(code, testcase.input, limitMs);
+    const suppressInputPrompts = options.suppressInputPrompts !== false;
+    const result = await runPythonLocal(code, testcase.input, limitMs, suppressInputPrompts);
     const actual = normalizeOutput(result.output);
     const expected = normalizeOutput(testcase.output);
     
