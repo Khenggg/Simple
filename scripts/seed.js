@@ -7,6 +7,11 @@ import { hashPassword } from '../src/auth.js';
 import { normalizeProblem } from '../src/validation.js';
 import { canonicalProblems } from '../data/canonical-problems.js';
 
+const args = new Set(process.argv.slice(2));
+const shouldSeedCanonicalProblems =
+  args.has('--with-canonical-problems') ||
+  String(process.env.SEED_CANONICAL_PROBLEMS || '').toLowerCase() === 'true';
+
 const email = String(process.env.ADMIN_EMAIL || '').trim().toLowerCase();
 const password = process.env.ADMIN_PASSWORD || '';
 const name = process.env.ADMIN_NAME || 'Quản trị viên';
@@ -174,6 +179,10 @@ async function insertCanonicalProblems(createdBy) {
 }
 
 const admin = await pool.query("SELECT id FROM users WHERE role = 'ADMIN' ORDER BY created_at LIMIT 1");
-await insertCanonicalProblems(admin.rows[0]?.id || null);
+if (shouldSeedCanonicalProblems) {
+  await insertCanonicalProblems(admin.rows[0]?.id || null);
+} else {
+  console.log('Skip canonical problem seed. Use --with-canonical-problems or SEED_CANONICAL_PROBLEMS=true to seed legacy problem data.');
+}
 
 await pool.end();
