@@ -71,9 +71,11 @@ async function run() {
         groupSlug = 'bai-thi-hsg';
       } else if (rating >= 1400) {
         groupSlug = 'bai-nang-cao';
-      } else if (rating >= 900 && rating <= 1300) {
+      } else if (rating >= 1000 && rating <= 1300) {
         groupSlug = 'bai-on-luyen';
-      } else if (rating < 900) {
+      } else if (rating <= 900) {
+        groupSlug = 'bai-tap-co-ban';
+      } else {
         groupSlug = 'bai-tap-co-ban';
       }
 

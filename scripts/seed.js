@@ -42,14 +42,43 @@ async function insertCanonicalProblems(createdBy) {
   let insertedCount = 0;
   let skippedCount = 0;
 
+  const problemGroupAssignments = [];
+  const activeGroupSlugs = new Set();
+
+  for (const raw of canonicalProblems) {
+    const p = normalizeProblem({
+      ...raw,
+      timeLimitMinutes: raw.timeLimitMinutes ?? 30,
+      executionLimitMs: raw.executionLimitMs ?? 1500
+    });
+    
+    // Determine group: put Codeforces problems into 'Bài ôn luyện' (bai-on-luyen), others into 'Bài tập cơ bản' (bai-tap-co-ban)
+    let targetGroupSlug = 'bai-tap-co-ban';
+    if (p.source && p.source.toLowerCase().includes('codeforces')) {
+      targetGroupSlug = 'bai-on-luyen';
+    } else if (p.rating >= 1000 && p.rating <= 1300) {
+      targetGroupSlug = 'bai-on-luyen';
+    } else if (p.rating >= 1400) {
+      targetGroupSlug = 'bai-nang-cao';
+    } else if (p.title.toLowerCase().includes('hsg') || (p.source && p.source.toLowerCase().includes('hsg'))) {
+      targetGroupSlug = 'bai-thi-hsg';
+    }
+
+    problemGroupAssignments.push({ slug: p.slug, groupSlug: targetGroupSlug });
+    activeGroupSlugs.add(targetGroupSlug);
+  }
+
   await transaction(async (client) => {
     // Ensure default groups exist
     const defaultGroups = [
-      { slug: 'bai-tap-co-ban', name: 'Bài tập cơ bản', type: 'BASIC', description: 'Các bài tập căn bản cho lập trình viên mới bắt đầu' },
-      { slug: 'bai-on-luyen', name: 'Bài ôn luyện', type: 'PRACTICE', description: 'Các bài tập thực hành nâng cao kỹ năng tư duy' }
+      { slug: 'bai-tap-co-ban', name: 'Bài tập cơ bản', type: 'BASIC', description: 'Các bài tập căn bản cho lập trình viên mới bắt đầu', color: '#2563eb', icon: 'code' },
+      { slug: 'bai-on-luyen', name: 'Bài ôn luyện', type: 'PRACTICE', description: 'Các bài tập thực hành nâng cao kỹ năng tư duy', color: '#10b981', icon: 'practice' },
+      { slug: 'bai-nang-cao', name: 'Bài nâng cao', type: 'ADVANCED', description: 'Thách thức với các thuật toán và cấu trúc dữ liệu phức tạp', color: '#d946ef', icon: 'star' },
+      { slug: 'bai-thi-hsg', name: 'Bài thi HSG', type: 'HSG', description: 'Tuyển tập các bài thi học sinh giỏi các cấp', color: '#f59e0b', icon: 'award' }
     ];
+    const groupsToCreate = defaultGroups.filter(g => activeGroupSlugs.has(g.slug));
     const groupSlugToId = {};
-    for (const g of defaultGroups) {
+    for (const g of groupsToCreate) {
       const existing = await client.query('SELECT id FROM problem_groups WHERE slug = $1', [g.slug]);
       if (existing.rows[0]) {
         groupSlugToId[g.slug] = existing.rows[0].id;
@@ -57,7 +86,7 @@ async function insertCanonicalProblems(createdBy) {
         const insertRes = await client.query(
           `INSERT INTO problem_groups (slug, name, description, group_type, color, icon)
            VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`,
-          [g.slug, g.name, g.description, g.type, g.type === 'BASIC' ? '#2563eb' : '#10b981', g.type === 'BASIC' ? 'code' : 'practice']
+          [g.slug, g.name, g.description, g.type, g.color, g.icon]
         );
         groupSlugToId[g.slug] = insertRes.rows[0].id;
       }
@@ -121,7 +150,8 @@ async function insertCanonicalProblems(createdBy) {
         }
 
         // Assign to group
-        const targetGroupSlug = p.rating >= 900 ? 'bai-on-luyen' : 'bai-tap-co-ban';
+        const assignment = problemGroupAssignments.find(a => a.slug === p.slug);
+        const targetGroupSlug = assignment ? assignment.groupSlug : 'bai-tap-co-ban';
         const groupId = groupSlugToId[targetGroupSlug];
         await client.query(
           `INSERT INTO problem_group_items(group_id, problem_id, added_by)
