@@ -58,7 +58,7 @@ function normalizeCommand(value) {
   return String(value || '').trim().replace(/\s+/g, ' ');
 }
 
-class TerminalSession {
+export class TerminalSession {
   constructor(ws, user) {
     this.ws = ws;
     this.user = user;
@@ -163,6 +163,15 @@ class TerminalSession {
     else if (message.type === 'dispose') {
       await this.close(1000, 'Client disposed');
     }
+
+    else if (message.type === 'resize') {
+      this.cols = message.cols;
+      this.rows = message.rows;
+      if (this.processKind === 'pty' && this.process?.resize) {
+        this.process.resize(message.cols, message.rows);
+      }
+      return;
+    }
   }
 
   async runPython(mode) {
@@ -186,7 +195,7 @@ class TerminalSession {
       try {
         this.processKind = 'pty';
         this.process = pty.spawn(config.pythonCommand, ['-u', '-I', terminalRunnerPath, mode], {
-          name: 'xterm-256color', cwd: this.workdir, env, cols: 80, rows: 24,
+          name: 'xterm-256color', cwd: this.workdir, env, cols: this.cols || 80, rows: this.rows || 24,
           ...(dropPrivileges ? { uid: 65534, gid: 65534 } : {})
         });
         runningProcesses.add(this.process);
@@ -510,10 +519,15 @@ class TerminalSession {
   }
   validateMessageSchema(message) {
     if (!message || typeof message !== 'object') return false;
-    const validTypes = ['runFile', 'startRepl', 'stdin', 'interrupt', 'dispose'];
+    const validTypes = ['runFile', 'startRepl', 'stdin', 'interrupt', 'dispose', 'resize'];
     if (!validTypes.includes(message.type)) return false;
     if (message.type === 'runFile' && typeof message.code !== 'string') return false;
     if (message.type === 'stdin' && typeof message.data !== 'string') return false;
+    if (message.type === 'resize') {
+      const { cols, rows } = message;
+      if (!Number.isInteger(cols) || cols < 20 || cols > 240) return false;
+      if (!Number.isInteger(rows) || rows < 5 || rows > 80) return false;
+    }
     return true;
   }
 }

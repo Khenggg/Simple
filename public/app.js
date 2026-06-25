@@ -1126,7 +1126,7 @@ async function openProblem(slug) {
             <div class="terminal-dots"><span></span><span></span><span></span></div>
             <span class="terminal-title">Terminal — Python 3 <span id="python-status" style="font-size:11px; margin-left:8px; opacity:0.8; color: ${initialStatusColor}">${initialStatusText}</span></span>
             <div class="terminal-actions">
-              <button class="term-btn" id="clear-shell" title="Xóa terminal (clear)">⌫</button>
+              <button class="term-btn" id="clear-shell" title="Xóa terminal">⌫ Xóa terminal</button>
               <button class="term-btn stop" id="stop" title="Ngắt tiến trình (Ctrl+C)" disabled>■ Stop</button>
               <button class="term-btn run" id="run" title="Chạy thử (python main.py)">▶ Run</button>
               <button class="term-btn submit" id="submit" title="Nộp bài chấm điểm">⬆ Nộp bài</button>
@@ -1251,7 +1251,7 @@ async function setupEditor() {
   state.timer = setInterval(tick, 1000);
 
   document.querySelector('#clear-shell').onclick = () => {
-    state.terminal?.execute('clear');
+    state.terminal?.clear();
     state.terminal?.focus();
   };
   runButton.onclick = () => {
@@ -2830,11 +2830,15 @@ async function navigate(page) {
 }
 
 try {
-  const { user } = await api('/api/auth/me');
-  state.user = user;
-  if (user) {
+  const data = await api('/api/auth/me');
+  state.user = data.user;
+  state.terminalRunner = data.terminalRunner || 'client';
+  state.serverTerminalEnabled = data.serverTerminalEnabled || false;
+  if (data.user) {
     await navigate('home');
-    if (typeof PyodideManager !== 'undefined') PyodideManager.preload();
+    if (typeof PyodideManager !== 'undefined' && state.terminalRunner === 'client') {
+      PyodideManager.preload();
+    }
   } else authView();
 } catch { authView(); }
 

@@ -163,7 +163,11 @@ app.post('/api/auth/logout', (_req, res) => {
   res.json({ ok: true });
 });
 
-app.get('/api/auth/me', (req, res) => res.json({ user: req.user || null }));
+app.get('/api/auth/me', (req, res) => res.json({
+  user: req.user || null,
+  terminalRunner: config.terminalRunner,
+  serverTerminalEnabled: config.serverTerminalEnabled
+}));
 
 app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
   const { tab, cursor, rating, minRating, maxRating, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo, group, groupId } = req.query;
