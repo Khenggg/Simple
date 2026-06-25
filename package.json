@@ -8,7 +8,8 @@
     "start": "node src/server.js",
     "db:migrate": "node scripts/migrate.js",
     "db:seed": "node scripts/seed.js",
-    "test": "node --test"
+    "problems:reset-basic": "node scripts/reset-and-seed-basic-problems.js",
+    "test": "node --test --test-concurrency=1"
   },
   "engines": {
     "node": ">=20"
