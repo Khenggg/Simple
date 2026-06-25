@@ -1235,3 +1235,274 @@ body.resizing-v {
   font-weight: 600;
 }
 
+.admin-submissions-page {}
+
+.submission-review-grid {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.submission-filters,
+.submission-list-panel,
+.submission-detail-drawer,
+.submission-meta-card,
+.teacher-first-fail-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.submission-filters,
+.submission-list-panel {
+  padding: 16px;
+}
+
+.submission-filters .field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.submission-filter-actions,
+.submission-pagination-actions,
+.section-head-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.submission-list-panel td small,
+.submission-list-panel td strong {
+  display: block;
+}
+
+.submission-list-panel tbody tr.is-selected {
+  background: rgba(35, 106, 81, 0.06);
+}
+
+.submission-pagination {
+  margin-top: 16px;
+}
+
+.submission-detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.42);
+  display: flex;
+  justify-content: flex-end;
+  padding: 24px;
+  z-index: 90;
+}
+
+.submission-detail-drawer {
+  width: min(1120px, 100%);
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.2);
+}
+
+.submission-detail-body {
+  height: 100%;
+  overflow: auto;
+  padding: 20px;
+}
+
+.drawer-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.drawer-head h3,
+.teacher-first-fail h4 {
+  margin: 4px 0;
+}
+
+.drawer-head p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.submission-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.submission-metrics > div,
+.submission-meta-card > div,
+.teacher-first-fail-card > div {
+  background: rgba(35, 106, 81, 0.04);
+  border: 1px solid rgba(35, 106, 81, 0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.submission-metrics b,
+.submission-meta-card strong,
+.teacher-first-fail-card strong {
+  display: block;
+  color: var(--ink);
+}
+
+.submission-metrics span,
+.submission-meta-card .muted,
+.teacher-first-fail-card .muted {
+  display: block;
+  font-size: 12px;
+}
+
+.submission-meta-card,
+.teacher-first-fail-card {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.teacher-hint-box {
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 16px 0;
+  border: 1px solid var(--line);
+}
+
+.teacher-hint-box b,
+.teacher-hint-box p {
+  display: block;
+  margin: 0;
+}
+
+.teacher-hint-box p {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.teacher-hint-success {
+  background: rgba(10, 105, 70, 0.08);
+  border-color: rgba(10, 105, 70, 0.2);
+}
+
+.teacher-hint-danger {
+  background: rgba(180, 59, 49, 0.08);
+  border-color: rgba(180, 59, 49, 0.2);
+}
+
+.teacher-hint-warning {
+  background: rgba(217, 119, 6, 0.08);
+  border-color: rgba(217, 119, 6, 0.2);
+}
+
+.teacher-hint-gray {
+  background: rgba(100, 116, 139, 0.08);
+  border-color: rgba(100, 116, 139, 0.2);
+}
+
+.submission-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
+  gap: 16px;
+  align-items: start;
+}
+
+#submission-code-viewer {
+  min-height: 420px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.code-viewer-fallback {
+  min-height: 420px;
+  max-height: 520px;
+  overflow: auto;
+  padding: 16px;
+  background: #0f172a;
+  color: #e5e7eb;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.report-table pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 320px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.submission-report-expand {
+  margin-top: 8px;
+}
+
+.submission-report-expand summary {
+  cursor: pointer;
+  color: var(--green-2);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+.status-badge.success {
+  background: rgba(10, 105, 70, 0.12);
+  color: #0a6946;
+  border-color: rgba(10, 105, 70, 0.15);
+}
+
+.status-badge.danger {
+  background: rgba(180, 59, 49, 0.12);
+  color: #b43b31;
+  border-color: rgba(180, 59, 49, 0.15);
+}
+
+.status-badge.warning {
+  background: rgba(217, 119, 6, 0.12);
+  color: #b45309;
+  border-color: rgba(217, 119, 6, 0.15);
+}
+
+.status-badge.gray {
+  background: rgba(100, 116, 139, 0.12);
+  color: #475569;
+  border-color: rgba(100, 116, 139, 0.15);
+}
+
+@media (max-width: 1100px) {
+  .submission-review-grid,
+  .submission-detail-layout,
+  .submission-meta-card,
+  .teacher-first-fail-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+  .submission-detail-overlay {
+    padding: 0;
+  }
+
+  .submission-detail-drawer {
+    border-radius: 0;
+  }
+
+  .submission-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

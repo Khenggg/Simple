@@ -2,10 +2,42 @@ import { createTerminalController, PyodideManager } from '/terminal-client.js';
 
 const app = document.querySelector('#app');
 const toastEl = document.querySelector('#toast');
+
+function createAdminSubmissionsState() {
+  return {
+    loading: false,
+    error: '',
+    items: [],
+    pagination: {
+      page: 1,
+      pageSize: 20,
+      total: 0,
+      totalPages: 1
+    },
+    filters: {
+      q: '',
+      status: '',
+      problemSlug: '',
+      userId: '',
+      minScore: '',
+      maxScore: '',
+      from: '',
+      to: '',
+      sort: 'newest'
+    },
+    selectedId: '',
+    selected: null,
+    detailLoading: false,
+    detailError: '',
+    codeEditor: null
+  };
+}
+
 const state = {
   user: null, page: 'home', problems: null, current: null, attempt: null, timer: null, editor: null, terminal: null,
   sidebarCollapsed: localStorage.getItem('simpleoj-sidebar') === 'collapsed',
-  submissions: null, leaderboard: null, adminDashboard: null, adminUsers: null, adminAssignmentState: null, problemDetails: {}
+  submissions: null, leaderboard: null, adminDashboard: null, adminUsers: null, adminAssignmentState: null, problemDetails: {},
+  adminSubmissions: createAdminSubmissionsState()
 };
 window.state = state;
 
@@ -211,6 +243,10 @@ function shell(content, title = 'Tổng quan') {
         <button data-page="groups" title="Nhóm bài tập">
           <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
           <span class="nav-label">Nhóm bài tập</span>
+        </button>
+        <button data-page="submissions" title="Bài nộp">
+          <span class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></span>
+          <span class="nav-label">Bài nộp</span>
         </button>` : ''}
       </nav>
       <div class="user-chip"><div class="user-avatar">${escapeHtml(state.user.full_name.trim().charAt(0).toUpperCase())}</div><div class="user-copy"><strong>${escapeHtml(state.user.full_name)}</strong><span>${escapeHtml(state.user.email)} · ${admin ? 'ADMIN' : 'HỌC SINH'}</span></div></div>
@@ -271,6 +307,7 @@ function shell(content, title = 'Tổng quan') {
     state.adminUsers = null;
     state.adminAssignmentState = null;
     state.problemDetails = {};
+    state.adminSubmissions = createAdminSubmissionsState();
     authView();
   };
 }
@@ -316,12 +353,138 @@ async function loadAdminStudentAssignments(userId, status = 'all') {
   return api(`/api/admin/student-assignments?${params.toString()}`);
 }
 
+async function apiAdminSubmissions(params = {}) {
+  const query = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') {
+      query.set(key, value);
+    }
+  });
+  const suffix = query.toString() ? `?${query.toString()}` : '';
+  return api(`/api/admin/submissions${suffix}`);
+}
+
+async function apiAdminSubmissionDetail(id) {
+  return api(`/api/admin/submissions/${encodeURIComponent(id)}`);
+}
+
 function clientGetRatingLabel(r) {
   if (r >= 800 && r <= 1000) return 'Cơ bản';
   if (r >= 1100 && r <= 1300) return 'Dễ';
   if (r >= 1400 && r <= 1600) return 'Trung bình';
   if (r >= 1700 && r <= 1900) return 'Khó';
   return 'Nâng cao';
+}
+
+function formatRuntimeMs(ms) {
+  if (ms === undefined || ms === null || ms === '') return '0 ms';
+  const value = Number(ms);
+  if (!Number.isFinite(value)) return '0 ms';
+  if (value < 1000) return `${Math.round(value)} ms`;
+  return `${(value / 1000).toFixed(value >= 10000 ? 0 : 2)} s`;
+}
+
+function getSubmissionStatusClass(status) {
+  const normalized = String(status || '').toUpperCase();
+  if (normalized === 'ACCEPTED') return 'success';
+  if (normalized === 'WRONG_ANSWER' || normalized === 'RUNTIME_ERROR') return 'danger';
+  if (normalized === 'TIME_LIMIT' || normalized === 'OUTPUT_LIMIT' || normalized === 'MEMORY_LIMIT') return 'warning';
+  return 'gray';
+}
+
+function normalizeAdminReportItem(item, index) {
+  return {
+    index: item?.index ?? item?.testIndex ?? index + 1,
+    status: item?.status || item?.verdict || (item?.passed ? 'ACCEPTED' : 'UNKNOWN'),
+    input: item?.input ?? item?.stdin ?? '',
+    expected: item?.expected ?? item?.expectedOutput ?? item?.output ?? '',
+    actual: item?.actual ?? item?.actualOutput ?? item?.stdout ?? '',
+    error: item?.error ?? item?.stderr ?? '',
+    runtimeMs: item?.runtimeMs ?? item?.durationMs ?? item?.timeMs ?? null,
+    isPublic: item?.isPublic ?? item?.public ?? false,
+    passed: item?.passed
+  };
+}
+
+function shortText(value, max = 300) {
+  const text = String(value ?? '');
+  if (text.length <= max) return text;
+  return `${text.slice(0, max)}...`;
+}
+
+function getTeacherHint(submission) {
+  const status = String(submission?.status || '').toUpperCase();
+  const report = Array.isArray(submission?.report) ? submission.report : [];
+  const firstFailed = report.map(normalizeAdminReportItem).find((item) => {
+    const itemStatus = String(item.status || '').toLowerCase();
+    if (itemStatus) return !['accepted', 'ok', 'passed'].includes(itemStatus);
+    return item.passed === false;
+  });
+
+  if (status === 'ACCEPTED') {
+    return {
+      tone: 'success',
+      title: 'Bài làm đúng',
+      message: 'Học sinh đã vượt qua toàn bộ testcase.'
+    };
+  }
+
+  if (status === 'WRONG_ANSWER') {
+    let message = 'Code chạy được nhưng output chưa đúng.';
+    if (firstFailed?.actual && firstFailed?.expected) {
+      message += ' Hãy so sánh Expected và Actual ở testcase sai đầu tiên.';
+    }
+    if (String(firstFailed?.actual || '').toLowerCase().includes('nhap')) {
+      message += ' Có thể học sinh đang print thêm prompt nhập liệu ra output.';
+    }
+    return { tone: 'danger', title: 'Sai kết quả', message };
+  }
+
+  if (status === 'RUNTIME_ERROR') {
+    return {
+      tone: 'danger',
+      title: 'Lỗi khi chạy',
+      message: 'Code bị lỗi runtime. Xem traceback hoặc stderr để xác định dòng lỗi.'
+    };
+  }
+
+  if (status === 'TIME_LIMIT') {
+    return {
+      tone: 'warning',
+      title: 'Chạy quá lâu',
+      message: 'Có thể code bị vòng lặp vô hạn hoặc thuật toán chưa tối ưu.'
+    };
+  }
+
+  if (status === 'OUTPUT_LIMIT') {
+    return {
+      tone: 'warning',
+      title: 'In quá nhiều output',
+      message: 'Có thể học sinh đang print trong vòng lặp hoặc thiếu điều kiện dừng.'
+    };
+  }
+
+  if (status === 'MEMORY_LIMIT') {
+    return {
+      tone: 'warning',
+      title: 'Vượt bộ nhớ',
+      message: 'Có thể code đang giữ dữ liệu quá lớn hoặc lặp tạo cấu trúc không cần thiết.'
+    };
+  }
+
+  if (status === 'EXPIRED') {
+    return {
+      tone: 'gray',
+      title: 'Hết thời gian',
+      message: 'Bài nộp bị hết hạn hoặc attempt đã quá deadline.'
+    };
+  }
+
+  return {
+    tone: 'gray',
+    title: 'Cần kiểm tra thêm',
+    message: 'Xem code và report testcase để xác định lỗi.'
+  };
 }
 
 function normalizeProblemItem(raw) {
@@ -2292,6 +2455,494 @@ function groupModal(group = null, allGroups, allProblems) {
   };
 }
 
+function disposeAdminSubmissionCodeEditor() {
+  if (state.adminSubmissions?.codeEditor) {
+    state.adminSubmissions.codeEditor.dispose();
+    state.adminSubmissions.codeEditor = null;
+  }
+}
+
+function renderAdminSubmissionValue(value, { hiddenText = '-', max = 300 } = {}) {
+  const text = String(value ?? '');
+  if (!text) return `<span class="muted">${escapeHtml(hiddenText)}</span>`;
+  const shortened = shortText(text, max);
+  if (shortened === text) {
+    return `<pre>${escapeHtml(text)}</pre>`;
+  }
+  return `
+    <pre>${escapeHtml(shortened)}</pre>
+    <details class="submission-report-expand">
+      <summary>Xem đầy đủ</summary>
+      <pre>${escapeHtml(text)}</pre>
+    </details>
+  `;
+}
+
+function renderAdminSubmissionReport(submission) {
+  const report = Array.isArray(submission?.report) ? submission.report.map(normalizeAdminReportItem) : [];
+  if (!report.length) {
+    return '<div class="empty">Không có dữ liệu testcase.</div>';
+  }
+
+  const rows = report.map((item) => {
+    const hiddenIO = !item.input && !item.expected && !item.actual;
+    const statusClass = getSubmissionStatusClass(item.status || (item.passed ? 'ACCEPTED' : 'UNKNOWN'));
+    return `
+      <tr>
+        <td>${item.index}</td>
+        <td><span class="status-badge ${statusClass}">${escapeHtml(statusLabel(item.status || (item.passed ? 'ACCEPTED' : 'UNKNOWN')))}</span></td>
+        <td>${renderAdminSubmissionValue(item.input, { hiddenText: hiddenIO ? 'Test ẩn - không hiển thị dữ liệu' : '-' })}</td>
+        <td>${renderAdminSubmissionValue(item.expected, { hiddenText: hiddenIO ? 'Test ẩn - không hiển thị dữ liệu' : '-' })}</td>
+        <td>${renderAdminSubmissionValue(item.actual, { hiddenText: hiddenIO ? 'Test ẩn - không hiển thị dữ liệu' : '-' })}</td>
+        <td>${renderAdminSubmissionValue(item.error, { hiddenText: '-' })}</td>
+        <td>${item.runtimeMs !== null && item.runtimeMs !== undefined ? escapeHtml(formatRuntimeMs(item.runtimeMs)) : '<span class="muted">-</span>'}</td>
+      </tr>
+    `;
+  }).join('');
+
+  return `
+    <div class="table-wrap report-table">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Status</th>
+            <th>Input</th>
+            <th>Expected</th>
+            <th>Actual</th>
+            <th>Error</th>
+            <th>Runtime</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderAdminSubmissionDetailDrawer() {
+  const pageState = state.adminSubmissions;
+  if (!pageState.selectedId) return '';
+
+  let body = '';
+  if (pageState.detailLoading) {
+    body = '<div class="submission-detail-body"><div class="loading-spinner" style="margin: 48px auto;"></div></div>';
+  } else if (pageState.detailError) {
+    body = `<div class="submission-detail-body"><div class="error-box">${escapeHtml(pageState.detailError)}</div></div>`;
+  } else if (!pageState.selected) {
+    body = '<div class="submission-detail-body"><div class="empty">Không có dữ liệu bài nộp.</div></div>';
+  } else {
+    const submission = pageState.selected;
+    const hint = getTeacherHint(submission);
+    const firstFailed = normalizeAdminReportItem(submission.firstFailedReport || {}, 0);
+
+    body = `
+      <div class="submission-detail-body">
+        <div class="drawer-head">
+          <div>
+            <span class="eyebrow">Chi tiết bài nộp</span>
+            <h3>${escapeHtml(submission.problemTitle || 'Bài nộp')}</h3>
+            <p>${escapeHtml(submission.studentName || 'Học sinh')} · ${escapeHtml(submission.studentEmail || '')}</p>
+          </div>
+          <button class="btn secondary" id="close-submission-detail">Đóng</button>
+        </div>
+
+        <div class="submission-metrics">
+          <div><b>${escapeHtml(String(submission.score ?? 0))}</b><span>Điểm</span></div>
+          <div><b>${escapeHtml(`${submission.passedCount ?? 0}/${submission.totalCount ?? 0}`)}</b><span>Test đúng</span></div>
+          <div><b>${escapeHtml(statusLabel(submission.status))}</b><span>Trạng thái</span></div>
+          <div><b>${escapeHtml(formatRuntimeMs(submission.durationMs))}</b><span>Runtime</span></div>
+        </div>
+
+        <div class="teacher-hint-box teacher-hint-${hint.tone}">
+          <b>${escapeHtml(hint.title)}</b>
+          <p>${escapeHtml(hint.message)}</p>
+        </div>
+
+        <div class="submission-meta-card">
+          <div><span class="muted">Problem slug</span><strong>${escapeHtml(submission.problemSlug || '-')}</strong></div>
+          <div><span class="muted">Attempt ID</span><strong>${escapeHtml(submission.attemptId || '-')}</strong></div>
+          <div><span class="muted">Lúc nộp</span><strong>${escapeHtml(formatDate(submission.createdAt))}</strong></div>
+          <div><span class="muted">Compare mode</span><strong>${escapeHtml(submission.compareMode || '-')}</strong></div>
+        </div>
+
+        <div class="teacher-first-fail">
+          <h4>Lỗi đầu tiên</h4>
+          ${submission.firstFailedReport ? `
+            <div class="teacher-first-fail-card">
+              <div><span class="muted">Test</span><strong>#${escapeHtml(String(firstFailed.index || 1))}</strong></div>
+              <div><span class="muted">Status</span><strong>${escapeHtml(statusLabel(firstFailed.status || submission.status))}</strong></div>
+              <div><span class="muted">Actual</span>${renderAdminSubmissionValue(firstFailed.actual, { hiddenText: '-' })}</div>
+              <div><span class="muted">Error</span>${renderAdminSubmissionValue(firstFailed.error, { hiddenText: '-' })}</div>
+            </div>
+          ` : '<div class="empty">Chưa xác định được testcase lỗi đầu tiên từ report hiện có.</div>'}
+        </div>
+
+        <div class="submission-detail-layout">
+          <section>
+            <div class="section-head">
+              <h4>Code học sinh</h4>
+              <div class="section-head-actions">
+                <button class="btn secondary small" id="copy-submission-code">Copy code</button>
+                <button class="btn small" id="download-submission-code">Tải .py</button>
+              </div>
+            </div>
+            <div id="submission-code-viewer"></div>
+          </section>
+
+          <section>
+            <div class="section-head">
+              <h4>Kết quả test</h4>
+            </div>
+            <div id="submission-report-viewer">${renderAdminSubmissionReport(submission)}</div>
+          </section>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="submission-detail-overlay" id="submission-detail-overlay">
+      <div class="submission-detail-drawer" role="dialog" aria-modal="true">
+        ${body}
+      </div>
+    </div>
+  `;
+}
+
+function renderAdminSubmissionsPage() {
+  const pageState = state.adminSubmissions;
+  const pagination = pageState.pagination;
+  disposeAdminSubmissionCodeEditor();
+
+  const rows = pageState.items.map((submission) => `
+    <tr class="${pageState.selectedId === submission.id ? 'is-selected' : ''}">
+      <td>${escapeHtml(formatDate(submission.createdAt))}</td>
+      <td>
+        <strong>${escapeHtml(submission.studentName || 'N/A')}</strong>
+        <small>${escapeHtml(submission.studentEmail || '')}</small>
+      </td>
+      <td>
+        <strong>${escapeHtml(submission.problemTitle || 'N/A')}</strong>
+        <small>${escapeHtml(submission.problemSlug || '')}</small>
+      </td>
+      <td><span class="status-badge ${getSubmissionStatusClass(submission.status)}">${escapeHtml(statusLabel(submission.status))}</span></td>
+      <td>${escapeHtml(`${submission.score ?? 0}/100`)}</td>
+      <td>${escapeHtml(`${submission.passedCount ?? 0}/${submission.totalCount ?? 0}`)}</td>
+      <td>${escapeHtml(formatRuntimeMs(submission.durationMs))}</td>
+      <td><button class="btn small view-submission" data-id="${submission.id}">Xem code</button></td>
+    </tr>
+  `).join('');
+
+  shell(`
+    <section class="content admin-submissions-page">
+      <div class="hero-row">
+        <div>
+          <span class="eyebrow">Bài nộp</span>
+          <h2>Bài nộp của học sinh</h2>
+          <p>Xem code, điểm số và testcase sai để biết học sinh đang vướng ở đâu.</p>
+        </div>
+        <div>
+          <button class="btn secondary" id="refresh-submissions">Làm mới</button>
+        </div>
+      </div>
+
+      <div class="submission-review-grid">
+        <aside class="submission-filters">
+          <div class="section-head"><h3>Bộ lọc</h3></div>
+          <div class="field">
+            <label for="submission-q">Tìm kiếm</label>
+            <input id="submission-q" value="${escapeHtml(pageState.filters.q)}" placeholder="Tìm học sinh, email, bài tập...">
+          </div>
+          <div class="field">
+            <label for="submission-status">Trạng thái</label>
+            <select id="submission-status">
+              <option value="" ${pageState.filters.status === '' ? 'selected' : ''}>Tất cả trạng thái</option>
+              <option value="ACCEPTED" ${pageState.filters.status === 'ACCEPTED' ? 'selected' : ''}>Accepted</option>
+              <option value="WRONG_ANSWER" ${pageState.filters.status === 'WRONG_ANSWER' ? 'selected' : ''}>Wrong Answer</option>
+              <option value="RUNTIME_ERROR" ${pageState.filters.status === 'RUNTIME_ERROR' ? 'selected' : ''}>Runtime Error</option>
+              <option value="TIME_LIMIT" ${pageState.filters.status === 'TIME_LIMIT' ? 'selected' : ''}>Time Limit</option>
+              <option value="OUTPUT_LIMIT" ${pageState.filters.status === 'OUTPUT_LIMIT' ? 'selected' : ''}>Output Limit</option>
+              <option value="MEMORY_LIMIT" ${pageState.filters.status === 'MEMORY_LIMIT' ? 'selected' : ''}>Memory Limit</option>
+              <option value="EXPIRED" ${pageState.filters.status === 'EXPIRED' ? 'selected' : ''}>Expired</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="submission-problem-slug">Problem slug</label>
+            <input id="submission-problem-slug" value="${escapeHtml(pageState.filters.problemSlug)}" placeholder="vd: bai-26-tong-2-so">
+          </div>
+          <div class="field">
+            <label for="submission-user-id">User ID</label>
+            <input id="submission-user-id" value="${escapeHtml(pageState.filters.userId)}" placeholder="UUID học sinh">
+          </div>
+          <div class="field field-row">
+            <div>
+              <label for="submission-min-score">Điểm từ</label>
+              <input id="submission-min-score" type="number" min="0" max="100" value="${escapeHtml(pageState.filters.minScore)}" placeholder="0">
+            </div>
+            <div>
+              <label for="submission-max-score">Điểm đến</label>
+              <input id="submission-max-score" type="number" min="0" max="100" value="${escapeHtml(pageState.filters.maxScore)}" placeholder="100">
+            </div>
+          </div>
+          <div class="field field-row">
+            <div>
+              <label for="submission-from">Từ ngày</label>
+              <input id="submission-from" type="date" value="${escapeHtml(pageState.filters.from)}">
+            </div>
+            <div>
+              <label for="submission-to">Đến ngày</label>
+              <input id="submission-to" type="date" value="${escapeHtml(pageState.filters.to)}">
+            </div>
+          </div>
+          <div class="field">
+            <label for="submission-sort">Sắp xếp</label>
+            <select id="submission-sort">
+              <option value="newest" ${pageState.filters.sort === 'newest' ? 'selected' : ''}>Mới nhất</option>
+              <option value="oldest" ${pageState.filters.sort === 'oldest' ? 'selected' : ''}>Cũ nhất</option>
+              <option value="score_desc" ${pageState.filters.sort === 'score_desc' ? 'selected' : ''}>Điểm cao trước</option>
+              <option value="score_asc" ${pageState.filters.sort === 'score_asc' ? 'selected' : ''}>Điểm thấp trước</option>
+            </select>
+          </div>
+          <div class="submission-filter-actions">
+            <button class="btn" id="apply-submission-filters">Lọc</button>
+            <button class="btn secondary" id="reset-submission-filters">Xóa lọc</button>
+          </div>
+        </aside>
+
+        <main class="submission-list-panel">
+          <div class="section-head">
+            <div>
+              <h3>Danh sách bài nộp</h3>
+              <p class="muted">Tổng ${pagination.total} lượt nộp</p>
+            </div>
+          </div>
+
+          ${pageState.error ? `<div class="error-box">${escapeHtml(pageState.error)}</div>` : ''}
+          ${pageState.loading ? '<div class="loading-spinner" style="margin: 48px auto;"></div>' : ''}
+          ${!pageState.loading && !pageState.items.length ? '<div class="empty">Chưa có bài nộp nào.</div>' : ''}
+          ${!pageState.loading && pageState.items.length ? `
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Thời gian</th>
+                    <th>Học sinh</th>
+                    <th>Bài tập</th>
+                    <th>Trạng thái</th>
+                    <th>Điểm</th>
+                    <th>Test đúng</th>
+                    <th>Runtime</th>
+                    <th>Hành động</th>
+                  </tr>
+                </thead>
+                <tbody>${rows}</tbody>
+              </table>
+            </div>
+          ` : ''}
+
+          <div class="pagination-row submission-pagination">
+            <span class="muted">Trang ${pagination.page} / ${pagination.totalPages || 1}</span>
+            <div class="submission-pagination-actions">
+              <button class="btn secondary small" id="submission-prev-page" ${pagination.page <= 1 ? 'disabled' : ''}>Trước</button>
+              <button class="btn secondary small" id="submission-next-page" ${pagination.page >= (pagination.totalPages || 1) ? 'disabled' : ''}>Sau</button>
+            </div>
+          </div>
+        </main>
+      </div>
+      ${renderAdminSubmissionDetailDrawer()}
+    </section>
+  `, 'Bài nộp');
+
+  bindAdminSubmissionEvents();
+  if (pageState.selected && !pageState.detailLoading && !pageState.detailError) {
+    requestAnimationFrame(() => renderSubmissionCodeViewer(pageState.selected.code || ''));
+  }
+}
+
+function syncAdminSubmissionFiltersFromDom() {
+  state.adminSubmissions.filters = {
+    q: document.getElementById('submission-q')?.value || '',
+    status: document.getElementById('submission-status')?.value || '',
+    problemSlug: document.getElementById('submission-problem-slug')?.value || '',
+    userId: document.getElementById('submission-user-id')?.value || '',
+    minScore: document.getElementById('submission-min-score')?.value || '',
+    maxScore: document.getElementById('submission-max-score')?.value || '',
+    from: document.getElementById('submission-from')?.value || '',
+    to: document.getElementById('submission-to')?.value || '',
+    sort: document.getElementById('submission-sort')?.value || 'newest'
+  };
+}
+
+function closeAdminSubmissionDetail() {
+  disposeAdminSubmissionCodeEditor();
+  state.adminSubmissions.selectedId = '';
+  state.adminSubmissions.selected = null;
+  state.adminSubmissions.detailLoading = false;
+  state.adminSubmissions.detailError = '';
+  if (state.page === 'submissions') renderAdminSubmissionsPage();
+}
+
+async function loadAdminSubmissions() {
+  const pageState = state.adminSubmissions;
+  pageState.loading = true;
+  pageState.error = '';
+  if (state.page === 'submissions') renderAdminSubmissionsPage();
+
+  try {
+    const data = await apiAdminSubmissions({
+      ...pageState.filters,
+      page: pageState.pagination.page,
+      pageSize: pageState.pagination.pageSize
+    });
+
+    pageState.items = data.submissions || [];
+    pageState.pagination = {
+      ...pageState.pagination,
+      ...(data.pagination || {}),
+      totalPages: Math.max(1, data.pagination?.totalPages || 1)
+    };
+  } catch (error) {
+    pageState.error = error.message || 'Không tải được danh sách bài nộp.';
+  } finally {
+    pageState.loading = false;
+    if (state.page === 'submissions') renderAdminSubmissionsPage();
+  }
+}
+
+async function openAdminSubmissionDetail(id) {
+  disposeAdminSubmissionCodeEditor();
+  const pageState = state.adminSubmissions;
+  pageState.selectedId = id;
+  pageState.selected = null;
+  pageState.detailLoading = true;
+  pageState.detailError = '';
+  if (state.page === 'submissions') renderAdminSubmissionsPage();
+
+  try {
+    const data = await apiAdminSubmissionDetail(id);
+    pageState.selected = data.submission;
+  } catch (error) {
+    pageState.detailError = error.message || 'Không tải được chi tiết bài nộp.';
+  } finally {
+    pageState.detailLoading = false;
+    if (state.page === 'submissions') renderAdminSubmissionsPage();
+  }
+}
+
+async function copySelectedSubmissionCode() {
+  const code = state.adminSubmissions.selected?.code || '';
+  try {
+    await navigator.clipboard.writeText(code);
+    toast('Đã copy code.');
+  } catch {
+    toast('Không thể copy code.', true);
+  }
+}
+
+function downloadSelectedSubmissionCode() {
+  const submission = state.adminSubmissions.selected;
+  if (!submission) return;
+
+  const email = String(submission.studentEmail || 'student').replace(/[^a-zA-Z0-9_-]+/g, '_');
+  const slug = String(submission.problemSlug || 'problem').replace(/[^a-zA-Z0-9_-]+/g, '_');
+  const filename = `${email}_${slug}_${submission.id}.py`;
+  const blob = new Blob([submission.code || ''], { type: 'text/x-python;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.click();
+  URL.revokeObjectURL(url);
+}
+
+async function renderSubmissionCodeViewer(code) {
+  const el = document.getElementById('submission-code-viewer');
+  if (!el) return;
+
+  const safeCode = code || '';
+  try {
+    await loadMonaco();
+  } catch {
+    // Fall through to the preformatted fallback block.
+  }
+
+  if (window.monaco && window.monaco.editor) {
+    el.innerHTML = '';
+    state.adminSubmissions.codeEditor = window.monaco.editor.create(el, {
+      value: safeCode,
+      language: 'python',
+      readOnly: true,
+      minimap: { enabled: false },
+      automaticLayout: true,
+      fontSize: 14,
+      scrollBeyondLastLine: false
+    });
+    return;
+  }
+
+  el.innerHTML = `<pre class="code-viewer-fallback"><code>${escapeHtml(safeCode)}</code></pre>`;
+}
+
+function bindAdminSubmissionEvents() {
+  document.getElementById('refresh-submissions')?.addEventListener('click', () => {
+    loadAdminSubmissions();
+  });
+
+  document.getElementById('apply-submission-filters')?.addEventListener('click', () => {
+    syncAdminSubmissionFiltersFromDom();
+    state.adminSubmissions.pagination.page = 1;
+    loadAdminSubmissions();
+  });
+
+  document.getElementById('reset-submission-filters')?.addEventListener('click', () => {
+    disposeAdminSubmissionCodeEditor();
+    state.adminSubmissions = createAdminSubmissionsState();
+    if (state.page === 'submissions') renderAdminSubmissionsPage();
+    loadAdminSubmissions();
+  });
+
+  document.getElementById('submission-q')?.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      syncAdminSubmissionFiltersFromDom();
+      state.adminSubmissions.pagination.page = 1;
+      loadAdminSubmissions();
+    }
+  });
+
+  document.querySelectorAll('.view-submission').forEach((button) => {
+    button.addEventListener('click', () => openAdminSubmissionDetail(button.dataset.id));
+  });
+
+  document.getElementById('submission-prev-page')?.addEventListener('click', () => {
+    if (state.adminSubmissions.pagination.page > 1) {
+      state.adminSubmissions.pagination.page -= 1;
+      loadAdminSubmissions();
+    }
+  });
+
+  document.getElementById('submission-next-page')?.addEventListener('click', () => {
+    if (state.adminSubmissions.pagination.page < state.adminSubmissions.pagination.totalPages) {
+      state.adminSubmissions.pagination.page += 1;
+      loadAdminSubmissions();
+    }
+  });
+
+  document.getElementById('close-submission-detail')?.addEventListener('click', closeAdminSubmissionDetail);
+  document.getElementById('submission-detail-overlay')?.addEventListener('click', (event) => {
+    if (event.target.id === 'submission-detail-overlay') {
+      closeAdminSubmissionDetail();
+    }
+  });
+  document.getElementById('copy-submission-code')?.addEventListener('click', copySelectedSubmissionCode);
+  document.getElementById('download-submission-code')?.addEventListener('click', downloadSelectedSubmissionCode);
+}
+
+async function adminSubmissionsView() {
+  renderAdminSubmissionsPage();
+  await loadAdminSubmissions();
+}
+
 async function usersView() {
   if (!state.usersPage) {
     state.usersPage = {
@@ -2811,6 +3462,7 @@ async function navigate(page) {
   clearInterval(state.timer);
   state.editor?.dispose(); state.editor = null;
   state.terminal?.dispose(); state.terminal = null;
+  disposeAdminSubmissionCodeEditor();
   state.page = page;
 
   if (state.user && (page === 'home' || page === 'problems')) {
@@ -2825,6 +3477,7 @@ async function navigate(page) {
     if (page === 'admin' && state.user.role === 'ADMIN') return await adminView();
     if (page === 'users' && state.user.role === 'ADMIN') return await usersView();
     if (page === 'groups' && state.user.role === 'ADMIN') return await groupsView();
+    if (page === 'submissions' && state.user.role === 'ADMIN') return await adminSubmissionsView();
     return await homeView();
   } catch (error) { toast(error.message, true); }
 }

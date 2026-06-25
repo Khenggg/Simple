@@ -51,10 +51,79 @@ app.use('/api/submissions', rateLimit({ windowMs: 60 * 1000, limit: 10, standard
 const asyncRoute = (handler) => (req, res, next) => Promise.resolve(handler(req, res, next)).catch(next);
 
 const ASSIGNMENT_STATUSES = new Set(['ASSIGNED', 'COMPLETED', 'CANCELLED']);
+const SUBMISSION_STATUSES = new Set([
+  'ACCEPTED',
+  'WRONG_ANSWER',
+  'RUNTIME_ERROR',
+  'TIME_LIMIT',
+  'MEMORY_LIMIT',
+  'OUTPUT_LIMIT',
+  'EXPIRED'
+]);
 
 function normalizeAssignmentStatusFilter(value) {
   const normalized = String(value || 'all').toUpperCase();
   return ASSIGNMENT_STATUSES.has(normalized) ? normalized : 'all';
+}
+
+function parsePositiveInt(value, fallback, max = 100) {
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isFinite(parsed) || parsed < 1) return fallback;
+  return Math.min(parsed, max);
+}
+
+function parseScore(value, fallback = null) {
+  if (value === undefined || value === null || value === '') return fallback;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.max(0, Math.min(100, parsed));
+}
+
+function normalizeSubmissionStatus(value) {
+  const normalized = String(value || '').trim().toUpperCase();
+  return SUBMISSION_STATUSES.has(normalized) ? normalized : null;
+}
+
+function normalizeSubmissionSort(value) {
+  const normalized = String(value || 'newest').trim().toLowerCase();
+  if (normalized === 'oldest') return 'oldest';
+  if (normalized === 'score_desc') return 'score_desc';
+  if (normalized === 'score_asc') return 'score_asc';
+  return 'newest';
+}
+
+function normalizeSubmissionReport(report) {
+  if (Array.isArray(report)) return report;
+  if (typeof report === 'string') {
+    try {
+      const parsed = JSON.parse(report);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+  return [];
+}
+
+function getFirstFailedReport(report) {
+  if (!Array.isArray(report)) return null;
+  return report.find((item) => {
+    const status = String(item?.status || item?.verdict || '').trim().toLowerCase();
+    if (status) return !['accepted', 'ok', 'passed'].includes(status);
+    return item?.passed === false;
+  }) || null;
+}
+
+function normalizeSubmissionDateFilter(value, { endOfDay = false } = {}) {
+  if (!value || typeof value !== 'string') return null;
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) {
+    return endOfDay ? `${trimmed}T23:59:59.999Z` : `${trimmed}T00:00:00.000Z`;
+  }
+  const parsed = new Date(trimmed);
+  if (Number.isNaN(parsed.getTime())) return null;
+  return parsed.toISOString();
 }
 
 function parseUuidList(value, limit = 100) {
@@ -873,6 +942,181 @@ app.get('/api/submissions/:id', requireAuth, asyncRoute(async (req, res) => {
 
   delete submission.userId;
   res.json({ submission });
+}));
+
+app.get('/api/admin/submissions', requireAdmin, asyncRoute(async (req, res) => {
+  const {
+    q,
+    userId,
+    studentId,
+    problemId,
+    problemSlug
+  } = req.query;
+
+  const page = parsePositiveInt(req.query.page, 1, 100000);
+  const pageSize = parsePositiveInt(req.query.pageSize, 20, 100);
+  const offset = (page - 1) * pageSize;
+  const status = normalizeSubmissionStatus(req.query.status);
+  const minScore = parseScore(req.query.minScore);
+  const maxScore = parseScore(req.query.maxScore);
+  const sort = normalizeSubmissionSort(req.query.sort);
+  const from = normalizeSubmissionDateFilter(req.query.from);
+  const to = normalizeSubmissionDateFilter(req.query.to, { endOfDay: true });
+
+  const where = [];
+  const params = [];
+  const addParam = (value) => {
+    params.push(value);
+    return `$${params.length}`;
+  };
+
+  if (q && String(q).trim()) {
+    const search = `%${String(q).trim()}%`;
+    const placeholder = addParam(search);
+    where.push(`(
+      u.full_name ILIKE ${placeholder}
+      OR u.email ILIKE ${placeholder}
+      OR p.title ILIKE ${placeholder}
+      OR p.slug ILIKE ${placeholder}
+    )`);
+  }
+
+  const finalUserId = userId || studentId;
+  if (finalUserId) {
+    where.push(`s.user_id = ${addParam(finalUserId)}`);
+  }
+
+  if (problemId) {
+    where.push(`s.problem_id = ${addParam(problemId)}`);
+  }
+
+  if (problemSlug) {
+    where.push(`p.slug = ${addParam(String(problemSlug).trim())}`);
+  }
+
+  if (status) {
+    where.push(`s.status = ${addParam(status)}`);
+  }
+
+  if (minScore !== null) {
+    where.push(`s.score >= ${addParam(minScore)}`);
+  }
+
+  if (maxScore !== null) {
+    where.push(`s.score <= ${addParam(maxScore)}`);
+  }
+
+  if (from) {
+    where.push(`s.created_at >= ${addParam(from)}`);
+  }
+
+  if (to) {
+    where.push(`s.created_at <= ${addParam(to)}`);
+  }
+
+  const whereSql = where.length ? `WHERE ${where.join(' AND ')}` : '';
+  const orderSql = {
+    newest: 's.created_at DESC',
+    oldest: 's.created_at ASC',
+    score_desc: 's.score DESC, s.created_at DESC',
+    score_asc: 's.score ASC, s.created_at DESC'
+  }[sort];
+
+  const countParams = [...params];
+  const listParams = [...params, pageSize, offset];
+  const limitPlaceholder = `$${listParams.length - 1}`;
+  const offsetPlaceholder = `$${listParams.length}`;
+
+  const countSql = `
+    SELECT COUNT(*)::int AS total
+    FROM submissions s
+    JOIN users u ON u.id = s.user_id
+    JOIN problems p ON p.id = s.problem_id
+    ${whereSql}
+  `;
+
+  const listSql = `
+    SELECT
+      s.id,
+      s.user_id AS "studentId",
+      u.full_name AS "studentName",
+      u.email AS "studentEmail",
+      s.problem_id AS "problemId",
+      p.title AS "problemTitle",
+      p.slug AS "problemSlug",
+      s.status,
+      s.score::int AS score,
+      s.passed_count AS "passedCount",
+      s.total_count AS "totalCount",
+      s.duration_ms AS "durationMs",
+      s.created_at AS "createdAt"
+    FROM submissions s
+    JOIN users u ON u.id = s.user_id
+    JOIN problems p ON p.id = s.problem_id
+    ${whereSql}
+    ORDER BY ${orderSql}
+    LIMIT ${limitPlaceholder}
+    OFFSET ${offsetPlaceholder}
+  `;
+
+  const [{ rows: countRows }, { rows: submissions }] = await Promise.all([
+    query(countSql, countParams),
+    query(listSql, listParams)
+  ]);
+
+  const total = Number(countRows[0]?.total || 0);
+  res.json({
+    submissions,
+    pagination: {
+      page,
+      pageSize,
+      total,
+      totalPages: Math.max(1, Math.ceil(total / pageSize))
+    }
+  });
+}));
+
+app.get('/api/admin/submissions/:id', requireAdmin, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const { rows } = await query(
+    `SELECT
+       s.id,
+       s.user_id AS "studentId",
+       u.full_name AS "studentName",
+       u.email AS "studentEmail",
+       s.problem_id AS "problemId",
+       p.title AS "problemTitle",
+       p.slug AS "problemSlug",
+       p.compare_mode AS "compareMode",
+       p.number_tolerance AS "numberTolerance",
+       s.attempt_id AS "attemptId",
+       s.code,
+       s.status,
+       s.score::int AS score,
+       s.passed_count AS "passedCount",
+       s.total_count AS "totalCount",
+       s.duration_ms AS "durationMs",
+       s.report,
+       s.created_at AS "createdAt"
+     FROM submissions s
+     JOIN users u ON u.id = s.user_id
+     JOIN problems p ON p.id = s.problem_id
+     WHERE s.id = $1`,
+    [id]
+  );
+
+  const submission = rows[0];
+  if (!submission) {
+    return res.status(404).json({ error: 'Không tìm thấy bài nộp.' });
+  }
+
+  submission.report = normalizeSubmissionReport(submission.report);
+  res.json({
+    submission: {
+      ...submission,
+      firstFailedReport: getFirstFailedReport(submission.report)
+    }
+  });
 }));
 
 app.get('/api/problems/:slug/progress', requireAuth, asyncRoute(async (req, res) => {
