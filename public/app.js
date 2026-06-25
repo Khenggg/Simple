@@ -305,7 +305,7 @@ async function loadAdminDashboard() {
 
 async function loadAdminUsers() {
   if (state.adminUsers !== null) return state.adminUsers;
-  const data = await api('/api/admin/users');
+  const data = await api('/api/admin/users?pageSize=1000');
   state.adminUsers = data.users;
   return data.users;
 }
@@ -2293,20 +2293,489 @@ function groupModal(group = null, allGroups, allProblems) {
 }
 
 async function usersView() {
-  const users = await loadAdminUsers();
-  const rows = users.map((u) => `<tr><td><strong>${escapeHtml(u.full_name)}</strong><br><span class="muted">${escapeHtml(u.email)}</span></td><td><select class="role" data-id="${u.id}"><option ${u.role === 'STUDENT' ? 'selected' : ''}>STUDENT</option><option ${u.role === 'ADMIN' ? 'selected' : ''}>ADMIN</option></select></td><td>${u.submissions}</td><td><label><input type="checkbox" class="active-user" data-id="${u.id}" ${u.is_active ? 'checked' : ''}> Hoạt động</label></td><td><button class="btn small save-user" data-id="${u.id}">Lưu</button></td></tr>`).join('');
-  shell(`<section class="content"><div class="hero-row"><div><span class="eyebrow">Tài khoản</span><h2>Học sinh & quyền truy cập.</h2></div></div><div class="table-wrap"><table><thead><tr><th>Tài khoản</th><th>Vai trò</th><th>Lượt nộp</th><th>Trạng thái</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></section>`, 'Học sinh');
-  document.querySelectorAll('.save-user').forEach((b) => b.onclick = async () => {
-    const role = document.querySelector(`.role[data-id="${b.dataset.id}"]`).value;
-    const isActive = document.querySelector(`.active-user[data-id="${b.dataset.id}"]`).checked;
+  if (!state.usersPage) {
+    state.usersPage = {
+      q: '',
+      role: 'all',
+      status: 'all',
+      sort: 'created_at_desc',
+      page: 1,
+      pageSize: 20,
+      totalPages: 1,
+      total: 0
+    };
+  }
+  
+  shell(`<section class="content">
+    <div class="hero-row">
+      <div>
+        <span class="eyebrow">Quản trị</span>
+        <h2>Quản lý người dùng.</h2>
+      </div>
+    </div>
+    
+    <div class="filter-row" style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; align-items: flex-end;">
+      <div class="field" style="margin: 0; flex: 1; min-width: 200px;">
+        <label>Tìm kiếm</label>
+        <input type="text" id="user-search-input" placeholder="Tìm theo tên hoặc email..." value="${escapeHtml(state.usersPage.q)}">
+      </div>
+      <div class="field" style="margin: 0; width: 120px;">
+        <label>Vai trò</label>
+        <select id="user-role-select">
+          <option value="all" ${state.usersPage.role === 'all' ? 'selected' : ''}>Tất cả</option>
+          <option value="ADMIN" ${state.usersPage.role === 'ADMIN' ? 'selected' : ''}>Admin</option>
+          <option value="STUDENT" ${state.usersPage.role === 'STUDENT' ? 'selected' : ''}>Student</option>
+        </select>
+      </div>
+      <div class="field" style="margin: 0; width: 140px;">
+        <label>Trạng thái</label>
+        <select id="user-status-select">
+          <option value="all" ${state.usersPage.status === 'all' ? 'selected' : ''}>Tất cả</option>
+          <option value="active" ${state.usersPage.status === 'active' ? 'selected' : ''}>Hoạt động</option>
+          <option value="inactive" ${state.usersPage.status === 'inactive' ? 'selected' : ''}>Vô hiệu hóa</option>
+        </select>
+      </div>
+      <div class="field" style="margin: 0; width: 160px;">
+        <label>Sắp xếp</label>
+        <select id="user-sort-select">
+          <option value="created_at_desc" ${state.usersPage.sort === 'created_at_desc' ? 'selected' : ''}>Mới nhất</option>
+          <option value="created_at_asc" ${state.usersPage.sort === 'created_at_asc' ? 'selected' : ''}>Cũ nhất</option>
+          <option value="name_asc" ${state.usersPage.sort === 'name_asc' ? 'selected' : ''}>Tên A-Z</option>
+          <option value="email_asc" ${state.usersPage.sort === 'email_asc' ? 'selected' : ''}>Email A-Z</option>
+          <option value="submissions_desc" ${state.usersPage.sort === 'submissions_desc' ? 'selected' : ''}>Nộp nhiều nhất</option>
+          <option value="score_desc" ${state.usersPage.sort === 'score_desc' ? 'selected' : ''}>Điểm cao nhất</option>
+        </select>
+      </div>
+      <button class="btn" id="new-user-btn">+ Tạo người dùng mới</button>
+    </div>
+
+    <div id="users-table-container">
+      <div class="loading-spinner" style="margin: 40px auto;"></div>
+    </div>
+  </section>`, 'Người dùng');
+
+  const searchInput = document.querySelector('#user-search-input');
+  const roleSelect = document.querySelector('#user-role-select');
+  const statusSelect = document.querySelector('#user-status-select');
+  const sortSelect = document.querySelector('#user-sort-select');
+  const newUserBtn = document.querySelector('#new-user-btn');
+
+  const onFilterChange = () => {
+    state.usersPage.q = searchInput.value;
+    state.usersPage.role = roleSelect.value;
+    state.usersPage.status = statusSelect.value;
+    state.usersPage.sort = sortSelect.value;
+    state.usersPage.page = 1;
+    loadAndRenderUsers();
+  };
+
+  let searchTimeout;
+  searchInput.oninput = () => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(onFilterChange, 300);
+  };
+  roleSelect.onchange = onFilterChange;
+  statusSelect.onchange = onFilterChange;
+  sortSelect.onchange = onFilterChange;
+  newUserBtn.onclick = () => openUserModal();
+
+  await loadAndRenderUsers();
+}
+
+async function loadAndRenderUsers() {
+  const container = document.querySelector('#users-table-container');
+  if (!container) return;
+
+  try {
+    const params = new URLSearchParams({
+      q: state.usersPage.q,
+      role: state.usersPage.role,
+      status: state.usersPage.status,
+      sort: state.usersPage.sort,
+      page: state.usersPage.page,
+      pageSize: state.usersPage.pageSize
+    });
+
+    const response = await api(`/api/admin/users?${params.toString()}`);
+    const users = response.users || [];
+    const pagination = response.pagination || { page: 1, pageSize: 20, total: 0, totalPages: 1 };
+    
+    state.usersPage.totalPages = pagination.totalPages;
+    state.usersPage.total = pagination.total;
+
+    const rows = users.map((u) => {
+      const statusBadge = u.isActive
+        ? '<span class="badge mint">Hoạt động</span>'
+        : '<span class="badge gray">Vô hiệu hóa</span>';
+        
+      return `
+        <tr>
+          <td>
+            <strong style="cursor: pointer; color: var(--blue);" class="view-user-name" data-id="${u.id}">${escapeHtml(u.fullName)}</strong>
+          </td>
+          <td><code>${escapeHtml(u.email)}</code></td>
+          <td>${escapeHtml(u.role)}</td>
+          <td>${statusBadge}</td>
+          <td>${u.submissionsCount}</td>
+          <td>${u.solvedCount}</td>
+          <td>${u.bestScore}/100</td>
+          <td>${u.activeAssignmentsCount}</td>
+          <td>${formatDate(u.createdAt)}</td>
+          <td>
+            <div style="display: flex; gap: 6px;">
+              <button class="btn small view-user" data-id="${u.id}">Xem</button>
+              <button class="btn small secondary edit-user" data-id="${u.id}">Sửa</button>
+              <button class="btn small secondary reset-password" data-id="${u.id}">Đổi mật khẩu</button>
+              ${u.isActive 
+                ? `<button class="btn small danger toggle-status" data-id="${u.id}" data-active="false">Khóa</button>` 
+                : `<button class="btn small mint toggle-status" data-id="${u.id}" data-active="true">Mở khóa</button>`
+              }
+              <button class="btn small danger delete-user" data-id="${u.id}" style="background-color: #fce4e1; color: var(--red); border: none;">Xóa</button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+
+    const tableHtml = rows.length
+      ? `<div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Vai trò</th>
+                <th>Trạng thái</th>
+                <th>Lượt nộp</th>
+                <th>Hoàn thành</th>
+                <th>Điểm tốt nhất</th>
+                <th>Bài đang giao</th>
+                <th>Ngày tạo</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        <div class="pagination-row" style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+          <span class="muted">Tổng cộng: ${pagination.total} người dùng</span>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <button class="btn secondary small" id="prev-page-btn" ${pagination.page <= 1 ? 'disabled' : ''}>&lt; Trước</button>
+            <span>Trang ${pagination.page} / ${pagination.totalPages}</span>
+            <button class="btn secondary small" id="next-page-btn" ${pagination.page >= pagination.totalPages ? 'disabled' : ''}>Sau &gt;</button>
+          </div>
+        </div>`
+      : '<div class="empty">Không tìm thấy người dùng nào phù hợp.</div>';
+
+    container.innerHTML = tableHtml;
+
+    // Bind actions
+    container.querySelectorAll('.view-user-name, .view-user').forEach(btn => {
+      btn.onclick = () => openUserDetailModal(btn.dataset.id);
+    });
+    container.querySelectorAll('.edit-user').forEach(btn => {
+      const u = users.find(user => user.id === btn.dataset.id);
+      btn.onclick = () => openUserModal(u);
+    });
+    container.querySelectorAll('.reset-password').forEach(btn => {
+      btn.onclick = () => openResetPasswordModal(btn.dataset.id);
+    });
+    container.querySelectorAll('.toggle-status').forEach(btn => {
+      btn.onclick = () => toggleUserStatus(btn.dataset.id, btn.dataset.active === 'true');
+    });
+    container.querySelectorAll('.delete-user').forEach(btn => {
+      btn.onclick = () => deleteUser(btn.dataset.id);
+    });
+
+    const prevBtn = document.querySelector('#prev-page-btn');
+    const nextBtn = document.querySelector('#next-page-btn');
+    if (prevBtn) prevBtn.onclick = () => {
+      state.usersPage.page--;
+      loadAndRenderUsers();
+    };
+    if (nextBtn) nextBtn.onclick = () => {
+      state.usersPage.page++;
+      loadAndRenderUsers();
+    };
+
+  } catch (error) {
+    container.innerHTML = `<div class="error-box">Lỗi: ${escapeHtml(error.message)}</div>`;
+  }
+}
+
+async function openUserDetailModal(userId) {
+  try {
+    const response = await api(`/api/admin/users/${userId}`);
+    const { user } = response;
+    const stats = user.stats || {};
+    
+    const subRows = (user.recentSubmissions || []).map(s => {
+      const statusClass = s.status === 'ACCEPTED' ? 'mint' : 'red';
+      const statusLabel = s.status === 'ACCEPTED' ? 'Đúng' : 'Sai';
+      return `
+        <tr>
+          <td><strong>${escapeHtml(s.problemTitle)}</strong><br><small class="muted">${escapeHtml(s.problemSlug)}</small></td>
+          <td><span class="badge ${statusClass}">${statusLabel}</span></td>
+          <td>${s.score}/100</td>
+          <td>${s.runtimeMs}ms</td>
+          <td>${formatDate(s.createdAt)}</td>
+        </tr>
+      `;
+    }).join('');
+
+    const assignRows = (user.activeAssignments || []).map(a => {
+      return `
+        <li>
+          <strong>${escapeHtml(a.problemTitle)}</strong> (Rating: ${a.rating}) 
+          <span class="muted" style="font-size: 11px; margin-left: 8px;">Giao lúc: ${formatDate(a.assignedAt)}</span>
+        </li>
+      `;
+    }).join('');
+
+    document.body.insertAdjacentHTML('beforeend', `
+      <div class="modal-backdrop" id="user-detail-modal">
+        <div class="modal wide" style="max-height: 90vh; overflow-y: auto;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+            <div>
+              <span class="eyebrow">Thông tin chi tiết</span>
+              <h2>${escapeHtml(user.fullName)}</h2>
+              <span class="muted">${escapeHtml(user.email)} · ${user.role}</span>
+            </div>
+            <button class="close-sheet-btn" id="close-detail-modal" style="position: static;">✕</button>
+          </div>
+          
+          <div class="stats" style="margin-bottom: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px;">
+            <div class="stat"><b>${stats.submissionsCount || 0}</b><span>Số bài nộp</span></div>
+            <div class="stat"><b>${stats.solvedCount || 0}</b><span>Đã hoàn thành</span></div>
+            <div class="stat"><b>${stats.attemptedProblemsCount || 0}</b><span>Đã thử sức</span></div>
+            <div class="stat"><b>${stats.bestScore || 0}</b><span>Điểm tốt nhất</span></div>
+            <div class="stat"><b>${stats.totalScore || 0}</b><span>Tổng điểm</span></div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field full" style="margin-top: 16px;">
+              <h3>Bài tập đang được giao (${user.activeAssignments?.length || 0})</h3>
+              ${assignRows ? `<ul style="padding-left: 20px; line-height: 1.6; margin-top: 8px;">${assignRows}</ul>` : '<div class="muted" style="margin-top: 8px;">Không có bài tập nào đang được giao.</div>'}
+            </div>
+            
+            <div class="field full" style="margin-top: 24px;">
+              <h3>10 lượt nộp bài gần nhất</h3>
+              ${subRows ? `
+                <div class="table-wrap" style="margin-top: 8px;">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Bài tập</th>
+                        <th>Kết quả</th>
+                        <th>Điểm</th>
+                        <th>Thời gian chạy</th>
+                        <th>Lúc nộp</th>
+                      </tr>
+                    </thead>
+                    <tbody>${subRows}</tbody>
+                  </table>
+                </div>` : '<div class="muted" style="margin-top: 8px;">Chưa có lượt nộp bài nào.</div>'}
+            </div>
+          </div>
+          
+          <div class="modal-actions" style="margin-top: 24px;">
+            <button class="btn" id="btn-close-detail">Đóng</button>
+          </div>
+        </div>
+      </div>
+    `);
+
+    const dModal = document.querySelector('#user-detail-modal');
+    const close = () => dModal.remove();
+    dModal.querySelector('#close-detail-modal').onclick = close;
+    dModal.querySelector('#btn-close-detail').onclick = close;
+
+  } catch (err) {
+    toast(err.message, true);
+  }
+}
+
+function openUserModal(user = null) {
+  const isEdit = !!user;
+
+  const roleOpts = `
+    <option value="STUDENT" ${(user?.role || 'STUDENT') === 'STUDENT' ? 'selected' : ''}>Student</option>
+    <option value="ADMIN" ${user?.role === 'ADMIN' ? 'selected' : ''}>Admin</option>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', `
+    <div class="modal-backdrop" id="user-edit-modal">
+      <form class="modal" id="user-form">
+        <span class="eyebrow">${isEdit ? 'Chỉnh sửa' : 'Tạo mới'}</span>
+        <h2>${isEdit ? 'Cập nhật người dùng' : 'Thêm người dùng mới'}</h2>
+        <div class="form-grid">
+          <div class="field"><label>Họ tên</label><input name="fullName" value="${escapeHtml(user?.fullName || '')}" required></div>
+          <div class="field"><label>Email</label><input name="email" type="email" value="${escapeHtml(user?.email || '')}" required></div>
+          
+          ${isEdit ? '' : `
+            <div class="field"><label>Mật khẩu</label><input name="password" type="password" required placeholder="Tối thiểu 8 ký tự, có chữ và số"></div>
+          `}
+          
+          <div class="field"><label>Vai trò</label><select name="role">${roleOpts}</select></div>
+          
+          <div class="field full">
+            <label><input name="isActive" type="checkbox" ${user?.isActive !== false ? 'checked' : ''}> Hoạt động (Cho phép đăng nhập)</label>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" class="btn secondary" id="cancel-user">Hủy</button>
+          <button class="btn" type="submit">Lưu</button>
+        </div>
+      </form>
+    </div>
+  `);
+
+  const modal = document.querySelector('#user-edit-modal');
+  modal.querySelector('#cancel-user').onclick = () => modal.remove();
+
+  modal.querySelector('#user-form').onsubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    data.isActive = formData.has('isActive');
+
     try {
-      await api(`/api/admin/users/${b.dataset.id}`, { method: 'PATCH', body: { role, isActive } });
       state.adminUsers = null;
       state.adminDashboard = null;
       state.leaderboard = null;
-      toast('Đã cập nhật tài khoản.');
-    } catch (error) { toast(error.message, true); }
-  });
+      if (isEdit) {
+        await api(`/api/admin/users/${user.id}`, { method: 'PATCH', body: data });
+        toast('Đã cập nhật người dùng.');
+      } else {
+        await api('/api/admin/users', { method: 'POST', body: data });
+        toast('Đã tạo người dùng mới.');
+      }
+      modal.remove();
+      loadAndRenderUsers();
+    } catch (err) {
+      toast(err.message, true);
+    }
+  };
+}
+
+function openResetPasswordModal(userId) {
+  document.body.insertAdjacentHTML('beforeend', `
+    <div class="modal-backdrop" id="reset-password-modal">
+      <form class="modal" id="reset-password-form">
+        <span class="eyebrow">Bảo mật</span>
+        <h2>Đặt lại mật khẩu</h2>
+        
+        <div class="form-grid">
+          <div class="field full"><label>Mật khẩu mới</label><input name="newPassword" type="password" required placeholder="Tối thiểu 8 ký tự, gồm cả chữ và số"></div>
+          <div class="field full"><label>Nhập lại mật khẩu mới</label><input name="confirmPassword" type="password" required></div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn secondary" id="cancel-reset-password">Hủy</button>
+          <button class="btn" type="submit">Cập nhật mật khẩu</button>
+        </div>
+      </form>
+    </div>
+  `);
+
+  const modal = document.querySelector('#reset-password-modal');
+  modal.querySelector('#cancel-reset-password').onclick = () => modal.remove();
+
+  modal.querySelector('#reset-password-form').onsubmit = async (event) => {
+    event.preventDefault();
+    const { newPassword, confirmPassword } = Object.fromEntries(new FormData(event.target));
+    
+    if (newPassword !== confirmPassword) {
+      return toast('Mật khẩu nhập lại không khớp.', true);
+    }
+    if (newPassword.length < 8 || !/[A-Za-z]/.test(newPassword) || !/\d/.test(newPassword)) {
+      return toast('Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm cả chữ và số.', true);
+    }
+
+    try {
+      await api(`/api/admin/users/${userId}/password`, {
+        method: 'PATCH',
+        body: { newPassword }
+      });
+      toast('Đã đặt lại mật khẩu thành công.');
+      modal.remove();
+    } catch (err) {
+      toast(err.message, true);
+    }
+  };
+}
+
+async function toggleUserStatus(userId, nextActive) {
+  const actionText = nextActive ? 'mở khóa' : 'khóa';
+  if (confirm(`Bạn có chắc chắn muốn ${actionText} tài khoản này?`)) {
+    try {
+      state.adminUsers = null;
+      state.adminDashboard = null;
+      state.leaderboard = null;
+      await api(`/api/admin/users/${userId}/status`, {
+        method: 'PATCH',
+        body: { isActive: nextActive }
+      });
+      toast(`Đã ${actionText} tài khoản thành công.`);
+      loadAndRenderUsers();
+    } catch (err) {
+      toast(err.message, true);
+    }
+  }
+}
+
+function deleteUser(userId) {
+  document.body.insertAdjacentHTML('beforeend', `
+    <div class="modal-backdrop" id="delete-user-modal">
+      <div class="modal" style="width: min(440px, 100%);">
+        <span class="eyebrow" style="color: var(--red);">Cảnh báo nguy hiểm</span>
+        <h2>Xóa tài khoản</h2>
+        <p class="muted" style="margin-top: 8px;">
+          Nếu người dùng đã có bài nộp hoặc lịch sử học tập, bạn chỉ nên <strong>Khóa tài khoản</strong> để giữ lịch sử học tập.
+        </p>
+        <div class="modal-actions" style="margin-top: 24px; flex-direction: column; gap: 8px;">
+          <button class="btn danger" id="btn-soft-delete-user" style="width: 100%;">Khóa tài khoản (Khuyên dùng)</button>
+          <button class="btn secondary" id="btn-hard-delete-user" style="width: 100%; border-color: var(--red); color: var(--red);">Xóa vĩnh viễn (Chỉ khi chưa học tập)</button>
+          <button class="btn secondary" id="btn-cancel-delete-user" style="width: 100%; margin-top: 4px;">Hủy</button>
+        </div>
+      </div>
+    </div>
+  `);
+
+  const modal = document.querySelector('#delete-user-modal');
+  const close = () => modal.remove();
+  modal.querySelector('#btn-cancel-delete-user').onclick = close;
+
+  modal.querySelector('#btn-soft-delete-user').onclick = async () => {
+    try {
+      state.adminUsers = null;
+      state.adminDashboard = null;
+      state.leaderboard = null;
+      await api(`/api/admin/users/${userId}`, { method: 'DELETE' });
+      toast('Đã khóa tài khoản thành công.');
+      close();
+      loadAndRenderUsers();
+    } catch (err) {
+      toast(err.message, true);
+    }
+  };
+
+  modal.querySelector('#btn-hard-delete-user').onclick = async () => {
+    if (confirm('Bạn có chắc chắn muốn XÓA VĨNH VIỄN tài khoản này? Thao tác này KHÔNG THỂ HOÀN TÁC và sẽ bị lỗi nếu tài khoản đã có lịch sử học tập.')) {
+      try {
+        state.adminUsers = null;
+        state.adminDashboard = null;
+        state.leaderboard = null;
+        await api(`/api/admin/users/${userId}?hard=true`, { method: 'DELETE' });
+        toast('Đã xóa vĩnh viễn tài khoản.');
+        close();
+        loadAndRenderUsers();
+      } catch (err) {
+        toast(err.message, true);
+      }
+    }
+  };
 }
 
 async function navigate(page) {

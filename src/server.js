@@ -24,6 +24,14 @@ import {
   assignProblemGroups,
   syncGroupProblems
 } from './problem-groups.js';
+import {
+  normalizeUserInput,
+  validateUserCreate,
+  validateUserUpdate,
+  assertCanModifyUserAdmin,
+  safeUserRow,
+  getUserUsageCounts
+} from './users-admin.js';
 
 const app = express();
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -1231,13 +1239,298 @@ app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res)
   }
 }));
 
-app.get('/api/admin/users', requireAdmin, asyncRoute(async (_req, res) => {
-  const { rows } = await query(
-    `SELECT u.id,u.email,u.full_name,u.role,u.is_active,u.created_at,COUNT(s.id)::int AS submissions,
-       COALESCE(MAX(s.score),0)::int AS best_score FROM users u LEFT JOIN submissions s ON s.user_id=u.id
-     GROUP BY u.id ORDER BY u.created_at DESC LIMIT 300`
+app.get('/api/admin/users', requireAdmin, asyncRoute(async (req, res) => {
+  const { q, role, status, page, pageSize, sort } = req.query;
+
+  const countQueryParams = [];
+  const countConditions = [];
+  if (q && q.trim()) {
+    countQueryParams.push(`%${q.trim()}%`);
+    countConditions.push(`(u.email ILIKE $${countQueryParams.length} OR u.full_name ILIKE $${countQueryParams.length})`);
+  }
+  if (role && (role === 'ADMIN' || role === 'STUDENT')) {
+    countQueryParams.push(role);
+    countConditions.push(`u.role = $${countQueryParams.length}`);
+  }
+  if (status === 'active') {
+    countConditions.push(`u.is_active = TRUE`);
+  } else if (status === 'inactive') {
+    countConditions.push(`u.is_active = FALSE`);
+  }
+  const whereClause = countConditions.length ? `WHERE ${countConditions.join(' AND ')}` : '';
+  const countQuerySql = `SELECT COUNT(*)::int AS total FROM users u ${whereClause}`;
+  const { rows: countRows } = await query(countQuerySql, countQueryParams);
+  const total = countRows[0].total;
+
+  const queryParams = [...countQueryParams];
+  const limit = Math.min(100, Math.max(1, Number(pageSize || 20)));
+  const offset = (Math.max(1, Number(page || 1)) - 1) * limit;
+
+  queryParams.push(limit);
+  const limitPlaceholder = `$${queryParams.length}`;
+  queryParams.push(offset);
+  const offsetPlaceholder = `$${queryParams.length}`;
+
+  let orderBy = 'u.created_at DESC';
+  if (sort === 'created_at_asc') orderBy = 'u.created_at ASC';
+  else if (sort === 'name_asc') orderBy = 'u.full_name ASC, u.created_at DESC';
+  else if (sort === 'email_asc') orderBy = 'u.email ASC, u.created_at DESC';
+  else if (sort === 'submissions_desc') orderBy = '"submissionsCount" DESC, u.created_at DESC';
+  else if (sort === 'score_desc') orderBy = '"totalScore" DESC, u.created_at DESC';
+
+  const querySql = `
+    SELECT
+      u.id,
+      u.email,
+      u.full_name AS "fullName",
+      u.role,
+      u.is_active AS "isActive",
+      u.created_at AS "createdAt",
+      u.updated_at AS "updatedAt",
+      (SELECT COUNT(*)::int FROM submissions s WHERE s.user_id = u.id) AS "submissionsCount",
+      (SELECT COUNT(*)::int FROM user_problem_progress upp WHERE upp.user_id = u.id AND upp.completed_at IS NOT NULL) AS "solvedCount",
+      (SELECT COALESCE(MAX(upp.best_score), 0)::int FROM user_problem_progress upp WHERE upp.user_id = u.id) AS "bestScore",
+      (SELECT COALESCE(SUM(upp.best_score), 0)::int FROM user_problem_progress upp WHERE upp.user_id = u.id) AS "totalScore",
+      (SELECT COUNT(*)::int FROM student_problem_assignments spa WHERE spa.user_id = u.id AND spa.status = 'ASSIGNED') AS "activeAssignmentsCount"
+    FROM users u
+    ${whereClause}
+    ORDER BY ${orderBy}
+    LIMIT ${limitPlaceholder} OFFSET ${offsetPlaceholder}
+  `;
+  const { rows: users } = await query(querySql, queryParams);
+  
+  const totalPages = Math.ceil(total / limit);
+
+  res.json({
+    users,
+    pagination: {
+      page: Math.max(1, Number(page || 1)),
+      pageSize: limit,
+      total,
+      totalPages
+    }
+  });
+}));
+
+app.post('/api/admin/users', requireAdmin, asyncRoute(async (req, res) => {
+  const input = normalizeUserInput(req.body);
+  const password = req.body.password;
+  const errors = validateUserCreate({ ...input, password });
+  if (errors.length) return res.status(400).json({ error: errors.join(' ') });
+
+  try {
+    const saved = await transaction(async (client) => {
+      const { rows: existing } = await client.query('SELECT id FROM users WHERE email = $1', [input.email]);
+      if (existing[0]) {
+        const err = new Error('Email đã tồn tại. Vui lòng chọn email khác.');
+        err.status = 409;
+        throw err;
+      }
+
+      const passHash = hashPassword(password);
+      const { rows } = await client.query(
+        `INSERT INTO users (email, password_hash, full_name, role, is_active)
+         VALUES ($1, $2, $3, $4, $5)
+         RETURNING id, email, full_name, role, is_active, created_at, updated_at`,
+        [input.email, passHash, input.fullName, input.role, input.isActive]
+      );
+      return rows[0];
+    });
+    res.status(201).json({ user: safeUserRow(saved) });
+  } catch (error) {
+    res.status(error.status || 400).json({ error: error.message });
+  }
+}));
+
+app.get('/api/admin/users/:id', requireAdmin, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const { rows: userRows } = await query(
+    'SELECT id, email, full_name, role, is_active, created_at, updated_at FROM users WHERE id = $1',
+    [id]
   );
-  res.json({ users: rows });
+  const u = userRows[0];
+  if (!u) return res.status(404).json({ error: 'Không tìm thấy người dùng.' });
+
+  const { rows: statsRows } = await query(`
+    SELECT
+      (SELECT COUNT(*)::int FROM submissions WHERE user_id = $1) AS "submissionsCount",
+      (SELECT COUNT(*)::int FROM user_problem_progress WHERE user_id = $1 AND completed_at IS NOT NULL) AS "solvedCount",
+      (SELECT COUNT(*)::int FROM user_problem_progress WHERE user_id = $1 AND submission_count > 0) AS "attemptedProblemsCount",
+      (SELECT COUNT(*)::int FROM user_problem_progress WHERE user_id = $1 AND completed_at IS NOT NULL) AS "completedProblemsCount",
+      (SELECT COALESCE(MAX(best_score), 0)::int FROM user_problem_progress WHERE user_id = $1) AS "bestScore",
+      (SELECT COALESCE(SUM(best_score), 0)::int FROM user_problem_progress WHERE user_id = $1) AS "totalScore",
+      (SELECT COUNT(*)::int FROM student_problem_assignments WHERE user_id = $1 AND status = 'ASSIGNED') AS "activeAssignmentsCount"
+  `, [id]);
+  const stats = statsRows[0];
+
+  const { rows: subRows } = await query(`
+    SELECT s.id, s.problem_id, s.score, s.status, s.runtime_ms, s.created_at, p.title AS problem_title, p.slug AS problem_slug
+    FROM submissions s
+    JOIN problems p ON p.id = s.problem_id
+    WHERE s.user_id = $1
+    ORDER BY s.created_at DESC
+    LIMIT 10
+  `, [id]);
+
+  const { rows: assignRows } = await query(`
+    SELECT spa.id, spa.problem_id, spa.assigned_at, p.title AS problem_title, p.slug AS problem_slug, p.rating
+    FROM student_problem_assignments spa
+    JOIN problems p ON p.id = spa.problem_id
+    WHERE spa.user_id = $1 AND spa.status = 'ASSIGNED'
+    ORDER BY spa.assigned_at DESC
+  `, [id]);
+
+  res.json({
+    user: {
+      id: u.id,
+      email: u.email,
+      fullName: u.full_name,
+      role: u.role,
+      isActive: u.is_active,
+      createdAt: u.created_at,
+      updatedAt: u.updated_at,
+      stats,
+      recentSubmissions: subRows.map(r => ({
+        id: r.id,
+        problemId: r.problem_id,
+        problemTitle: r.problem_title,
+        problemSlug: r.problem_slug,
+        score: r.score,
+        status: r.status,
+        runtimeMs: r.runtime_ms,
+        createdAt: r.created_at
+      })),
+      activeAssignments: assignRows.map(r => ({
+        id: r.id,
+        problemId: r.problem_id,
+        problemTitle: r.problem_title,
+        problemSlug: r.problem_slug,
+        rating: r.rating,
+        assignedAt: r.assigned_at
+      }))
+    }
+  });
+}));
+
+app.patch('/api/admin/users/:id/password', requireAdmin, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const { newPassword } = req.body;
+  if (!newPassword || !validatePassword(newPassword)) {
+    return res.status(400).json({ error: 'Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm cả chữ và số.' });
+  }
+
+  const passHash = hashPassword(newPassword);
+  const { rows } = await query(
+    'UPDATE users SET password_hash = $1, updated_at = NOW() WHERE id = $2 RETURNING id',
+    [passHash, id]
+  );
+  if (!rows[0]) return res.status(404).json({ error: 'Không tìm thấy người dùng.' });
+  res.json({ ok: true });
+}));
+
+app.patch('/api/admin/users/:id/status', requireAdmin, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const isActive = Boolean(req.body.isActive);
+
+  try {
+    const updated = await transaction(async (client) => {
+      const { rows: current } = await client.query('SELECT role FROM users WHERE id = $1', [id]);
+      if (!current[0]) {
+        const err = new Error('Không tìm thấy người dùng.');
+        err.status = 404;
+        throw err;
+      }
+      await assertCanModifyUserAdmin(client, req.user.id, id, current[0].role, isActive);
+
+      const { rows } = await client.query(
+        `UPDATE users SET is_active = $1, updated_at = NOW() WHERE id = $2
+         RETURNING id, email, full_name, role, is_active, created_at, updated_at`,
+        [isActive, id]
+      );
+      return rows[0];
+    });
+    res.json({ user: safeUserRow(updated) });
+  } catch (error) {
+    res.status(error.status || 400).json({ error: error.message });
+  }
+}));
+
+app.patch('/api/admin/users/:id', requireAdmin, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const input = normalizeUserInput(req.body);
+  const errors = validateUserUpdate(input);
+  if (errors.length) return res.status(400).json({ error: errors.join(' ') });
+
+  try {
+    const updated = await transaction(async (client) => {
+      const { rows: current } = await client.query('SELECT email, full_name, role, is_active FROM users WHERE id = $1', [id]);
+      if (!current[0]) {
+        const err = new Error('Không tìm thấy người dùng.');
+        err.status = 404;
+        throw err;
+      }
+      
+      const email = input.email !== undefined ? input.email : current[0].email;
+      const fullName = input.fullName !== undefined ? input.fullName : current[0].full_name;
+      const role = input.role !== undefined ? input.role : current[0].role;
+      const isActive = input.isActive !== undefined ? input.isActive : current[0].is_active;
+
+      await assertCanModifyUserAdmin(client, req.user.id, id, role, isActive);
+
+      const { rows: existing } = await client.query('SELECT id FROM users WHERE email = $1 AND id != $2', [email, id]);
+      if (existing[0]) {
+        const err = new Error('Email đã tồn tại. Vui lòng chọn email khác.');
+        err.status = 409;
+        throw err;
+      }
+
+      const { rows } = await client.query(
+        `UPDATE users
+         SET email = $1, full_name = $2, role = $3, is_active = $4, updated_at = NOW()
+         WHERE id = $5
+         RETURNING id, email, full_name, role, is_active, created_at, updated_at`,
+        [email, fullName, role, isActive, id]
+      );
+      return rows[0];
+    });
+    res.json({ user: safeUserRow(updated) });
+  } catch (error) {
+    res.status(error.status || 400).json({ error: error.message });
+  }
+}));
+
+app.delete('/api/admin/users/:id', requireAdmin, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const hard = req.query.hard === 'true';
+
+  try {
+    await transaction(async (client) => {
+      const { rows: userRows } = await client.query('SELECT id, role, is_active FROM users WHERE id = $1', [id]);
+      if (!userRows[0]) {
+        const err = new Error('Không tìm thấy người dùng.');
+        err.status = 404;
+        throw err;
+      }
+
+      await assertCanModifyUserAdmin(client, req.user.id, id, userRows[0].role, false);
+
+      if (hard) {
+        const usage = await getUserUsageCounts(client, id);
+        if (usage.submissions > 0 || usage.attempts > 0 || usage.progress > 0 || usage.assignments > 0) {
+          const err = new Error('Không thể xóa cứng user này vì đã có dữ liệu học tập. Hãy khóa tài khoản thay thế.');
+          err.status = 409;
+          throw err;
+        }
+        await client.query('DELETE FROM users WHERE id = $1', [id]);
+      } else {
+        await client.query('UPDATE users SET is_active = FALSE, updated_at = NOW() WHERE id = $1', [id]);
+      }
+    });
+
+    res.json({ ok: true, mode: hard ? 'hard_delete' : 'soft_delete' });
+  } catch (error) {
+    res.status(error.status || 400).json({ error: error.message });
+  }
 }));
 
 app.get('/api/admin/student-assignments', requireAdmin, asyncRoute(async (req, res) => {
@@ -1716,15 +2009,6 @@ app.put('/api/admin/problems/:id/groups', requireAdmin, asyncRoute(async (req, r
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-}));
-
-app.patch('/api/admin/users/:id', requireAdmin, asyncRoute(async (req, res) => {
-  const role = req.body.role === 'ADMIN' ? 'ADMIN' : 'STUDENT';
-  const active = Boolean(req.body.isActive);
-  if (req.params.id === req.user.id && (!active || role !== 'ADMIN')) return res.status(400).json({ error: 'Không thể tự khóa hoặc hạ quyền tài khoản đang dùng.' });
-  const { rows } = await query('UPDATE users SET role=$1,is_active=$2,updated_at=NOW() WHERE id=$3 RETURNING id,email,full_name,role,is_active', [role, active, req.params.id]);
-  if (!rows[0]) return res.status(404).json({ error: 'Không tìm thấy tài khoản.' });
-  res.json({ user: rows[0] });
 }));
 
 app.post('/internal/judge', asyncRoute(async (req, res) => {
