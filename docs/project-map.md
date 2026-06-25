@@ -5,21 +5,123 @@ This file contains the directory tree and full code contents of the non-ignored 
 ## 1. Directory Tree
 
 ```markdown
+- 📁 **.agents/**
+  - 📄 AGENTS.md (0.5 KB)
 - 📄 .env (0.5 KB)
 - 📄 .env.example (0.6 KB)
 - 📁 **backups/**
   - 📄 attempts-before-cleanup-20260624-165640.json (9.5 KB)
   - 📄 attempts-before-cleanup-20260624-165800.json (9.5 KB)
+  - 📄 attempts-reset-20260625-181549.json (10.8 KB)
+  - 📄 attempts-reset-20260625-181628.json (0.0 KB)
+  - 📄 attempts-reset-20260625-181944.json (0.0 KB)
+  - 📄 attempts-reset-20260625-184324.json (0.0 KB)
+  - 📄 attempts-reset-20260625-184454.json (0.0 KB)
+  - 📄 attempts-reset-20260625-184543.json (0.0 KB)
+  - 📄 attempts-reset-20260625-184810.json (0.0 KB)
+  - 📄 attempts-reset-20260625-214200.json (3.9 KB)
+  - 📄 attempts-reset-20260625-215053.json (0.3 KB)
+  - 📄 attempts-reset-20260625-220522.json (0.3 KB)
   - 📄 problems-before-cleanup-20260624-165640.json (31.6 KB)
   - 📄 problems-before-cleanup-20260624-165800.json (31.6 KB)
+  - 📄 problems-reset-20260625-181549.json (34.7 KB)
+  - 📄 problems-reset-20260625-181628.json (15.5 KB)
+  - 📄 problems-reset-20260625-181944.json (30.9 KB)
+  - 📄 problems-reset-20260625-184324.json (28.8 KB)
+  - 📄 problems-reset-20260625-184454.json (10.8 KB)
+  - 📄 problems-reset-20260625-184543.json (11.4 KB)
+  - 📄 problems-reset-20260625-184810.json (13.4 KB)
+  - 📄 problems-reset-20260625-214200.json (13.4 KB)
+  - 📄 problems-reset-20260625-215053.json (13.4 KB)
+  - 📄 problems-reset-20260625-220522.json (14.1 KB)
+  - 📄 problem_assignments-reset-20260625-181549.json (0.0 KB)
+  - 📄 problem_assignments-reset-20260625-181628.json (0.0 KB)
+  - 📄 problem_assignments-reset-20260625-181944.json (0.0 KB)
+  - 📄 problem_assignments-reset-20260625-184324.json (0.0 KB)
+  - 📄 problem_assignments-reset-20260625-184454.json (0.0 KB)
+  - 📄 problem_assignments-reset-20260625-184543.json (0.0 KB)
+  - 📄 problem_assignments-reset-20260625-184810.json (0.0 KB)
+  - 📄 problem_assignments-reset-20260625-214200.json (0.0 KB)
+  - 📄 problem_assignments-reset-20260625-215053.json (0.0 KB)
+  - 📄 problem_assignments-reset-20260625-220522.json (0.0 KB)
+  - 📄 problem_assignment_targets-reset-20260625-181549.json (0.0 KB)
+  - 📄 problem_assignment_targets-reset-20260625-181628.json (0.0 KB)
+  - 📄 problem_assignment_targets-reset-20260625-181944.json (0.0 KB)
+  - 📄 problem_assignment_targets-reset-20260625-184324.json (0.0 KB)
+  - 📄 problem_assignment_targets-reset-20260625-184454.json (0.0 KB)
+  - 📄 problem_assignment_targets-reset-20260625-184543.json (0.0 KB)
+  - 📄 problem_assignment_targets-reset-20260625-184810.json (0.0 KB)
+  - 📄 problem_assignment_targets-reset-20260625-214200.json (0.0 KB)
+  - 📄 problem_assignment_targets-reset-20260625-215053.json (0.0 KB)
+  - 📄 problem_assignment_targets-reset-20260625-220522.json (0.0 KB)
+  - 📄 problem_groups-reset-20260625-181549.json (2.1 KB)
+  - 📄 problem_groups-reset-20260625-181628.json (1.7 KB)
+  - 📄 problem_groups-reset-20260625-181944.json (1.3 KB)
+  - 📄 problem_groups-reset-20260625-184324.json (0.9 KB)
+  - 📄 problem_groups-reset-20260625-184454.json (0.9 KB)
+  - 📄 problem_groups-reset-20260625-184543.json (0.9 KB)
+  - 📄 problem_groups-reset-20260625-184810.json (0.9 KB)
+  - 📄 problem_groups-reset-20260625-214200.json (0.9 KB)
+  - 📄 problem_groups-reset-20260625-215053.json (0.9 KB)
+  - 📄 problem_groups-reset-20260625-220522.json (1.3 KB)
+  - 📄 problem_group_items-reset-20260625-181549.json (7.4 KB)
+  - 📄 problem_group_items-reset-20260625-181628.json (2.9 KB)
+  - 📄 problem_group_items-reset-20260625-181944.json (5.1 KB)
+  - 📄 problem_group_items-reset-20260625-184324.json (3.9 KB)
+  - 📄 problem_group_items-reset-20260625-184454.json (1.4 KB)
+  - 📄 problem_group_items-reset-20260625-184543.json (1.4 KB)
+  - 📄 problem_group_items-reset-20260625-184810.json (2.4 KB)
+  - 📄 problem_group_items-reset-20260625-214200.json (2.4 KB)
+  - 📄 problem_group_items-reset-20260625-215053.json (2.4 KB)
+  - 📄 problem_group_items-reset-20260625-220522.json (2.6 KB)
   - 📄 problem_testcases-before-cleanup-20260624-165640.json (27.7 KB)
   - 📄 problem_testcases-before-cleanup-20260624-165800.json (27.7 KB)
+  - 📄 problem_testcases-reset-20260625-181549.json (50.3 KB)
+  - 📄 problem_testcases-reset-20260625-181628.json (17.6 KB)
+  - 📄 problem_testcases-reset-20260625-181944.json (48.1 KB)
+  - 📄 problem_testcases-reset-20260625-184324.json (46.1 KB)
+  - 📄 problem_testcases-reset-20260625-184454.json (15.6 KB)
+  - 📄 problem_testcases-reset-20260625-184543.json (15.6 KB)
+  - 📄 problem_testcases-reset-20260625-184810.json (17.3 KB)
+  - 📄 problem_testcases-reset-20260625-214200.json (17.3 KB)
+  - 📄 problem_testcases-reset-20260625-215053.json (17.3 KB)
+  - 📄 problem_testcases-reset-20260625-220522.json (17.3 KB)
   - 📄 student_problem_assignments-before-cleanup-20260624-165640.json (7.6 KB)
   - 📄 student_problem_assignments-before-cleanup-20260624-165800.json (7.6 KB)
+  - 📄 student_problem_assignments-reset-20260625-181549.json (8.3 KB)
+  - 📄 student_problem_assignments-reset-20260625-181628.json (0.5 KB)
+  - 📄 student_problem_assignments-reset-20260625-181944.json (0.0 KB)
+  - 📄 student_problem_assignments-reset-20260625-184324.json (0.0 KB)
+  - 📄 student_problem_assignments-reset-20260625-184454.json (0.0 KB)
+  - 📄 student_problem_assignments-reset-20260625-184543.json (0.0 KB)
+  - 📄 student_problem_assignments-reset-20260625-184810.json (0.0 KB)
+  - 📄 student_problem_assignments-reset-20260625-214200.json (2.7 KB)
+  - 📄 student_problem_assignments-reset-20260625-215053.json (0.0 KB)
+  - 📄 student_problem_assignments-reset-20260625-220522.json (0.0 KB)
   - 📄 submissions-before-cleanup-20260624-165640.json (14.4 KB)
   - 📄 submissions-before-cleanup-20260624-165800.json (14.4 KB)
+  - 📄 submissions-reset-20260625-181549.json (21.1 KB)
+  - 📄 submissions-reset-20260625-181628.json (0.8 KB)
+  - 📄 submissions-reset-20260625-181944.json (0.0 KB)
+  - 📄 submissions-reset-20260625-184324.json (0.0 KB)
+  - 📄 submissions-reset-20260625-184454.json (0.0 KB)
+  - 📄 submissions-reset-20260625-184543.json (0.0 KB)
+  - 📄 submissions-reset-20260625-184810.json (0.0 KB)
+  - 📄 submissions-reset-20260625-214200.json (17.0 KB)
+  - 📄 submissions-reset-20260625-215053.json (0.0 KB)
+  - 📄 submissions-reset-20260625-220522.json (1.7 KB)
   - 📄 user_problem_progress-before-cleanup-20260624-165640.json (3.1 KB)
   - 📄 user_problem_progress-before-cleanup-20260624-165800.json (3.1 KB)
+  - 📄 user_problem_progress-reset-20260625-181549.json (3.5 KB)
+  - 📄 user_problem_progress-reset-20260625-181628.json (0.4 KB)
+  - 📄 user_problem_progress-reset-20260625-181944.json (0.0 KB)
+  - 📄 user_problem_progress-reset-20260625-184324.json (0.0 KB)
+  - 📄 user_problem_progress-reset-20260625-184454.json (0.0 KB)
+  - 📄 user_problem_progress-reset-20260625-184543.json (0.0 KB)
+  - 📄 user_problem_progress-reset-20260625-184810.json (0.0 KB)
+  - 📄 user_problem_progress-reset-20260625-214200.json (1.8 KB)
+  - 📄 user_problem_progress-reset-20260625-215053.json (0.0 KB)
+  - 📄 user_problem_progress-reset-20260625-220522.json (0.5 KB)
 - 📁 **data/**
   - 📄 canonical-problems.js (27.6 KB)
 - 📄 docker-compose.yml (0.3 KB)
@@ -35,7 +137,8 @@ This file contains the directory tree and full code contents of the non-ignored 
   - 📄 005_sync_progress.sql (1.4 KB)
   - 📄 006_student_problem_assignments.sql (2.3 KB)
   - 📄 007_compare_mode.sql (0.2 KB)
-- 📄 package.json (0.7 KB)
+  - 📄 008_problem_groups.sql (1.3 KB)
+- 📄 package.json (0.9 KB)
 - 📁 **plans/**
   - 📁 **archive/**
   - 📁 **prds/**
@@ -47,28 +150,55 @@ This file contains the directory tree and full code contents of the non-ignored 
 - 📄 scratch-retrieve.js (0.3 KB)
 - 📁 **scripts/**
   - 📄 migrate.js (1.1 KB)
-  - 📄 seed.js (4.3 KB)
+  - 📄 seed.js (7.6 KB)
 - 📁 **src/**
   - 📄 auth.js (2.1 KB)
   - 📄 codeforces-vi-problems.js (11.0 KB)
   - 📄 config.js (1.4 KB)
   - 📄 db.js (0.6 KB)
-  - 📄 judge.js (11.0 KB)
-  - 📄 python-runner.py (3.7 KB)
-  - 📄 server.js (46.5 KB)
+  - 📄 judge.js (11.3 KB)
+  - 📄 problem-groups.js (3.6 KB)
+  - 📄 python-runner.py (4.3 KB)
+  - 📄 server.js (77.4 KB)
   - 📄 terminal-runner.py (4.7 KB)
-  - 📄 terminal.js (19.7 KB)
+  - 📄 terminal.js (21.1 KB)
+  - 📄 users-admin.js (3.5 KB)
   - 📄 validation.js (7.7 KB)
 - 📁 **test/**
-  - 📄 admin-import.test.js (7.1 KB)
+  - 📄 admin-import.test.js (7.5 KB)
+  - 📄 admin-users.test.js (15.1 KB)
   - 📄 core.test.js (3.1 KB)
   - 📄 errors.test.js (3.6 KB)
   - 📄 judge-compare.test.js (4.6 KB)
+  - 📄 judge-input-prompt.test.js (1.9 KB)
+  - 📄 problem-groups.test.js (11.1 KB)
+  - 📄 reset-basic-problems.test.js (8.6 KB)
   - 📄 submission-flow.test.js (11.1 KB)
+  - 📄 terminal.test.js (3.9 KB)
 - 📄 vercel.json (0.1 KB)
 ```
 
 ## 2. File Contents
+
+### File: `.agents/AGENTS.md`
+
+```markdown
+# SimpleOJ Project Rules & Deployment
+
+## Auto-Deploy Hook URL
+When pushing changes to the repository, trigger the Render auto-deploy webhook by executing an HTTP GET request to this URL:
+`https://api.render.com/deploy/srv-d8qor4flk1mc73aun7jg?key=agsshFp9xhU`
+
+Example command (PowerShell):
+```powershell
+Invoke-RestMethod -Uri "https://api.render.com/deploy/srv-d8qor4flk1mc73aun7jg?key=agsshFp9xhU" -Method Get
+```
+
+Example command (cURL):
+```bash
+curl -X GET "https://api.render.com/deploy/srv-d8qor4flk1mc73aun7jg?key=agsshFp9xhU"
+```
+```
 
 ### File: `.env`
 
@@ -656,6 +786,502 @@ TERMINAL_MAX_OUTPUT_BYTES=100000
     "started_at": "2026-06-24T09:32:08.032Z",
     "deadline_at": "2026-06-24T10:02:08.032Z",
     "submitted_at": "2026-06-24T09:34:23.314Z",
+    "status": "SUBMITTED"
+  }
+]
+```
+
+### File: `backups/attempts-reset-20260625-181549.json`
+
+```json
+[
+  {
+    "id": "84ae9154-2d0b-49ca-b096-746dbd828b81",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T19:02:21.967Z",
+    "deadline_at": "2026-06-19T19:32:21.967Z",
+    "submitted_at": "2026-06-19T19:06:14.344Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "06ada14c-2fd7-4033-bdfd-1221dae15a30",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T19:12:24.118Z",
+    "deadline_at": "2026-06-19T19:42:24.118Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "f103cfdf-a22c-48bf-b165-0d278044acb0",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T20:06:06.595Z",
+    "deadline_at": "2026-06-19T20:36:06.595Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "7d775c15-6305-4cdf-ae82-65965983e078",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T21:31:40.366Z",
+    "deadline_at": "2026-06-19T22:01:40.366Z",
+    "submitted_at": "2026-06-19T21:52:05.200Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "42fd4e5c-ec61-405a-936e-87ddc10ba536",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "started_at": "2026-06-19T19:13:33.401Z",
+    "deadline_at": "2026-06-19T19:43:33.401Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "ddb983cb-f35b-4098-9d48-d7122d68379f",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T22:17:55.641Z",
+    "deadline_at": "2026-06-19T22:47:55.641Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "7e7f5b2a-7ee3-48c7-919a-7936310eae5d",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "started_at": "2026-06-19T22:41:16.819Z",
+    "deadline_at": "2026-06-19T23:11:16.819Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "f498e579-3e90-4b4a-acea-ab74f1084b5d",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "started_at": "2026-06-19T22:59:34.228Z",
+    "deadline_at": "2026-06-19T23:29:34.228Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "e0e04a36-3354-41d7-8ac8-507759f69f85",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T23:17:04.066Z",
+    "deadline_at": "2026-06-19T23:47:04.066Z",
+    "submitted_at": "2026-06-19T23:17:05.181Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "3dd7fe79-c3ef-44aa-9b4b-bfe65ce34436",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "started_at": "2026-06-19T23:17:38.249Z",
+    "deadline_at": "2026-06-19T23:47:38.249Z",
+    "submitted_at": "2026-06-19T23:17:39.339Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "c6658799-ce9f-4181-9627-698492fc5e63",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "started_at": "2026-06-19T22:47:45.042Z",
+    "deadline_at": "2026-06-19T23:17:45.042Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "f33e0cb4-041f-49a3-b39b-4364f84741c4",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "started_at": "2026-06-19T23:27:02.679Z",
+    "deadline_at": "2026-06-19T23:57:02.679Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "cd6b584a-1841-41eb-9de9-dcfaeb69acf3",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "started_at": "2026-06-19T23:41:40.369Z",
+    "deadline_at": "2026-06-20T00:11:40.369Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "14809094-d459-4c89-bb48-55d11851ba38",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "started_at": "2026-06-19T23:43:17.102Z",
+    "deadline_at": "2026-06-20T00:13:17.102Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "9d88d119-3d65-42ad-acc5-ba3057c03cc7",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-19T22:40:06.618Z",
+    "deadline_at": "2026-06-19T23:10:06.618Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "5be143db-e0cf-4ce0-bb8c-33a0191334c1",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-20T06:17:50.874Z",
+    "deadline_at": "2026-06-20T06:47:50.874Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "9c09c1e1-e2c9-48fa-b9f1-24a8568640e7",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-20T06:56:00.710Z",
+    "deadline_at": "2026-06-20T07:26:00.710Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "43f176ed-8190-4be2-82c3-d88822e0c759",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "started_at": "2026-06-19T21:54:51.746Z",
+    "deadline_at": "2026-06-19T22:24:51.746Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "a44be3aa-8f7b-4c61-a116-21e091299402",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "started_at": "2026-06-20T07:22:12.034Z",
+    "deadline_at": "2026-06-20T07:52:12.034Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "79ee6de5-e04c-40db-9810-5f61cdec1727",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "started_at": "2026-06-20T07:33:29.328Z",
+    "deadline_at": "2026-06-20T08:03:29.328Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "f08c3b47-a819-4175-bb63-e7c0eb8ea8e6",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "started_at": "2026-06-20T11:52:38.957Z",
+    "deadline_at": "2026-06-20T12:22:38.957Z",
+    "submitted_at": "2026-06-20T11:58:28.606Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "ca4c3a60-cacd-460f-a880-8d944da8904d",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "started_at": "2026-06-20T11:58:37.753Z",
+    "deadline_at": "2026-06-20T12:28:37.753Z",
+    "submitted_at": "2026-06-20T12:01:08.613Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "562dd191-c7a6-4bae-8087-227201d88287",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "started_at": "2026-06-20T12:05:52.164Z",
+    "deadline_at": "2026-06-20T12:35:52.164Z",
+    "submitted_at": "2026-06-20T12:07:19.729Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "428e1a1e-868d-4a1e-b279-6ca7322f5eaf",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "started_at": "2026-06-24T15:23:37.816Z",
+    "deadline_at": "2026-06-24T15:53:37.816Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "74ceb150-8097-4927-b9bd-d3d4c5744057",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "started_at": "2026-06-25T11:00:22.842Z",
+    "deadline_at": "2026-06-25T11:30:22.842Z",
+    "submitted_at": "2026-06-25T11:02:01.128Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "5808c6b1-aebb-4480-8de1-6e5f4c4d8f5a",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "started_at": "2026-06-24T09:32:08.032Z",
+    "deadline_at": "2026-06-24T10:02:08.032Z",
+    "submitted_at": "2026-06-24T09:34:23.314Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "866e6204-2e69-495e-bfda-5e81a2e410b0",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-19T19:12:56.064Z",
+    "deadline_at": "2026-06-19T19:42:56.064Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "706e6aa9-f2b7-443b-ae62-5fc8ae16653f",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-19T20:15:53.921Z",
+    "deadline_at": "2026-06-19T20:45:53.921Z",
+    "submitted_at": "2026-06-19T20:45:38.306Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "90762349-8381-4b32-830a-5508c5186834",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-19T20:47:12.369Z",
+    "deadline_at": "2026-06-19T21:17:12.369Z",
+    "submitted_at": "2026-06-19T20:47:38.413Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "f89c3068-1858-4348-8e72-a74a9107304f",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-19T21:39:38.469Z",
+    "deadline_at": "2026-06-19T22:09:38.469Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "ac3cd1d0-2c1f-46b7-9957-d0bf182f8964",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-19T22:19:43.418Z",
+    "deadline_at": "2026-06-19T22:49:43.418Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "09f27bb1-98a4-42db-855e-62a01a962f85",
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "started_at": "2026-06-19T23:18:57.027Z",
+    "deadline_at": "2026-06-19T23:48:57.027Z",
+    "submitted_at": "2026-06-19T23:18:58.122Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "7cf3db6f-87d6-4ec0-8be4-1c22e1c0c8ca",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "started_at": "2026-06-24T10:13:35.790Z",
+    "deadline_at": "2026-06-24T10:43:35.790Z",
+    "submitted_at": "2026-06-24T10:14:51.129Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "84120bb6-b9d4-4eb4-ab0c-71627912fc09",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "started_at": "2026-06-24T10:16:18.553Z",
+    "deadline_at": "2026-06-24T10:46:18.553Z",
+    "submitted_at": "2026-06-24T10:16:31.742Z",
+    "status": "SUBMITTED"
+  }
+]
+```
+
+### File: `backups/attempts-reset-20260625-181628.json`
+
+```json
+[]
+```
+
+### File: `backups/attempts-reset-20260625-181944.json`
+
+```json
+[]
+```
+
+### File: `backups/attempts-reset-20260625-184324.json`
+
+```json
+[]
+```
+
+### File: `backups/attempts-reset-20260625-184454.json`
+
+```json
+[]
+```
+
+### File: `backups/attempts-reset-20260625-184543.json`
+
+```json
+[]
+```
+
+### File: `backups/attempts-reset-20260625-184810.json`
+
+```json
+[]
+```
+
+### File: `backups/attempts-reset-20260625-214200.json`
+
+```json
+[
+  {
+    "id": "2759773c-5e75-4bf5-abdb-5719c0acc435",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "started_at": "2026-06-25T11:55:27.789Z",
+    "deadline_at": "2026-06-25T12:25:27.789Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "036fcdf0-7857-450e-aa53-050873f3b6ff",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "started_at": "2026-06-25T13:09:04.977Z",
+    "deadline_at": "2026-06-25T13:39:04.977Z",
+    "submitted_at": null,
+    "status": "EXPIRED"
+  },
+  {
+    "id": "b4ce25fa-43d0-401a-afed-02aad9157846",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "started_at": "2026-06-25T13:40:18.685Z",
+    "deadline_at": "2026-06-25T14:10:18.685Z",
+    "submitted_at": "2026-06-25T13:40:37.102Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "f60ad6b1-5e96-4995-8b38-467029668f6f",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "started_at": "2026-06-25T13:46:37.354Z",
+    "deadline_at": "2026-06-25T14:16:37.354Z",
+    "submitted_at": "2026-06-25T13:47:51.095Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "d50f4d1f-607f-465a-9796-fe4e62d97c97",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "started_at": "2026-06-25T13:48:16.878Z",
+    "deadline_at": "2026-06-25T14:18:16.878Z",
+    "submitted_at": "2026-06-25T13:50:32.096Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "6427e9d1-3603-4030-a8a2-69505c54769c",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "started_at": "2026-06-25T13:48:48.155Z",
+    "deadline_at": "2026-06-25T14:18:48.155Z",
+    "submitted_at": "2026-06-25T13:52:29.194Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "1de3dfad-deb7-41ff-96ab-bf76af0b7d0e",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "started_at": "2026-06-25T13:55:16.511Z",
+    "deadline_at": "2026-06-25T14:25:16.511Z",
+    "submitted_at": "2026-06-25T13:55:33.498Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "fd6e6bc2-c157-4e16-900b-569c1526300a",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "started_at": "2026-06-25T13:57:56.939Z",
+    "deadline_at": "2026-06-25T14:27:56.939Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "66abd9de-d6c1-456d-bb17-f8393ceca651",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "started_at": "2026-06-25T13:55:41.375Z",
+    "deadline_at": "2026-06-25T14:25:41.375Z",
+    "submitted_at": "2026-06-25T14:03:28.608Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "9636f807-3c35-4154-b279-7dcb32b68a4b",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "started_at": "2026-06-25T14:06:56.868Z",
+    "deadline_at": "2026-06-25T14:36:56.868Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  },
+  {
+    "id": "86df6eec-fc7e-43c1-8da4-f5fa7250b147",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "started_at": "2026-06-25T14:07:56.479Z",
+    "deadline_at": "2026-06-25T14:37:56.479Z",
+    "submitted_at": "2026-06-25T14:08:21.397Z",
+    "status": "SUBMITTED"
+  },
+  {
+    "id": "c79a7090-9c26-4eba-af0f-8a5622d4ad37",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "started_at": "2026-06-25T14:08:31.805Z",
+    "deadline_at": "2026-06-25T14:38:31.805Z",
+    "submitted_at": "2026-06-25T14:11:56.500Z",
+    "status": "SUBMITTED"
+  }
+]
+```
+
+### File: `backups/attempts-reset-20260625-215053.json`
+
+```json
+[
+  {
+    "id": "11c993fc-4264-426d-a66f-c09f4612336e",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "f7a0f70a-c030-4844-9a87-0b4a124508d3",
+    "started_at": "2026-06-25T14:47:30.640Z",
+    "deadline_at": "2026-06-25T15:17:30.640Z",
+    "submitted_at": null,
+    "status": "IN_PROGRESS"
+  }
+]
+```
+
+### File: `backups/attempts-reset-20260625-220522.json`
+
+```json
+[
+  {
+    "id": "729e1bbc-9265-40eb-8183-bde3e4c7d756",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "started_at": "2026-06-25T14:57:28.025Z",
+    "deadline_at": "2026-06-25T15:27:28.025Z",
+    "submitted_at": "2026-06-25T14:57:52.475Z",
     "status": "SUBMITTED"
   }
 ]
@@ -1987,6 +2613,5575 @@ TERMINAL_MAX_OUTPUT_BYTES=100000
     "rating": 1200,
     "compare_mode": "token",
     "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problems-reset-20260625-181549.json`
+
+```json
+[
+  {
+    "id": "d1d53cb5-8117-432f-9120-7960442cafe6",
+    "slug": "p-del-1782322702080",
+    "title": "Group Test Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T17:38:22.165Z",
+    "updated_at": "2026-06-24T17:38:22.165Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-24T17:38:22.165Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "slug": "cf-9a-die-roll",
+    "title": "Xác suất của Dot",
+    "difficulty": "Cơ bản",
+    "description": "Yakko và Wakko đã tung xúc xắc và nhận được lần lượt Y và W điểm. Dot sẽ thắng nếu số của cô ấy không nhỏ hơn cả hai người kia, vì nếu bằng điểm thì Dot vẫn được tính là thắng.\n\nHãy in xác suất Dot chiến thắng dưới dạng phân số tối giản A/B. Nếu xác suất bằng 0 hãy in 0/1, nếu bằng 1 hãy in 1/1.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng chứa hai số nguyên Y và W.\n\n### Định dạng dữ liệu đầu ra:\n* In ra phân số tối giản biểu diễn xác suất Dot thắng.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "4 2",
+        "output": "1/2",
+        "explanation": "Dot thắng nếu tung được 4, 5 hoặc 6."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:39.338Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:39.305Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "slug": "sum",
+    "title": "Bài 1: Tính tổng hai số",
+    "difficulty": "Dễ",
+    "description": "Viết chương trình nhập vào hai số nguyên $a$ và $b$ (cách nhau bởi một khoảng trắng) từ bàn phím. In ra màn hình tổng của hai số đó.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa hai số nguyên $a$ và $b$ ($-10^9 \\le a, b \\le 10^9$).\n\n### Định dạng dữ liệu đầu ra:\n* In ra một số nguyên duy nhất là tổng của $a$ và $b$.",
+    "starter_code": "# Nhập dữ liệu đầu vào và chuyển thành số nguyên\na, b = map(int, input().split())\n\n# Tính toán và in kết quả\nprint(a + b)\n",
+    "examples": [
+      {
+        "input": "3 5",
+        "output": "8",
+        "explanation": "Tổng của 3 và 5 là 8."
+      },
+      {
+        "input": "-2 10",
+        "output": "8",
+        "explanation": "Tổng của -2 và 10 là 8."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": false,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T18:43:55.017Z",
+    "updated_at": "2026-06-20T06:19:02.524Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-19T19:38:50.482Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "slug": "cf-4a-watermelon",
+    "title": "Chia dưa hấu",
+    "difficulty": "Cơ bản",
+    "description": "Cho trọng lượng w của một quả dưa hấu. Hãy kiểm tra xem có thể chia w thành hai phần nguyên dương, và cả hai phần đều có cân nặng chẵn hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Một số nguyên w, 1 <= w <= 100.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu chia được, ngược lại in NO.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "8",
+        "output": "YES",
+        "explanation": "Có thể chia thành 2 và 6."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:31.579Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:31.546Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "slug": "cf-32b-borze",
+    "title": "Giải mã Borze",
+    "difficulty": "Cơ bản",
+    "description": "Mã Borze dùng chuỗi ký hiệu . , -. và -- để biểu diễn số ở hệ tam phân. Quy ước là:\n* . tương ứng với 0\n* -. tương ứng với 1\n* -- tương ứng với 2\n\nHãy giải mã chuỗi Borze đã cho.\n\n### Định dạng dữ liệu đầu vào:\n* Một chuỗi Borze hợp lệ.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số tam phân tương ứng.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": ".-.--",
+        "output": "012",
+        "explanation": "Chuỗi được đọc lần lượt thành 0, 1, 2."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:46.798Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:46.766Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "slug": "cf-38a-army",
+    "title": "Quân hàm và số năm",
+    "difficulty": "Cơ bản",
+    "description": "Hệ thống quân hàm của Berland có n bậc, đánh số từ 1 đến n. Để đi từ bậc i lên bậc i + 1 cần d_i năm. Vasya vừa đạt bậc a và muốn lên bậc b.\n\nHãy tính tổng số năm Vasya còn phải phục vụ.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa n.\n* Dòng 2 chứa n - 1 số nguyên d_i.\n* Dòng 3 chứa hai số nguyên a và b.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số năm cần thiết để đi từ a lên b.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "3\n5 6\n1 2",
+        "output": "5",
+        "explanation": "Từ bậc 1 lên bậc 2 mất 5 năm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:56.407Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:56.375Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "slug": "cf-41a-translation",
+    "title": "Dịch ngược một từ",
+    "difficulty": "Cơ bản",
+    "description": "Trong ngôn ngữ Berland và Birland, một từ có nghĩa giống nhau nếu nó bị viết ngược lại. Ví dụ code tương ứng với edoc.\n\nHãy kiểm tra xem từ t có phải là từ s viết ngược hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa từ s.\n* Dòng 2 chứa từ t.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu t là s viết ngược, ngược lại in NO.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "code\nedoc",
+        "output": "YES",
+        "explanation": "edoc là code viết ngược."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:21:03.386Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:21:03.354Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "slug": "case_count",
+    "title": "Đếm chữ Hoa - chữ Thường",
+    "difficulty": "Cơ bản",
+    "description": "Viết chương trình nhập vào một chuỗi ký tự $S$ gồm cả chữ hoa, chữ thường và chữ số. Hãy đếm xem có bao nhiêu chữ cái viết hoa và bao nhiêu chữ cái viết thường xuất hiện trong chuỗi.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa chuỗi ký tự $S$ (độ dài không quá 100 ký tự).\n\n### Định dạng dữ liệu đầu ra:\n* Một dòng chứa hai số nguyên cách nhau bởi khoảng trắng: Số lượng chữ cái viết hoa và số lượng chữ cái viết thường.",
+    "starter_code": "# Nhập chuỗi ký tự\ns = input()\n\n# Hãy đếm chữ hoa và chữ thường rồi in ra kết quả\n",
+    "examples": [
+      {
+        "input": "CodeForces",
+        "output": "2 8",
+        "explanation": "Chuỗi 'CodeForces' có 2 chữ hoa ('C', 'F') và 8 chữ thường ('o', 'd', 'e', 'o', 'r', 'c', 'e', 's')."
+      },
+      {
+        "input": "Python3.10",
+        "output": "1 5",
+        "explanation": "Chuỗi 'Python3.10' có 1 chữ hoa ('P') và 5 chữ thường ('y', 't', 'h', 'o', 'n'). Các chữ số và dấu chấm không được đếm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T18:43:55.166Z",
+    "updated_at": "2026-06-20T06:21:14.676Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:21:14.643Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "e8ce9372-5538-4ab3-bd86-e1d15511fa49",
+    "slug": "temp-test-prob-1782386104303",
+    "title": "Temp Problem",
+    "difficulty": "Dễ",
+    "description": "Temporary",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:15:04.975Z",
+    "updated_at": "2026-06-25T11:15:04.975Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:15:04.975Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "slug": "cf-96a-football",
+    "title": "Tình huống bóng đá nguy hiểm",
+    "difficulty": "Cơ bản",
+    "description": "Petya biểu diễn trạng thái trận bóng bằng một chuỗi chỉ gồm 0 và 1. Nếu tồn tại ít nhất 7 ký tự giống nhau đứng liên tiếp thì trạng thái đó được coi là nguy hiểm.\n\nHãy xác định xem trạng thái hiện tại có nguy hiểm hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Một chuỗi không rỗng chỉ gồm ký tự 0 và 1.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu trạng thái nguy hiểm, ngược lại in NO.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "001001",
+        "output": "NO",
+        "explanation": "Không có đoạn nào dài tới 7 ký tự giống nhau."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:19:36.567Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:19:36.535Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "slug": "cf-6a-triangle",
+    "title": "Tam giác, đoạn thẳng hay bất khả thi",
+    "difficulty": "Cơ bản",
+    "description": "Cho bốn thanh gỗ có độ dài khác nhau. Hãy chọn đúng ba thanh để xem có thể tạo thành:\n* TRIANGLE nếu tạo được tam giác không suy biến.\n* SEGMENT nếu không tạo được tam giác không suy biến nhưng tạo được tam giác suy biến.\n* IMPOSSIBLE nếu không thể tạo thành bất kỳ tam giác nào.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng gồm bốn số nguyên dương.\n\n### Định dạng dữ liệu đầu ra:\n* In TRIANGLE, SEGMENT hoặc IMPOSSIBLE.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "4 2 1 3",
+        "output": "TRIANGLE",
+        "explanation": "Chọn 4, 2 và 3 thì có thể tạo tam giác."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:19:45.578Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:19:45.546Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "slug": "cf-26a-almost-prime",
+    "title": "Đếm số gần nguyên tố",
+    "difficulty": "Cơ bản",
+    "description": "Một số được gọi là gần nguyên tố nếu nó có đúng hai ước nguyên tố phân biệt. Ví dụ 6, 18 và 24 là gần nguyên tố, còn 4, 8, 9, 42 thì không.\n\nHãy đếm xem có bao nhiêu số gần nguyên tố trong đoạn từ 1 đến n, kể cả hai đầu mút.\n\n### Định dạng dữ liệu đầu vào:\n* Một số nguyên n, 1 <= n <= 3000.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số lượng số gần nguyên tố từ 1 đến n.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "10",
+        "output": "2",
+        "explanation": "Các số gần nguyên tố không vượt quá 10 là 6 và 10."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:12.641Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:12.610Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "slug": "cf-11a-increasing-sequence",
+    "title": "Làm dãy tăng dần",
+    "difficulty": "Cơ bản",
+    "description": "Cho một dãy b gồm n phần tử và một số dương d. Trong mỗi bước, bạn được chọn một phần tử bất kỳ và cộng thêm d vào nó. Hãy tìm số bước ít nhất để biến dãy thành dãy tăng nghiêm ngặt.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa n và d.\n* Dòng 2 chứa dãy b gồm n số nguyên.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số bước nhỏ nhất cần thực hiện.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "4 2\n1 3 3 2",
+        "output": "3",
+        "explanation": "Có thể tăng phần tử thứ 3 và thứ 4 để thu được dãy tăng."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:20:21.350Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:20:21.317Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "slug": "cf-59a-word",
+    "title": "Chuẩn hóa chữ hoa/thường",
+    "difficulty": "Cơ bản",
+    "description": "Vasya muốn chuẩn hóa một từ sao cho toàn bộ ký tự đều là chữ thường hoặc toàn bộ là chữ hoa. Nếu số chữ hoa nhiều hơn số chữ thường thì đổi cả từ sang chữ hoa, ngược lại đổi sang chữ thường. Nếu hai bên bằng nhau thì cũng đổi sang chữ thường.\n\n### Định dạng dữ liệu đầu vào:\n* Một từ chỉ gồm chữ cái Latin hoa và thường.\n\n### Định dạng dữ liệu đầu ra:\n* In ra từ sau khi đã chuẩn hóa.",
+    "starter_code": "# Viết lời giải tại đây\n",
+    "examples": [
+      {
+        "input": "HoUse",
+        "output": "house",
+        "explanation": "Số chữ thường nhiều hơn nên đổi sang chữ thường."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-19T22:37:21.182Z",
+    "updated_at": "2026-06-20T06:21:22.500Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T06:21:22.468Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "5d95c3b2-c114-4dfa-aa3b-fe3648d35bb2",
+    "slug": "temp-test-prob-1782386145085",
+    "title": "Temp Problem",
+    "difficulty": "Dễ",
+    "description": "Temporary",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:15:45.744Z",
+    "updated_at": "2026-06-25T11:15:45.744Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:15:45.744Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "c9b1c316-ecb5-4e67-9e63-48cccf54655e",
+    "slug": "del-prob-1782384432816",
+    "title": "Del Test Prob",
+    "difficulty": "Dễ",
+    "description": "Desc",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T10:47:13.472Z",
+    "updated_at": "2026-06-25T10:47:13.472Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T10:47:13.472Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "d4c31b72-71ba-4ed5-8fa8-504c362b608e",
+    "slug": "test-import-1",
+    "title": "Test Import 1",
+    "difficulty": "Dễ",
+    "description": "Description 1",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T10:48:06.725Z",
+    "updated_at": "2026-06-25T10:48:06.725Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T10:48:06.067Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "ec9fff3e-edcc-4b4b-823b-5cd6a62b18e4",
+    "slug": "test-import-2",
+    "title": "Test Import 2",
+    "difficulty": "Dễ",
+    "description": "Description 2",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T10:48:06.725Z",
+    "updated_at": "2026-06-25T10:48:06.725Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T10:48:06.068Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "646cd550-5c50-4a50-bd76-13c2eb93b7dc",
+    "slug": "test-update-slug",
+    "title": "Updated Title",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T10:48:09.595Z",
+    "updated_at": "2026-06-25T10:48:10.957Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T10:48:10.300Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "slug": "bai-1-2-chia-qua",
+    "title": "Bài 1.2: Tính tiền mua quà chia đều",
+    "difficulty": "Dễ",
+    "description": "Để chuẩn bị quà khen thưởng, giáo viên mua một số hộp quà với tổng số tiền là $T$ đồng (số thực). Hãy nhập sĩ số lớp $N$ (số nguyên) và tổng số tiền $T$ (số thực). Tính trung bình mỗi bạn trong lớp sẽ được nhận phần quà trị giá bao nhiêu tiền?\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số nguyên $N$ ($1 \\le N \\le 1000$) — sĩ số lớp.\n* Dòng 2: Số thực $T$ ($0 \\le T \\le 10^9$) — tổng số tiền mua quà.\n\n### Định dạng dữ liệu đầu ra:\n* In ra một dòng duy nhất theo định dạng: `Trung binh moi hoc sinh nhan qua tri gia: <gia_tri> dong`\n\n### Ví dụ:\n**Đầu vào:**\n```\n40\n500000.5\n```\n**Đầu ra:**\n```\nTrung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong\n```",
+    "starter_code": "# Nhập sĩ số lớp N (số nguyên)\nN = int(input())\n# Nhập tổng số tiền T (số thực)\nT = float(input())\n\n# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được\n",
+    "examples": [
+      {
+        "input": "40\n500000.5",
+        "output": "Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong",
+        "explanation": "Tổng số tiền là 500000.5 chia cho sĩ số 40 học sinh được 12500.0125."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:44.151Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "7482d3f0-9b17-48d7-81f1-4f1a3ae4acb2",
+    "slug": "old-format-slug",
+    "title": "Old Format Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "print(\"Hello\")",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T10:48:12.647Z",
+    "updated_at": "2026-06-25T10:48:12.647Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T10:48:11.990Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "slug": "bai-20-giai-phuong-trinh-bac-hai",
+    "title": "Bài 20: Giải phương trình bậc hai",
+    "difficulty": "Dễ - Trung bình",
+    "description": "Viết chương trình giải phương trình bậc hai:\n\n$$ax^2 + bx + c = 0$$\n\nTrong bài này, luôn có:\n\n$$a \\ne 0$$\n\n### Dữ liệu vào\nGồm 3 dòng:\n* Dòng 1 chứa số thực $a$.\n* Dòng 2 chứa số thực $b$.\n* Dòng 3 chứa số thực $c$.\n\n### Dữ liệu ra\nChương trình cần in kết quả theo quy tắc sau:\n* Nếu phương trình có 2 nghiệm phân biệt, in:\n  * Dòng 1: số `2`\n  * Dòng 2: hai nghiệm `x1 x2`\n* Nếu phương trình có 1 nghiệm kép, in:\n  * Dòng 1: số `1`\n  * Dòng 2: nghiệm duy nhất\n* Nếu phương trình vô nghiệm trong tập số thực, in:\n  * Một dòng duy nhất chứa số `0`\n\nVới trường hợp có 2 nghiệm phân biệt:\n* `x1` là nghiệm tính theo nhánh dấu cộng: $x_1 = \\frac{-b + \\sqrt{\\Delta}}{2a}$\n* `x2` là nghiệm tính theo nhánh dấu trừ: $x_2 = \\frac{-b - \\sqrt{\\Delta}}{2a}$\n\nKết quả số thực được chấp nhận nếu sai số không quá `1e-6`.\n\n### Lưu ý quan trọng\nKhi nộp bài trên hệ thống, học sinh chỉ in đúng kết quả yêu cầu.\nKhông in các dòng gợi ý nhập như: `nhập a:`, `nhập b:`, `nhập c:`, `x1=`, `x2=`...",
+    "starter_code": "",
+    "examples": [
+      {
+        "input": "3\n5\n2\n",
+        "output": "2\n-0.6666666667 -1\n",
+        "explanation": "Phương trình có 2 nghiệm phân biệt."
+      },
+      {
+        "input": "1\n-2\n1\n",
+        "output": "1\n1\n",
+        "explanation": "Phương trình có nghiệm kép."
+      },
+      {
+        "input": "1\n0\n1\n",
+        "output": "0\n",
+        "explanation": "Delta âm nên phương trình vô nghiệm thực."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T14:31:11.777Z",
+    "updated_at": "2026-06-24T14:31:11.777Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-24T14:31:09.754Z",
+    "source": "SimpleOJ - Toán lớp 8/9",
+    "order_index": 20,
+    "rating": 900,
+    "compare_mode": "number",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "slug": "bai-1-3-so-sanh-nam-nu",
+    "title": "Bài 1.3: So sánh số lượng Nam và Nữ",
+    "difficulty": "Dễ",
+    "description": "Nhập sĩ số lớp $N$ (số nguyên) và số học sinh Nam trong lớp (số nguyên). Hãy kiểm tra xem số bạn Nam hay số bạn Nữ trong lớp nhiều hơn và in kết quả ra màn hình.\n\n* Nếu số bạn Nữ nhiều hơn số bạn Nam, in ra: `Số bạn Nữ nhiều hơn số bạn Nam`\n* Nếu số bạn Nam nhiều hơn số bạn Nữ, in ra: `Số bạn Nam nhiều hơn số bạn Nữ`\n* Nếu hai bên bằng nhau, in ra: `Số bạn Nam bằng số bạn Nữ`\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số nguyên $N$ ($1 \\le N \\le 1000$) — sĩ số lớp.\n* Dòng 2: Số nguyên $M$ ($0 \\le M \\le N$) — số học sinh Nam.\n\n### Định dạng dữ liệu đầu ra:\n* In ra màn hình dòng thông báo so sánh tương ứng.\n\n### Ví dụ:\n**Đầu vào:**\n```\n35\n15\n```\n**Đầu ra:**\n```\nSố bạn Nữ nhiều hơn số bạn Nam\n```",
+    "starter_code": "# Nhập sĩ số lớp N\nN = int(input())\n# Nhập số bạn Nam\nnam = int(input())\n\n# Hãy kiểm tra xem số bạn Nam hay số bạn Nữ nhiều hơn và in kết quả ra màn hình\n",
+    "examples": [
+      {
+        "input": "35\n15",
+        "output": "Số bạn Nữ nhiều hơn số bạn Nam",
+        "explanation": "Sĩ số 35, Nam 15 nên Nữ = 20. Số Nữ (20) nhiều hơn số Nam (15)."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:45.583Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "slug": "bai-2-2-chu-vi-manh-vuon",
+    "title": "Bài 2.2: Tính chu vi mảnh vườn làm tròn",
+    "difficulty": "Dễ",
+    "description": "Nhập vào hai số thực $a$ và $b$ lần lượt là chiều dài và chiều rộng của một khu vườn hình chữ nhật. Hãy tính chu vi của khu vườn đó dưới dạng số thực, sau đó in thêm kết quả chu vi đã được làm tròn xuống dưới dạng số nguyên (bằng cách ép kiểu `int()`).\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số thực $a$ ($a > 0$) — chiều dài khu vườn.\n* Dòng 2: Số thực $b$ ($b > 0$) — chiều rộng khu vườn.\n\n### Định dạng dữ liệu đầu ra:\n* Dòng 1: `Chu vi (so thuc): <gia_tri_so_thuc>`\n* Dòng 2: `Chu vi (so nguyen): <gia_tri_so_nguyen>`\n\n### Ví dụ:\n**Đầu vào:**\n```\n10.5\n4.2\n```\n**Đầu ra:**\n```\nChu vi (so thuc): 29.4\nChu vi (so nguyen): 29\n```",
+    "starter_code": "# Nhập chiều dài a và chiều rộng b\na = float(input())\nb = float(input())\n\n# Tính chu vi thực và chu vi làm tròn xuống dưới dạng số nguyên rồi in ra màn hình\n",
+    "examples": [
+      {
+        "input": "10.5\n4.2",
+        "output": "Chu vi (so thuc): 29.4\nChu vi (so nguyen): 29",
+        "explanation": "Chu vi thực = (10.5 + 4.2) * 2 = 29.4. Chu vi làm tròn xuống = int(29.4) = 29."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:46.480Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "slug": "bai-2-3-kiem-tra-chia-het",
+    "title": "Bài 2.3: Kiểm tra chia hết",
+    "difficulty": "Dễ",
+    "description": "Nhập vào 2 số nguyên $a$ và $b$. Kiểm tra xem $a$ có chia hết cho $b$ hay không.\n\n* Nếu có, in ra: `a chia het cho b`\n* Nếu không, in ra: `a khong chia het cho b`\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số nguyên $a$.\n* Dòng 2: Số nguyên $b$ ($b \\ne 0$).\n\n### Định dạng dữ liệu đầu ra:\n* In ra màn hình kết quả thông báo tương ứng.\n\n### Ví dụ:\n**Đầu vào:**\n```\n10\n3\n```\n**Đầu ra:**\n```\na khong chia het cho b\n```",
+    "starter_code": "# Nhập a và b\na = int(input())\nb = int(input())\n\n# Kiểm tra xem a có chia hết cho b hay không và in thông báo ra màn hình\n",
+    "examples": [
+      {
+        "input": "10\n3",
+        "output": "a khong chia het cho b",
+        "explanation": "10 không chia hết cho 3."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:47.165Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "slug": "bai-3-2-doi-met-sang-cm",
+    "title": "Bài 3.2: Chuyển đổi mét sang centimet",
+    "difficulty": "Dễ",
+    "description": "Nhập vào chiều cao của một bạn học sinh dưới dạng số thực với đơn vị là mét (ví dụ: 1.35m). Hãy đổi chiều cao đó sang đơn vị centimet (dưới dạng số nguyên) bằng cách nhân với 100 và sử dụng hàm `int()`.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng chứa số thực $h$ ($0 < h < 3.0$) — chiều cao tính bằng mét.\n\n### Định dạng dữ liệu đầu ra:\n* In ra kết quả dưới dạng: `Chieu cao cua ban la: <gia_tri_cm> cm`\n\n### Ví dụ:\n**Đầu vào:**\n```\n1.42\n```\n**Đầu ra:**\n```\nChieu cao cua ban la: 142 cm\n```",
+    "starter_code": "# Nhập chiều cao tính bằng mét (số thực)\nh = float(input())\n\n# Đổi sang centimet (số nguyên) và in ra màn hình đúng định dạng\n",
+    "examples": [
+      {
+        "input": "1.42",
+        "output": "Chieu cao cua ban la: 142 cm",
+        "explanation": "1.42 mét = 1.42 * 100 = 142 cm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:47.848Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "slug": "bai-3-3-sap-xep-hai-so",
+    "title": "Bài 3.3: Sắp xếp hai số",
+    "difficulty": "Dễ",
+    "description": "Nhập vào hai số nguyên $a$ và $b$. Nếu $a > b$, hãy hoán đổi giá trị của chúng để $a$ nhận giá trị nhỏ hơn và $b$ nhận giá trị lớn hơn. In ra giá trị của $a$ và $b$ sau khi đã sắp xếp.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1: Số nguyên $a$.\n* Dòng 2: Số nguyên $b$.\n\n### Định dạng dữ liệu đầu ra:\n* In ra kết quả dưới dạng: `Sau khi sap xep: a = <gia_tri_a>, b = <gia_tri_b>`\n\n### Ví dụ:\n**Đầu vào:**\n```\n8\n3\n```\n**Đầu ra:**\n```\nSau khi sap xep: a = 3, b = 8\n```",
+    "starter_code": "# Nhập hai số nguyên a và b\na = int(input())\nb = int(input())\n\n# Hoán đổi giá trị nếu a > b để sắp xếp tăng dần và in ra màn hình\n",
+    "examples": [
+      {
+        "input": "8\n3",
+        "output": "Sau khi sap xep: a = 3, b = 8",
+        "explanation": "8 > 3 nên hoán đổi để a=3, b=8."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-20T11:45:30.215Z",
+    "updated_at": "2026-06-20T12:02:43.826Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-20T12:02:48.534Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problems-reset-20260625-181628.json`
+
+```json
+[
+  {
+    "id": "787d5f47-1524-4902-aaba-ea51ddce5cb3",
+    "slug": "test-flow-1782386190539-ecwvd8",
+    "title": "Flow Problem",
+    "difficulty": "Dễ",
+    "description": "Solve it",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:31.209Z",
+    "updated_at": "2026-06-25T11:16:31.209Z",
+    "max_score": 100,
+    "passing_score": 70,
+    "published_at": "2026-06-25T11:16:31.209Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "6320374d-89dd-47e0-acc8-945384f98cf2",
+    "slug": "test-import-1",
+    "title": "Test Import 1",
+    "difficulty": "Dễ",
+    "description": "Description 1",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:25.021Z",
+    "updated_at": "2026-06-25T11:16:25.021Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:16:24.357Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "2223e004-c90d-47c7-a73f-ccf8b2e3aea5",
+    "slug": "test-import-2",
+    "title": "Test Import 2",
+    "difficulty": "Dễ",
+    "description": "Description 2",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:25.021Z",
+    "updated_at": "2026-06-25T11:16:25.021Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:16:24.358Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "3724bb15-e96f-4755-8d32-8c02c65322b8",
+    "slug": "test-update-slug",
+    "title": "Updated Title",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:27.389Z",
+    "updated_at": "2026-06-25T11:16:28.925Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:16:28.263Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "f4817a51-0978-4af4-b051-c03abf83b3fe",
+    "slug": "old-format-slug",
+    "title": "Old Format Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "print(\"Hello\")",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:31.110Z",
+    "updated_at": "2026-06-25T11:16:31.110Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:16:30.449Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "slug": "bai-20-giai-phuong-trinh-bac-hai",
+    "title": "Bài 20: Giải phương trình bậc hai",
+    "difficulty": "Dễ - Trung bình",
+    "description": "# Bài 20: Giải phương trình bậc hai\n\nViết chương trình giải phương trình bậc hai:\n\n$$ax^2 + bx + c = 0$$\n\nTrong bài này, luôn có `a != 0`.\n\n## Dữ liệu vào\n\nGồm 3 dòng:\n\n- Dòng 1 chứa số thực `a`\n- Dòng 2 chứa số thực `b`\n- Dòng 3 chứa số thực `c`\n\n## Dữ liệu ra\n\nNếu phương trình có 2 nghiệm phân biệt, in:\n\n- Dòng 1: số `2`\n- Dòng 2: hai nghiệm `x1 x2`\n\nNếu phương trình có nghiệm kép, in:\n\n- Dòng 1: số `1`\n- Dòng 2: nghiệm duy nhất\n\nNếu phương trình vô nghiệm trong tập số thực, in:\n\n- Một dòng duy nhất chứa số `0`\n\nVới trường hợp có 2 nghiệm phân biệt:\n\n- `x1` là nghiệm ứng với dấu `+`\n- `x2` là nghiệm ứng với dấu `-`\n\nKết quả số thực được chấp nhận nếu sai số không quá `1e-6`.\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in các dòng chữ như `Phương trình có 2 nghiệm phân biệt:`.\nChỉ in đúng kết quả theo định dạng yêu cầu.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "3\n5\n2\n",
+        "output": "2\n-0.6666666667 -1\n",
+        "explanation": "Phương trình 3x^2 + 5x + 2 = 0 có hai nghiệm phân biệt x1 = -2/3, x2 = -1."
+      },
+      {
+        "input": "1\n-2\n1\n",
+        "output": "1\n1\n",
+        "explanation": "Phương trình x^2 - 2x + 1 = 0 có nghiệm kép x = 1."
+      },
+      {
+        "input": "1\n0\n1\n",
+        "output": "0\n",
+        "explanation": "Phương trình x^2 + 1 = 0 vô nghiệm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:15:54.231Z",
+    "updated_at": "2026-06-25T11:15:54.231Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:15:54.231Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 20,
+    "rating": 900,
+    "compare_mode": "number",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "652d0f97-f2a2-428b-bc49-aa80afbd40ca",
+    "slug": "bai-21-kiem-tra-chan-le",
+    "title": "Bài 21: Kiểm tra số chẵn/lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 21: Kiểm tra số chẵn/lẻ\n\nViết chương trình nhập vào một số nguyên dương `n`.\n\nHãy cho biết `n` là số chẵn hay số lẻ.\n\n## Dữ liệu vào\n\nMột dòng duy nhất chứa số nguyên dương `n`.\n\n## Dữ liệu ra\n\nNếu `n` là số chẵn, in:\n\n```text\nn la so chan\n```\n\nNếu `n` là số lẻ, in:\n\n```text\nn la so le\n```\n\nTrong đó `n` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n12\n```\n\nOutput:\n\n```text\n12 la so chan\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap n:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "12\n",
+        "output": "12 la so chan\n",
+        "explanation": "12 chia hết cho 2 nên là số chẵn."
+      },
+      {
+        "input": "7\n",
+        "output": "7 la so le\n",
+        "explanation": "7 không chia hết cho 2 nên là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:15:54.231Z",
+    "updated_at": "2026-06-25T11:15:54.231Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:15:54.231Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 21,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "8e957bdc-e621-4950-b1bc-cb06dd8564cf",
+    "slug": "bai-22-cung-tinh-chan-le",
+    "title": "Bài 22: Kiểm tra hai số cùng tính chẵn lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 22: Kiểm tra hai số cùng tính chẵn lẻ\n\nViết chương trình nhập vào hai số tự nhiên `M` và `N`.\n\nHãy thông báo:\n\n- `DUNG` nếu `M` và `N` cùng tính chẵn lẻ.\n- `SAI` nếu `M` và `N` khác tính chẵn lẻ.\n\nHai số cùng tính chẵn lẻ nghĩa là:\n\n- cả hai đều chẵn, hoặc\n- cả hai đều lẻ.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số tự nhiên `M`\n- Dòng 2 chứa số tự nhiên `N`\n\n## Dữ liệu ra\n\nIn một trong hai kết quả:\n\n```text\nDUNG\n```\n\nhoặc\n\n```text\nSAI\n```\n\n## Ví dụ\n\nInput:\n\n```text\n10\n20\n```\n\nOutput:\n\n```text\nDUNG\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap M:` hoặc `Nhap N:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "10\n20\n",
+        "output": "DUNG\n",
+        "explanation": "10 và 20 cùng là số chẵn."
+      },
+      {
+        "input": "3\n5\n",
+        "output": "DUNG\n",
+        "explanation": "3 và 5 cùng là số lẻ."
+      },
+      {
+        "input": "2\n3\n",
+        "output": "SAI\n",
+        "explanation": "2 là số chẵn còn 3 là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:15:54.231Z",
+    "updated_at": "2026-06-25T11:15:54.231Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:15:54.231Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 22,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "9977d234-7110-45dc-8544-33008234c7ed",
+    "slug": "bai-23-kiem-tra-uoc-cua-nhau",
+    "title": "Bài 23: Kiểm tra hai số có phải là ước của nhau không",
+    "difficulty": "Dễ",
+    "description": "# Bài 23: Kiểm tra hai số có phải là ước của nhau không\n\nViết chương trình nhập vào hai số nguyên dương `a` và `b`.\n\nHãy kiểm tra:\n\n- `b` có phải là ước của `a` không.\n- `a` có phải là ước của `b` không.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên dương `a`\n- Dòng 2 chứa số nguyên dương `b`\n\n## Dữ liệu ra\n\nIn đúng 2 dòng.\n\nDòng 1 kiểm tra `b` có phải là ước của `a` không:\n\n```text\nb la uoc cua a\n```\n\nhoặc\n\n```text\nb khong la uoc cua a\n```\n\nDòng 2 kiểm tra `a` có phải là ước của `b` không:\n\n```text\na la uoc cua b\n```\n\nhoặc\n\n```text\na khong la uoc cua b\n```\n\nTrong đó `a`, `b` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n10 khong la uoc cua 5\n5 la uoc cua 10\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng 2 dòng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+        "explanation": "10 không chia hết cho 5, còn 10 chia hết cho 5."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:15:54.231Z",
+    "updated_at": "2026-06-25T11:15:54.231Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:15:54.231Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 23,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "f1f9d9a6-ab67-4486-bc41-cadd9d09c7a5",
+    "slug": "bai-24-tim-gia-tri-nho-nhat",
+    "title": "Bài 24: Tìm giá trị nhỏ nhất trong hai số",
+    "difficulty": "Dễ",
+    "description": "# Bài 24: Tìm giá trị nhỏ nhất trong hai số\n\nViết chương trình nhập vào hai số nguyên `a` và `b`.\n\nHãy tìm giá trị nhỏ nhất trong hai số đó.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên `a`\n- Dòng 2 chứa số nguyên `b`\n\n## Dữ liệu ra\n\nIn kết quả theo dạng:\n\n```text\nx la gia tri nho nhat\n```\n\nTrong đó `x` là giá trị nhỏ nhất trong hai số `a` và `b`.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n5 la gia tri nho nhat\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "5 la gia tri nho nhat\n",
+        "explanation": "5 nhỏ hơn 10."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:15:54.231Z",
+    "updated_at": "2026-06-25T11:15:54.231Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:15:54.231Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 24,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "3ed9d43d-25ac-44f1-a980-b63e4b691c5e",
+    "slug": "temp-test-prob-1782386183868",
+    "title": "Temp Problem",
+    "difficulty": "Dễ",
+    "description": "Temporary",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:24.541Z",
+    "updated_at": "2026-06-25T11:16:24.541Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:16:24.541Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "16a94f31-2d52-44c9-b823-df90f4a97a62",
+    "slug": "p1-1782386185741",
+    "title": "Group Test Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:26.402Z",
+    "updated_at": "2026-06-25T11:16:26.402Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:16:26.402Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "b76faa92-6f3a-47c3-a031-015b3f7458f1",
+    "slug": "p2-1782386185843",
+    "title": "Group Test Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:26.504Z",
+    "updated_at": "2026-06-25T11:16:26.504Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:16:26.504Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problems-reset-20260625-181944.json`
+
+```json
+[
+  {
+    "id": "ed2c8159-349e-43d2-b428-526783e310c6",
+    "slug": "bai-22-cung-tinh-chan-le",
+    "title": "Bài 22: Kiểm tra hai số cùng tính chẵn lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 22: Kiểm tra hai số cùng tính chẵn lẻ\n\nViết chương trình nhập vào hai số tự nhiên `M` và `N`.\n\nHãy thông báo:\n\n- `DUNG` nếu `M` và `N` cùng tính chẵn lẻ.\n- `SAI` nếu `M` và `N` khác tính chẵn lẻ.\n\nHai số cùng tính chẵn lẻ nghĩa là:\n\n- cả hai đều chẵn, hoặc\n- cả hai đều lẻ.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số tự nhiên `M`\n- Dòng 2 chứa số tự nhiên `N`\n\n## Dữ liệu ra\n\nIn một trong hai kết quả:\n\n```text\nDUNG\n```\n\nhoặc\n\n```text\nSAI\n```\n\n## Ví dụ\n\nInput:\n\n```text\n10\n20\n```\n\nOutput:\n\n```text\nDUNG\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap M:` hoặc `Nhap N:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "10\n20\n",
+        "output": "DUNG\n",
+        "explanation": "10 và 20 cùng là số chẵn."
+      },
+      {
+        "input": "3\n5\n",
+        "output": "DUNG\n",
+        "explanation": "3 và 5 cùng là số lẻ."
+      },
+      {
+        "input": "2\n3\n",
+        "output": "SAI\n",
+        "explanation": "2 là số chẵn còn 3 là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:32.389Z",
+    "updated_at": "2026-06-25T11:16:32.389Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:16:32.389Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 22,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "ff035e7d-01d0-4459-a664-9f7b8640f38e",
+    "slug": "bai-23-kiem-tra-uoc-cua-nhau",
+    "title": "Bài 23: Kiểm tra hai số có phải là ước của nhau không",
+    "difficulty": "Dễ",
+    "description": "# Bài 23: Kiểm tra hai số có phải là ước của nhau không\n\nViết chương trình nhập vào hai số nguyên dương `a` và `b`.\n\nHãy kiểm tra:\n\n- `b` có phải là ước của `a` không.\n- `a` có phải là ước của `b` không.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên dương `a`\n- Dòng 2 chứa số nguyên dương `b`\n\n## Dữ liệu ra\n\nIn đúng 2 dòng.\n\nDòng 1 kiểm tra `b` có phải là ước của `a` không:\n\n```text\nb la uoc cua a\n```\n\nhoặc\n\n```text\nb khong la uoc cua a\n```\n\nDòng 2 kiểm tra `a` có phải là ước của `b` không:\n\n```text\na la uoc cua b\n```\n\nhoặc\n\n```text\na khong la uoc cua b\n```\n\nTrong đó `a`, `b` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n10 khong la uoc cua 5\n5 la uoc cua 10\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng 2 dòng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+        "explanation": "10 không chia hết cho 5, còn 10 chia hết cho 5."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:32.389Z",
+    "updated_at": "2026-06-25T11:16:32.389Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:16:32.389Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 23,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "a579d407-c0cd-4dfb-ba0f-fa796dd4e2cc",
+    "slug": "bai-24-tim-gia-tri-nho-nhat",
+    "title": "Bài 24: Tìm giá trị nhỏ nhất trong hai số",
+    "difficulty": "Dễ",
+    "description": "# Bài 24: Tìm giá trị nhỏ nhất trong hai số\n\nViết chương trình nhập vào hai số nguyên `a` và `b`.\n\nHãy tìm giá trị nhỏ nhất trong hai số đó.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên `a`\n- Dòng 2 chứa số nguyên `b`\n\n## Dữ liệu ra\n\nIn kết quả theo dạng:\n\n```text\nx la gia tri nho nhat\n```\n\nTrong đó `x` là giá trị nhỏ nhất trong hai số `a` và `b`.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n5 la gia tri nho nhat\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "5 la gia tri nho nhat\n",
+        "explanation": "5 nhỏ hơn 10."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:32.389Z",
+    "updated_at": "2026-06-25T11:16:32.389Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:16:32.389Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 24,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "ee8e6523-75f7-4557-b864-b6c8e30308a5",
+    "slug": "sum",
+    "title": "Tính tổng hai số",
+    "difficulty": "Dễ",
+    "description": "Viết chương trình nhập vào hai số nguyên $a$ và $b$ (cách nhau bởi một khoảng trắng) từ bàn phím. In ra màn hình tổng của hai số đó.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa hai số nguyên $a$ và $b$ ($-10^9 \\le a, b \\le 10^9$).\n\n### Định dạng dữ liệu đầu ra:\n* In ra một số nguyên duy nhất là tổng của $a$ và $b$.",
+    "starter_code": "# Nhập dữ liệu đầu vào và chuyển thành số nguyên\na, b = map(int, input().split())\n\n# Tính toán và in kết quả\nprint(a + b)\n",
+    "examples": [
+      {
+        "input": "3 5\n",
+        "output": "8\n",
+        "explanation": "Tổng của 3 và 5 là 8."
+      },
+      {
+        "input": "-2 10\n",
+        "output": "8\n",
+        "explanation": "Tổng của -2 và 10 là 8."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:17:04.368Z",
+    "updated_at": "2026-06-25T11:17:04.368Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:17:04.158Z",
+    "source": "SimpleOJ Starter",
+    "order_index": 1,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "aea3aaaa-f46b-4b12-8a7d-1ae52dbcb50d",
+    "slug": "cf-4a-watermelon",
+    "title": "Chia dưa hấu (Watermelon)",
+    "difficulty": "Dễ",
+    "description": "Pete và Billy mua được một quả dưa hấu nặng $w$ kg. Họ rất thích các số chẵn và muốn chia quả dưa hấu này thành **hai phần đều có cân nặng là số chẵn dương** (không nhất thiết phải bằng nhau). \n\nHãy giúp họ kiểm tra xem có thể chia như vậy được không. Nếu có in ra `YES`, ngược lại in ra `NO`.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa số nguyên $w$ ($1 \\le w \\le 100$) — cân nặng của quả dưa hấu.\n\n### Định dạng dữ liệu đầu ra:\n* In ra `YES` nếu có thể chia quả dưa thành hai phần có số cân là số chẵn dương. Ngược lại, in ra `NO`.",
+    "starter_code": "# Nhập cân nặng w của quả dưa\nw = int(input())\n\n# Hãy viết code kiểm tra ở đây\n",
+    "examples": [
+      {
+        "input": "8\n",
+        "output": "YES\n",
+        "explanation": "Quả dưa hấu nặng 8kg có thể chia thành hai phần nặng 2kg và 6kg (hoặc 4kg và 4kg)."
+      },
+      {
+        "input": "2\n",
+        "output": "NO\n",
+        "explanation": "Quả dưa hấu nặng 2kg chỉ có thể chia thành hai phần là 1kg và 1kg. Mà số 1 không phải số chẵn, nên kết quả là NO."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:17:04.368Z",
+    "updated_at": "2026-06-25T11:17:04.368Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:17:05.316Z",
+    "source": "Codeforces 4A - Watermelon",
+    "order_index": 2,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "c299b6f4-7769-48f8-92a7-b979f9da19ca",
+    "slug": "cf-9a-die-roll",
+    "title": "Xác suất của Dot",
+    "difficulty": "Dễ",
+    "description": "Yakko và Wakko đã tung xúc xắc và nhận được lần lượt Y và W điểm. Dot sẽ thắng nếu số của cô ấy không nhỏ hơn cả hai người kia, vì nếu bằng điểm thì Dot vẫn được tính là thắng.\n\nHãy in xác suất Dot chiến thắng dưới dạng phân số tối giản A/B. Nếu xác suất bằng 0 hãy in 0/1, nếu bằng 1 hãy in 1/1.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng chứa hai số nguyên Y và W.\n\n### Định dạng dữ liệu đầu ra:\n* In ra phân số tối giản biểu diễn xác suất Dot thắng.",
+    "starter_code": "# Nhập Y và W\ny, w = map(int, input().split())\n\n# Hãy tính và in ra phân số tối giản\n",
+    "examples": [
+      {
+        "input": "4 2\n",
+        "output": "1/2\n",
+        "explanation": "Dot thắng nếu tung được 4, 5 hoặc 6."
+      },
+      {
+        "input": "3 3\n",
+        "output": "2/3\n",
+        "explanation": "Dot thắng nếu tung được 3, 4, 5 hoặc 6."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:17:04.368Z",
+    "updated_at": "2026-06-25T11:17:04.368Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:17:06.881Z",
+    "source": "Codeforces 9A - Die Roll",
+    "order_index": 4,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "f14b4105-decf-4191-93bd-51ff46d37067",
+    "slug": "temp-test-prob-1782386380463",
+    "title": "Temp Problem",
+    "difficulty": "Dễ",
+    "description": "Temporary",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "ec9540ce-d050-4a94-861c-fa11cfa10c08",
+    "created_at": "2026-06-25T11:19:41.125Z",
+    "updated_at": "2026-06-25T11:19:41.125Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:19:41.125Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "bff6820a-ec03-4613-97a3-af30884dbf38",
+    "slug": "bai-21-kiem-tra-chan-le",
+    "title": "Bài 21: Kiểm tra số chẵn/lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 21: Kiểm tra số chẵn/lẻ\n\nViết chương trình nhập vào một số nguyên dương `n`.\n\nHãy cho biết `n` là số chẵn hay số lẻ.\n\n## Dữ liệu vào\n\nMột dòng duy nhất chứa số nguyên dương `n`.\n\n## Dữ liệu ra\n\nNếu `n` là số chẵn, in:\n\n```text\nn la so chan\n```\n\nNếu `n` là số lẻ, in:\n\n```text\nn la so le\n```\n\nTrong đó `n` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n12\n```\n\nOutput:\n\n```text\n12 la so chan\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap n:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "12\n",
+        "output": "12 la so chan\n",
+        "explanation": "12 chia hết cho 2 nên là số chẵn."
+      },
+      {
+        "input": "7\n",
+        "output": "7 la so le\n",
+        "explanation": "7 không chia hết cho 2 nên là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:32.389Z",
+    "updated_at": "2026-06-25T11:16:32.389Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:16:32.389Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 21,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "57e42ca4-c99a-482f-940d-1207ad3ce284",
+    "slug": "cf-32b-borze",
+    "title": "Giải mã Borze",
+    "difficulty": "Dễ",
+    "description": "Mã Borze dùng chuỗi ký hiệu . , -. và -- để biểu diễn số ở hệ tam phân. Quy ước là:\n* . tương ứng với 0\n* -. tương ứng với 1\n* -- tương ứng với 2\n\nHãy giải mã chuỗi Borze đã cho.\n\n### Định dạng dữ liệu đầu vào:\n* Một chuỗi Borze hợp lệ.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số tam phân tương ứng.",
+    "starter_code": "# Nhập chuỗi Borze\ns = input()\n\n# Hãy giải mã và in kết quả\n",
+    "examples": [
+      {
+        "input": ".-.--\n",
+        "output": "012\n",
+        "explanation": "Chuỗi được đọc lần lượt thành 0, 1, 2."
+      },
+      {
+        "input": "--.\n",
+        "output": "20\n",
+        "explanation": "Chuỗi được đọc lần lượt thành 2, 0."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:17:04.368Z",
+    "updated_at": "2026-06-25T11:17:04.368Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:17:08.581Z",
+    "source": "Codeforces 32B - Borze",
+    "order_index": 5,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "c53ad866-c68a-4ba4-bac4-72993a77214f",
+    "slug": "cf-38a-army",
+    "title": "Quân hàm và số năm",
+    "difficulty": "Dễ",
+    "description": "Hệ thống quân hàm của Berland có n bậc, đánh số từ 1 đến n. Để đi từ bậc i lên bậc i + 1 cần d_i năm. Vasya vừa đạt bậc a và muốn lên bậc b.\n\nHãy tính tổng số năm Vasya còn phải phục vụ.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa n.\n* Dòng 2 chứa n - 1 số nguyên d_i.\n* Dòng 3 chứa hai số nguyên a và b.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số năm cần thiết để đi từ a lên b.",
+    "starter_code": "# Viết mã nguồn ở đây\n",
+    "examples": [
+      {
+        "input": "3\n5 6\n1 2\n",
+        "output": "5\n",
+        "explanation": "Từ bậc 1 lên bậc 2 mất 5 năm."
+      },
+      {
+        "input": "4\n1 2 3\n2 4\n",
+        "output": "5\n",
+        "explanation": "Từ bậc 2 lên bậc 4 mất 2 + 3 = 5 năm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:17:04.368Z",
+    "updated_at": "2026-06-25T11:17:04.368Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:17:10.055Z",
+    "source": "Codeforces 38A - Army",
+    "order_index": 6,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "17546999-f2a3-4787-b2bf-38ba00e693eb",
+    "slug": "cf-41a-translation",
+    "title": "Dịch ngược một từ",
+    "difficulty": "Dễ",
+    "description": "Trong ngôn ngữ Berland và Birland, một từ có nghĩa giống nhau nếu nó bị viết ngược lại. Ví dụ code tương ứng với edoc.\n\nHãy kiểm tra xem từ t có phải là từ s viết ngược hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa từ s.\n* Dòng 2 chứa từ t.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu t là s viết ngược, ngược lại in NO.",
+    "starter_code": "# Nhập s và t\ns = input()\nt = input()\n\n# Hãy kiểm tra và in kết quả\n",
+    "examples": [
+      {
+        "input": "code\nedoc\n",
+        "output": "YES\n",
+        "explanation": "edoc là code viết ngược."
+      },
+      {
+        "input": "abb\naba\n",
+        "output": "NO\n",
+        "explanation": "aba không phải là abb viết ngược."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:17:04.368Z",
+    "updated_at": "2026-06-25T11:17:04.368Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:17:11.167Z",
+    "source": "Codeforces 41A - Translation",
+    "order_index": 7,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "1b78cb95-fcb1-41bf-9c20-fe3c012848da",
+    "slug": "cf-59a-word",
+    "title": "Chuẩn hóa chữ hoa/thường",
+    "difficulty": "Dễ",
+    "description": "Vasya muốn chuẩn hóa một từ sao cho toàn bộ ký tự đều là chữ thường hoặc toàn bộ là chữ hoa. Nếu số chữ hoa nhiều hơn số chữ thường thì đổi cả từ sang chữ hoa, ngược lại đổi sang chữ thường. Nếu hai bên bằng nhau thì cũng đổi sang chữ thường.\n\n### Định dạng dữ liệu đầu vào:\n* Một từ chỉ gồm chữ cái Latin hoa và thường.\n\n### Định dạng dữ liệu đầu ra:\n* In ra từ sau khi đã chuẩn hóa.",
+    "starter_code": "# Nhập từ s\ns = input()\n\n# Hãy chuẩn hóa và in kết quả\n",
+    "examples": [
+      {
+        "input": "HoUse\n",
+        "output": "house\n",
+        "explanation": "Số chữ thường nhiều hơn nên đổi sang chữ thường."
+      },
+      {
+        "input": "ViP\n",
+        "output": "VIP\n",
+        "explanation": "Số chữ hoa nhiều hơn nên đổi sang chữ hoa."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:17:04.368Z",
+    "updated_at": "2026-06-25T11:17:04.368Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:17:12.484Z",
+    "source": "Codeforces 59A - Word",
+    "order_index": 8,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "23224a7f-4a78-4385-b4af-ee5fcb0b7fd1",
+    "slug": "cf-6a-triangle",
+    "title": "Tam giác, đoạn thẳng hay bất khả thi",
+    "difficulty": "Dễ - Trung bình",
+    "description": "Cho bốn thanh gỗ có độ dài khác nhau. Hãy chọn đúng ba thanh để xem có thể tạo thành:\n* TRIANGLE nếu tạo được tam giác không suy biến.\n* SEGMENT nếu không tạo được tam giác không suy biến nhưng tạo được tam giác suy biến.\n* IMPOSSIBLE nếu không thể tạo thành bất kỳ tam giác nào.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng gồm bốn số nguyên dương.\n\n### Định dạng dữ liệu đầu ra:\n* In TRIANGLE, SEGMENT hoặc IMPOSSIBLE.",
+    "starter_code": "# Nhập 4 số nguyên\nsides = list(map(int, input().split()))\n\n# Hãy kiểm tra và in kết quả\n",
+    "examples": [
+      {
+        "input": "4 2 1 3\n",
+        "output": "TRIANGLE\n",
+        "explanation": "Chọn 4, 2 và 3 thì có thể tạo tam giác."
+      },
+      {
+        "input": "7 2 2 4\n",
+        "output": "SEGMENT\n",
+        "explanation": "Không tạo được tam giác không suy biến nhưng tạo được tam giác suy biến (2, 2, 4)."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:17:04.368Z",
+    "updated_at": "2026-06-25T11:17:04.368Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:17:13.888Z",
+    "source": "Codeforces 6A - Triangle",
+    "order_index": 9,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "38a86113-ffe5-43ae-9a4f-fa99c8c56d1c",
+    "slug": "cf-26a-almost-prime",
+    "title": "Đếm số gần nguyên tố",
+    "difficulty": "Dễ - Trung bình",
+    "description": "Một số được gọi là gần nguyên tố nếu nó có đúng hai ước nguyên tố phân biệt. Ví dụ 6, 18 và 24 là gần nguyên tố, còn 4, 8, 9, 42 thì không.\n\nHãy đếm xem có bao nhiêu số gần nguyên tố trong đoạn từ 1 đến n, kể cả hai đầu mút.\n\n### Định dạng dữ liệu đầu vào:\n* Một số nguyên n, 1 <= n <= 3000.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số lượng số gần nguyên tố từ 1 đến n.",
+    "starter_code": "# Nhập n\nn = int(input())\n\n# Hãy tính và in ra số lượng số gần nguyên tố\n",
+    "examples": [
+      {
+        "input": "10\n",
+        "output": "2\n",
+        "explanation": "Các số gần nguyên tố không vượt quá 10 là 6 và 10."
+      },
+      {
+        "input": "21\n",
+        "output": "8\n",
+        "explanation": "Có 8 số gần nguyên tố từ 1 đến 21."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:17:04.368Z",
+    "updated_at": "2026-06-25T11:17:04.368Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:17:15.268Z",
+    "source": "Codeforces 26A - Almost Prime",
+    "order_index": 10,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "e8136e92-ace3-4b8c-9022-19a7f2e031ef",
+    "slug": "cf-96a-football",
+    "title": "Tình huống bóng đá nguy hiểm",
+    "difficulty": "Dễ - Trung bình",
+    "description": "Petya biểu diễn trạng thái trận bóng bằng một chuỗi chỉ gồm 0 và 1. Nếu tồn tại ít nhất 7 ký tự giống nhau đứng liên tiếp thì trạng thái đó được coi là nguy hiểm.\n\nHãy xác định xem trạng thái hiện tại có nguy hiểm hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Một chuỗi không rỗng chỉ gồm ký tự 0 và 1.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu trạng thái nguy hiểm, ngược lại in NO.",
+    "starter_code": "# Nhập chuỗi\ns = input()\n\n# Hãy kiểm tra và in kết quả\n",
+    "examples": [
+      {
+        "input": "001001\n",
+        "output": "NO\n",
+        "explanation": "Không có đoạn nào dài tới 7 ký tự giống nhau."
+      },
+      {
+        "input": "1000000001\n",
+        "output": "YES\n",
+        "explanation": "Tồn tại 8 ký tự 0 liên tiếp đứng giữa."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:17:04.368Z",
+    "updated_at": "2026-06-25T11:17:04.368Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:17:16.456Z",
+    "source": "Codeforces 96A - Football",
+    "order_index": 11,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "4fb05b80-56a5-44c4-8d59-c072caf41b3d",
+    "slug": "cf-11a-increasing-sequence",
+    "title": "Làm dãy tăng dần",
+    "difficulty": "Dễ - Trung bình",
+    "description": "Cho một dãy b gồm n phần tử và một số dương d. Trong mỗi bước, bạn được chọn một phần tử bất kỳ và cộng thêm d vào nó. Hãy tìm số bước ít nhất để biến dãy thành dãy tăng nghiêm ngặt.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa n và d.\n* Dòng 2 chứa dãy b gồm n số nguyên.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số bước nhỏ nhất cần thực hiện.",
+    "starter_code": "# Nhập dữ liệu\n",
+    "examples": [
+      {
+        "input": "4 2\n1 3 3 2\n",
+        "output": "3\n",
+        "explanation": "Có thể tăng phần tử thứ 3 và thứ 4 để thu được dãy tăng."
+      },
+      {
+        "input": "2 1\n4 1\n",
+        "output": "4\n",
+        "explanation": "Tăng phần tử thứ hai 4 lần (1 -> 5)."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:17:04.368Z",
+    "updated_at": "2026-06-25T11:17:04.368Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:17:18.452Z",
+    "source": "Codeforces 11A - Increasing Sequence",
+    "order_index": 12,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "334d5b8e-33e2-410a-9e37-f50688646244",
+    "slug": "test-import-1",
+    "title": "Test Import 1",
+    "difficulty": "Dễ",
+    "description": "Description 1",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "ec9540ce-d050-4a94-861c-fa11cfa10c08",
+    "created_at": "2026-06-25T11:18:32.110Z",
+    "updated_at": "2026-06-25T11:18:32.110Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:18:31.442Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "361f7650-0c10-4966-bbab-ab9606f920e1",
+    "slug": "test-import-2",
+    "title": "Test Import 2",
+    "difficulty": "Dễ",
+    "description": "Description 2",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "ec9540ce-d050-4a94-861c-fa11cfa10c08",
+    "created_at": "2026-06-25T11:18:32.110Z",
+    "updated_at": "2026-06-25T11:18:32.110Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:18:31.443Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "ab72baa4-2bd1-4c48-b191-9f7bca9c5564",
+    "slug": "test-update-slug",
+    "title": "Updated Title",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "ec9540ce-d050-4a94-861c-fa11cfa10c08",
+    "created_at": "2026-06-25T11:18:34.632Z",
+    "updated_at": "2026-06-25T11:18:35.944Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:18:35.282Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "74d75112-2d7a-460b-bd12-e50690ac5b32",
+    "slug": "old-format-slug",
+    "title": "Old Format Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "print(\"Hello\")",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "ec9540ce-d050-4a94-861c-fa11cfa10c08",
+    "created_at": "2026-06-25T11:18:37.551Z",
+    "updated_at": "2026-06-25T11:18:37.551Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:18:36.889Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "slug": "bai-20-giai-phuong-trinh-bac-hai",
+    "title": "Bài 20: Giải phương trình bậc hai",
+    "difficulty": "Dễ - Trung bình",
+    "description": "# Bài 20: Giải phương trình bậc hai\n\nViết chương trình giải phương trình bậc hai:\n\n$$ax^2 + bx + c = 0$$\n\nTrong bài này, luôn có `a != 0`.\n\n## Dữ liệu vào\n\nGồm 3 dòng:\n\n- Dòng 1 chứa số thực `a`\n- Dòng 2 chứa số thực `b`\n- Dòng 3 chứa số thực `c`\n\n## Dữ liệu ra\n\nNếu phương trình có 2 nghiệm phân biệt, in:\n\n- Dòng 1: số `2`\n- Dòng 2: hai nghiệm `x1 x2`\n\nNếu phương trình có nghiệm kép, in:\n\n- Dòng 1: số `1`\n- Dòng 2: nghiệm duy nhất\n\nNếu phương trình vô nghiệm trong tập số thực, in:\n\n- Một dòng duy nhất chứa số `0`\n\nVới trường hợp có 2 nghiệm phân biệt:\n\n- `x1` là nghiệm ứng với dấu `+`\n- `x2` là nghiệm ứng với dấu `-`\n\nKết quả số thực được chấp nhận nếu sai số không quá `1e-6`.\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in các dòng chữ như `Phương trình có 2 nghiệm phân biệt:`.\nChỉ in đúng kết quả theo định dạng yêu cầu.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "3\n5\n2\n",
+        "output": "2\n-0.6666666667 -1\n",
+        "explanation": "Phương trình 3x^2 + 5x + 2 = 0 có hai nghiệm phân biệt x1 = -2/3, x2 = -1."
+      },
+      {
+        "input": "1\n-2\n1\n",
+        "output": "1\n1\n",
+        "explanation": "Phương trình x^2 - 2x + 1 = 0 có nghiệm kép x = 1."
+      },
+      {
+        "input": "1\n0\n1\n",
+        "output": "0\n",
+        "explanation": "Phương trình x^2 + 1 = 0 vô nghiệm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:32.389Z",
+    "updated_at": "2026-06-25T11:16:32.389Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:16:32.389Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 20,
+    "rating": 900,
+    "compare_mode": "number",
+    "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problems-reset-20260625-184324.json`
+
+```json
+[
+  {
+    "id": "b5218807-1aca-4986-9925-1e25d327c337",
+    "slug": "sum",
+    "title": "Tính tổng hai số",
+    "difficulty": "Dễ",
+    "description": "Viết chương trình nhập vào hai số nguyên $a$ và $b$ (cách nhau bởi một khoảng trắng) từ bàn phím. In ra màn hình tổng của hai số đó.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa hai số nguyên $a$ và $b$ ($-10^9 \\le a, b \\le 10^9$).\n\n### Định dạng dữ liệu đầu ra:\n* In ra một số nguyên duy nhất là tổng của $a$ và $b$.",
+    "starter_code": "# Nhập dữ liệu đầu vào và chuyển thành số nguyên\na, b = map(int, input().split())\n\n# Tính toán và in kết quả\nprint(a + b)\n",
+    "examples": [
+      {
+        "input": "3 5\n",
+        "output": "8\n",
+        "explanation": "Tổng của 3 và 5 là 8."
+      },
+      {
+        "input": "-2 10\n",
+        "output": "8\n",
+        "explanation": "Tổng của -2 và 10 là 8."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:22:59.913Z",
+    "updated_at": "2026-06-25T11:22:59.913Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:23:00.166Z",
+    "source": "SimpleOJ Starter",
+    "order_index": 1,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "eabf9d59-c2b9-45ac-b47f-dde684e6e203",
+    "slug": "cf-4a-watermelon",
+    "title": "Chia dưa hấu (Watermelon)",
+    "difficulty": "Dễ",
+    "description": "Pete và Billy mua được một quả dưa hấu nặng $w$ kg. Họ rất thích các số chẵn và muốn chia quả dưa hấu này thành **hai phần đều có cân nặng là số chẵn dương** (không nhất thiết phải bằng nhau). \n\nHãy giúp họ kiểm tra xem có thể chia như vậy được không. Nếu có in ra `YES`, ngược lại in ra `NO`.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng duy nhất chứa số nguyên $w$ ($1 \\le w \\le 100$) — cân nặng của quả dưa hấu.\n\n### Định dạng dữ liệu đầu ra:\n* In ra `YES` nếu có thể chia quả dưa thành hai phần có số cân là số chẵn dương. Ngược lại, in ra `NO`.",
+    "starter_code": "# Nhập cân nặng w của quả dưa\nw = int(input())\n\n# Hãy viết code kiểm tra ở đây\n",
+    "examples": [
+      {
+        "input": "8\n",
+        "output": "YES\n",
+        "explanation": "Quả dưa hấu nặng 8kg có thể chia thành hai phần nặng 2kg và 6kg (hoặc 4kg và 4kg)."
+      },
+      {
+        "input": "2\n",
+        "output": "NO\n",
+        "explanation": "Quả dưa hấu nặng 2kg chỉ có thể chia thành hai phần là 1kg và 1kg. Mà số 1 không phải số chẵn, nên kết quả là NO."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:22:59.913Z",
+    "updated_at": "2026-06-25T11:22:59.913Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:23:00.876Z",
+    "source": "Codeforces 4A - Watermelon",
+    "order_index": 2,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "8dd0a498-b2e8-41b4-809d-2a809df780e7",
+    "slug": "cf-9a-die-roll",
+    "title": "Xác suất của Dot",
+    "difficulty": "Dễ",
+    "description": "Yakko và Wakko đã tung xúc xắc và nhận được lần lượt Y và W điểm. Dot sẽ thắng nếu số của cô ấy không nhỏ hơn cả hai người kia, vì nếu bằng điểm thì Dot vẫn được tính là thắng.\n\nHãy in xác suất Dot chiến thắng dưới dạng phân số tối giản A/B. Nếu xác suất bằng 0 hãy in 0/1, nếu bằng 1 hãy in 1/1.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng chứa hai số nguyên Y và W.\n\n### Định dạng dữ liệu đầu ra:\n* In ra phân số tối giản biểu diễn xác suất Dot thắng.",
+    "starter_code": "# Nhập Y và W\ny, w = map(int, input().split())\n\n# Hãy tính và in ra phân số tối giản\n",
+    "examples": [
+      {
+        "input": "4 2\n",
+        "output": "1/2\n",
+        "explanation": "Dot thắng nếu tung được 4, 5 hoặc 6."
+      },
+      {
+        "input": "3 3\n",
+        "output": "2/3\n",
+        "explanation": "Dot thắng nếu tung được 3, 4, 5 hoặc 6."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:22:59.913Z",
+    "updated_at": "2026-06-25T11:22:59.913Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:23:01.721Z",
+    "source": "Codeforces 9A - Die Roll",
+    "order_index": 4,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "685a4a62-1e55-4f45-a947-dc1ea5b50577",
+    "slug": "cf-32b-borze",
+    "title": "Giải mã Borze",
+    "difficulty": "Dễ",
+    "description": "Mã Borze dùng chuỗi ký hiệu . , -. và -- để biểu diễn số ở hệ tam phân. Quy ước là:\n* . tương ứng với 0\n* -. tương ứng với 1\n* -- tương ứng với 2\n\nHãy giải mã chuỗi Borze đã cho.\n\n### Định dạng dữ liệu đầu vào:\n* Một chuỗi Borze hợp lệ.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số tam phân tương ứng.",
+    "starter_code": "# Nhập chuỗi Borze\ns = input()\n\n# Hãy giải mã và in kết quả\n",
+    "examples": [
+      {
+        "input": ".-.--\n",
+        "output": "012\n",
+        "explanation": "Chuỗi được đọc lần lượt thành 0, 1, 2."
+      },
+      {
+        "input": "--.\n",
+        "output": "20\n",
+        "explanation": "Chuỗi được đọc lần lượt thành 2, 0."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:22:59.913Z",
+    "updated_at": "2026-06-25T11:22:59.913Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:23:02.566Z",
+    "source": "Codeforces 32B - Borze",
+    "order_index": 5,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "f75e68e1-bb37-434a-9c06-5f189a9eb82f",
+    "slug": "cf-38a-army",
+    "title": "Quân hàm và số năm",
+    "difficulty": "Dễ",
+    "description": "Hệ thống quân hàm của Berland có n bậc, đánh số từ 1 đến n. Để đi từ bậc i lên bậc i + 1 cần d_i năm. Vasya vừa đạt bậc a và muốn lên bậc b.\n\nHãy tính tổng số năm Vasya còn phải phục vụ.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa n.\n* Dòng 2 chứa n - 1 số nguyên d_i.\n* Dòng 3 chứa hai số nguyên a và b.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số năm cần thiết để đi từ a lên b.",
+    "starter_code": "# Viết mã nguồn ở đây\n",
+    "examples": [
+      {
+        "input": "3\n5 6\n1 2\n",
+        "output": "5\n",
+        "explanation": "Từ bậc 1 lên bậc 2 mất 5 năm."
+      },
+      {
+        "input": "4\n1 2 3\n2 4\n",
+        "output": "5\n",
+        "explanation": "Từ bậc 2 lên bậc 4 mất 2 + 3 = 5 năm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:22:59.913Z",
+    "updated_at": "2026-06-25T11:22:59.913Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:23:03.340Z",
+    "source": "Codeforces 38A - Army",
+    "order_index": 6,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "1d6fed76-6503-4ff6-92e3-7139ea3d6c6d",
+    "slug": "cf-41a-translation",
+    "title": "Dịch ngược một từ",
+    "difficulty": "Dễ",
+    "description": "Trong ngôn ngữ Berland và Birland, một từ có nghĩa giống nhau nếu nó bị viết ngược lại. Ví dụ code tương ứng với edoc.\n\nHãy kiểm tra xem từ t có phải là từ s viết ngược hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa từ s.\n* Dòng 2 chứa từ t.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu t là s viết ngược, ngược lại in NO.",
+    "starter_code": "# Nhập s và t\ns = input()\nt = input()\n\n# Hãy kiểm tra và in kết quả\n",
+    "examples": [
+      {
+        "input": "code\nedoc\n",
+        "output": "YES\n",
+        "explanation": "edoc là code viết ngược."
+      },
+      {
+        "input": "abb\naba\n",
+        "output": "NO\n",
+        "explanation": "aba không phải là abb viết ngược."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:22:59.913Z",
+    "updated_at": "2026-06-25T11:22:59.913Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:23:04.045Z",
+    "source": "Codeforces 41A - Translation",
+    "order_index": 7,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "96f6e3d3-19d8-4324-894a-87190204beac",
+    "slug": "cf-59a-word",
+    "title": "Chuẩn hóa chữ hoa/thường",
+    "difficulty": "Dễ",
+    "description": "Vasya muốn chuẩn hóa một từ sao cho toàn bộ ký tự đều là chữ thường hoặc toàn bộ là chữ hoa. Nếu số chữ hoa nhiều hơn số chữ thường thì đổi cả từ sang chữ hoa, ngược lại đổi sang chữ thường. Nếu hai bên bằng nhau thì cũng đổi sang chữ thường.\n\n### Định dạng dữ liệu đầu vào:\n* Một từ chỉ gồm chữ cái Latin hoa và thường.\n\n### Định dạng dữ liệu đầu ra:\n* In ra từ sau khi đã chuẩn hóa.",
+    "starter_code": "# Nhập từ s\ns = input()\n\n# Hãy chuẩn hóa và in kết quả\n",
+    "examples": [
+      {
+        "input": "HoUse\n",
+        "output": "house\n",
+        "explanation": "Số chữ thường nhiều hơn nên đổi sang chữ thường."
+      },
+      {
+        "input": "ViP\n",
+        "output": "VIP\n",
+        "explanation": "Số chữ hoa nhiều hơn nên đổi sang chữ hoa."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:22:59.913Z",
+    "updated_at": "2026-06-25T11:22:59.913Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:23:04.891Z",
+    "source": "Codeforces 59A - Word",
+    "order_index": 8,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "69c2c9f1-5716-4dbe-9610-4cc773481bc5",
+    "slug": "cf-6a-triangle",
+    "title": "Tam giác, đoạn thẳng hay bất khả thi",
+    "difficulty": "Dễ - Trung bình",
+    "description": "Cho bốn thanh gỗ có độ dài khác nhau. Hãy chọn đúng ba thanh để xem có thể tạo thành:\n* TRIANGLE nếu tạo được tam giác không suy biến.\n* SEGMENT nếu không tạo được tam giác không suy biến nhưng tạo được tam giác suy biến.\n* IMPOSSIBLE nếu không thể tạo thành bất kỳ tam giác nào.\n\n### Định dạng dữ liệu đầu vào:\n* Một dòng gồm bốn số nguyên dương.\n\n### Định dạng dữ liệu đầu ra:\n* In TRIANGLE, SEGMENT hoặc IMPOSSIBLE.",
+    "starter_code": "# Nhập 4 số nguyên\nsides = list(map(int, input().split()))\n\n# Hãy kiểm tra và in kết quả\n",
+    "examples": [
+      {
+        "input": "4 2 1 3\n",
+        "output": "TRIANGLE\n",
+        "explanation": "Chọn 4, 2 và 3 thì có thể tạo tam giác."
+      },
+      {
+        "input": "7 2 2 4\n",
+        "output": "SEGMENT\n",
+        "explanation": "Không tạo được tam giác không suy biến nhưng tạo được tam giác suy biến (2, 2, 4)."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:22:59.913Z",
+    "updated_at": "2026-06-25T11:22:59.913Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:23:05.735Z",
+    "source": "Codeforces 6A - Triangle",
+    "order_index": 9,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "742557cc-92b7-4df7-a202-8fade3fedd5a",
+    "slug": "cf-26a-almost-prime",
+    "title": "Đếm số gần nguyên tố",
+    "difficulty": "Dễ - Trung bình",
+    "description": "Một số được gọi là gần nguyên tố nếu nó có đúng hai ước nguyên tố phân biệt. Ví dụ 6, 18 và 24 là gần nguyên tố, còn 4, 8, 9, 42 thì không.\n\nHãy đếm xem có bao nhiêu số gần nguyên tố trong đoạn từ 1 đến n, kể cả hai đầu mút.\n\n### Định dạng dữ liệu đầu vào:\n* Một số nguyên n, 1 <= n <= 3000.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số lượng số gần nguyên tố từ 1 đến n.",
+    "starter_code": "# Nhập n\nn = int(input())\n\n# Hãy tính và in ra số lượng số gần nguyên tố\n",
+    "examples": [
+      {
+        "input": "10\n",
+        "output": "2\n",
+        "explanation": "Các số gần nguyên tố không vượt quá 10 là 6 và 10."
+      },
+      {
+        "input": "21\n",
+        "output": "8\n",
+        "explanation": "Có 8 số gần nguyên tố từ 1 đến 21."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:22:59.913Z",
+    "updated_at": "2026-06-25T11:22:59.913Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:23:06.580Z",
+    "source": "Codeforces 26A - Almost Prime",
+    "order_index": 10,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "9f0292a7-3022-431c-a7ea-f3f29e776110",
+    "slug": "cf-96a-football",
+    "title": "Tình huống bóng đá nguy hiểm",
+    "difficulty": "Dễ - Trung bình",
+    "description": "Petya biểu diễn trạng thái trận bóng bằng một chuỗi chỉ gồm 0 và 1. Nếu tồn tại ít nhất 7 ký tự giống nhau đứng liên tiếp thì trạng thái đó được coi là nguy hiểm.\n\nHãy xác định xem trạng thái hiện tại có nguy hiểm hay không.\n\n### Định dạng dữ liệu đầu vào:\n* Một chuỗi không rỗng chỉ gồm ký tự 0 và 1.\n\n### Định dạng dữ liệu đầu ra:\n* In YES nếu trạng thái nguy hiểm, ngược lại in NO.",
+    "starter_code": "# Nhập chuỗi\ns = input()\n\n# Hãy kiểm tra và in kết quả\n",
+    "examples": [
+      {
+        "input": "001001\n",
+        "output": "NO\n",
+        "explanation": "Không có đoạn nào dài tới 7 ký tự giống nhau."
+      },
+      {
+        "input": "1000000001\n",
+        "output": "YES\n",
+        "explanation": "Tồn tại 8 ký tự 0 liên tiếp đứng giữa."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:22:59.913Z",
+    "updated_at": "2026-06-25T11:22:59.913Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:23:07.356Z",
+    "source": "Codeforces 96A - Football",
+    "order_index": 11,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "83a2c4a5-30dd-4faa-bc86-aabe725da2be",
+    "slug": "cf-11a-increasing-sequence",
+    "title": "Làm dãy tăng dần",
+    "difficulty": "Dễ - Trung bình",
+    "description": "Cho một dãy b gồm n phần tử và một số dương d. Trong mỗi bước, bạn được chọn một phần tử bất kỳ và cộng thêm d vào nó. Hãy tìm số bước ít nhất để biến dãy thành dãy tăng nghiêm ngặt.\n\n### Định dạng dữ liệu đầu vào:\n* Dòng 1 chứa n và d.\n* Dòng 2 chứa dãy b gồm n số nguyên.\n\n### Định dạng dữ liệu đầu ra:\n* In ra số bước nhỏ nhất cần thực hiện.",
+    "starter_code": "# Nhập dữ liệu\n",
+    "examples": [
+      {
+        "input": "4 2\n1 3 3 2\n",
+        "output": "3\n",
+        "explanation": "Có thể tăng phần tử thứ 3 và thứ 4 để thu được dãy tăng."
+      },
+      {
+        "input": "2 1\n4 1\n",
+        "output": "4\n",
+        "explanation": "Tăng phần tử thứ hai 4 lần (1 -> 5)."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:22:59.913Z",
+    "updated_at": "2026-06-25T11:22:59.913Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:23:08.201Z",
+    "source": "Codeforces 11A - Increasing Sequence",
+    "order_index": 12,
+    "rating": 900,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "1e79a50d-4f9c-4c16-b934-1f60217c9bc4",
+    "slug": "bai-24-tim-gia-tri-nho-nhat",
+    "title": "Bài 24: Tìm giá trị nhỏ nhất trong hai số",
+    "difficulty": "Dễ",
+    "description": "# Bài 24: Tìm giá trị nhỏ nhất trong hai số\n\nViết chương trình nhập vào hai số nguyên `a` và `b`.\n\nHãy tìm giá trị nhỏ nhất trong hai số đó.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên `a`\n- Dòng 2 chứa số nguyên `b`\n\n## Dữ liệu ra\n\nIn kết quả theo dạng:\n\n```text\nx la gia tri nho nhat\n```\n\nTrong đó `x` là giá trị nhỏ nhất trong hai số `a` và `b`.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n5 la gia tri nho nhat\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "5 la gia tri nho nhat\n",
+        "explanation": "5 nhỏ hơn 10."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:19:49.012Z",
+    "updated_at": "2026-06-25T11:19:49.012Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:19:49.012Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 24,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "26457bcc-fa8e-4fe8-9b85-dde530d1d2fc",
+    "slug": "test-import-1",
+    "title": "Test Import 1",
+    "difficulty": "Dễ",
+    "description": "Description 1",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:43:26.685Z",
+    "updated_at": "2026-06-25T11:43:26.685Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:43:26.016Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "0aa4b567-87d3-423a-91f5-e1ef1afbfc25",
+    "slug": "test-import-2",
+    "title": "Test Import 2",
+    "difficulty": "Dễ",
+    "description": "Description 2",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:43:26.685Z",
+    "updated_at": "2026-06-25T11:43:26.685Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:43:26.016Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "slug": "bai-20-giai-phuong-trinh-bac-hai",
+    "title": "Bài 20: Giải phương trình bậc hai",
+    "difficulty": "Dễ - Trung bình",
+    "description": "# Bài 20: Giải phương trình bậc hai\n\nViết chương trình giải phương trình bậc hai:\n\n$$ax^2 + bx + c = 0$$\n\nTrong bài này, luôn có `a != 0`.\n\n## Dữ liệu vào\n\nGồm 3 dòng:\n\n- Dòng 1 chứa số thực `a`\n- Dòng 2 chứa số thực `b`\n- Dòng 3 chứa số thực `c`\n\n## Dữ liệu ra\n\nNếu phương trình có 2 nghiệm phân biệt, in:\n\n- Dòng 1: số `2`\n- Dòng 2: hai nghiệm `x1 x2`\n\nNếu phương trình có nghiệm kép, in:\n\n- Dòng 1: số `1`\n- Dòng 2: nghiệm duy nhất\n\nNếu phương trình vô nghiệm trong tập số thực, in:\n\n- Một dòng duy nhất chứa số `0`\n\nVới trường hợp có 2 nghiệm phân biệt:\n\n- `x1` là nghiệm ứng với dấu `+`\n- `x2` là nghiệm ứng với dấu `-`\n\nKết quả số thực được chấp nhận nếu sai số không quá `1e-6`.\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in các dòng chữ như `Phương trình có 2 nghiệm phân biệt:`.\nChỉ in đúng kết quả theo định dạng yêu cầu.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "3\n5\n2\n",
+        "output": "2\n-0.6666666667 -1\n",
+        "explanation": "Phương trình 3x^2 + 5x + 2 = 0 có hai nghiệm phân biệt x1 = -2/3, x2 = -1."
+      },
+      {
+        "input": "1\n-2\n1\n",
+        "output": "1\n1\n",
+        "explanation": "Phương trình x^2 - 2x + 1 = 0 có nghiệm kép x = 1."
+      },
+      {
+        "input": "1\n0\n1\n",
+        "output": "0\n",
+        "explanation": "Phương trình x^2 + 1 = 0 vô nghiệm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:19:49.012Z",
+    "updated_at": "2026-06-25T11:19:49.012Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:19:49.012Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 20,
+    "rating": 900,
+    "compare_mode": "number",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "633eb86a-ac9d-4237-8c8e-852735286423",
+    "slug": "bai-21-kiem-tra-chan-le",
+    "title": "Bài 21: Kiểm tra số chẵn/lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 21: Kiểm tra số chẵn/lẻ\n\nViết chương trình nhập vào một số nguyên dương `n`.\n\nHãy cho biết `n` là số chẵn hay số lẻ.\n\n## Dữ liệu vào\n\nMột dòng duy nhất chứa số nguyên dương `n`.\n\n## Dữ liệu ra\n\nNếu `n` là số chẵn, in:\n\n```text\nn la so chan\n```\n\nNếu `n` là số lẻ, in:\n\n```text\nn la so le\n```\n\nTrong đó `n` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n12\n```\n\nOutput:\n\n```text\n12 la so chan\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap n:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "12\n",
+        "output": "12 la so chan\n",
+        "explanation": "12 chia hết cho 2 nên là số chẵn."
+      },
+      {
+        "input": "7\n",
+        "output": "7 la so le\n",
+        "explanation": "7 không chia hết cho 2 nên là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:19:49.012Z",
+    "updated_at": "2026-06-25T11:19:49.012Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:19:49.012Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 21,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "3d62e4bd-b22c-4498-ad28-b4bcdf41e2aa",
+    "slug": "bai-22-cung-tinh-chan-le",
+    "title": "Bài 22: Kiểm tra hai số cùng tính chẵn lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 22: Kiểm tra hai số cùng tính chẵn lẻ\n\nViết chương trình nhập vào hai số tự nhiên `M` và `N`.\n\nHãy thông báo:\n\n- `DUNG` nếu `M` và `N` cùng tính chẵn lẻ.\n- `SAI` nếu `M` và `N` khác tính chẵn lẻ.\n\nHai số cùng tính chẵn lẻ nghĩa là:\n\n- cả hai đều chẵn, hoặc\n- cả hai đều lẻ.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số tự nhiên `M`\n- Dòng 2 chứa số tự nhiên `N`\n\n## Dữ liệu ra\n\nIn một trong hai kết quả:\n\n```text\nDUNG\n```\n\nhoặc\n\n```text\nSAI\n```\n\n## Ví dụ\n\nInput:\n\n```text\n10\n20\n```\n\nOutput:\n\n```text\nDUNG\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap M:` hoặc `Nhap N:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "10\n20\n",
+        "output": "DUNG\n",
+        "explanation": "10 và 20 cùng là số chẵn."
+      },
+      {
+        "input": "3\n5\n",
+        "output": "DUNG\n",
+        "explanation": "3 và 5 cùng là số lẻ."
+      },
+      {
+        "input": "2\n3\n",
+        "output": "SAI\n",
+        "explanation": "2 là số chẵn còn 3 là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:19:49.012Z",
+    "updated_at": "2026-06-25T11:19:49.012Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:19:49.012Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 22,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "bcc81a8a-28af-4cb7-8644-ca22b6243431",
+    "slug": "bai-23-kiem-tra-uoc-cua-nhau",
+    "title": "Bài 23: Kiểm tra hai số có phải là ước của nhau không",
+    "difficulty": "Dễ",
+    "description": "# Bài 23: Kiểm tra hai số có phải là ước của nhau không\n\nViết chương trình nhập vào hai số nguyên dương `a` và `b`.\n\nHãy kiểm tra:\n\n- `b` có phải là ước của `a` không.\n- `a` có phải là ước của `b` không.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên dương `a`\n- Dòng 2 chứa số nguyên dương `b`\n\n## Dữ liệu ra\n\nIn đúng 2 dòng.\n\nDòng 1 kiểm tra `b` có phải là ước của `a` không:\n\n```text\nb la uoc cua a\n```\n\nhoặc\n\n```text\nb khong la uoc cua a\n```\n\nDòng 2 kiểm tra `a` có phải là ước của `b` không:\n\n```text\na la uoc cua b\n```\n\nhoặc\n\n```text\na khong la uoc cua b\n```\n\nTrong đó `a`, `b` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n10 khong la uoc cua 5\n5 la uoc cua 10\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng 2 dòng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+        "explanation": "10 không chia hết cho 5, còn 10 chia hết cho 5."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:19:49.012Z",
+    "updated_at": "2026-06-25T11:19:49.012Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:19:49.012Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 23,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problems-reset-20260625-184454.json`
+
+```json
+[
+  {
+    "id": "32c6ef3d-2978-4e0f-a6de-1949a071cce6",
+    "slug": "bai-21-kiem-tra-chan-le",
+    "title": "Bài 21: Kiểm tra số chẵn/lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 21: Kiểm tra số chẵn/lẻ\n\nViết chương trình nhập vào một số nguyên dương `n`.\n\nHãy cho biết `n` là số chẵn hay số lẻ.\n\n## Dữ liệu vào\n\nMột dòng duy nhất chứa số nguyên dương `n`.\n\n## Dữ liệu ra\n\nNếu `n` là số chẵn, in:\n\n```text\nn la so chan\n```\n\nNếu `n` là số lẻ, in:\n\n```text\nn la so le\n```\n\nTrong đó `n` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n12\n```\n\nOutput:\n\n```text\n12 la so chan\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap n:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "12\n",
+        "output": "12 la so chan\n",
+        "explanation": "12 chia hết cho 2 nên là số chẵn."
+      },
+      {
+        "input": "7\n",
+        "output": "7 la so le\n",
+        "explanation": "7 không chia hết cho 2 nên là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:43:28.555Z",
+    "updated_at": "2026-06-25T11:43:28.555Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:43:28.555Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 21,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "577cbfdc-8ebe-4754-8234-2958d456a075",
+    "slug": "bai-22-cung-tinh-chan-le",
+    "title": "Bài 22: Kiểm tra hai số cùng tính chẵn lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 22: Kiểm tra hai số cùng tính chẵn lẻ\n\nViết chương trình nhập vào hai số tự nhiên `M` và `N`.\n\nHãy thông báo:\n\n- `DUNG` nếu `M` và `N` cùng tính chẵn lẻ.\n- `SAI` nếu `M` và `N` khác tính chẵn lẻ.\n\nHai số cùng tính chẵn lẻ nghĩa là:\n\n- cả hai đều chẵn, hoặc\n- cả hai đều lẻ.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số tự nhiên `M`\n- Dòng 2 chứa số tự nhiên `N`\n\n## Dữ liệu ra\n\nIn một trong hai kết quả:\n\n```text\nDUNG\n```\n\nhoặc\n\n```text\nSAI\n```\n\n## Ví dụ\n\nInput:\n\n```text\n10\n20\n```\n\nOutput:\n\n```text\nDUNG\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap M:` hoặc `Nhap N:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "10\n20\n",
+        "output": "DUNG\n",
+        "explanation": "10 và 20 cùng là số chẵn."
+      },
+      {
+        "input": "3\n5\n",
+        "output": "DUNG\n",
+        "explanation": "3 và 5 cùng là số lẻ."
+      },
+      {
+        "input": "2\n3\n",
+        "output": "SAI\n",
+        "explanation": "2 là số chẵn còn 3 là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:43:28.555Z",
+    "updated_at": "2026-06-25T11:43:28.555Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:43:28.555Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 22,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "24f76a80-4d7a-4a93-82e4-a9c072bcc797",
+    "slug": "bai-23-kiem-tra-uoc-cua-nhau",
+    "title": "Bài 23: Kiểm tra hai số có phải là ước của nhau không",
+    "difficulty": "Dễ",
+    "description": "# Bài 23: Kiểm tra hai số có phải là ước của nhau không\n\nViết chương trình nhập vào hai số nguyên dương `a` và `b`.\n\nHãy kiểm tra:\n\n- `b` có phải là ước của `a` không.\n- `a` có phải là ước của `b` không.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên dương `a`\n- Dòng 2 chứa số nguyên dương `b`\n\n## Dữ liệu ra\n\nIn đúng 2 dòng.\n\nDòng 1 kiểm tra `b` có phải là ước của `a` không:\n\n```text\nb la uoc cua a\n```\n\nhoặc\n\n```text\nb khong la uoc cua a\n```\n\nDòng 2 kiểm tra `a` có phải là ước của `b` không:\n\n```text\na la uoc cua b\n```\n\nhoặc\n\n```text\na khong la uoc cua b\n```\n\nTrong đó `a`, `b` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n10 khong la uoc cua 5\n5 la uoc cua 10\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng 2 dòng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+        "explanation": "10 không chia hết cho 5, còn 10 chia hết cho 5."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:43:28.555Z",
+    "updated_at": "2026-06-25T11:43:28.555Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:43:28.555Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 23,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "935b0613-3af8-4243-b41f-5fcaecdd523c",
+    "slug": "bai-24-tim-gia-tri-nho-nhat",
+    "title": "Bài 24: Tìm giá trị nhỏ nhất trong hai số",
+    "difficulty": "Dễ",
+    "description": "# Bài 24: Tìm giá trị nhỏ nhất trong hai số\n\nViết chương trình nhập vào hai số nguyên `a` và `b`.\n\nHãy tìm giá trị nhỏ nhất trong hai số đó.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên `a`\n- Dòng 2 chứa số nguyên `b`\n\n## Dữ liệu ra\n\nIn kết quả theo dạng:\n\n```text\nx la gia tri nho nhat\n```\n\nTrong đó `x` là giá trị nhỏ nhất trong hai số `a` và `b`.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n5 la gia tri nho nhat\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "5 la gia tri nho nhat\n",
+        "explanation": "5 nhỏ hơn 10."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:43:28.555Z",
+    "updated_at": "2026-06-25T11:43:28.555Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:43:28.555Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 24,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "d6c7107b-e147-4a99-a8bc-aea966a73f38",
+    "slug": "temp-test-prob-1782387890237",
+    "title": "Temp Problem",
+    "difficulty": "Dễ",
+    "description": "Temporary",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T11:44:50.909Z",
+    "updated_at": "2026-06-25T11:44:50.909Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:44:50.909Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "slug": "bai-20-giai-phuong-trinh-bac-hai",
+    "title": "Bài 20: Giải phương trình bậc hai",
+    "difficulty": "Dễ - Trung bình",
+    "description": "# Bài 20: Giải phương trình bậc hai\n\nViết chương trình giải phương trình bậc hai:\n\n$$ax^2 + bx + c = 0$$\n\nTrong bài này, luôn có `a != 0`.\n\n## Dữ liệu vào\n\nGồm 3 dòng:\n\n- Dòng 1 chứa số thực `a`\n- Dòng 2 chứa số thực `b`\n- Dòng 3 chứa số thực `c`\n\n## Dữ liệu ra\n\nNếu phương trình có 2 nghiệm phân biệt, in:\n\n- Dòng 1: số `2`\n- Dòng 2: hai nghiệm `x1 x2`\n\nNếu phương trình có nghiệm kép, in:\n\n- Dòng 1: số `1`\n- Dòng 2: nghiệm duy nhất\n\nNếu phương trình vô nghiệm trong tập số thực, in:\n\n- Một dòng duy nhất chứa số `0`\n\nVới trường hợp có 2 nghiệm phân biệt:\n\n- `x1` là nghiệm ứng với dấu `+`\n- `x2` là nghiệm ứng với dấu `-`\n\nKết quả số thực được chấp nhận nếu sai số không quá `1e-6`.\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in các dòng chữ như `Phương trình có 2 nghiệm phân biệt:`.\nChỉ in đúng kết quả theo định dạng yêu cầu.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "3\n5\n2\n",
+        "output": "2\n-0.6666666667 -1\n",
+        "explanation": "Phương trình 3x^2 + 5x + 2 = 0 có hai nghiệm phân biệt x1 = -2/3, x2 = -1."
+      },
+      {
+        "input": "1\n-2\n1\n",
+        "output": "1\n1\n",
+        "explanation": "Phương trình x^2 - 2x + 1 = 0 có nghiệm kép x = 1."
+      },
+      {
+        "input": "1\n0\n1\n",
+        "output": "0\n",
+        "explanation": "Phương trình x^2 + 1 = 0 vô nghiệm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:43:28.555Z",
+    "updated_at": "2026-06-25T11:43:28.555Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:43:28.555Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 20,
+    "rating": 900,
+    "compare_mode": "number",
+    "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problems-reset-20260625-184543.json`
+
+```json
+[
+  {
+    "id": "02fc7698-d3d6-489d-9131-e390b09147ec",
+    "slug": "temp-test-prob-1782387938700",
+    "title": "Temp Problem",
+    "difficulty": "Dễ",
+    "description": "Temporary",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T11:45:39.373Z",
+    "updated_at": "2026-06-25T11:45:39.373Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:45:39.373Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "slug": "bai-20-giai-phuong-trinh-bac-hai",
+    "title": "Bài 20: Giải phương trình bậc hai",
+    "difficulty": "Dễ - Trung bình",
+    "description": "# Bài 20: Giải phương trình bậc hai\n\nViết chương trình giải phương trình bậc hai:\n\n$$ax^2 + bx + c = 0$$\n\nTrong bài này, luôn có `a != 0`.\n\n## Dữ liệu vào\n\nGồm 3 dòng:\n\n- Dòng 1 chứa số thực `a`\n- Dòng 2 chứa số thực `b`\n- Dòng 3 chứa số thực `c`\n\n## Dữ liệu ra\n\nNếu phương trình có 2 nghiệm phân biệt, in:\n\n- Dòng 1: số `2`\n- Dòng 2: hai nghiệm `x1 x2`\n\nNếu phương trình có nghiệm kép, in:\n\n- Dòng 1: số `1`\n- Dòng 2: nghiệm duy nhất\n\nNếu phương trình vô nghiệm trong tập số thực, in:\n\n- Một dòng duy nhất chứa số `0`\n\nVới trường hợp có 2 nghiệm phân biệt:\n\n- `x1` là nghiệm ứng với dấu `+`\n- `x2` là nghiệm ứng với dấu `-`\n\nKết quả số thực được chấp nhận nếu sai số không quá `1e-6`.\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in các dòng chữ như `Phương trình có 2 nghiệm phân biệt:`.\nChỉ in đúng kết quả theo định dạng yêu cầu.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "3\n5\n2\n",
+        "output": "2\n-0.6666666667 -1\n",
+        "explanation": "Phương trình 3x^2 + 5x + 2 = 0 có hai nghiệm phân biệt x1 = -2/3, x2 = -1."
+      },
+      {
+        "input": "1\n-2\n1\n",
+        "output": "1\n1\n",
+        "explanation": "Phương trình x^2 - 2x + 1 = 0 có nghiệm kép x = 1."
+      },
+      {
+        "input": "1\n0\n1\n",
+        "output": "0\n",
+        "explanation": "Phương trình x^2 + 1 = 0 vô nghiệm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:44:58.224Z",
+    "updated_at": "2026-06-25T11:44:58.224Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:44:58.224Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 20,
+    "rating": 900,
+    "compare_mode": "number",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "3e08ba7e-9e2a-4f5f-904c-b6f1b3303faf",
+    "slug": "bai-21-kiem-tra-chan-le",
+    "title": "Bài 21: Kiểm tra số chẵn/lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 21: Kiểm tra số chẵn/lẻ\n\nViết chương trình nhập vào một số nguyên dương `n`.\n\nHãy cho biết `n` là số chẵn hay số lẻ.\n\n## Dữ liệu vào\n\nMột dòng duy nhất chứa số nguyên dương `n`.\n\n## Dữ liệu ra\n\nNếu `n` là số chẵn, in:\n\n```text\nn la so chan\n```\n\nNếu `n` là số lẻ, in:\n\n```text\nn la so le\n```\n\nTrong đó `n` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n12\n```\n\nOutput:\n\n```text\n12 la so chan\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap n:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "12\n",
+        "output": "12 la so chan\n",
+        "explanation": "12 chia hết cho 2 nên là số chẵn."
+      },
+      {
+        "input": "7\n",
+        "output": "7 la so le\n",
+        "explanation": "7 không chia hết cho 2 nên là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:44:58.224Z",
+    "updated_at": "2026-06-25T11:44:58.224Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:44:58.224Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 21,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "0fce3eed-2d09-45c6-9937-ad4e4e7dfbed",
+    "slug": "bai-22-cung-tinh-chan-le",
+    "title": "Bài 22: Kiểm tra hai số cùng tính chẵn lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 22: Kiểm tra hai số cùng tính chẵn lẻ\n\nViết chương trình nhập vào hai số tự nhiên `M` và `N`.\n\nHãy thông báo:\n\n- `DUNG` nếu `M` và `N` cùng tính chẵn lẻ.\n- `SAI` nếu `M` và `N` khác tính chẵn lẻ.\n\nHai số cùng tính chẵn lẻ nghĩa là:\n\n- cả hai đều chẵn, hoặc\n- cả hai đều lẻ.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số tự nhiên `M`\n- Dòng 2 chứa số tự nhiên `N`\n\n## Dữ liệu ra\n\nIn một trong hai kết quả:\n\n```text\nDUNG\n```\n\nhoặc\n\n```text\nSAI\n```\n\n## Ví dụ\n\nInput:\n\n```text\n10\n20\n```\n\nOutput:\n\n```text\nDUNG\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap M:` hoặc `Nhap N:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "10\n20\n",
+        "output": "DUNG\n",
+        "explanation": "10 và 20 cùng là số chẵn."
+      },
+      {
+        "input": "3\n5\n",
+        "output": "DUNG\n",
+        "explanation": "3 và 5 cùng là số lẻ."
+      },
+      {
+        "input": "2\n3\n",
+        "output": "SAI\n",
+        "explanation": "2 là số chẵn còn 3 là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:44:58.224Z",
+    "updated_at": "2026-06-25T11:44:58.224Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:44:58.224Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 22,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "19a480e9-0a85-483c-b2d4-9d5f44a4e8b7",
+    "slug": "bai-23-kiem-tra-uoc-cua-nhau",
+    "title": "Bài 23: Kiểm tra hai số có phải là ước của nhau không",
+    "difficulty": "Dễ",
+    "description": "# Bài 23: Kiểm tra hai số có phải là ước của nhau không\n\nViết chương trình nhập vào hai số nguyên dương `a` và `b`.\n\nHãy kiểm tra:\n\n- `b` có phải là ước của `a` không.\n- `a` có phải là ước của `b` không.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên dương `a`\n- Dòng 2 chứa số nguyên dương `b`\n\n## Dữ liệu ra\n\nIn đúng 2 dòng.\n\nDòng 1 kiểm tra `b` có phải là ước của `a` không:\n\n```text\nb la uoc cua a\n```\n\nhoặc\n\n```text\nb khong la uoc cua a\n```\n\nDòng 2 kiểm tra `a` có phải là ước của `b` không:\n\n```text\na la uoc cua b\n```\n\nhoặc\n\n```text\na khong la uoc cua b\n```\n\nTrong đó `a`, `b` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n10 khong la uoc cua 5\n5 la uoc cua 10\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng 2 dòng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+        "explanation": "10 không chia hết cho 5, còn 10 chia hết cho 5."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:44:58.224Z",
+    "updated_at": "2026-06-25T11:44:58.224Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:44:58.224Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 23,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "6359833a-a75c-4f5c-bd5e-b663cae29bf8",
+    "slug": "bai-24-tim-gia-tri-nho-nhat",
+    "title": "Bài 24: Tìm giá trị nhỏ nhất trong hai số",
+    "difficulty": "Dễ",
+    "description": "# Bài 24: Tìm giá trị nhỏ nhất trong hai số\n\nViết chương trình nhập vào hai số nguyên `a` và `b`.\n\nHãy tìm giá trị nhỏ nhất trong hai số đó.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên `a`\n- Dòng 2 chứa số nguyên `b`\n\n## Dữ liệu ra\n\nIn kết quả theo dạng:\n\n```text\nx la gia tri nho nhat\n```\n\nTrong đó `x` là giá trị nhỏ nhất trong hai số `a` và `b`.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n5 la gia tri nho nhat\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "5 la gia tri nho nhat\n",
+        "explanation": "5 nhỏ hơn 10."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:44:58.224Z",
+    "updated_at": "2026-06-25T11:44:58.224Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:44:58.224Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 24,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "886f7411-5b5d-407e-bab1-360ea94881c1",
+    "slug": "test-flow-1782387930899-6uzo55",
+    "title": "Flow Problem",
+    "difficulty": "Dễ",
+    "description": "Solve it",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T11:45:31.567Z",
+    "updated_at": "2026-06-25T11:45:31.567Z",
+    "max_score": 100,
+    "passing_score": 70,
+    "published_at": "2026-06-25T11:45:31.567Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problems-reset-20260625-184810.json`
+
+```json
+[
+  {
+    "id": "c4fa516e-a3d9-4eef-bf97-2db1113b9664",
+    "slug": "temp-test-prob-1782388086537",
+    "title": "Temp Problem",
+    "difficulty": "Dễ",
+    "description": "Temporary",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T11:48:07.210Z",
+    "updated_at": "2026-06-25T11:48:07.210Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:48:07.210Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "slug": "bai-20-giai-phuong-trinh-bac-hai",
+    "title": "Bài 20: Giải phương trình bậc hai",
+    "difficulty": "Dễ - Trung bình",
+    "description": "# Bài 20: Giải phương trình bậc hai\n\nViết chương trình giải phương trình bậc hai:\n\n$$ax^2 + bx + c = 0$$\n\nTrong bài này, luôn có `a != 0`.\n\n## Dữ liệu vào\n\nGồm 3 dòng:\n\n- Dòng 1 chứa số thực `a`\n- Dòng 2 chứa số thực `b`\n- Dòng 3 chứa số thực `c`\n\n## Dữ liệu ra\n\nNếu phương trình có 2 nghiệm phân biệt, in:\n\n- Dòng 1: số `2`\n- Dòng 2: hai nghiệm `x1 x2`\n\nNếu phương trình có nghiệm kép, in:\n\n- Dòng 1: số `1`\n- Dòng 2: nghiệm duy nhất\n\nNếu phương trình vô nghiệm trong tập số thực, in:\n\n- Một dòng duy nhất chứa số `0`\n\nVới trường hợp có 2 nghiệm phân biệt:\n\n- `x1` là nghiệm ứng với dấu `+`\n- `x2` là nghiệm ứng với dấu `-`\n\nKết quả số thực được chấp nhận nếu sai số không quá `1e-6`.\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in các dòng chữ như `Phương trình có 2 nghiệm phân biệt:`.\nChỉ in đúng kết quả theo định dạng yêu cầu.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "3\n5\n2\n",
+        "output": "2\n-0.6666666667 -1\n",
+        "explanation": "Phương trình 3x^2 + 5x + 2 = 0 có hai nghiệm phân biệt x1 = -2/3, x2 = -1."
+      },
+      {
+        "input": "1\n-2\n1\n",
+        "output": "1\n1\n",
+        "explanation": "Phương trình x^2 - 2x + 1 = 0 có nghiệm kép x = 1."
+      },
+      {
+        "input": "1\n0\n1\n",
+        "output": "0\n",
+        "explanation": "Phương trình x^2 + 1 = 0 vô nghiệm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:45:48.739Z",
+    "updated_at": "2026-06-25T11:45:48.739Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:45:48.739Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 20,
+    "rating": 900,
+    "compare_mode": "number",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "63a6e1df-6554-4200-bcb6-a8c3742567bd",
+    "slug": "bai-21-kiem-tra-chan-le",
+    "title": "Bài 21: Kiểm tra số chẵn/lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 21: Kiểm tra số chẵn/lẻ\n\nViết chương trình nhập vào một số nguyên dương `n`.\n\nHãy cho biết `n` là số chẵn hay số lẻ.\n\n## Dữ liệu vào\n\nMột dòng duy nhất chứa số nguyên dương `n`.\n\n## Dữ liệu ra\n\nNếu `n` là số chẵn, in:\n\n```text\nn la so chan\n```\n\nNếu `n` là số lẻ, in:\n\n```text\nn la so le\n```\n\nTrong đó `n` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n12\n```\n\nOutput:\n\n```text\n12 la so chan\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap n:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "12\n",
+        "output": "12 la so chan\n",
+        "explanation": "12 chia hết cho 2 nên là số chẵn."
+      },
+      {
+        "input": "7\n",
+        "output": "7 la so le\n",
+        "explanation": "7 không chia hết cho 2 nên là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:45:48.739Z",
+    "updated_at": "2026-06-25T11:45:48.739Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:45:48.739Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 21,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "32028589-d0b4-41d3-a7e7-13b4b66f8cf5",
+    "slug": "bai-22-cung-tinh-chan-le",
+    "title": "Bài 22: Kiểm tra hai số cùng tính chẵn lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 22: Kiểm tra hai số cùng tính chẵn lẻ\n\nViết chương trình nhập vào hai số tự nhiên `M` và `N`.\n\nHãy thông báo:\n\n- `DUNG` nếu `M` và `N` cùng tính chẵn lẻ.\n- `SAI` nếu `M` và `N` khác tính chẵn lẻ.\n\nHai số cùng tính chẵn lẻ nghĩa là:\n\n- cả hai đều chẵn, hoặc\n- cả hai đều lẻ.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số tự nhiên `M`\n- Dòng 2 chứa số tự nhiên `N`\n\n## Dữ liệu ra\n\nIn một trong hai kết quả:\n\n```text\nDUNG\n```\n\nhoặc\n\n```text\nSAI\n```\n\n## Ví dụ\n\nInput:\n\n```text\n10\n20\n```\n\nOutput:\n\n```text\nDUNG\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap M:` hoặc `Nhap N:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "10\n20\n",
+        "output": "DUNG\n",
+        "explanation": "10 và 20 cùng là số chẵn."
+      },
+      {
+        "input": "3\n5\n",
+        "output": "DUNG\n",
+        "explanation": "3 và 5 cùng là số lẻ."
+      },
+      {
+        "input": "2\n3\n",
+        "output": "SAI\n",
+        "explanation": "2 là số chẵn còn 3 là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:45:48.739Z",
+    "updated_at": "2026-06-25T11:45:48.739Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:45:48.739Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 22,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "3a377eff-6fd8-46cf-bb2b-edf8fe5781bd",
+    "slug": "bai-23-kiem-tra-uoc-cua-nhau",
+    "title": "Bài 23: Kiểm tra hai số có phải là ước của nhau không",
+    "difficulty": "Dễ",
+    "description": "# Bài 23: Kiểm tra hai số có phải là ước của nhau không\n\nViết chương trình nhập vào hai số nguyên dương `a` và `b`.\n\nHãy kiểm tra:\n\n- `b` có phải là ước của `a` không.\n- `a` có phải là ước của `b` không.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên dương `a`\n- Dòng 2 chứa số nguyên dương `b`\n\n## Dữ liệu ra\n\nIn đúng 2 dòng.\n\nDòng 1 kiểm tra `b` có phải là ước của `a` không:\n\n```text\nb la uoc cua a\n```\n\nhoặc\n\n```text\nb khong la uoc cua a\n```\n\nDòng 2 kiểm tra `a` có phải là ước của `b` không:\n\n```text\na la uoc cua b\n```\n\nhoặc\n\n```text\na khong la uoc cua b\n```\n\nTrong đó `a`, `b` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n10 khong la uoc cua 5\n5 la uoc cua 10\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng 2 dòng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+        "explanation": "10 không chia hết cho 5, còn 10 chia hết cho 5."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:45:48.739Z",
+    "updated_at": "2026-06-25T11:45:48.739Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:45:48.739Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 23,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "3eefee81-9be0-4d80-a4ba-b6be9951148a",
+    "slug": "bai-24-tim-gia-tri-nho-nhat",
+    "title": "Bài 24: Tìm giá trị nhỏ nhất trong hai số",
+    "difficulty": "Dễ",
+    "description": "# Bài 24: Tìm giá trị nhỏ nhất trong hai số\n\nViết chương trình nhập vào hai số nguyên `a` và `b`.\n\nHãy tìm giá trị nhỏ nhất trong hai số đó.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên `a`\n- Dòng 2 chứa số nguyên `b`\n\n## Dữ liệu ra\n\nIn kết quả theo dạng:\n\n```text\nx la gia tri nho nhat\n```\n\nTrong đó `x` là giá trị nhỏ nhất trong hai số `a` và `b`.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n5 la gia tri nho nhat\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "5 la gia tri nho nhat\n",
+        "explanation": "5 nhỏ hơn 10."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:45:48.739Z",
+    "updated_at": "2026-06-25T11:45:48.739Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:45:48.739Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 24,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "ad4c51f2-fd64-48f1-bab0-aa5b8370e2b2",
+    "slug": "test-import-1",
+    "title": "Test Import 1",
+    "difficulty": "Dễ",
+    "description": "Description 1",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T11:46:55.275Z",
+    "updated_at": "2026-06-25T11:46:55.275Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:46:54.601Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "924bb2af-8786-448d-bed4-1308e99f6c80",
+    "slug": "test-import-2",
+    "title": "Test Import 2",
+    "difficulty": "Dễ",
+    "description": "Description 2",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T11:46:55.275Z",
+    "updated_at": "2026-06-25T11:46:55.275Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:46:54.601Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "498fcd27-80d3-4032-b2ab-bd17f9949575",
+    "slug": "test-update-slug",
+    "title": "Updated Title",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T11:46:57.964Z",
+    "updated_at": "2026-06-25T11:46:59.374Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:46:58.701Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "fd5c7ec5-d1a8-44de-8963-96b7d9567d0c",
+    "slug": "old-format-slug",
+    "title": "Old Format Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "print(\"Hello\")",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T11:47:01.214Z",
+    "updated_at": "2026-06-25T11:47:01.214Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:47:00.539Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problems-reset-20260625-214200.json`
+
+```json
+[
+  {
+    "id": "31e989bc-918b-4d02-9b41-1d4847ea1446",
+    "slug": "test-import-1",
+    "title": "Test Import 1",
+    "difficulty": "Dễ",
+    "description": "Description 1",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T14:40:12.268Z",
+    "updated_at": "2026-06-25T14:40:12.268Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:40:11.464Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "40f96ec3-40bd-429a-a860-4c2c84badf15",
+    "slug": "test-import-2",
+    "title": "Test Import 2",
+    "difficulty": "Dễ",
+    "description": "Description 2",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T14:40:12.268Z",
+    "updated_at": "2026-06-25T14:40:12.268Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:40:11.466Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "ddbc838b-4473-4dbe-8244-26dcdc1721d6",
+    "slug": "test-update-slug",
+    "title": "Updated Title",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T14:40:17.256Z",
+    "updated_at": "2026-06-25T14:40:19.656Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:40:18.931Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "5ec853b7-c0a9-44d1-b39e-53c2886c7bfd",
+    "slug": "old-format-slug",
+    "title": "Old Format Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "print(\"Hello\")",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T14:40:23.256Z",
+    "updated_at": "2026-06-25T14:40:23.256Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:40:22.519Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "97d34c29-54ee-462a-8ac1-32d248b98bb8",
+    "slug": "temp-test-prob-1782398513343",
+    "title": "Temp Problem",
+    "difficulty": "Dễ",
+    "description": "Temporary",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T14:41:54.055Z",
+    "updated_at": "2026-06-25T14:41:54.055Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:41:54.055Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "slug": "bai-20-giai-phuong-trinh-bac-hai",
+    "title": "Bài 20: Giải phương trình bậc hai",
+    "difficulty": "Dễ - Trung bình",
+    "description": "# Bài 20: Giải phương trình bậc hai\n\nViết chương trình giải phương trình bậc hai:\n\n$$ax^2 + bx + c = 0$$\n\nTrong bài này, luôn có `a != 0`.\n\n## Dữ liệu vào\n\nGồm 3 dòng:\n\n- Dòng 1 chứa số thực `a`\n- Dòng 2 chứa số thực `b`\n- Dòng 3 chứa số thực `c`\n\n## Dữ liệu ra\n\nNếu phương trình có 2 nghiệm phân biệt, in:\n\n- Dòng 1: số `2`\n- Dòng 2: hai nghiệm `x1 x2`\n\nNếu phương trình có nghiệm kép, in:\n\n- Dòng 1: số `1`\n- Dòng 2: nghiệm duy nhất\n\nNếu phương trình vô nghiệm trong tập số thực, in:\n\n- Một dòng duy nhất chứa số `0`\n\nVới trường hợp có 2 nghiệm phân biệt:\n\n- `x1` là nghiệm ứng với dấu `+`\n- `x2` là nghiệm ứng với dấu `-`\n\nKết quả số thực được chấp nhận nếu sai số không quá `1e-6`.\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in các dòng chữ như `Phương trình có 2 nghiệm phân biệt:`.\nChỉ in đúng kết quả theo định dạng yêu cầu.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "3\n5\n2\n",
+        "output": "2\n-0.6666666667 -1\n",
+        "explanation": "Phương trình 3x^2 + 5x + 2 = 0 có hai nghiệm phân biệt x1 = -2/3, x2 = -1."
+      },
+      {
+        "input": "1\n-2\n1\n",
+        "output": "1\n1\n",
+        "explanation": "Phương trình x^2 - 2x + 1 = 0 có nghiệm kép x = 1."
+      },
+      {
+        "input": "1\n0\n1\n",
+        "output": "0\n",
+        "explanation": "Phương trình x^2 + 1 = 0 vô nghiệm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:48:16.170Z",
+    "updated_at": "2026-06-25T11:48:16.170Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:48:16.170Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 20,
+    "rating": 900,
+    "compare_mode": "number",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "slug": "bai-21-kiem-tra-chan-le",
+    "title": "Bài 21: Kiểm tra số chẵn/lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 21: Kiểm tra số chẵn/lẻ\n\nViết chương trình nhập vào một số nguyên dương `n`.\n\nHãy cho biết `n` là số chẵn hay số lẻ.\n\n## Dữ liệu vào\n\nMột dòng duy nhất chứa số nguyên dương `n`.\n\n## Dữ liệu ra\n\nNếu `n` là số chẵn, in:\n\n```text\nn la so chan\n```\n\nNếu `n` là số lẻ, in:\n\n```text\nn la so le\n```\n\nTrong đó `n` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n12\n```\n\nOutput:\n\n```text\n12 la so chan\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap n:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "12\n",
+        "output": "12 la so chan\n",
+        "explanation": "12 chia hết cho 2 nên là số chẵn."
+      },
+      {
+        "input": "7\n",
+        "output": "7 la so le\n",
+        "explanation": "7 không chia hết cho 2 nên là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:48:16.170Z",
+    "updated_at": "2026-06-25T11:48:16.170Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:48:16.170Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 21,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "slug": "bai-22-cung-tinh-chan-le",
+    "title": "Bài 22: Kiểm tra hai số cùng tính chẵn lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 22: Kiểm tra hai số cùng tính chẵn lẻ\n\nViết chương trình nhập vào hai số tự nhiên `M` và `N`.\n\nHãy thông báo:\n\n- `DUNG` nếu `M` và `N` cùng tính chẵn lẻ.\n- `SAI` nếu `M` và `N` khác tính chẵn lẻ.\n\nHai số cùng tính chẵn lẻ nghĩa là:\n\n- cả hai đều chẵn, hoặc\n- cả hai đều lẻ.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số tự nhiên `M`\n- Dòng 2 chứa số tự nhiên `N`\n\n## Dữ liệu ra\n\nIn một trong hai kết quả:\n\n```text\nDUNG\n```\n\nhoặc\n\n```text\nSAI\n```\n\n## Ví dụ\n\nInput:\n\n```text\n10\n20\n```\n\nOutput:\n\n```text\nDUNG\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap M:` hoặc `Nhap N:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "10\n20\n",
+        "output": "DUNG\n",
+        "explanation": "10 và 20 cùng là số chẵn."
+      },
+      {
+        "input": "3\n5\n",
+        "output": "DUNG\n",
+        "explanation": "3 và 5 cùng là số lẻ."
+      },
+      {
+        "input": "2\n3\n",
+        "output": "SAI\n",
+        "explanation": "2 là số chẵn còn 3 là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:48:16.170Z",
+    "updated_at": "2026-06-25T11:48:16.170Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:48:16.170Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 22,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "slug": "bai-23-kiem-tra-uoc-cua-nhau",
+    "title": "Bài 23: Kiểm tra hai số có phải là ước của nhau không",
+    "difficulty": "Dễ",
+    "description": "# Bài 23: Kiểm tra hai số có phải là ước của nhau không\n\nViết chương trình nhập vào hai số nguyên dương `a` và `b`.\n\nHãy kiểm tra:\n\n- `b` có phải là ước của `a` không.\n- `a` có phải là ước của `b` không.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên dương `a`\n- Dòng 2 chứa số nguyên dương `b`\n\n## Dữ liệu ra\n\nIn đúng 2 dòng.\n\nDòng 1 kiểm tra `b` có phải là ước của `a` không:\n\n```text\nb la uoc cua a\n```\n\nhoặc\n\n```text\nb khong la uoc cua a\n```\n\nDòng 2 kiểm tra `a` có phải là ước của `b` không:\n\n```text\na la uoc cua b\n```\n\nhoặc\n\n```text\na khong la uoc cua b\n```\n\nTrong đó `a`, `b` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n10 khong la uoc cua 5\n5 la uoc cua 10\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng 2 dòng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+        "explanation": "10 không chia hết cho 5, còn 10 chia hết cho 5."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:48:16.170Z",
+    "updated_at": "2026-06-25T11:48:16.170Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:48:16.170Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 23,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "slug": "bai-24-tim-gia-tri-nho-nhat",
+    "title": "Bài 24: Tìm giá trị nhỏ nhất trong hai số",
+    "difficulty": "Dễ",
+    "description": "# Bài 24: Tìm giá trị nhỏ nhất trong hai số\n\nViết chương trình nhập vào hai số nguyên `a` và `b`.\n\nHãy tìm giá trị nhỏ nhất trong hai số đó.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên `a`\n- Dòng 2 chứa số nguyên `b`\n\n## Dữ liệu ra\n\nIn kết quả theo dạng:\n\n```text\nx la gia tri nho nhat\n```\n\nTrong đó `x` là giá trị nhỏ nhất trong hai số `a` và `b`.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n5 la gia tri nho nhat\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "5 la gia tri nho nhat\n",
+        "explanation": "5 nhỏ hơn 10."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:48:16.170Z",
+    "updated_at": "2026-06-25T11:48:16.170Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T11:48:16.170Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 24,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problems-reset-20260625-215053.json`
+
+```json
+[
+  {
+    "id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "slug": "bai-20-giai-phuong-trinh-bac-hai",
+    "title": "Bài 20: Giải phương trình bậc hai",
+    "difficulty": "Dễ - Trung bình",
+    "description": "# Bài 20: Giải phương trình bậc hai\n\nViết chương trình giải phương trình bậc hai:\n\n$$ax^2 + bx + c = 0$$\n\nTrong bài này, luôn có `a != 0`.\n\n## Dữ liệu vào\n\nGồm 3 dòng:\n\n- Dòng 1 chứa số thực `a`\n- Dòng 2 chứa số thực `b`\n- Dòng 3 chứa số thực `c`\n\n## Dữ liệu ra\n\nNếu phương trình có 2 nghiệm phân biệt, in:\n\n- Dòng 1: số `2`\n- Dòng 2: hai nghiệm `x1 x2`\n\nNếu phương trình có nghiệm kép, in:\n\n- Dòng 1: số `1`\n- Dòng 2: nghiệm duy nhất\n\nNếu phương trình vô nghiệm trong tập số thực, in:\n\n- Một dòng duy nhất chứa số `0`\n\nVới trường hợp có 2 nghiệm phân biệt:\n\n- `x1` là nghiệm ứng với dấu `+`\n- `x2` là nghiệm ứng với dấu `-`\n\nKết quả số thực được chấp nhận nếu sai số không quá `1e-6`.\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in các dòng chữ như `Phương trình có 2 nghiệm phân biệt:`.\nChỉ in đúng kết quả theo định dạng yêu cầu.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "3\n5\n2\n",
+        "output": "2\n-0.6666666667 -1\n",
+        "explanation": "Phương trình 3x^2 + 5x + 2 = 0 có hai nghiệm phân biệt x1 = -2/3, x2 = -1."
+      },
+      {
+        "input": "1\n-2\n1\n",
+        "output": "1\n1\n",
+        "explanation": "Phương trình x^2 - 2x + 1 = 0 có nghiệm kép x = 1."
+      },
+      {
+        "input": "1\n0\n1\n",
+        "output": "0\n",
+        "explanation": "Phương trình x^2 + 1 = 0 vô nghiệm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T14:42:06.165Z",
+    "updated_at": "2026-06-25T14:42:06.165Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:42:06.165Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 20,
+    "rating": 900,
+    "compare_mode": "number",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "f7a0f70a-c030-4844-9a87-0b4a124508d3",
+    "slug": "bai-21-kiem-tra-chan-le",
+    "title": "Bài 21: Kiểm tra số chẵn/lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 21: Kiểm tra số chẵn/lẻ\n\nViết chương trình nhập vào một số nguyên dương `n`.\n\nHãy cho biết `n` là số chẵn hay số lẻ.\n\n## Dữ liệu vào\n\nMột dòng duy nhất chứa số nguyên dương `n`.\n\n## Dữ liệu ra\n\nNếu `n` là số chẵn, in:\n\n```text\nn la so chan\n```\n\nNếu `n` là số lẻ, in:\n\n```text\nn la so le\n```\n\nTrong đó `n` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n12\n```\n\nOutput:\n\n```text\n12 la so chan\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap n:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "12\n",
+        "output": "12 la so chan\n",
+        "explanation": "12 chia hết cho 2 nên là số chẵn."
+      },
+      {
+        "input": "7\n",
+        "output": "7 la so le\n",
+        "explanation": "7 không chia hết cho 2 nên là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T14:42:06.165Z",
+    "updated_at": "2026-06-25T14:42:06.165Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:42:06.165Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 21,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "0e4553a0-f16a-4e4f-9880-3f4f99386d25",
+    "slug": "bai-22-cung-tinh-chan-le",
+    "title": "Bài 22: Kiểm tra hai số cùng tính chẵn lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 22: Kiểm tra hai số cùng tính chẵn lẻ\n\nViết chương trình nhập vào hai số tự nhiên `M` và `N`.\n\nHãy thông báo:\n\n- `DUNG` nếu `M` và `N` cùng tính chẵn lẻ.\n- `SAI` nếu `M` và `N` khác tính chẵn lẻ.\n\nHai số cùng tính chẵn lẻ nghĩa là:\n\n- cả hai đều chẵn, hoặc\n- cả hai đều lẻ.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số tự nhiên `M`\n- Dòng 2 chứa số tự nhiên `N`\n\n## Dữ liệu ra\n\nIn một trong hai kết quả:\n\n```text\nDUNG\n```\n\nhoặc\n\n```text\nSAI\n```\n\n## Ví dụ\n\nInput:\n\n```text\n10\n20\n```\n\nOutput:\n\n```text\nDUNG\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap M:` hoặc `Nhap N:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "10\n20\n",
+        "output": "DUNG\n",
+        "explanation": "10 và 20 cùng là số chẵn."
+      },
+      {
+        "input": "3\n5\n",
+        "output": "DUNG\n",
+        "explanation": "3 và 5 cùng là số lẻ."
+      },
+      {
+        "input": "2\n3\n",
+        "output": "SAI\n",
+        "explanation": "2 là số chẵn còn 3 là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T14:42:06.165Z",
+    "updated_at": "2026-06-25T14:42:06.165Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:42:06.165Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 22,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "0e8cda00-193b-46c5-b3ba-a400da3b64b1",
+    "slug": "bai-23-kiem-tra-uoc-cua-nhau",
+    "title": "Bài 23: Kiểm tra hai số có phải là ước của nhau không",
+    "difficulty": "Dễ",
+    "description": "# Bài 23: Kiểm tra hai số có phải là ước của nhau không\n\nViết chương trình nhập vào hai số nguyên dương `a` và `b`.\n\nHãy kiểm tra:\n\n- `b` có phải là ước của `a` không.\n- `a` có phải là ước của `b` không.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên dương `a`\n- Dòng 2 chứa số nguyên dương `b`\n\n## Dữ liệu ra\n\nIn đúng 2 dòng.\n\nDòng 1 kiểm tra `b` có phải là ước của `a` không:\n\n```text\nb la uoc cua a\n```\n\nhoặc\n\n```text\nb khong la uoc cua a\n```\n\nDòng 2 kiểm tra `a` có phải là ước của `b` không:\n\n```text\na la uoc cua b\n```\n\nhoặc\n\n```text\na khong la uoc cua b\n```\n\nTrong đó `a`, `b` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n10 khong la uoc cua 5\n5 la uoc cua 10\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng 2 dòng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+        "explanation": "10 không chia hết cho 5, còn 10 chia hết cho 5."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T14:42:06.165Z",
+    "updated_at": "2026-06-25T14:42:06.165Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:42:06.165Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 23,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "5cd80379-884e-4cc9-a7b3-caad16d36947",
+    "slug": "bai-24-tim-gia-tri-nho-nhat",
+    "title": "Bài 24: Tìm giá trị nhỏ nhất trong hai số",
+    "difficulty": "Dễ",
+    "description": "# Bài 24: Tìm giá trị nhỏ nhất trong hai số\n\nViết chương trình nhập vào hai số nguyên `a` và `b`.\n\nHãy tìm giá trị nhỏ nhất trong hai số đó.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên `a`\n- Dòng 2 chứa số nguyên `b`\n\n## Dữ liệu ra\n\nIn kết quả theo dạng:\n\n```text\nx la gia tri nho nhat\n```\n\nTrong đó `x` là giá trị nhỏ nhất trong hai số `a` và `b`.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n5 la gia tri nho nhat\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "5 la gia tri nho nhat\n",
+        "explanation": "5 nhỏ hơn 10."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T14:42:06.165Z",
+    "updated_at": "2026-06-25T14:42:06.165Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:42:06.165Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 24,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "40fd0dcd-aa2b-45a3-9d79-2709735c362d",
+    "slug": "test-import-1",
+    "title": "Test Import 1",
+    "difficulty": "Dễ",
+    "description": "Description 1",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T14:48:38.176Z",
+    "updated_at": "2026-06-25T14:48:38.176Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:48:37.427Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "395ba749-5b9d-4533-a973-c0f84633e712",
+    "slug": "test-import-2",
+    "title": "Test Import 2",
+    "difficulty": "Dễ",
+    "description": "Description 2",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T14:48:38.176Z",
+    "updated_at": "2026-06-25T14:48:38.176Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:48:37.429Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "973a35b5-95f9-4b73-b153-1661c230cf56",
+    "slug": "test-update-slug",
+    "title": "Updated Title",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T14:48:44.807Z",
+    "updated_at": "2026-06-25T14:48:48.168Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:48:47.178Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "4ab23438-fb9e-412f-b190-0a713fdc5120",
+    "slug": "old-format-slug",
+    "title": "Old Format Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "print(\"Hello\")",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T14:48:52.487Z",
+    "updated_at": "2026-06-25T14:48:52.487Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:48:51.759Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "e49a3862-3f69-450c-b8aa-5e2e152b1661",
+    "slug": "temp-test-prob-1782399042459",
+    "title": "Temp Problem",
+    "difficulty": "Dễ",
+    "description": "Temporary",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T14:50:43.194Z",
+    "updated_at": "2026-06-25T14:50:43.194Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:50:43.194Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problems-reset-20260625-220522.json`
+
+```json
+[
+  {
+    "id": "0e716344-d724-44a6-a867-7b29d367a32f",
+    "slug": "temp-test-prob-1782399912309",
+    "title": "Temp Problem",
+    "difficulty": "Dễ",
+    "description": "Temporary",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T15:05:13.036Z",
+    "updated_at": "2026-06-25T15:05:13.036Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T15:05:13.036Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "slug": "bai-20-giai-phuong-trinh-bac-hai",
+    "title": "Bài 20: Giải phương trình bậc hai",
+    "difficulty": "Dễ - Trung bình",
+    "description": "# Bài 20: Giải phương trình bậc hai\n\nViết chương trình giải phương trình bậc hai:\n\n$$ax^2 + bx + c = 0$$\n\nTrong bài này, luôn có `a != 0`.\n\n## Dữ liệu vào\n\nGồm 3 dòng:\n\n- Dòng 1 chứa số thực `a`\n- Dòng 2 chứa số thực `b`\n- Dòng 3 chứa số thực `c`\n\n## Dữ liệu ra\n\nNếu phương trình có 2 nghiệm phân biệt, in:\n\n- Dòng 1: số `2`\n- Dòng 2: hai nghiệm `x1 x2`\n\nNếu phương trình có nghiệm kép, in:\n\n- Dòng 1: số `1`\n- Dòng 2: nghiệm duy nhất\n\nNếu phương trình vô nghiệm trong tập số thực, in:\n\n- Một dòng duy nhất chứa số `0`\n\nVới trường hợp có 2 nghiệm phân biệt:\n\n- `x1` là nghiệm ứng với dấu `+`\n- `x2` là nghiệm ứng với dấu `-`\n\nKết quả số thực được chấp nhận nếu sai số không quá `1e-6`.\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in các dòng chữ như `Phương trình có 2 nghiệm phân biệt:`.\nChỉ in đúng kết quả theo định dạng yêu cầu.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "3\n5\n2\n",
+        "output": "2\n-0.6666666667 -1\n",
+        "explanation": "Phương trình 3x^2 + 5x + 2 = 0 có hai nghiệm phân biệt x1 = -2/3, x2 = -1."
+      },
+      {
+        "input": "1\n-2\n1\n",
+        "output": "1\n1\n",
+        "explanation": "Phương trình x^2 - 2x + 1 = 0 có nghiệm kép x = 1."
+      },
+      {
+        "input": "1\n0\n1\n",
+        "output": "0\n",
+        "explanation": "Phương trình x^2 + 1 = 0 vô nghiệm."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T14:51:03.008Z",
+    "updated_at": "2026-06-25T14:51:03.008Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:51:03.008Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 20,
+    "rating": 900,
+    "compare_mode": "number",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "slug": "bai-21-kiem-tra-chan-le",
+    "title": "Bài 21: Kiểm tra số chẵn/lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 21: Kiểm tra số chẵn/lẻ\n\nViết chương trình nhập vào một số nguyên dương `n`.\n\nHãy cho biết `n` là số chẵn hay số lẻ.\n\n## Dữ liệu vào\n\nMột dòng duy nhất chứa số nguyên dương `n`.\n\n## Dữ liệu ra\n\nNếu `n` là số chẵn, in:\n\n```text\nn la so chan\n```\n\nNếu `n` là số lẻ, in:\n\n```text\nn la so le\n```\n\nTrong đó `n` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n12\n```\n\nOutput:\n\n```text\n12 la so chan\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap n:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "12\n",
+        "output": "12 la so chan\n",
+        "explanation": "12 chia hết cho 2 nên là số chẵn."
+      },
+      {
+        "input": "7\n",
+        "output": "7 la so le\n",
+        "explanation": "7 không chia hết cho 2 nên là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T14:51:03.008Z",
+    "updated_at": "2026-06-25T14:51:03.008Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:51:03.008Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 21,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "ad29dbc9-8210-46c9-ad1b-05d697bd3273",
+    "slug": "bai-22-cung-tinh-chan-le",
+    "title": "Bài 22: Kiểm tra hai số cùng tính chẵn lẻ",
+    "difficulty": "Dễ",
+    "description": "# Bài 22: Kiểm tra hai số cùng tính chẵn lẻ\n\nViết chương trình nhập vào hai số tự nhiên `M` và `N`.\n\nHãy thông báo:\n\n- `DUNG` nếu `M` và `N` cùng tính chẵn lẻ.\n- `SAI` nếu `M` và `N` khác tính chẵn lẻ.\n\nHai số cùng tính chẵn lẻ nghĩa là:\n\n- cả hai đều chẵn, hoặc\n- cả hai đều lẻ.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số tự nhiên `M`\n- Dòng 2 chứa số tự nhiên `N`\n\n## Dữ liệu ra\n\nIn một trong hai kết quả:\n\n```text\nDUNG\n```\n\nhoặc\n\n```text\nSAI\n```\n\n## Ví dụ\n\nInput:\n\n```text\n10\n20\n```\n\nOutput:\n\n```text\nDUNG\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `Nhap M:` hoặc `Nhap N:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "10\n20\n",
+        "output": "DUNG\n",
+        "explanation": "10 và 20 cùng là số chẵn."
+      },
+      {
+        "input": "3\n5\n",
+        "output": "DUNG\n",
+        "explanation": "3 và 5 cùng là số lẻ."
+      },
+      {
+        "input": "2\n3\n",
+        "output": "SAI\n",
+        "explanation": "2 là số chẵn còn 3 là số lẻ."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T14:51:03.008Z",
+    "updated_at": "2026-06-25T14:51:03.008Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:51:03.008Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 22,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "c8f08503-bdf3-4386-8164-96d6279210a8",
+    "slug": "bai-23-kiem-tra-uoc-cua-nhau",
+    "title": "Bài 23: Kiểm tra hai số có phải là ước của nhau không",
+    "difficulty": "Dễ",
+    "description": "# Bài 23: Kiểm tra hai số có phải là ước của nhau không\n\nViết chương trình nhập vào hai số nguyên dương `a` và `b`.\n\nHãy kiểm tra:\n\n- `b` có phải là ước của `a` không.\n- `a` có phải là ước của `b` không.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên dương `a`\n- Dòng 2 chứa số nguyên dương `b`\n\n## Dữ liệu ra\n\nIn đúng 2 dòng.\n\nDòng 1 kiểm tra `b` có phải là ước của `a` không:\n\n```text\nb la uoc cua a\n```\n\nhoặc\n\n```text\nb khong la uoc cua a\n```\n\nDòng 2 kiểm tra `a` có phải là ước của `b` không:\n\n```text\na la uoc cua b\n```\n\nhoặc\n\n```text\na khong la uoc cua b\n```\n\nTrong đó `a`, `b` là giá trị đã nhập.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n10 khong la uoc cua 5\n5 la uoc cua 10\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng 2 dòng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+        "explanation": "10 không chia hết cho 5, còn 10 chia hết cho 5."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T14:51:03.008Z",
+    "updated_at": "2026-06-25T14:51:03.008Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:51:03.008Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 23,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "4f5383a5-12dc-4942-b35b-bd5aaeb5f45a",
+    "slug": "bai-24-tim-gia-tri-nho-nhat",
+    "title": "Bài 24: Tìm giá trị nhỏ nhất trong hai số",
+    "difficulty": "Dễ",
+    "description": "# Bài 24: Tìm giá trị nhỏ nhất trong hai số\n\nViết chương trình nhập vào hai số nguyên `a` và `b`.\n\nHãy tìm giá trị nhỏ nhất trong hai số đó.\n\n## Dữ liệu vào\n\nGồm 2 dòng:\n\n- Dòng 1 chứa số nguyên `a`\n- Dòng 2 chứa số nguyên `b`\n\n## Dữ liệu ra\n\nIn kết quả theo dạng:\n\n```text\nx la gia tri nho nhat\n```\n\nTrong đó `x` là giá trị nhỏ nhất trong hai số `a` và `b`.\n\n## Ví dụ\n\nInput:\n\n```text\n5\n10\n```\n\nOutput:\n\n```text\n5 la gia tri nho nhat\n```\n\n## Lưu ý\n\nKhi nộp bài trên hệ thống, chỉ in đúng kết quả yêu cầu.\nKhông in các dòng như “Nhập n:”, “nhập a:”, “nhập b:”, “nhập c:”.\nKhông in dòng `nhap a:` hoặc `nhap b:`.\nChỉ in đúng kết quả.",
+    "starter_code": "# Viet chuong trinh cua em o day\n",
+    "examples": [
+      {
+        "input": "5\n10\n",
+        "output": "5 la gia tri nho nhat\n",
+        "explanation": "5 nhỏ hơn 10."
+      }
+    ],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1000,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T14:51:03.008Z",
+    "updated_at": "2026-06-25T14:51:03.008Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T14:51:03.008Z",
+    "source": "SimpleOJ - Bài tập cơ bản",
+    "order_index": 24,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "e197efb3-b273-478a-8d4a-03de538b826b",
+    "slug": "p-del-1782399723528",
+    "title": "Group Test Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T15:02:04.410Z",
+    "updated_at": "2026-06-25T15:02:04.410Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T15:02:04.410Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 800,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "a3f94bc8-3ab3-4740-a855-38df5772144a",
+    "slug": "test-import-1",
+    "title": "Test Import 1",
+    "difficulty": "Dễ",
+    "description": "Description 1",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T15:02:22.027Z",
+    "updated_at": "2026-06-25T15:02:22.027Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T15:02:21.143Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "2f16a1df-5a78-4d0b-92d4-14d7174ace1c",
+    "slug": "test-import-2",
+    "title": "Test Import 2",
+    "difficulty": "Dễ",
+    "description": "Description 2",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T15:02:22.027Z",
+    "updated_at": "2026-06-25T15:02:22.027Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T15:02:21.145Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "0a59031a-a479-44d4-9dce-fb633f5f7c20",
+    "slug": "test-update-slug",
+    "title": "Updated Title",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T15:02:37.307Z",
+    "updated_at": "2026-06-25T15:02:42.142Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T15:02:41.065Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1000,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  },
+  {
+    "id": "b53a8349-c75f-4d5b-ba6d-361da735c965",
+    "slug": "old-format-slug",
+    "title": "Old Format Problem",
+    "difficulty": "Dễ",
+    "description": "Description",
+    "starter_code": "print(\"Hello\")",
+    "examples": [],
+    "time_limit_minutes": 30,
+    "execution_limit_ms": 1500,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T15:02:50.586Z",
+    "updated_at": "2026-06-25T15:02:50.586Z",
+    "max_score": 100,
+    "passing_score": 100,
+    "published_at": "2026-06-25T15:02:49.121Z",
+    "source": null,
+    "order_index": 0,
+    "rating": 1200,
+    "compare_mode": "token",
+    "number_tolerance": 0.000001
+  }
+]
+```
+
+### File: `backups/problem_assignments-reset-20260625-181549.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignments-reset-20260625-181628.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignments-reset-20260625-181944.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignments-reset-20260625-184324.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignments-reset-20260625-184454.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignments-reset-20260625-184543.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignments-reset-20260625-184810.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignments-reset-20260625-214200.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignments-reset-20260625-215053.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignments-reset-20260625-220522.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignment_targets-reset-20260625-181549.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignment_targets-reset-20260625-181628.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignment_targets-reset-20260625-181944.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignment_targets-reset-20260625-184324.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignment_targets-reset-20260625-184454.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignment_targets-reset-20260625-184543.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignment_targets-reset-20260625-184810.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignment_targets-reset-20260625-214200.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignment_targets-reset-20260625-215053.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_assignment_targets-reset-20260625-220522.json`
+
+```json
+[]
+```
+
+### File: `backups/problem_groups-reset-20260625-181549.json`
+
+```json
+[
+  {
+    "id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "slug": "bai-tap-co-ban",
+    "name": "Bài tập cơ bản",
+    "description": "Các bài tập căn bản cho lập trình viên mới bắt đầu",
+    "group_type": "BASIC",
+    "color": "#2563eb",
+    "icon": "code",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T17:31:46.113Z",
+    "updated_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "id": "0a988f7d-9f83-4407-92fc-fb00ca4abf68",
+    "slug": "bai-on-luyen",
+    "name": "Bài ôn luyện",
+    "description": "Các bài tập thực hành nâng cao kỹ năng tư duy",
+    "group_type": "PRACTICE",
+    "color": "#10b981",
+    "icon": "practice",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T17:31:46.113Z",
+    "updated_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "id": "9c495127-ae31-47a5-8fd4-91d726014a4f",
+    "slug": "group-del-1782322702327",
+    "name": "Nhóm Xóa",
+    "description": "",
+    "group_type": "CUSTOM",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-24T17:38:22.481Z",
+    "updated_at": "2026-06-24T17:38:22.481Z"
+  },
+  {
+    "id": "7857827b-6c12-49fc-97f7-76e8b6b67e61",
+    "slug": "temp-test-group-1782386104099",
+    "name": "Temp Group",
+    "description": "Temporary",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:15:04.772Z",
+    "updated_at": "2026-06-25T11:15:04.772Z"
+  },
+  {
+    "id": "412368c4-8005-4a36-b894-57983d4ec4a7",
+    "slug": "temp-test-group-1782386144866",
+    "name": "Temp Group",
+    "description": "Temporary",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:15:45.632Z",
+    "updated_at": "2026-06-25T11:15:45.632Z"
+  }
+]
+```
+
+### File: `backups/problem_groups-reset-20260625-181628.json`
+
+```json
+[
+  {
+    "id": "44e6d5ad-55c3-476a-b58c-18f7b5cf42c9",
+    "slug": "bai-tap-co-ban",
+    "name": "Bài tập cơ bản",
+    "description": "Nhóm bài tập cơ bản giúp học sinh luyện điều kiện, so sánh, chia lấy dư và công thức toán học.",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 1,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:15:54.231Z",
+    "updated_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "a49f2476-f88f-4367-b22a-6c93ea3636cd",
+    "slug": "temp-test-group-1782386183766",
+    "name": "Temp Group",
+    "description": "Temporary",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:24.440Z",
+    "updated_at": "2026-06-25T11:16:24.440Z"
+  },
+  {
+    "id": "a79e6eb3-76bb-45eb-9fbc-837918ad0425",
+    "slug": "group-a-1782386186037",
+    "name": "Nhóm A",
+    "description": "",
+    "group_type": "CUSTOM",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:26.809Z",
+    "updated_at": "2026-06-25T11:16:26.809Z"
+  },
+  {
+    "id": "6b409cd8-18ec-4135-b45c-f61519e56542",
+    "slug": "group-b-1782386187087",
+    "name": "Nhóm B",
+    "description": "",
+    "group_type": "CUSTOM",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:27.921Z",
+    "updated_at": "2026-06-25T11:16:30.378Z"
+  }
+]
+```
+
+### File: `backups/problem_groups-reset-20260625-181944.json`
+
+```json
+[
+  {
+    "id": "e5136fbe-7aba-45c8-8cb7-c19651d38aab",
+    "slug": "temp-test-group-1782386380361",
+    "name": "Temp Group",
+    "description": "Temporary",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "ec9540ce-d050-4a94-861c-fa11cfa10c08",
+    "created_at": "2026-06-25T11:19:41.024Z",
+    "updated_at": "2026-06-25T11:19:41.024Z"
+  },
+  {
+    "id": "c04396c1-3cbe-4e3a-8cf3-2f32897c4c35",
+    "slug": "bai-tap-co-ban",
+    "name": "Bài tập cơ bản",
+    "description": "Nhóm bài tập cơ bản giúp học sinh luyện điều kiện, so sánh, chia lấy dư và công thức toán học.",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 1,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:16:32.389Z",
+    "updated_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "44f376cb-5b54-424c-8e6f-124968732844",
+    "slug": "bai-on-luyen",
+    "name": "Bài ôn luyện",
+    "description": "Các bài tập thực hành nâng cao kỹ năng tư duy",
+    "group_type": "PRACTICE",
+    "color": "#10b981",
+    "icon": "practice",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-06-25T11:17:04.368Z",
+    "updated_at": "2026-06-25T11:17:04.368Z"
+  }
+]
+```
+
+### File: `backups/problem_groups-reset-20260625-184324.json`
+
+```json
+[
+  {
+    "id": "0e8e4e95-f8bc-46f0-8d7f-97ca4861f603",
+    "slug": "bai-tap-co-ban",
+    "name": "Bài tập cơ bản",
+    "description": "Nhóm bài tập cơ bản giúp học sinh luyện điều kiện, so sánh, chia lấy dư và công thức toán học.",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 1,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:19:49.012Z",
+    "updated_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "213b0347-f1f2-49ff-955d-b22eda303803",
+    "slug": "bai-on-luyen",
+    "name": "Bài ôn luyện",
+    "description": "Các bài tập thực hành nâng cao kỹ năng tư duy",
+    "group_type": "PRACTICE",
+    "color": "#10b981",
+    "icon": "practice",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-06-25T11:22:59.913Z",
+    "updated_at": "2026-06-25T11:22:59.913Z"
+  }
+]
+```
+
+### File: `backups/problem_groups-reset-20260625-184454.json`
+
+```json
+[
+  {
+    "id": "c13ebac3-d817-43f1-a7ec-c98a2f6cee03",
+    "slug": "bai-tap-co-ban",
+    "name": "Bài tập cơ bản",
+    "description": "Nhóm bài tập cơ bản giúp học sinh luyện điều kiện, so sánh, chia lấy dư và công thức toán học.",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 1,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:43:28.555Z",
+    "updated_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "af9f5a92-1b15-4b5d-bb32-d21595406c56",
+    "slug": "temp-test-group-1782387890134",
+    "name": "Temp Group",
+    "description": "Temporary",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T11:44:50.806Z",
+    "updated_at": "2026-06-25T11:44:50.806Z"
+  }
+]
+```
+
+### File: `backups/problem_groups-reset-20260625-184543.json`
+
+```json
+[
+  {
+    "id": "324dc53e-65f9-42f5-bd26-89b80a0229e4",
+    "slug": "bai-tap-co-ban",
+    "name": "Bài tập cơ bản",
+    "description": "Nhóm bài tập cơ bản giúp học sinh luyện điều kiện, so sánh, chia lấy dư và công thức toán học.",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 1,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:44:58.224Z",
+    "updated_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "2325d4a2-1844-45a2-ac48-c0afd8e21859",
+    "slug": "temp-test-group-1782387938598",
+    "name": "Temp Group",
+    "description": "Temporary",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T11:45:39.272Z",
+    "updated_at": "2026-06-25T11:45:39.272Z"
+  }
+]
+```
+
+### File: `backups/problem_groups-reset-20260625-184810.json`
+
+```json
+[
+  {
+    "id": "04616ed4-0288-4efd-8f77-464fc35b0382",
+    "slug": "bai-tap-co-ban",
+    "name": "Bài tập cơ bản",
+    "description": "Nhóm bài tập cơ bản giúp học sinh luyện điều kiện, so sánh, chia lấy dư và công thức toán học.",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 1,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:45:48.739Z",
+    "updated_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "061781a0-a9a9-4410-8763-1ce3c558bc9e",
+    "slug": "temp-test-group-1782388086398",
+    "name": "Temp Group",
+    "description": "Temporary",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T11:48:07.071Z",
+    "updated_at": "2026-06-25T11:48:07.071Z"
+  }
+]
+```
+
+### File: `backups/problem_groups-reset-20260625-214200.json`
+
+```json
+[
+  {
+    "id": "292e864f-16b9-448d-9074-99a832074f03",
+    "slug": "bai-tap-co-ban",
+    "name": "Bài tập cơ bản",
+    "description": "Nhóm bài tập cơ bản giúp học sinh luyện điều kiện, so sánh, chia lấy dư và công thức toán học.",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 1,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T11:48:16.170Z",
+    "updated_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "344c3dff-2f2b-4f85-b72e-8b887263b3c3",
+    "slug": "temp-test-group-1782398513143",
+    "name": "Temp Group",
+    "description": "Temporary",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T14:41:53.855Z",
+    "updated_at": "2026-06-25T14:41:53.855Z"
+  }
+]
+```
+
+### File: `backups/problem_groups-reset-20260625-215053.json`
+
+```json
+[
+  {
+    "id": "a1141356-5f54-4832-81d5-e3780499c871",
+    "slug": "bai-tap-co-ban",
+    "name": "Bài tập cơ bản",
+    "description": "Nhóm bài tập cơ bản giúp học sinh luyện điều kiện, so sánh, chia lấy dư và công thức toán học.",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 1,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T14:42:06.165Z",
+    "updated_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "1eeb1de3-b914-43c0-b72e-a08c0428458d",
+    "slug": "temp-test-group-1782399042090",
+    "name": "Temp Group",
+    "description": "Temporary",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T14:50:42.834Z",
+    "updated_at": "2026-06-25T14:50:42.834Z"
+  }
+]
+```
+
+### File: `backups/problem_groups-reset-20260625-220522.json`
+
+```json
+[
+  {
+    "id": "fb5444fc-3d8f-491c-a339-29952db114a9",
+    "slug": "temp-test-group-1782399912157",
+    "name": "Temp Group",
+    "description": "Temporary",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T15:05:12.891Z",
+    "updated_at": "2026-06-25T15:05:12.891Z"
+  },
+  {
+    "id": "f16a9d61-f1ab-4b2f-88b2-1d336e444dce",
+    "slug": "bai-tap-co-ban",
+    "name": "Bài tập cơ bản",
+    "description": "Nhóm bài tập cơ bản giúp học sinh luyện điều kiện, so sánh, chia lấy dư và công thức toán học.",
+    "group_type": "BASIC",
+    "color": "",
+    "icon": "",
+    "order_index": 1,
+    "is_active": true,
+    "created_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "created_at": "2026-06-25T14:51:03.008Z",
+    "updated_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "c71b3bb1-80ee-422f-b1c7-71e2165cb72e",
+    "slug": "group-del-1782399723936",
+    "name": "Nhóm Xóa",
+    "description": "",
+    "group_type": "CUSTOM",
+    "color": "",
+    "icon": "",
+    "order_index": 0,
+    "is_active": true,
+    "created_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "created_at": "2026-06-25T15:02:05.468Z",
+    "updated_at": "2026-06-25T15:02:05.468Z"
+  }
+]
+```
+
+### File: `backups/problem_group_items-reset-20260625-181549.json`
+
+```json
+[
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "0a988f7d-9f83-4407-92fc-fb00ca4abf68",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:43:52.027Z"
+  },
+  {
+    "group_id": "0a988f7d-9f83-4407-92fc-fb00ca4abf68",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:43:52.027Z"
+  },
+  {
+    "group_id": "0a988f7d-9f83-4407-92fc-fb00ca4abf68",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:43:52.027Z"
+  },
+  {
+    "group_id": "0a988f7d-9f83-4407-92fc-fb00ca4abf68",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:43:52.027Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:31:46.113Z"
+  },
+  {
+    "group_id": "0a988f7d-9f83-4407-92fc-fb00ca4abf68",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:43:52.027Z"
+  },
+  {
+    "group_id": "7857827b-6c12-49fc-97f7-76e8b6b67e61",
+    "problem_id": "e8ce9372-5538-4ab3-bd86-e1d15511fa49",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:15:05.180Z"
+  },
+  {
+    "group_id": "412368c4-8005-4a36-b894-57983d4ec4a7",
+    "problem_id": "5d95c3b2-c114-4dfa-aa3b-fe3648d35bb2",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:15:45.842Z"
+  },
+  {
+    "group_id": "9c495127-ae31-47a5-8fd4-91d726014a4f",
+    "problem_id": "d1d53cb5-8117-432f-9120-7960442cafe6",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:38:22.481Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "d1d53cb5-8117-432f-9120-7960442cafe6",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-24T17:41:08.812Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "d4c31b72-71ba-4ed5-8fa8-504c362b608e",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T10:48:06.725Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "ec9fff3e-edcc-4b4b-823b-5cd6a62b18e4",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T10:48:06.725Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "646cd550-5c50-4a50-bd76-13c2eb93b7dc",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T10:48:10.957Z"
+  },
+  {
+    "group_id": "2521cbad-1f60-4677-92f0-c873e61003e6",
+    "problem_id": "7482d3f0-9b17-48d7-81f1-4f1a3ae4acb2",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T10:48:12.647Z"
+  }
+]
+```
+
+### File: `backups/problem_group_items-reset-20260625-181628.json`
+
+```json
+[
+  {
+    "group_id": "44e6d5ad-55c3-476a-b58c-18f7b5cf42c9",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 20,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "group_id": "44e6d5ad-55c3-476a-b58c-18f7b5cf42c9",
+    "problem_id": "652d0f97-f2a2-428b-bc49-aa80afbd40ca",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 21,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "group_id": "44e6d5ad-55c3-476a-b58c-18f7b5cf42c9",
+    "problem_id": "8e957bdc-e621-4950-b1bc-cb06dd8564cf",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 22,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "group_id": "44e6d5ad-55c3-476a-b58c-18f7b5cf42c9",
+    "problem_id": "9977d234-7110-45dc-8544-33008234c7ed",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 23,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "group_id": "44e6d5ad-55c3-476a-b58c-18f7b5cf42c9",
+    "problem_id": "f1f9d9a6-ab67-4486-bc41-cadd9d09c7a5",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 24,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "group_id": "a49f2476-f88f-4367-b22a-6c93ea3636cd",
+    "problem_id": "3ed9d43d-25ac-44f1-a980-b63e4b691c5e",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:24.674Z"
+  },
+  {
+    "group_id": "44e6d5ad-55c3-476a-b58c-18f7b5cf42c9",
+    "problem_id": "6320374d-89dd-47e0-acc8-945384f98cf2",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:25.021Z"
+  },
+  {
+    "group_id": "44e6d5ad-55c3-476a-b58c-18f7b5cf42c9",
+    "problem_id": "2223e004-c90d-47c7-a73f-ccf8b2e3aea5",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:25.021Z"
+  },
+  {
+    "group_id": "a79e6eb3-76bb-45eb-9fbc-837918ad0425",
+    "problem_id": "16a94f31-2d52-44c9-b823-df90f4a97a62",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:26.809Z"
+  },
+  {
+    "group_id": "44e6d5ad-55c3-476a-b58c-18f7b5cf42c9",
+    "problem_id": "3724bb15-e96f-4755-8d32-8c02c65322b8",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:28.925Z"
+  },
+  {
+    "group_id": "6b409cd8-18ec-4135-b45c-f61519e56542",
+    "problem_id": "b76faa92-6f3a-47c3-a031-015b3f7458f1",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:30.378Z"
+  },
+  {
+    "group_id": "6b409cd8-18ec-4135-b45c-f61519e56542",
+    "problem_id": "16a94f31-2d52-44c9-b823-df90f4a97a62",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 1,
+    "created_at": "2026-06-25T11:16:30.378Z"
+  }
+]
+```
+
+### File: `backups/problem_group_items-reset-20260625-181944.json`
+
+```json
+[
+  {
+    "group_id": "c04396c1-3cbe-4e3a-8cf3-2f32897c4c35",
+    "problem_id": "334d5b8e-33e2-410a-9e37-f50688646244",
+    "added_by": "ec9540ce-d050-4a94-861c-fa11cfa10c08",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:18:32.110Z"
+  },
+  {
+    "group_id": "c04396c1-3cbe-4e3a-8cf3-2f32897c4c35",
+    "problem_id": "361f7650-0c10-4966-bbab-ab9606f920e1",
+    "added_by": "ec9540ce-d050-4a94-861c-fa11cfa10c08",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:18:32.110Z"
+  },
+  {
+    "group_id": "c04396c1-3cbe-4e3a-8cf3-2f32897c4c35",
+    "problem_id": "ab72baa4-2bd1-4c48-b191-9f7bca9c5564",
+    "added_by": "ec9540ce-d050-4a94-861c-fa11cfa10c08",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:18:35.944Z"
+  },
+  {
+    "group_id": "c04396c1-3cbe-4e3a-8cf3-2f32897c4c35",
+    "problem_id": "74d75112-2d7a-460b-bd12-e50690ac5b32",
+    "added_by": "ec9540ce-d050-4a94-861c-fa11cfa10c08",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:18:37.551Z"
+  },
+  {
+    "group_id": "e5136fbe-7aba-45c8-8cb7-c19651d38aab",
+    "problem_id": "f14b4105-decf-4191-93bd-51ff46d37067",
+    "added_by": "ec9540ce-d050-4a94-861c-fa11cfa10c08",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:19:41.226Z"
+  },
+  {
+    "group_id": "c04396c1-3cbe-4e3a-8cf3-2f32897c4c35",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 20,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "group_id": "c04396c1-3cbe-4e3a-8cf3-2f32897c4c35",
+    "problem_id": "bff6820a-ec03-4613-97a3-af30884dbf38",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 21,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "group_id": "c04396c1-3cbe-4e3a-8cf3-2f32897c4c35",
+    "problem_id": "ed2c8159-349e-43d2-b428-526783e310c6",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 22,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "group_id": "c04396c1-3cbe-4e3a-8cf3-2f32897c4c35",
+    "problem_id": "ff035e7d-01d0-4459-a664-9f7b8640f38e",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 23,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "group_id": "c04396c1-3cbe-4e3a-8cf3-2f32897c4c35",
+    "problem_id": "a579d407-c0cd-4dfb-ba0f-fa796dd4e2cc",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 24,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "group_id": "c04396c1-3cbe-4e3a-8cf3-2f32897c4c35",
+    "problem_id": "ee8e6523-75f7-4557-b864-b6c8e30308a5",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "group_id": "44f376cb-5b54-424c-8e6f-124968732844",
+    "problem_id": "aea3aaaa-f46b-4b12-8a7d-1ae52dbcb50d",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "group_id": "44f376cb-5b54-424c-8e6f-124968732844",
+    "problem_id": "c299b6f4-7769-48f8-92a7-b979f9da19ca",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "group_id": "44f376cb-5b54-424c-8e6f-124968732844",
+    "problem_id": "57e42ca4-c99a-482f-940d-1207ad3ce284",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "group_id": "44f376cb-5b54-424c-8e6f-124968732844",
+    "problem_id": "c53ad866-c68a-4ba4-bac4-72993a77214f",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "group_id": "44f376cb-5b54-424c-8e6f-124968732844",
+    "problem_id": "17546999-f2a3-4787-b2bf-38ba00e693eb",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "group_id": "44f376cb-5b54-424c-8e6f-124968732844",
+    "problem_id": "1b78cb95-fcb1-41bf-9c20-fe3c012848da",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "group_id": "44f376cb-5b54-424c-8e6f-124968732844",
+    "problem_id": "23224a7f-4a78-4385-b4af-ee5fcb0b7fd1",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "group_id": "44f376cb-5b54-424c-8e6f-124968732844",
+    "problem_id": "38a86113-ffe5-43ae-9a4f-fa99c8c56d1c",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "group_id": "44f376cb-5b54-424c-8e6f-124968732844",
+    "problem_id": "e8136e92-ace3-4b8c-9022-19a7f2e031ef",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "group_id": "44f376cb-5b54-424c-8e6f-124968732844",
+    "problem_id": "4fb05b80-56a5-44c4-8d59-c072caf41b3d",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  }
+]
+```
+
+### File: `backups/problem_group_items-reset-20260625-184324.json`
+
+```json
+[
+  {
+    "group_id": "0e8e4e95-f8bc-46f0-8d7f-97ca4861f603",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 20,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "group_id": "0e8e4e95-f8bc-46f0-8d7f-97ca4861f603",
+    "problem_id": "633eb86a-ac9d-4237-8c8e-852735286423",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 21,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "group_id": "0e8e4e95-f8bc-46f0-8d7f-97ca4861f603",
+    "problem_id": "3d62e4bd-b22c-4498-ad28-b4bcdf41e2aa",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 22,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "group_id": "0e8e4e95-f8bc-46f0-8d7f-97ca4861f603",
+    "problem_id": "bcc81a8a-28af-4cb7-8644-ca22b6243431",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 23,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "group_id": "0e8e4e95-f8bc-46f0-8d7f-97ca4861f603",
+    "problem_id": "1e79a50d-4f9c-4c16-b934-1f60217c9bc4",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 24,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "group_id": "0e8e4e95-f8bc-46f0-8d7f-97ca4861f603",
+    "problem_id": "b5218807-1aca-4986-9925-1e25d327c337",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "group_id": "213b0347-f1f2-49ff-955d-b22eda303803",
+    "problem_id": "eabf9d59-c2b9-45ac-b47f-dde684e6e203",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "group_id": "213b0347-f1f2-49ff-955d-b22eda303803",
+    "problem_id": "8dd0a498-b2e8-41b4-809d-2a809df780e7",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "group_id": "213b0347-f1f2-49ff-955d-b22eda303803",
+    "problem_id": "685a4a62-1e55-4f45-a947-dc1ea5b50577",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "group_id": "213b0347-f1f2-49ff-955d-b22eda303803",
+    "problem_id": "f75e68e1-bb37-434a-9c06-5f189a9eb82f",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "group_id": "213b0347-f1f2-49ff-955d-b22eda303803",
+    "problem_id": "1d6fed76-6503-4ff6-92e3-7139ea3d6c6d",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "group_id": "213b0347-f1f2-49ff-955d-b22eda303803",
+    "problem_id": "96f6e3d3-19d8-4324-894a-87190204beac",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "group_id": "213b0347-f1f2-49ff-955d-b22eda303803",
+    "problem_id": "69c2c9f1-5716-4dbe-9610-4cc773481bc5",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "group_id": "213b0347-f1f2-49ff-955d-b22eda303803",
+    "problem_id": "742557cc-92b7-4df7-a202-8fade3fedd5a",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "group_id": "213b0347-f1f2-49ff-955d-b22eda303803",
+    "problem_id": "9f0292a7-3022-431c-a7ea-f3f29e776110",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "group_id": "213b0347-f1f2-49ff-955d-b22eda303803",
+    "problem_id": "83a2c4a5-30dd-4faa-bc86-aabe725da2be",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  }
+]
+```
+
+### File: `backups/problem_group_items-reset-20260625-184454.json`
+
+```json
+[
+  {
+    "group_id": "af9f5a92-1b15-4b5d-bb32-d21595406c56",
+    "problem_id": "d6c7107b-e147-4a99-a8bc-aea966a73f38",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:44:51.011Z"
+  },
+  {
+    "group_id": "c13ebac3-d817-43f1-a7ec-c98a2f6cee03",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 20,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "group_id": "c13ebac3-d817-43f1-a7ec-c98a2f6cee03",
+    "problem_id": "32c6ef3d-2978-4e0f-a6de-1949a071cce6",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 21,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "group_id": "c13ebac3-d817-43f1-a7ec-c98a2f6cee03",
+    "problem_id": "577cbfdc-8ebe-4754-8234-2958d456a075",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 22,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "group_id": "c13ebac3-d817-43f1-a7ec-c98a2f6cee03",
+    "problem_id": "24f76a80-4d7a-4a93-82e4-a9c072bcc797",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 23,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "group_id": "c13ebac3-d817-43f1-a7ec-c98a2f6cee03",
+    "problem_id": "935b0613-3af8-4243-b41f-5fcaecdd523c",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 24,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  }
+]
+```
+
+### File: `backups/problem_group_items-reset-20260625-184543.json`
+
+```json
+[
+  {
+    "group_id": "324dc53e-65f9-42f5-bd26-89b80a0229e4",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 20,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "group_id": "324dc53e-65f9-42f5-bd26-89b80a0229e4",
+    "problem_id": "3e08ba7e-9e2a-4f5f-904c-b6f1b3303faf",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 21,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "group_id": "324dc53e-65f9-42f5-bd26-89b80a0229e4",
+    "problem_id": "0fce3eed-2d09-45c6-9937-ad4e4e7dfbed",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 22,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "group_id": "324dc53e-65f9-42f5-bd26-89b80a0229e4",
+    "problem_id": "19a480e9-0a85-483c-b2d4-9d5f44a4e8b7",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 23,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "group_id": "324dc53e-65f9-42f5-bd26-89b80a0229e4",
+    "problem_id": "6359833a-a75c-4f5c-bd5e-b663cae29bf8",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 24,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "group_id": "2325d4a2-1844-45a2-ac48-c0afd8e21859",
+    "problem_id": "02fc7698-d3d6-489d-9131-e390b09147ec",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:45:39.474Z"
+  }
+]
+```
+
+### File: `backups/problem_group_items-reset-20260625-184810.json`
+
+```json
+[
+  {
+    "group_id": "04616ed4-0288-4efd-8f77-464fc35b0382",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 20,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "group_id": "04616ed4-0288-4efd-8f77-464fc35b0382",
+    "problem_id": "63a6e1df-6554-4200-bcb6-a8c3742567bd",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 21,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "group_id": "04616ed4-0288-4efd-8f77-464fc35b0382",
+    "problem_id": "32028589-d0b4-41d3-a7e7-13b4b66f8cf5",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 22,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "group_id": "04616ed4-0288-4efd-8f77-464fc35b0382",
+    "problem_id": "3a377eff-6fd8-46cf-bb2b-edf8fe5781bd",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 23,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "group_id": "04616ed4-0288-4efd-8f77-464fc35b0382",
+    "problem_id": "3eefee81-9be0-4d80-a4ba-b6be9951148a",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 24,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "group_id": "04616ed4-0288-4efd-8f77-464fc35b0382",
+    "problem_id": "ad4c51f2-fd64-48f1-bab0-aa5b8370e2b2",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:46:55.275Z"
+  },
+  {
+    "group_id": "04616ed4-0288-4efd-8f77-464fc35b0382",
+    "problem_id": "924bb2af-8786-448d-bed4-1308e99f6c80",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:46:55.275Z"
+  },
+  {
+    "group_id": "04616ed4-0288-4efd-8f77-464fc35b0382",
+    "problem_id": "498fcd27-80d3-4032-b2ab-bd17f9949575",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:46:59.374Z"
+  },
+  {
+    "group_id": "04616ed4-0288-4efd-8f77-464fc35b0382",
+    "problem_id": "fd5c7ec5-d1a8-44de-8963-96b7d9567d0c",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:47:01.214Z"
+  },
+  {
+    "group_id": "061781a0-a9a9-4410-8763-1ce3c558bc9e",
+    "problem_id": "c4fa516e-a3d9-4eef-bf97-2db1113b9664",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T11:48:07.312Z"
+  }
+]
+```
+
+### File: `backups/problem_group_items-reset-20260625-214200.json`
+
+```json
+[
+  {
+    "group_id": "292e864f-16b9-448d-9074-99a832074f03",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 20,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "group_id": "292e864f-16b9-448d-9074-99a832074f03",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 21,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "group_id": "292e864f-16b9-448d-9074-99a832074f03",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 22,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "group_id": "292e864f-16b9-448d-9074-99a832074f03",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 23,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "group_id": "292e864f-16b9-448d-9074-99a832074f03",
+    "problem_id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 24,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "group_id": "292e864f-16b9-448d-9074-99a832074f03",
+    "problem_id": "31e989bc-918b-4d02-9b41-1d4847ea1446",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T14:40:12.268Z"
+  },
+  {
+    "group_id": "292e864f-16b9-448d-9074-99a832074f03",
+    "problem_id": "40f96ec3-40bd-429a-a860-4c2c84badf15",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T14:40:12.268Z"
+  },
+  {
+    "group_id": "292e864f-16b9-448d-9074-99a832074f03",
+    "problem_id": "ddbc838b-4473-4dbe-8244-26dcdc1721d6",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T14:40:19.656Z"
+  },
+  {
+    "group_id": "292e864f-16b9-448d-9074-99a832074f03",
+    "problem_id": "5ec853b7-c0a9-44d1-b39e-53c2886c7bfd",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T14:40:23.256Z"
+  },
+  {
+    "group_id": "344c3dff-2f2b-4f85-b72e-8b887263b3c3",
+    "problem_id": "97d34c29-54ee-462a-8ac1-32d248b98bb8",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T14:41:54.270Z"
+  }
+]
+```
+
+### File: `backups/problem_group_items-reset-20260625-215053.json`
+
+```json
+[
+  {
+    "group_id": "a1141356-5f54-4832-81d5-e3780499c871",
+    "problem_id": "40fd0dcd-aa2b-45a3-9d79-2709735c362d",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T14:48:38.176Z"
+  },
+  {
+    "group_id": "a1141356-5f54-4832-81d5-e3780499c871",
+    "problem_id": "395ba749-5b9d-4533-a973-c0f84633e712",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T14:48:38.176Z"
+  },
+  {
+    "group_id": "a1141356-5f54-4832-81d5-e3780499c871",
+    "problem_id": "973a35b5-95f9-4b73-b153-1661c230cf56",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T14:48:48.168Z"
+  },
+  {
+    "group_id": "a1141356-5f54-4832-81d5-e3780499c871",
+    "problem_id": "4ab23438-fb9e-412f-b190-0a713fdc5120",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T14:48:52.487Z"
+  },
+  {
+    "group_id": "1eeb1de3-b914-43c0-b72e-a08c0428458d",
+    "problem_id": "e49a3862-3f69-450c-b8aa-5e2e152b1661",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T14:50:43.514Z"
+  },
+  {
+    "group_id": "a1141356-5f54-4832-81d5-e3780499c871",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 20,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "group_id": "a1141356-5f54-4832-81d5-e3780499c871",
+    "problem_id": "f7a0f70a-c030-4844-9a87-0b4a124508d3",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 21,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "group_id": "a1141356-5f54-4832-81d5-e3780499c871",
+    "problem_id": "0e4553a0-f16a-4e4f-9880-3f4f99386d25",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 22,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "group_id": "a1141356-5f54-4832-81d5-e3780499c871",
+    "problem_id": "0e8cda00-193b-46c5-b3ba-a400da3b64b1",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 23,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "group_id": "a1141356-5f54-4832-81d5-e3780499c871",
+    "problem_id": "5cd80379-884e-4cc9-a7b3-caad16d36947",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 24,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  }
+]
+```
+
+### File: `backups/problem_group_items-reset-20260625-220522.json`
+
+```json
+[
+  {
+    "group_id": "f16a9d61-f1ab-4b2f-88b2-1d336e444dce",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 20,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "group_id": "f16a9d61-f1ab-4b2f-88b2-1d336e444dce",
+    "problem_id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 21,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "group_id": "f16a9d61-f1ab-4b2f-88b2-1d336e444dce",
+    "problem_id": "ad29dbc9-8210-46c9-ad1b-05d697bd3273",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 22,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "group_id": "f16a9d61-f1ab-4b2f-88b2-1d336e444dce",
+    "problem_id": "c8f08503-bdf3-4386-8164-96d6279210a8",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 23,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "group_id": "f16a9d61-f1ab-4b2f-88b2-1d336e444dce",
+    "problem_id": "4f5383a5-12dc-4942-b35b-bd5aaeb5f45a",
+    "added_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "order_index": 24,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "group_id": "c71b3bb1-80ee-422f-b1c7-71e2165cb72e",
+    "problem_id": "e197efb3-b273-478a-8d4a-03de538b826b",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T15:02:05.468Z"
+  },
+  {
+    "group_id": "f16a9d61-f1ab-4b2f-88b2-1d336e444dce",
+    "problem_id": "a3f94bc8-3ab3-4740-a855-38df5772144a",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T15:02:22.027Z"
+  },
+  {
+    "group_id": "f16a9d61-f1ab-4b2f-88b2-1d336e444dce",
+    "problem_id": "2f16a1df-5a78-4d0b-92d4-14d7174ace1c",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T15:02:22.027Z"
+  },
+  {
+    "group_id": "f16a9d61-f1ab-4b2f-88b2-1d336e444dce",
+    "problem_id": "0a59031a-a479-44d4-9dce-fb633f5f7c20",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T15:02:42.142Z"
+  },
+  {
+    "group_id": "f16a9d61-f1ab-4b2f-88b2-1d336e444dce",
+    "problem_id": "b53a8349-c75f-4d5b-ba6d-361da735c965",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T15:02:50.586Z"
+  },
+  {
+    "group_id": "fb5444fc-3d8f-491c-a339-29952db114a9",
+    "problem_id": "0e716344-d724-44a6-a867-7b29d367a32f",
+    "added_by": "9979bcb9-7bbd-4949-b184-d7f8021e1068",
+    "order_index": 0,
+    "created_at": "2026-06-25T15:05:13.186Z"
   }
 ]
 ```
@@ -4007,6 +10202,9503 @@ TERMINAL_MAX_OUTPUT_BYTES=100000
 ]
 ```
 
+### File: `backups/problem_testcases-reset-20260625-181549.json`
+
+```json
+[
+  {
+    "id": "d25eda27-878e-496d-9a70-976a05e9c272",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "40\n500000.5",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 12500.0125 dong",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "3b0d2e9f-5fb3-4693-be2e-a0843f57cd23",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "30\n300000.0",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 10000.0 dong",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "4b7209b4-94f4-4163-97a2-fdefe5b637c8",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "45\n900000.0",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 20000.0 dong",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "3e813d41-b8eb-4214-bc46-226e31590ea1",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "13\n150000.25",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 11538.48076923077 dong",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "12532c53-9d69-4b67-8d97-d5da3dea76ed",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "input": "1\n99.9",
+    "expected_output": "Trung binh moi hoc sinh nhan qua tri gia: 99.9 dong",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "71e4cee0-c83d-4353-bb46-3d43b4a144fa",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "35\n15",
+    "expected_output": "Số bạn Nữ nhiều hơn số bạn Nam",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "3e2d9654-36c5-43a9-b7c2-1217cedf3e39",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "35\n20",
+    "expected_output": "Số bạn Nam nhiều hơn số bạn Nữ",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "fdda4b95-31a5-4ed6-b5ed-41300dbf9692",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "30\n15",
+    "expected_output": "Số bạn Nam bằng số bạn Nữ",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "cf342de4-a42f-400b-96b1-a6f8a6aff0cd",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "40\n0",
+    "expected_output": "Số bạn Nữ nhiều hơn số bạn Nam",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "1ca87d64-a7f8-46cc-a944-4d4752163b25",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "input": "40\n40",
+    "expected_output": "Số bạn Nam nhiều hơn số bạn Nữ",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "38bc1088-a46b-46e5-acf2-084cecf8d58d",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "10.5\n4.2",
+    "expected_output": "Chu vi (so thuc): 29.4\nChu vi (so nguyen): 29",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "1dda0414-45a2-4130-99c6-bcc7da1c2edc",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "5.0\n3.0",
+    "expected_output": "Chu vi (so thuc): 16.0\nChu vi (so nguyen): 16",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "943f1e1d-470e-4378-912b-e8144fcc368b",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "2.25\n1.15",
+    "expected_output": "Chu vi (so thuc): 6.8\nChu vi (so nguyen): 6",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "401f6681-f586-4aa7-8a2e-7072b9898232",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "100.123\n50.456",
+    "expected_output": "Chu vi (so thuc): 301.158\nChu vi (so nguyen): 301",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "774ef14b-a90d-4b13-8af7-db703c6a9576",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "input": "0.5\n0.25",
+    "expected_output": "Chu vi (so thuc): 1.5\nChu vi (so nguyen): 1",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "b7c46c42-0e82-40a6-aa7f-b2e6bdc6c1be",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "10\n3",
+    "expected_output": "a khong chia het cho b",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "414bbc9f-c4e9-46b9-ac7b-b7617dad324a",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "12\n4",
+    "expected_output": "a chia het cho b",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "c19a9bac-66d4-4f88-bb05-87c0ad47949e",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "-15\n5",
+    "expected_output": "a chia het cho b",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "aa7204cc-80e4-42db-90b7-5ed0a5774eed",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "0\n7",
+    "expected_output": "a chia het cho b",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "db1b3f78-7df5-412b-91d5-dded6a42d3ac",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "input": "7\n10",
+    "expected_output": "a khong chia het cho b",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "813ec24d-27b9-44b6-ab1d-a477a1f08f4a",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "1.42",
+    "expected_output": "Chieu cao cua ban la: 142 cm",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "9a0a6bef-51d9-4ed3-803a-3b21bab3be94",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "1.35",
+    "expected_output": "Chieu cao cua ban la: 135 cm",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "dc75273e-0e8d-4fbd-b035-21710244048e",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "1.7",
+    "expected_output": "Chieu cao cua ban la: 170 cm",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "867f89c6-8772-43b2-a2a8-708b5ad4f547",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "3\n5\n2\n",
+    "expected_output": "2\n-0.6666666667 -1\n",
+    "explanation": "Phương trình có 2 nghiệm phân biệt.",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "07ae6de3-d085-4848-a91c-c055b8de9cf6",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "1\n-2\n1\n",
+    "expected_output": "1\n1\n",
+    "explanation": "Phương trình có nghiệm kép.",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "7cb22b1f-06d9-44a1-8de5-eb690e0b3c4b",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "1\n0\n1\n",
+    "expected_output": "0\n",
+    "explanation": "Delta âm nên phương trình vô nghiệm thực.",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "eb1e7898-9f25-4977-ad54-c031fcfe14b9",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "1\n-3\n2\n",
+    "expected_output": "2\n2 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "d38bbc80-a6c0-40b7-af4d-15ac0c822a2e",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "1\n0\n-4\n",
+    "expected_output": "2\n2 -2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "72a2dc58-590a-4fc1-9e49-b9d0e8eb214a",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "-1\n0\n4\n",
+    "expected_output": "2\n-2 2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "cc772473-58e3-4357-a6c8-82e64c566ae4",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "1\n2\n5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "57461339-744f-4b34-9818-87d404fc672f",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "2\n-7\n3\n",
+    "expected_output": "2\n3 0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "a39822bc-4762-401a-8dec-81644714211c",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "5\n6\n1\n",
+    "expected_output": "2\n-0.2 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "5e7f7d48-b7bb-4ea5-9799-dde9e37ce196",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "1\n1\n0\n",
+    "expected_output": "2\n0 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "5386f4a4-9c95-4913-a337-96891f3794a4",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "1\n-1\n-1\n",
+    "expected_output": "2\n1.61803398875 -0.61803398875\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 4,
+    "order_index": 10,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "4f7a9fa1-8755-4626-af96-14f610e3695d",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "4\n4\n1\n",
+    "expected_output": "1\n-0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 11,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "070795f5-045d-48f3-b351-f3f659fc4b1a",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "100\n0\n-1\n",
+    "expected_output": "2\n0.1 -0.1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 12,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "f974d462-f0d7-411d-bc55-bcf832b74c5c",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "input": "1000\n-3000\n2000\n",
+    "expected_output": "2\n2 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 13,
+    "created_at": "2026-06-24T14:31:11.777Z"
+  },
+  {
+    "id": "a1ccf903-3598-4877-8e0e-e1d3a825389f",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "0.85",
+    "expected_output": "Chieu cao cua ban la: 85 cm",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "7a9a2795-ff96-4b12-a7f9-2ecefefcd927",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "input": "2.05",
+    "expected_output": "Chieu cao cua ban la: 205 cm",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "c88f59cf-b7fa-4252-b9c0-16c12f943cc7",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "8\n3",
+    "expected_output": "Sau khi sap xep: a = 3, b = 8",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "17fb5fbc-ae68-41cf-aa78-9f80d202ff64",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "3\n8",
+    "expected_output": "Sau khi sap xep: a = 3, b = 8",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "6cbd1877-4392-47f0-9567-8769d261a704",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "5\n5",
+    "expected_output": "Sau khi sap xep: a = 5, b = 5",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "d50df5d6-db52-41fd-a868-ca7f02432993",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "-10\n20",
+    "expected_output": "Sau khi sap xep: a = -10, b = 20",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "ca3b1404-b8c2-4778-81d1-79bd9f41848b",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "input": "50\n-50",
+    "expected_output": "Sau khi sap xep: a = -50, b = 50",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-20T12:02:43.826Z"
+  },
+  {
+    "id": "001cd08e-293e-46c2-94b2-52c33e37f323",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "3 5\n",
+    "expected_output": "8\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "c73df0da-a8b7-478f-9f3e-29167a3f548b",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "-2 10\n",
+    "expected_output": "8\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "d64116f2-04a7-459a-822a-bf40085897db",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "0 0\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "113a92cf-f7d9-4801-9711-b5c1f5a17824",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "999999 1\n",
+    "expected_output": "1000000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "f38475bd-3595-4c9e-b99b-1e89d35227d1",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "-100 -200\n",
+    "expected_output": "-300\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "69036cdd-76d5-4352-8b63-de0f176e5ebc",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "1000000000 1000000000\n",
+    "expected_output": "2000000000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "4917db0d-2636-4a27-a372-8a9706977c30",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "-1000000000 1000000000\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "ee37d3e4-ee9b-41bc-833f-a681a5fe736e",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "input": "-1000000000 -1000000000\n",
+    "expected_output": "-2000000000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "a6da9121-343b-450f-a46b-532dad4616ab",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "8\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "d17c5a96-30f4-414a-a7b2-b09e4544b6d9",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "2\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "05259d97-0977-4eda-89bd-80a91f9395f9",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "1\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "49a01c40-e009-4870-8407-ca1d3769d75d",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "3\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "651e1eb1-809b-42d2-80ba-ee16263740cc",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "4\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "3d51226c-477c-4278-b7e4-06d2e693e304",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "6\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "54be4301-443e-4663-bae8-89f2684c2414",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "99\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 6,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "3a701320-7809-4123-816c-39c5ad4b995f",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "100\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 7,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "4a353deb-6075-41da-8b88-c4c5341c90ae",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "12\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 8,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "a7afd196-58e4-4c08-97d7-2d9cfb6dedd0",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "input": "50\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 9,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "292a2a77-2e39-4a79-841d-f4ffd8bc4dd8",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "CodeForces\n",
+    "expected_output": "2 8\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "a0288bb5-4a0d-42a0-8fb7-9bccfac0cc09",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "Python3.10\n",
+    "expected_output": "1 5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "218f2d93-d274-488c-bb41-b376adf846d7",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "HELLO\n",
+    "expected_output": "5 0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "7421530b-8029-48f9-bcac-abc545cf829b",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "world\n",
+    "expected_output": "0 5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "6b0278ae-80bc-4934-8abd-8b5dcc78fff9",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "123456\n",
+    "expected_output": "0 0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "17b11482-82ac-4bb9-8ab7-303461190b4c",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "AaBbCc\n",
+    "expected_output": "3 3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "13b75753-84a6-41cf-9696-68fcde3889e2",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "aA1!bB2@cC\n",
+    "expected_output": "3 3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "def3986c-5323-4858-9284-bf3426725d28",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "Z\n",
+    "expected_output": "1 0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 7,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "a25ea7c2-bbca-4a2d-ac80-82be17a7bb72",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "z\n",
+    "expected_output": "0 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 8,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "741fcddb-df3f-491f-bb53-77f1173df6d1",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "input": "ShortString\n",
+    "expected_output": "2 9\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 9,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "69b62e35-a750-426d-a2b0-b78fa1575ea9",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "4 2\n",
+    "expected_output": "1/2\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "bac70e7a-9915-4cb5-b0a7-0c257511fed1",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "3 3\n",
+    "expected_output": "2/3\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "de1e958a-efb2-40ee-9713-f4247a7d1642",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "6 6\n",
+    "expected_output": "1/6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "d5a0af74-58a6-402c-825b-328b5e7e10db",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "1 1\n",
+    "expected_output": "1/1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "04a02515-a90f-425b-beb8-bae509314dc1",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "5 2\n",
+    "expected_output": "1/3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "971f6826-d412-4063-b6a5-52cc006216c6",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "2 5\n",
+    "expected_output": "1/3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "fb26c95b-2554-4002-8bf3-e54e4a64cedd",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "1 6\n",
+    "expected_output": "1/6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 6,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "74cf0731-47d3-44b4-8285-f88793614a56",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "6 1\n",
+    "expected_output": "1/6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 7,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "a5dc267c-33e5-4f38-b722-db1de99078dc",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "3 4\n",
+    "expected_output": "1/2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "1c596247-12e3-4032-9db9-240d22524cbc",
+    "problem_id": "b2859de8-2ed0-448a-bebc-4c5dc7d25073",
+    "input": "5 6\n",
+    "expected_output": "1/6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "83cdcfc2-ab4a-481d-85d9-0bc328d0d64f",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": ".-.--\n",
+    "expected_output": "012\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "bb0c8ee4-d34e-4289-8a3d-83bbf4b637b8",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": "--.\n",
+    "expected_output": "20\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "5aa822be-e495-47ee-a36b-e699f26200bf",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": ".\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "01053a48-e61e-456c-b629-961320e18fe3",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": "-..-.--\n",
+    "expected_output": "1012\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "de20745f-8748-4ec7-87f3-ffb6f03b0711",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": "----.\n",
+    "expected_output": "220\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "db3635ab-1b98-416c-b9ff-bc57264562fc",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": "-.---.\n",
+    "expected_output": "121\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "09c450d8-66a3-4f07-874a-872084a3f039",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": "...\n",
+    "expected_output": "000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "fa2cc340-ceb9-4b51-a4a2-6f8accdd5906",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": "--------\n",
+    "expected_output": "2222\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "f53a1bce-4dce-49ba-ae5a-44d2d8c0caec",
+    "problem_id": "90c673cc-8545-4641-824a-d748e7fa31f0",
+    "input": "....\n",
+    "expected_output": "0000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "4aaf2bcd-b4da-4da0-b05e-66f12629c2c4",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "3\n5 6\n1 2\n",
+    "expected_output": "5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "73a831b9-ea9b-4c80-b7fe-d6887e63a71c",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "4\n1 2 3\n2 4\n",
+    "expected_output": "5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "81aabd2c-d09d-4d48-b87c-8b6d569a15d1",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "3\n5 6\n1 3\n",
+    "expected_output": "11\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "9bbc2cbd-3460-48f7-be50-f776f92afe25",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "5\n1 2 3 4\n1 5\n",
+    "expected_output": "10\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "cc5994e0-858b-496a-bbf6-337065652e56",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "2\n7\n1 2\n",
+    "expected_output": "7\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "c8cf0257-3221-4534-abd5-fb4bb9502951",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "6\n2 3 4 5 6\n2 5\n",
+    "expected_output": "12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "0b7d3723-2f49-4669-bc55-594d405a7cba",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "6\n2 3 4 5 6\n1 6\n",
+    "expected_output": "20\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "80c13ccc-28ce-443c-92be-31ebc53abffb",
+    "problem_id": "571f1484-59f1-4b26-8b39-2d42ed3adf1b",
+    "input": "10\n1 1 1 1 1 1 1 1 1\n3 8\n",
+    "expected_output": "5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "832a9e1d-9867-4ae1-92dd-018a1066c693",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "code\nedoc\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "21db8861-aff5-429d-8711-e3f0041174c6",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "abb\naba\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "b25c1a1d-4f3f-4614-8691-274ce231a4eb",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "abc\ncba\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "4964c0ae-4aef-446b-8893-5772e2e3b424",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "code\ncode\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "0eaeb4fb-6ebf-4915-b635-05db9744ecc5",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "a\na\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "b6278920-a4c5-4a98-9ccb-4a27ed80ba43",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "ab\nba\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "19ecf532-0dcf-4d43-9065-d19b15e5ba04",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "ab\nab\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 6,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "50a429a3-aa4a-4142-bbca-b1e35555f891",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "hello\nolleh\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "0796db1e-ddc3-4b3a-99eb-91e78c818c14",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "heLlo\nolleh\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "d07a25b2-a302-43a0-9673-de944c9dfc46",
+    "problem_id": "5b73a1bd-45dc-47b8-8969-74cd9cfe4727",
+    "input": "verylongword\ndrowgnolyrev\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "30f13800-df9e-4d73-b11b-265415a64b2d",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "HoUse\n",
+    "expected_output": "house\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "22a5652a-b562-476d-9353-22970fca6e7e",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "ViP\n",
+    "expected_output": "VIP\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "daa1c19c-b87f-4798-917b-efa13992717c",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "maTRIx\n",
+    "expected_output": "matrix\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "8c8b45a1-aeae-4d94-9de8-3544d9da918a",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "abCD\n",
+    "expected_output": "abcd\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "37bf9aad-dc12-465f-bd1b-ea147805afe7",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "A\n",
+    "expected_output": "A\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "339d8ccc-3d70-48e4-874d-5d40499570a5",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "a\n",
+    "expected_output": "a\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "03672184-9c2a-4b21-b618-762b0d23dd5a",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "HELLo\n",
+    "expected_output": "HELLO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "6c99eb8c-a980-48ae-aba7-8a9e26b57058",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "hellO\n",
+    "expected_output": "hello\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "f372ce07-52b2-4e8b-9608-db32e7b4649f",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "CODE\n",
+    "expected_output": "CODE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 8,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "330c10a2-315b-48d6-a58f-3c19491b07c6",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "input": "code\n",
+    "expected_output": "code\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 9,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "1a1a7755-53a7-41bb-9991-38265679a3a6",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "4 2 1 3\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "b32952d3-01c9-4e91-9de2-f9cf3ce63345",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "7 2 2 4\n",
+    "expected_output": "SEGMENT\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "fad3b4e1-3007-4f3f-acdb-bd4782afa7e0",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "3 5 9 1\n",
+    "expected_output": "IMPOSSIBLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "fac55b2e-01a4-4548-a511-b56b8448cc4a",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "5 5 5 8\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "b2810712-3211-4ff0-9bfb-04f0dc141c6e",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "2 2 2 2\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "8bc58ee7-616a-4f32-b452-95419d602186",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "1 2 3 4\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "2f8e9150-a364-494e-aa3e-71ea59c3f53e",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "1 2 4 8\n",
+    "expected_output": "IMPOSSIBLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "a01cd142-f807-4ce9-bd41-0fa57e3aa161",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "3 4 5 10\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "38c0823f-a354-4b4a-ac78-d8b14edac536",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "10 20 30 40\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "96fc4d25-d615-4c25-bffe-1d311014d3d9",
+    "problem_id": "c8e8275e-5553-4c0a-b06d-5a41c9af21ec",
+    "input": "10 20 30 50\n",
+    "expected_output": "SEGMENT\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "7e18c5f4-ea08-49d7-8c18-5e4f6a20dbfd",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "10\n",
+    "expected_output": "2\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "3c381d99-1065-4174-8008-66a188395e54",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "21\n",
+    "expected_output": "8\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "c50ac4b7-9153-4c23-ae9f-2a86847a76dc",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "1\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "d464b233-9337-452b-accb-8c17a00355c2",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "02be045c-6655-412c-996e-d32755243eec",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "6\n",
+    "expected_output": "1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "e57c2dc9-59c2-490e-a047-9483c4119ce2",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "30\n",
+    "expected_output": "12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "63152546-2cfd-4872-84f2-c7c1534a694a",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "100\n",
+    "expected_output": "56\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "caf31cbb-13d0-4b3a-aec2-1430f8057277",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "500\n",
+    "expected_output": "266\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "d26824a8-1032-452a-81a4-17f91a4afd9e",
+    "problem_id": "a7bd3855-0f2e-4f32-96ff-0e6bb13b96aa",
+    "input": "3000\n",
+    "expected_output": "1375\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "a76b04d8-c9a2-43d0-9cf5-7973c778fcf0",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "001001\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "1b467352-38cb-4099-acfa-449a305f9240",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "1000000001\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "6ff7dd4c-1d33-4bbd-8d1c-897c86284192",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "1111111\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "bfb29737-0952-46a1-94c5-b1f0f80a7bdf",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "0101010\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "8a5a633d-60d1-4481-b437-536aa5103317",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "0000000\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "bdcb1dc3-4492-4b0d-80e5-cc9f2b567f6b",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "000000111111\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "750fe68b-96db-4f2c-bf93-36a696f25814",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "0000001111111\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "a4282b71-33e4-4ef7-bc34-1946f98062e3",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "10101010101010\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "d5b1558a-761d-4c09-983e-7ed68a5c8fb7",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "1111110000000\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "3b063394-7776-4f3a-b653-723c31b0988a",
+    "problem_id": "d5989f57-82cb-429f-9257-2fa48e8ffc9f",
+    "input": "1111110111111\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 9,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "14aee1e4-e220-4406-956d-2334aa1cd066",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "4 2\n1 3 3 2\n",
+    "expected_output": "3\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "9c74ad1b-c19b-4584-b6fb-77d0cd0dbafc",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "2 1\n4 1\n",
+    "expected_output": "4\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "d8aa75c6-e031-4160-acb5-65b23063e608",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "3 5\n10 10 10\n",
+    "expected_output": "3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "61848565-e97f-4327-a783-05a7274fc000",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "4 10\n1 2 3 4\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "8c24ce2e-b043-4772-8ab7-ff5ff0c2ab07",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "5 3\n1 1 1 1 1\n",
+    "expected_output": "10\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "8205e7ac-ff1e-47f9-93a7-28326528d9cb",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "3 100\n1000 500 100\n",
+    "expected_output": "17\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "387953cd-7213-4d07-922b-33f64e073c76",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "5 7\n100 90 80 70 60\n",
+    "expected_output": "20\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "4e6a0d10-1c8c-47de-98e7-7ab857410326",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "2 10\n10 10\n",
+    "expected_output": "1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 7,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "3a864164-48a8-46df-96d8-5cbc83b46a90",
+    "problem_id": "df5e70bd-5f6c-4670-bc72-51dfe5fdc343",
+    "input": "6 5\n1 5 10 15 20 25\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 8,
+    "created_at": "2026-06-24T09:58:33.396Z"
+  },
+  {
+    "id": "7200118a-308d-4795-ab1d-7209755a82a1",
+    "problem_id": "d4c31b72-71ba-4ed5-8fa8-504c362b608e",
+    "input": "1",
+    "expected_output": "1",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T10:48:06.725Z"
+  },
+  {
+    "id": "b76d8de8-40ef-4988-86f0-c32bfced3bec",
+    "problem_id": "ec9fff3e-edcc-4b4b-823b-5cd6a62b18e4",
+    "input": "2",
+    "expected_output": "2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 10,
+    "order_index": 0,
+    "created_at": "2026-06-25T10:48:06.725Z"
+  },
+  {
+    "id": "ea8c0924-552d-444f-a4f9-e979166dc0b4",
+    "problem_id": "646cd550-5c50-4a50-bd76-13c2eb93b7dc",
+    "input": "c",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 0,
+    "created_at": "2026-06-25T10:48:10.957Z"
+  },
+  {
+    "id": "7d7b70af-55f9-4e50-97db-ccd74d8b48d8",
+    "problem_id": "646cd550-5c50-4a50-bd76-13c2eb93b7dc",
+    "input": "d",
+    "expected_output": "4",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 1,
+    "created_at": "2026-06-25T10:48:10.957Z"
+  },
+  {
+    "id": "a1fd1fd4-9d7e-4ffb-b8bb-785a8536de67",
+    "problem_id": "646cd550-5c50-4a50-bd76-13c2eb93b7dc",
+    "input": "e",
+    "expected_output": "5",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 2,
+    "created_at": "2026-06-25T10:48:10.957Z"
+  },
+  {
+    "id": "28ed2aae-6468-4c78-85b2-d698e41df5bc",
+    "problem_id": "7482d3f0-9b17-48d7-81f1-4f1a3ae4acb2",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T10:48:12.647Z"
+  },
+  {
+    "id": "28d52d01-cf5f-41c3-b0cc-05f209695463",
+    "problem_id": "e8ce9372-5538-4ab3-bd86-e1d15511fa49",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:15:05.385Z"
+  },
+  {
+    "id": "1a21fddb-21b8-4e28-aad9-7d88606eed1d",
+    "problem_id": "5d95c3b2-c114-4dfa-aa3b-fe3648d35bb2",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:15:45.941Z"
+  }
+]
+```
+
+### File: `backups/problem_testcases-reset-20260625-181628.json`
+
+```json
+[
+  {
+    "id": "b53c8098-964d-437f-8e17-76154c5d5dc1",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "input": "3\n5\n2\n",
+    "expected_output": "2\n-0.6666666667 -1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "66e15278-ff0c-45d2-be12-7fafc668c4e5",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "input": "1\n-2\n1\n",
+    "expected_output": "1\n1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "6087a7fd-85c7-4d26-b41c-7b0f21d72cd7",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "input": "1\n0\n1\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "19b3956f-8de9-453c-aa91-3259e868db10",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "input": "1\n-3\n2\n",
+    "expected_output": "2\n2 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "f2f7c602-ae2f-475a-9877-818925878639",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "input": "1\n0\n-4\n",
+    "expected_output": "2\n2 -2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "fbdf0e32-bc8f-4e6a-95ae-795312ff1c2c",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "input": "-1\n0\n4\n",
+    "expected_output": "2\n-2 2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "15f2e1f1-b5b5-45ee-adf5-f666976ea086",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "input": "1\n2\n5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "cb24182c-a8f6-41bf-926c-1a3ae9ebd0b1",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "input": "2\n-7\n3\n",
+    "expected_output": "2\n3 0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "6faca6c0-14ce-4e16-8a96-7efedd1b154f",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "input": "5\n6\n1\n",
+    "expected_output": "2\n-0.2 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "63388af7-bc52-4639-ae33-237e639c99cf",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "input": "1\n1\n0\n",
+    "expected_output": "2\n0 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "10147875-684f-48f8-9cfa-9881e74cfbb8",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "input": "1\n-1\n-1\n",
+    "expected_output": "2\n1.61803398875 -0.61803398875\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 4,
+    "order_index": 10,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "ffe1bf1b-430a-4b45-ad54-d555d443c17d",
+    "problem_id": "d6e5ef6f-4d3a-4980-9d05-86ce7c3171ec",
+    "input": "4\n4\n1\n",
+    "expected_output": "1\n-0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 11,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "dbc48e21-44b9-4519-a27e-4c6b5df8c424",
+    "problem_id": "652d0f97-f2a2-428b-bc49-aa80afbd40ca",
+    "input": "12\n",
+    "expected_output": "12 la so chan\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "4fbe2615-ffb6-435b-be9e-a629c45bb53b",
+    "problem_id": "652d0f97-f2a2-428b-bc49-aa80afbd40ca",
+    "input": "7\n",
+    "expected_output": "7 la so le\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "78cea798-81cc-4f43-8fef-c806ac5a3c98",
+    "problem_id": "652d0f97-f2a2-428b-bc49-aa80afbd40ca",
+    "input": "1\n",
+    "expected_output": "1 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "532b3023-3fcc-4c53-8254-05c108e5d52a",
+    "problem_id": "652d0f97-f2a2-428b-bc49-aa80afbd40ca",
+    "input": "2\n",
+    "expected_output": "2 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "53c77339-5dd3-413c-ac23-a58adf9340ff",
+    "problem_id": "652d0f97-f2a2-428b-bc49-aa80afbd40ca",
+    "input": "99\n",
+    "expected_output": "99 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "f48ddcbd-d73a-43e2-8ea4-57abe988709d",
+    "problem_id": "652d0f97-f2a2-428b-bc49-aa80afbd40ca",
+    "input": "100\n",
+    "expected_output": "100 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "f594d554-4046-4ab8-9e15-87fe5205d5ff",
+    "problem_id": "652d0f97-f2a2-428b-bc49-aa80afbd40ca",
+    "input": "123456789\n",
+    "expected_output": "123456789 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "732a8b4a-f92c-4a5a-afcd-37d92dc2fbe6",
+    "problem_id": "652d0f97-f2a2-428b-bc49-aa80afbd40ca",
+    "input": "1000000000\n",
+    "expected_output": "1000000000 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "f14807a5-6cf8-4d16-bc4c-92bd840d142e",
+    "problem_id": "8e957bdc-e621-4950-b1bc-cb06dd8564cf",
+    "input": "10\n20\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "7298f6a3-d1a0-40a8-bb82-f851755a1601",
+    "problem_id": "8e957bdc-e621-4950-b1bc-cb06dd8564cf",
+    "input": "3\n5\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "612d95ef-6747-4b4c-9c15-363384ef7427",
+    "problem_id": "8e957bdc-e621-4950-b1bc-cb06dd8564cf",
+    "input": "2\n3\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "501de470-3b88-40e0-ac91-61d5690ef9ee",
+    "problem_id": "8e957bdc-e621-4950-b1bc-cb06dd8564cf",
+    "input": "1\n2\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "0c006712-4e22-40b6-b62f-455e6d85bcd5",
+    "problem_id": "8e957bdc-e621-4950-b1bc-cb06dd8564cf",
+    "input": "100\n200\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "00d11d75-53d7-400d-8fd3-af0c0d280a44",
+    "problem_id": "8e957bdc-e621-4950-b1bc-cb06dd8564cf",
+    "input": "99\n101\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "3c2291cf-3e28-4650-b72c-a767f82039fd",
+    "problem_id": "8e957bdc-e621-4950-b1bc-cb06dd8564cf",
+    "input": "999\n1000\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "5060913f-44a7-4df2-85a5-2a8dabf3b4b6",
+    "problem_id": "8e957bdc-e621-4950-b1bc-cb06dd8564cf",
+    "input": "0\n8\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "deebf7b0-9947-4cec-bbf3-cd87742c8dec",
+    "problem_id": "8e957bdc-e621-4950-b1bc-cb06dd8564cf",
+    "input": "0\n7\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "07aadc33-c001-4752-a1c1-45002b7247d2",
+    "problem_id": "9977d234-7110-45dc-8544-33008234c7ed",
+    "input": "5\n10\n",
+    "expected_output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "d876680f-1b88-4673-85ed-c3a06d1450b3",
+    "problem_id": "9977d234-7110-45dc-8544-33008234c7ed",
+    "input": "10\n5\n",
+    "expected_output": "5 la uoc cua 10\n10 khong la uoc cua 5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "51c4b2b5-68ad-455d-8862-f15fd86f81dc",
+    "problem_id": "9977d234-7110-45dc-8544-33008234c7ed",
+    "input": "6\n3\n",
+    "expected_output": "3 la uoc cua 6\n6 khong la uoc cua 3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "172d3aff-2e1e-4cf4-ae7e-f7f3fa354f29",
+    "problem_id": "9977d234-7110-45dc-8544-33008234c7ed",
+    "input": "3\n6\n",
+    "expected_output": "6 khong la uoc cua 3\n3 la uoc cua 6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "2646072c-8e44-45e0-819b-d27bddb6cab7",
+    "problem_id": "9977d234-7110-45dc-8544-33008234c7ed",
+    "input": "7\n7\n",
+    "expected_output": "7 la uoc cua 7\n7 la uoc cua 7\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "1d0b7c4d-c9d1-4f23-ba91-36ad2d3ea4fd",
+    "problem_id": "6320374d-89dd-47e0-acc8-945384f98cf2",
+    "input": "1",
+    "expected_output": "1",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:25.021Z"
+  },
+  {
+    "id": "74085479-f45d-4646-93b8-730fddb61fdf",
+    "problem_id": "2223e004-c90d-47c7-a73f-ccf8b2e3aea5",
+    "input": "2",
+    "expected_output": "2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 10,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:25.021Z"
+  },
+  {
+    "id": "41f69a9a-4bd6-4a29-987e-1fea3a8cfcc1",
+    "problem_id": "3724bb15-e96f-4755-8d32-8c02c65322b8",
+    "input": "c",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:28.925Z"
+  },
+  {
+    "id": "bc02cbe0-4569-4d6a-b2c7-cee8079b21e6",
+    "problem_id": "3724bb15-e96f-4755-8d32-8c02c65322b8",
+    "input": "d",
+    "expected_output": "4",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:16:28.925Z"
+  },
+  {
+    "id": "0401ebe0-42d7-4a5e-a05a-8e18efde4121",
+    "problem_id": "3724bb15-e96f-4755-8d32-8c02c65322b8",
+    "input": "e",
+    "expected_output": "5",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:16:28.925Z"
+  },
+  {
+    "id": "a94cb208-6aa5-4167-8cb7-001bab6c867e",
+    "problem_id": "9977d234-7110-45dc-8544-33008234c7ed",
+    "input": "8\n12\n",
+    "expected_output": "12 khong la uoc cua 8\n8 khong la uoc cua 12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "73cbaa1c-0d44-4125-be68-92ea3b2b4cac",
+    "problem_id": "9977d234-7110-45dc-8544-33008234c7ed",
+    "input": "1\n9\n",
+    "expected_output": "9 khong la uoc cua 1\n1 la uoc cua 9\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "24bf18c3-4942-4d6d-b59f-d50528a8550d",
+    "problem_id": "9977d234-7110-45dc-8544-33008234c7ed",
+    "input": "9\n1\n",
+    "expected_output": "1 la uoc cua 9\n9 khong la uoc cua 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "3cc72580-e173-4f1e-8c85-539f994e2a97",
+    "problem_id": "9977d234-7110-45dc-8544-33008234c7ed",
+    "input": "100\n25\n",
+    "expected_output": "25 la uoc cua 100\n100 khong la uoc cua 25\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "50055ed9-d621-4113-af29-d84fcbb0e336",
+    "problem_id": "9977d234-7110-45dc-8544-33008234c7ed",
+    "input": "25\n100\n",
+    "expected_output": "100 khong la uoc cua 25\n25 la uoc cua 100\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "b5d74a64-711e-462b-a6bf-d400cf62fb6e",
+    "problem_id": "f1f9d9a6-ab67-4486-bc41-cadd9d09c7a5",
+    "input": "5\n10\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "395b3370-b00a-4ad7-873f-4372950bfd2d",
+    "problem_id": "f1f9d9a6-ab67-4486-bc41-cadd9d09c7a5",
+    "input": "10\n5\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "3485d47a-646e-45d9-87f8-28031da4eda5",
+    "problem_id": "f1f9d9a6-ab67-4486-bc41-cadd9d09c7a5",
+    "input": "7\n7\n",
+    "expected_output": "7 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "d224e7da-88ff-43ae-94e2-378d430f6909",
+    "problem_id": "f1f9d9a6-ab67-4486-bc41-cadd9d09c7a5",
+    "input": "-1\n5\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "f704b86a-7560-488c-b57f-005549d29c75",
+    "problem_id": "f1f9d9a6-ab67-4486-bc41-cadd9d09c7a5",
+    "input": "5\n-1\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "5c014873-76a5-42c7-b2bc-d2244ee48e9e",
+    "problem_id": "f1f9d9a6-ab67-4486-bc41-cadd9d09c7a5",
+    "input": "-10\n-20\n",
+    "expected_output": "-20 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "5a8e6c10-24b2-4e0d-8709-88af664d65b0",
+    "problem_id": "f1f9d9a6-ab67-4486-bc41-cadd9d09c7a5",
+    "input": "0\n0\n",
+    "expected_output": "0 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "dd7cd4f2-a7f8-40f7-a29e-93ad91bed49d",
+    "problem_id": "f1f9d9a6-ab67-4486-bc41-cadd9d09c7a5",
+    "input": "1000000000\n-1000000000\n",
+    "expected_output": "-1000000000 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "14027604-49f6-43cc-a30f-71833855dd37",
+    "problem_id": "f1f9d9a6-ab67-4486-bc41-cadd9d09c7a5",
+    "input": "123\n456\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "9dde88b1-da12-4efd-8914-c20f3cdcfb5f",
+    "problem_id": "f1f9d9a6-ab67-4486-bc41-cadd9d09c7a5",
+    "input": "456\n123\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:15:54.231Z"
+  },
+  {
+    "id": "7d1df80c-911b-468f-b478-8e9f21e58b03",
+    "problem_id": "3ed9d43d-25ac-44f1-a980-b63e4b691c5e",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:24.776Z"
+  },
+  {
+    "id": "59a2fc01-44ab-429b-be0d-f638b7a293fd",
+    "problem_id": "787d5f47-1524-4902-aaba-ea51ddce5cb3",
+    "input": "1\n",
+    "expected_output": "2\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:31.311Z"
+  },
+  {
+    "id": "981d61f4-4292-4fc3-8027-677311ca6ab4",
+    "problem_id": "787d5f47-1524-4902-aaba-ea51ddce5cb3",
+    "input": "2\n",
+    "expected_output": "4\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:16:31.412Z"
+  }
+]
+```
+
+### File: `backups/problem_testcases-reset-20260625-181944.json`
+
+```json
+[
+  {
+    "id": "345ff36f-7555-4c5a-8408-a95e382ff79c",
+    "problem_id": "bff6820a-ec03-4613-97a3-af30884dbf38",
+    "input": "12\n",
+    "expected_output": "12 la so chan\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "d30da254-c62b-45ba-ab70-c39ab43146c9",
+    "problem_id": "bff6820a-ec03-4613-97a3-af30884dbf38",
+    "input": "7\n",
+    "expected_output": "7 la so le\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "8aaf0596-0c52-4f36-9e52-39afe3f6fcd7",
+    "problem_id": "bff6820a-ec03-4613-97a3-af30884dbf38",
+    "input": "1\n",
+    "expected_output": "1 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "ee5ef93e-6be9-4d9c-9fb8-a4fe05063b08",
+    "problem_id": "bff6820a-ec03-4613-97a3-af30884dbf38",
+    "input": "2\n",
+    "expected_output": "2 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "9443871f-a799-454d-a8f2-2b77402bec9d",
+    "problem_id": "bff6820a-ec03-4613-97a3-af30884dbf38",
+    "input": "99\n",
+    "expected_output": "99 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "3eaf7bbb-2f63-4788-afb1-7fee612bb8e4",
+    "problem_id": "bff6820a-ec03-4613-97a3-af30884dbf38",
+    "input": "100\n",
+    "expected_output": "100 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "e3b76b78-4934-4c56-a1ff-71bf3126e1c5",
+    "problem_id": "bff6820a-ec03-4613-97a3-af30884dbf38",
+    "input": "123456789\n",
+    "expected_output": "123456789 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "783bc29a-07a0-4bf9-8e39-8342d3d62d73",
+    "problem_id": "bff6820a-ec03-4613-97a3-af30884dbf38",
+    "input": "1000000000\n",
+    "expected_output": "1000000000 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "a89a8516-ecff-4544-9d05-9ce9fcd2d7f2",
+    "problem_id": "ed2c8159-349e-43d2-b428-526783e310c6",
+    "input": "10\n20\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "8ee22880-2f09-4006-8137-8ddef8a0e83d",
+    "problem_id": "ed2c8159-349e-43d2-b428-526783e310c6",
+    "input": "3\n5\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "f9324a6e-5f50-4836-a42f-b758efd36782",
+    "problem_id": "ed2c8159-349e-43d2-b428-526783e310c6",
+    "input": "2\n3\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "eddfd563-3dad-41b0-82f1-a52683bba607",
+    "problem_id": "ed2c8159-349e-43d2-b428-526783e310c6",
+    "input": "1\n2\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "d05a0f92-25bf-4ad7-9367-e902bf0b6b0c",
+    "problem_id": "ed2c8159-349e-43d2-b428-526783e310c6",
+    "input": "100\n200\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "186a2065-3fca-4b65-a81b-1e814a810248",
+    "problem_id": "ed2c8159-349e-43d2-b428-526783e310c6",
+    "input": "99\n101\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "be8ee1bd-a159-4f25-b947-d92756aa610c",
+    "problem_id": "ed2c8159-349e-43d2-b428-526783e310c6",
+    "input": "999\n1000\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "0281985c-d25c-424e-99f8-ce075bc28fdf",
+    "problem_id": "ed2c8159-349e-43d2-b428-526783e310c6",
+    "input": "0\n8\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "63a8cf28-0d28-4ab1-83ff-76ab8429c8f5",
+    "problem_id": "ed2c8159-349e-43d2-b428-526783e310c6",
+    "input": "0\n7\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "d98cb3eb-1473-4538-95f0-2b8a559fa3d5",
+    "problem_id": "ff035e7d-01d0-4459-a664-9f7b8640f38e",
+    "input": "5\n10\n",
+    "expected_output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "a498c7e4-7935-4412-a346-17c1288fad42",
+    "problem_id": "ff035e7d-01d0-4459-a664-9f7b8640f38e",
+    "input": "10\n5\n",
+    "expected_output": "5 la uoc cua 10\n10 khong la uoc cua 5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "85bfcb08-fed8-4738-86cb-a4530eaa2267",
+    "problem_id": "ff035e7d-01d0-4459-a664-9f7b8640f38e",
+    "input": "6\n3\n",
+    "expected_output": "3 la uoc cua 6\n6 khong la uoc cua 3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "c4f4b0fc-a4ad-4528-8d68-f8598135b395",
+    "problem_id": "ff035e7d-01d0-4459-a664-9f7b8640f38e",
+    "input": "3\n6\n",
+    "expected_output": "6 khong la uoc cua 3\n3 la uoc cua 6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "9565ffc9-8949-4bfb-a494-93a6bc36722d",
+    "problem_id": "ff035e7d-01d0-4459-a664-9f7b8640f38e",
+    "input": "7\n7\n",
+    "expected_output": "7 la uoc cua 7\n7 la uoc cua 7\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "762a2fb1-c250-4c47-9099-49eed3732254",
+    "problem_id": "ff035e7d-01d0-4459-a664-9f7b8640f38e",
+    "input": "8\n12\n",
+    "expected_output": "12 khong la uoc cua 8\n8 khong la uoc cua 12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "c34c41d2-ef78-4757-b62a-d41601255feb",
+    "problem_id": "ff035e7d-01d0-4459-a664-9f7b8640f38e",
+    "input": "1\n9\n",
+    "expected_output": "9 khong la uoc cua 1\n1 la uoc cua 9\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "e0681972-a5b1-4543-ab26-3094bb9aaa96",
+    "problem_id": "ff035e7d-01d0-4459-a664-9f7b8640f38e",
+    "input": "9\n1\n",
+    "expected_output": "1 la uoc cua 9\n9 khong la uoc cua 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "1aec782e-d117-4d01-8e4a-71dd41c5aa80",
+    "problem_id": "ff035e7d-01d0-4459-a664-9f7b8640f38e",
+    "input": "100\n25\n",
+    "expected_output": "25 la uoc cua 100\n100 khong la uoc cua 25\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "72dbb2b2-abab-40bd-a961-59eed716ffe3",
+    "problem_id": "ff035e7d-01d0-4459-a664-9f7b8640f38e",
+    "input": "25\n100\n",
+    "expected_output": "100 khong la uoc cua 25\n25 la uoc cua 100\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "85db09d7-663f-4850-b8e7-cd7ebd30d4b3",
+    "problem_id": "a579d407-c0cd-4dfb-ba0f-fa796dd4e2cc",
+    "input": "5\n10\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "60858faa-386f-4fa8-b5b3-dd49d7c295a5",
+    "problem_id": "a579d407-c0cd-4dfb-ba0f-fa796dd4e2cc",
+    "input": "10\n5\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "0d99300b-b56c-433e-a779-aa34cb80176f",
+    "problem_id": "a579d407-c0cd-4dfb-ba0f-fa796dd4e2cc",
+    "input": "7\n7\n",
+    "expected_output": "7 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "d1291aee-5f06-4bdc-b0f0-01b97fb4a52f",
+    "problem_id": "a579d407-c0cd-4dfb-ba0f-fa796dd4e2cc",
+    "input": "-1\n5\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "7a670a5f-30f4-48e4-9f62-26846088d9e9",
+    "problem_id": "a579d407-c0cd-4dfb-ba0f-fa796dd4e2cc",
+    "input": "5\n-1\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "e3f7837c-f993-40d7-bd2c-1b53652c5a1a",
+    "problem_id": "a579d407-c0cd-4dfb-ba0f-fa796dd4e2cc",
+    "input": "-10\n-20\n",
+    "expected_output": "-20 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "89ab2b10-80a6-4a4d-8732-4180c02e9e80",
+    "problem_id": "a579d407-c0cd-4dfb-ba0f-fa796dd4e2cc",
+    "input": "0\n0\n",
+    "expected_output": "0 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "854c2931-5ce3-4c24-8f75-98515bdc09a1",
+    "problem_id": "a579d407-c0cd-4dfb-ba0f-fa796dd4e2cc",
+    "input": "1000000000\n-1000000000\n",
+    "expected_output": "-1000000000 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "bd419d22-c4e0-4cb6-8adb-4023b0ac09bd",
+    "problem_id": "a579d407-c0cd-4dfb-ba0f-fa796dd4e2cc",
+    "input": "123\n456\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "151c4d91-5f24-439e-8417-f032d74b46e5",
+    "problem_id": "a579d407-c0cd-4dfb-ba0f-fa796dd4e2cc",
+    "input": "456\n123\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "dbdecdd7-2234-41f1-88a0-90d4c35dc2a5",
+    "problem_id": "ee8e6523-75f7-4557-b864-b6c8e30308a5",
+    "input": "3 5\n",
+    "expected_output": "8\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "02765e86-188c-4336-82b0-a159af852c4a",
+    "problem_id": "ee8e6523-75f7-4557-b864-b6c8e30308a5",
+    "input": "-2 10\n",
+    "expected_output": "8\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "f970da8a-b511-4bf9-8359-622706529360",
+    "problem_id": "ee8e6523-75f7-4557-b864-b6c8e30308a5",
+    "input": "0 0\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "614e718e-151d-44a8-b95b-f8e2e67dd9df",
+    "problem_id": "ee8e6523-75f7-4557-b864-b6c8e30308a5",
+    "input": "999999 1\n",
+    "expected_output": "1000000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "ffa07d08-78ae-4697-8257-04f511072a0c",
+    "problem_id": "ee8e6523-75f7-4557-b864-b6c8e30308a5",
+    "input": "-100 -200\n",
+    "expected_output": "-300\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "c1e58b98-fbab-474c-93f3-ab396627d6a6",
+    "problem_id": "ee8e6523-75f7-4557-b864-b6c8e30308a5",
+    "input": "1000000000 1000000000\n",
+    "expected_output": "2000000000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "2ade4810-54c2-42f5-9eaf-5efedb6e0ae2",
+    "problem_id": "ee8e6523-75f7-4557-b864-b6c8e30308a5",
+    "input": "-1000000000 1000000000\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "f0e1512f-a8a9-4d68-b9dc-6a16aabe8dd2",
+    "problem_id": "ee8e6523-75f7-4557-b864-b6c8e30308a5",
+    "input": "-1000000000 -1000000000\n",
+    "expected_output": "-2000000000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "9e56de97-aeef-4a9a-8471-ca80dca86330",
+    "problem_id": "aea3aaaa-f46b-4b12-8a7d-1ae52dbcb50d",
+    "input": "8\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "0f9ab5aa-0de4-40b9-80f3-027bf6aa53aa",
+    "problem_id": "aea3aaaa-f46b-4b12-8a7d-1ae52dbcb50d",
+    "input": "2\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "554f2db0-3d8c-43ac-84fe-98aae4a9e3b7",
+    "problem_id": "aea3aaaa-f46b-4b12-8a7d-1ae52dbcb50d",
+    "input": "1\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "7350cda6-b284-457c-b345-ce5f8d83d5cb",
+    "problem_id": "aea3aaaa-f46b-4b12-8a7d-1ae52dbcb50d",
+    "input": "3\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "2f855d5e-2942-4522-9404-b0b3832ccb95",
+    "problem_id": "aea3aaaa-f46b-4b12-8a7d-1ae52dbcb50d",
+    "input": "4\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "30383597-1d22-4cd4-9bc3-e00ec6012487",
+    "problem_id": "334d5b8e-33e2-410a-9e37-f50688646244",
+    "input": "1",
+    "expected_output": "1",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:18:32.110Z"
+  },
+  {
+    "id": "35e2b48b-f347-4571-b2b7-8fd6bdcb5b8b",
+    "problem_id": "361f7650-0c10-4966-bbab-ab9606f920e1",
+    "input": "2",
+    "expected_output": "2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 10,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:18:32.110Z"
+  },
+  {
+    "id": "ffbbc5ca-24d8-4d3c-9764-b1e75c3b77f9",
+    "problem_id": "ab72baa4-2bd1-4c48-b191-9f7bca9c5564",
+    "input": "c",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:18:35.944Z"
+  },
+  {
+    "id": "c52fee06-8468-4fdd-8aa1-9251ad920ed8",
+    "problem_id": "ab72baa4-2bd1-4c48-b191-9f7bca9c5564",
+    "input": "d",
+    "expected_output": "4",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:18:35.944Z"
+  },
+  {
+    "id": "4eb01b48-5094-4201-a590-a0a8e6d2cec8",
+    "problem_id": "ab72baa4-2bd1-4c48-b191-9f7bca9c5564",
+    "input": "e",
+    "expected_output": "5",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:18:35.944Z"
+  },
+  {
+    "id": "caa15e44-bbda-4ffb-8007-4a539590fd9b",
+    "problem_id": "74d75112-2d7a-460b-bd12-e50690ac5b32",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:18:37.551Z"
+  },
+  {
+    "id": "59c5b3ca-4330-4280-b9fd-ebdde189be2e",
+    "problem_id": "f14b4105-decf-4191-93bd-51ff46d37067",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:19:41.329Z"
+  },
+  {
+    "id": "67183c5c-6b46-4446-804b-fac7d6bdf7ee",
+    "problem_id": "aea3aaaa-f46b-4b12-8a7d-1ae52dbcb50d",
+    "input": "6\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "ee1e4992-6f09-43b1-b1ed-73c5c50d58db",
+    "problem_id": "aea3aaaa-f46b-4b12-8a7d-1ae52dbcb50d",
+    "input": "99\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "7934a7e6-7a8d-4a6c-92f3-1c42a006e9b2",
+    "problem_id": "aea3aaaa-f46b-4b12-8a7d-1ae52dbcb50d",
+    "input": "100\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "b2913c90-72b7-4580-886b-29836cff9e1a",
+    "problem_id": "aea3aaaa-f46b-4b12-8a7d-1ae52dbcb50d",
+    "input": "12\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "51ef09b7-f2b1-4fa9-931d-f0bdf48a084a",
+    "problem_id": "aea3aaaa-f46b-4b12-8a7d-1ae52dbcb50d",
+    "input": "50\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "8c47a220-c1a1-405f-9cea-a06f7c1956e2",
+    "problem_id": "c299b6f4-7769-48f8-92a7-b979f9da19ca",
+    "input": "4 2\n",
+    "expected_output": "1/2\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "41e0ad8a-e50f-40d7-b92f-a9f204270683",
+    "problem_id": "c299b6f4-7769-48f8-92a7-b979f9da19ca",
+    "input": "3 3\n",
+    "expected_output": "2/3\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "e67f6029-f08e-450e-b5b2-0cbbfcea9bcd",
+    "problem_id": "c299b6f4-7769-48f8-92a7-b979f9da19ca",
+    "input": "6 6\n",
+    "expected_output": "1/6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "1814201e-36a2-4ba7-9433-6650b940dd9b",
+    "problem_id": "c299b6f4-7769-48f8-92a7-b979f9da19ca",
+    "input": "1 1\n",
+    "expected_output": "1/1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "4d65ede3-dbc7-48ae-92f8-e72189601a55",
+    "problem_id": "c299b6f4-7769-48f8-92a7-b979f9da19ca",
+    "input": "5 2\n",
+    "expected_output": "1/3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "10ce7d4a-d77c-4d25-b0d9-2ed3e1b6a849",
+    "problem_id": "c299b6f4-7769-48f8-92a7-b979f9da19ca",
+    "input": "2 5\n",
+    "expected_output": "1/3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "6b54fb69-a2df-45f0-938f-5e2d93af9d8d",
+    "problem_id": "c299b6f4-7769-48f8-92a7-b979f9da19ca",
+    "input": "1 6\n",
+    "expected_output": "1/6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "0a7b5f8d-d3b0-46fe-8952-9fdbd03b07a0",
+    "problem_id": "c299b6f4-7769-48f8-92a7-b979f9da19ca",
+    "input": "6 1\n",
+    "expected_output": "1/6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "c4944a23-c80a-4f01-a8a6-9b1237a475b3",
+    "problem_id": "c299b6f4-7769-48f8-92a7-b979f9da19ca",
+    "input": "3 4\n",
+    "expected_output": "1/2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "72cf5eba-b3db-41f4-b34f-c0e01b2f94ab",
+    "problem_id": "c299b6f4-7769-48f8-92a7-b979f9da19ca",
+    "input": "5 6\n",
+    "expected_output": "1/6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "2c5823b8-4aff-4154-9093-a48344166f5c",
+    "problem_id": "57e42ca4-c99a-482f-940d-1207ad3ce284",
+    "input": ".-.--\n",
+    "expected_output": "012\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "fc9aa72b-fd59-4146-bd6a-faa07f35bfef",
+    "problem_id": "57e42ca4-c99a-482f-940d-1207ad3ce284",
+    "input": "--.\n",
+    "expected_output": "20\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "a38bf785-db17-4675-8d90-33835f1114cd",
+    "problem_id": "57e42ca4-c99a-482f-940d-1207ad3ce284",
+    "input": ".\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "c6d77a60-d565-41de-8ed9-25923bc01fbd",
+    "problem_id": "57e42ca4-c99a-482f-940d-1207ad3ce284",
+    "input": "-..-.--\n",
+    "expected_output": "1012\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "772e5bd9-ad2c-48b7-b627-db4f0a3abaab",
+    "problem_id": "57e42ca4-c99a-482f-940d-1207ad3ce284",
+    "input": "----.\n",
+    "expected_output": "220\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "1d8f260a-84e8-410e-99cf-10e3b9f6d05b",
+    "problem_id": "57e42ca4-c99a-482f-940d-1207ad3ce284",
+    "input": "-.---.\n",
+    "expected_output": "121\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "46905364-5908-476a-86ba-15f48e617f89",
+    "problem_id": "57e42ca4-c99a-482f-940d-1207ad3ce284",
+    "input": "...\n",
+    "expected_output": "000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "5425ad00-a076-41eb-937e-1d0dc594c505",
+    "problem_id": "57e42ca4-c99a-482f-940d-1207ad3ce284",
+    "input": "--------\n",
+    "expected_output": "2222\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "ac150015-4845-4561-953b-5cfef77a4e04",
+    "problem_id": "57e42ca4-c99a-482f-940d-1207ad3ce284",
+    "input": "....\n",
+    "expected_output": "0000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "dc1c8e33-b253-4ceb-a049-ee3178d36ec5",
+    "problem_id": "c53ad866-c68a-4ba4-bac4-72993a77214f",
+    "input": "3\n5 6\n1 2\n",
+    "expected_output": "5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "563ea234-6412-4c61-baa4-82dd9fb0239b",
+    "problem_id": "c53ad866-c68a-4ba4-bac4-72993a77214f",
+    "input": "4\n1 2 3\n2 4\n",
+    "expected_output": "5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "f624341a-da6c-4b25-b61c-f3ba75275833",
+    "problem_id": "c53ad866-c68a-4ba4-bac4-72993a77214f",
+    "input": "3\n5 6\n1 3\n",
+    "expected_output": "11\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "cf9f41b7-053c-4490-8752-22da45c488a8",
+    "problem_id": "c53ad866-c68a-4ba4-bac4-72993a77214f",
+    "input": "5\n1 2 3 4\n1 5\n",
+    "expected_output": "10\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "f73027c1-2e00-469f-a2ec-2cf04310e080",
+    "problem_id": "c53ad866-c68a-4ba4-bac4-72993a77214f",
+    "input": "2\n7\n1 2\n",
+    "expected_output": "7\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "a47de69b-f545-4861-8876-6062c0fd90be",
+    "problem_id": "c53ad866-c68a-4ba4-bac4-72993a77214f",
+    "input": "6\n2 3 4 5 6\n2 5\n",
+    "expected_output": "12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "e6c1bf64-7827-4108-b410-153aa28cf832",
+    "problem_id": "c53ad866-c68a-4ba4-bac4-72993a77214f",
+    "input": "6\n2 3 4 5 6\n1 6\n",
+    "expected_output": "20\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "ae7a5513-2a58-4132-b016-be655c34eed0",
+    "problem_id": "c53ad866-c68a-4ba4-bac4-72993a77214f",
+    "input": "10\n1 1 1 1 1 1 1 1 1\n3 8\n",
+    "expected_output": "5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "fdb18556-d49d-4d81-90ec-2bfea845bfe6",
+    "problem_id": "17546999-f2a3-4787-b2bf-38ba00e693eb",
+    "input": "code\nedoc\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "ff56ce2b-0785-4dfc-9c37-3a7062e63252",
+    "problem_id": "17546999-f2a3-4787-b2bf-38ba00e693eb",
+    "input": "abb\naba\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "c84aa169-0f5a-4da0-a5b8-3c1d49f8de14",
+    "problem_id": "17546999-f2a3-4787-b2bf-38ba00e693eb",
+    "input": "abc\ncba\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "6ecec48c-1e3f-4cdf-9264-5461a1be0b16",
+    "problem_id": "17546999-f2a3-4787-b2bf-38ba00e693eb",
+    "input": "code\ncode\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "655da4d6-c63a-4ed1-931a-81a54f8fd847",
+    "problem_id": "17546999-f2a3-4787-b2bf-38ba00e693eb",
+    "input": "a\na\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "b2080933-3a19-41ca-b05c-d8592eea2afe",
+    "problem_id": "17546999-f2a3-4787-b2bf-38ba00e693eb",
+    "input": "ab\nba\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "9995dd48-51a7-4b22-9da8-65a7b0116259",
+    "problem_id": "17546999-f2a3-4787-b2bf-38ba00e693eb",
+    "input": "ab\nab\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "15d9f4b0-23dc-467b-81ce-899555bd6bb7",
+    "problem_id": "17546999-f2a3-4787-b2bf-38ba00e693eb",
+    "input": "hello\nolleh\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "92eddc7e-b782-4099-8bec-f4d5750635bb",
+    "problem_id": "17546999-f2a3-4787-b2bf-38ba00e693eb",
+    "input": "heLlo\nolleh\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "39cb16d2-5fd9-4828-9ca3-3bfe7bd18916",
+    "problem_id": "17546999-f2a3-4787-b2bf-38ba00e693eb",
+    "input": "verylongword\ndrowgnolyrev\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "8778e4cd-a202-4519-88e5-2e2f2d5436ba",
+    "problem_id": "1b78cb95-fcb1-41bf-9c20-fe3c012848da",
+    "input": "HoUse\n",
+    "expected_output": "house\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "c63d9853-37b2-4cb3-97a1-3e4e8051db33",
+    "problem_id": "1b78cb95-fcb1-41bf-9c20-fe3c012848da",
+    "input": "ViP\n",
+    "expected_output": "VIP\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "328a2b04-0fb5-4497-a814-cf4382fd2993",
+    "problem_id": "1b78cb95-fcb1-41bf-9c20-fe3c012848da",
+    "input": "maTRIx\n",
+    "expected_output": "matrix\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "4a361bda-36e2-442f-a7cd-7f52dd7dec4e",
+    "problem_id": "1b78cb95-fcb1-41bf-9c20-fe3c012848da",
+    "input": "abCD\n",
+    "expected_output": "abcd\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "3315a9c6-a61b-4756-99f3-3d83ae249a7d",
+    "problem_id": "1b78cb95-fcb1-41bf-9c20-fe3c012848da",
+    "input": "A\n",
+    "expected_output": "A\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "8c55d81d-cac5-4da4-a146-c3641bd09bd3",
+    "problem_id": "1b78cb95-fcb1-41bf-9c20-fe3c012848da",
+    "input": "a\n",
+    "expected_output": "a\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "7d6cb395-dc79-4e9e-b2f1-2a0120bb20f3",
+    "problem_id": "1b78cb95-fcb1-41bf-9c20-fe3c012848da",
+    "input": "HELLo\n",
+    "expected_output": "HELLO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "f4f93076-ea41-4f63-a46c-a78a221b87c6",
+    "problem_id": "1b78cb95-fcb1-41bf-9c20-fe3c012848da",
+    "input": "hellO\n",
+    "expected_output": "hello\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "369a9085-3881-420b-83d5-11195696ea0a",
+    "problem_id": "1b78cb95-fcb1-41bf-9c20-fe3c012848da",
+    "input": "CODE\n",
+    "expected_output": "CODE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "5f81e0f7-9df2-44ba-bccf-69af7202f894",
+    "problem_id": "1b78cb95-fcb1-41bf-9c20-fe3c012848da",
+    "input": "code\n",
+    "expected_output": "code\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "6df12e03-e237-42a6-b8a2-45000eff6da6",
+    "problem_id": "23224a7f-4a78-4385-b4af-ee5fcb0b7fd1",
+    "input": "4 2 1 3\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "27fc3196-5756-4043-8d52-5c8470871e15",
+    "problem_id": "23224a7f-4a78-4385-b4af-ee5fcb0b7fd1",
+    "input": "7 2 2 4\n",
+    "expected_output": "SEGMENT\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "2c290ee0-1406-47ba-8f92-91be7e488763",
+    "problem_id": "23224a7f-4a78-4385-b4af-ee5fcb0b7fd1",
+    "input": "3 5 9 1\n",
+    "expected_output": "IMPOSSIBLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "9983d583-ba5d-4739-8f0f-856489d2a383",
+    "problem_id": "23224a7f-4a78-4385-b4af-ee5fcb0b7fd1",
+    "input": "5 5 5 8\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "396d65ad-b51c-4b40-b5bb-1f5abcbd5535",
+    "problem_id": "23224a7f-4a78-4385-b4af-ee5fcb0b7fd1",
+    "input": "2 2 2 2\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "9e1a95cb-1e14-4a85-b775-9679a5675472",
+    "problem_id": "23224a7f-4a78-4385-b4af-ee5fcb0b7fd1",
+    "input": "1 2 3 4\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "141bdfa9-b71e-4e0f-bba6-54facb39ef73",
+    "problem_id": "23224a7f-4a78-4385-b4af-ee5fcb0b7fd1",
+    "input": "1 2 4 8\n",
+    "expected_output": "IMPOSSIBLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "afda2b8e-a1f9-4fa6-b613-b85852188c38",
+    "problem_id": "23224a7f-4a78-4385-b4af-ee5fcb0b7fd1",
+    "input": "3 4 5 10\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "43de652f-68c4-4e0f-ab0f-7b821125bc1c",
+    "problem_id": "23224a7f-4a78-4385-b4af-ee5fcb0b7fd1",
+    "input": "10 20 30 40\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "7e7132af-14bd-49d2-b2fc-e67e31a4e8b6",
+    "problem_id": "23224a7f-4a78-4385-b4af-ee5fcb0b7fd1",
+    "input": "10 20 30 50\n",
+    "expected_output": "SEGMENT\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "e33a5387-af91-493a-bd07-cdfec5c71888",
+    "problem_id": "38a86113-ffe5-43ae-9a4f-fa99c8c56d1c",
+    "input": "10\n",
+    "expected_output": "2\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "ce5646f4-612e-4c1e-a9ea-1fc72d1b268e",
+    "problem_id": "38a86113-ffe5-43ae-9a4f-fa99c8c56d1c",
+    "input": "21\n",
+    "expected_output": "8\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "a12b7d0f-08ad-4363-b878-564987de0f98",
+    "problem_id": "38a86113-ffe5-43ae-9a4f-fa99c8c56d1c",
+    "input": "1\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "a2a3efda-0c95-4057-b5be-854e5549ac1e",
+    "problem_id": "38a86113-ffe5-43ae-9a4f-fa99c8c56d1c",
+    "input": "5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "9ad9b6c4-9bb5-4a31-8986-7b627b4cf83c",
+    "problem_id": "38a86113-ffe5-43ae-9a4f-fa99c8c56d1c",
+    "input": "6\n",
+    "expected_output": "1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "b2c6b2e6-6637-4499-a837-b2f63062a749",
+    "problem_id": "38a86113-ffe5-43ae-9a4f-fa99c8c56d1c",
+    "input": "30\n",
+    "expected_output": "12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "b85a4e87-2426-4d76-b424-154357cf2b10",
+    "problem_id": "38a86113-ffe5-43ae-9a4f-fa99c8c56d1c",
+    "input": "100\n",
+    "expected_output": "56\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "d4789b10-3f4c-4bc7-bd80-cb7c728d97d4",
+    "problem_id": "38a86113-ffe5-43ae-9a4f-fa99c8c56d1c",
+    "input": "500\n",
+    "expected_output": "266\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "e8740da3-2bf7-442f-9422-4ce62f2252b8",
+    "problem_id": "38a86113-ffe5-43ae-9a4f-fa99c8c56d1c",
+    "input": "3000\n",
+    "expected_output": "1375\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "0aebc2af-a1d9-4bce-9293-9c202263f785",
+    "problem_id": "e8136e92-ace3-4b8c-9022-19a7f2e031ef",
+    "input": "001001\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "0e2f5348-19ce-4eb8-acd1-c0dd4c7f4dc1",
+    "problem_id": "e8136e92-ace3-4b8c-9022-19a7f2e031ef",
+    "input": "1000000001\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "22e41793-aa19-4a3e-b11a-542b79bfdcb0",
+    "problem_id": "e8136e92-ace3-4b8c-9022-19a7f2e031ef",
+    "input": "1111111\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "0f756f07-f6f8-4648-ae23-b68bf4860fb0",
+    "problem_id": "e8136e92-ace3-4b8c-9022-19a7f2e031ef",
+    "input": "0101010\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "0a59acdc-665f-4ddf-a7d6-88b589bea9c4",
+    "problem_id": "e8136e92-ace3-4b8c-9022-19a7f2e031ef",
+    "input": "0000000\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "6ab4f689-d911-4f03-9fc6-59ba4704663b",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "input": "3\n5\n2\n",
+    "expected_output": "2\n-0.6666666667 -1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "eb46bbc2-d250-4817-b0d9-ce59dfc7cdea",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "input": "1\n-2\n1\n",
+    "expected_output": "1\n1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "95cfecc2-6759-4f11-8b6c-f35aac8c0195",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "input": "1\n0\n1\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "8896c341-3139-4b11-82a8-2ce9925cd029",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "input": "1\n-3\n2\n",
+    "expected_output": "2\n2 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "d84e3ba8-c0da-4624-bb8d-10dc3b7b0c24",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "input": "1\n0\n-4\n",
+    "expected_output": "2\n2 -2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "398592f6-7d94-47f6-b123-a5f5d1ee2d75",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "input": "-1\n0\n4\n",
+    "expected_output": "2\n-2 2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "7c0478d8-f77d-4a5a-aab0-6e5aada43fac",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "input": "1\n2\n5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "b44d3c80-f4b4-46ac-b2de-d84a846efad1",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "input": "2\n-7\n3\n",
+    "expected_output": "2\n3 0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "c5f97e72-0d3a-495b-a057-a080da609fba",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "input": "5\n6\n1\n",
+    "expected_output": "2\n-0.2 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "40f0a65c-7ad9-4077-9b9a-2221517cdd48",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "input": "1\n1\n0\n",
+    "expected_output": "2\n0 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "8cdf3f86-f125-4265-9adc-8c82a22693ef",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "input": "1\n-1\n-1\n",
+    "expected_output": "2\n1.61803398875 -0.61803398875\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 4,
+    "order_index": 10,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "7e42c1e4-3d1b-4758-bacb-681708807f77",
+    "problem_id": "24fed79c-742c-430e-a6f5-1742b348a43f",
+    "input": "4\n4\n1\n",
+    "expected_output": "1\n-0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 11,
+    "created_at": "2026-06-25T11:16:32.389Z"
+  },
+  {
+    "id": "5968a4e2-02f9-460f-bb6f-577fccd62ed0",
+    "problem_id": "e8136e92-ace3-4b8c-9022-19a7f2e031ef",
+    "input": "000000111111\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "81b03a82-171c-4b5f-a70d-f78f11d223db",
+    "problem_id": "e8136e92-ace3-4b8c-9022-19a7f2e031ef",
+    "input": "0000001111111\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "c7c17947-463c-4811-ba27-2d412ff65f5c",
+    "problem_id": "e8136e92-ace3-4b8c-9022-19a7f2e031ef",
+    "input": "10101010101010\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "4a475a23-b1a7-4fc1-82a1-e4af277f7ad5",
+    "problem_id": "e8136e92-ace3-4b8c-9022-19a7f2e031ef",
+    "input": "1111110000000\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "fef39376-618d-4087-aa7e-acfa9b1e7350",
+    "problem_id": "e8136e92-ace3-4b8c-9022-19a7f2e031ef",
+    "input": "1111110111111\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "3eb87674-ddf1-4879-a3e0-aea76fdf6102",
+    "problem_id": "4fb05b80-56a5-44c4-8d59-c072caf41b3d",
+    "input": "4 2\n1 3 3 2\n",
+    "expected_output": "3\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "f856521d-9400-474f-97ee-428881d2cd30",
+    "problem_id": "4fb05b80-56a5-44c4-8d59-c072caf41b3d",
+    "input": "2 1\n4 1\n",
+    "expected_output": "4\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "36a26d5b-3384-4294-914e-24203dd16544",
+    "problem_id": "4fb05b80-56a5-44c4-8d59-c072caf41b3d",
+    "input": "3 5\n10 10 10\n",
+    "expected_output": "3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "546e83fe-4f1b-46ac-8af8-194eb076155d",
+    "problem_id": "4fb05b80-56a5-44c4-8d59-c072caf41b3d",
+    "input": "4 10\n1 2 3 4\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "266d3acf-2baf-4f0f-b6cf-1980fa2a369e",
+    "problem_id": "4fb05b80-56a5-44c4-8d59-c072caf41b3d",
+    "input": "5 3\n1 1 1 1 1\n",
+    "expected_output": "10\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "b5178390-461d-4742-8233-490b5d05de55",
+    "problem_id": "4fb05b80-56a5-44c4-8d59-c072caf41b3d",
+    "input": "3 100\n1000 500 100\n",
+    "expected_output": "17\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "b856a4b3-dab8-499b-b016-8965655dfdfe",
+    "problem_id": "4fb05b80-56a5-44c4-8d59-c072caf41b3d",
+    "input": "5 7\n100 90 80 70 60\n",
+    "expected_output": "20\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "6c8edb72-9c72-4074-8636-cb9314a917a5",
+    "problem_id": "4fb05b80-56a5-44c4-8d59-c072caf41b3d",
+    "input": "2 10\n10 10\n",
+    "expected_output": "1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  },
+  {
+    "id": "63cc0445-936f-400b-9470-79c1f248c9d3",
+    "problem_id": "4fb05b80-56a5-44c4-8d59-c072caf41b3d",
+    "input": "6 5\n1 5 10 15 20 25\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:17:04.368Z"
+  }
+]
+```
+
+### File: `backups/problem_testcases-reset-20260625-184324.json`
+
+```json
+[
+  {
+    "id": "e42ec937-de5b-49ea-b881-af9477728359",
+    "problem_id": "b5218807-1aca-4986-9925-1e25d327c337",
+    "input": "3 5\n",
+    "expected_output": "8\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "2ed58212-d144-4c19-b9e0-4dcc8e85b254",
+    "problem_id": "b5218807-1aca-4986-9925-1e25d327c337",
+    "input": "-2 10\n",
+    "expected_output": "8\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "505a226b-bd4e-42ec-80e7-ba8f17e28964",
+    "problem_id": "b5218807-1aca-4986-9925-1e25d327c337",
+    "input": "0 0\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "15d890a3-6b4e-4e32-af9a-8e63da81b100",
+    "problem_id": "b5218807-1aca-4986-9925-1e25d327c337",
+    "input": "999999 1\n",
+    "expected_output": "1000000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "8775c340-19a2-4bbf-b67d-b0c462922768",
+    "problem_id": "b5218807-1aca-4986-9925-1e25d327c337",
+    "input": "-100 -200\n",
+    "expected_output": "-300\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "28cfe0a8-9398-4ccc-8587-d30792c810cc",
+    "problem_id": "b5218807-1aca-4986-9925-1e25d327c337",
+    "input": "1000000000 1000000000\n",
+    "expected_output": "2000000000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "0a817179-0231-4f4f-8eb6-d138e2464ab3",
+    "problem_id": "b5218807-1aca-4986-9925-1e25d327c337",
+    "input": "-1000000000 1000000000\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "9a32e51c-6b0d-4735-9377-026b13485dd8",
+    "problem_id": "b5218807-1aca-4986-9925-1e25d327c337",
+    "input": "-1000000000 -1000000000\n",
+    "expected_output": "-2000000000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "c4f50561-9201-4593-8f17-8025b6b0a56d",
+    "problem_id": "eabf9d59-c2b9-45ac-b47f-dde684e6e203",
+    "input": "8\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "4f583f8f-c552-4d86-bb96-56d76ac35a39",
+    "problem_id": "eabf9d59-c2b9-45ac-b47f-dde684e6e203",
+    "input": "2\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "e13ef358-d996-4211-8ab3-9d2c0df02009",
+    "problem_id": "eabf9d59-c2b9-45ac-b47f-dde684e6e203",
+    "input": "1\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "f4b0906e-fa61-4fb4-9e0e-c10b72f85681",
+    "problem_id": "eabf9d59-c2b9-45ac-b47f-dde684e6e203",
+    "input": "3\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "ed731e0b-af56-4575-b180-e7b601004b6c",
+    "problem_id": "eabf9d59-c2b9-45ac-b47f-dde684e6e203",
+    "input": "4\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "8473e302-580a-4b10-9da8-7a22826aee0a",
+    "problem_id": "eabf9d59-c2b9-45ac-b47f-dde684e6e203",
+    "input": "6\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "68c78612-4d04-41e6-8908-9ec8201be6ee",
+    "problem_id": "eabf9d59-c2b9-45ac-b47f-dde684e6e203",
+    "input": "99\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "aa938c89-c2b8-49bf-aa5f-deb0f2efbe62",
+    "problem_id": "eabf9d59-c2b9-45ac-b47f-dde684e6e203",
+    "input": "100\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "2b6d28f3-35b1-4b77-9b4b-7a154a8fb273",
+    "problem_id": "eabf9d59-c2b9-45ac-b47f-dde684e6e203",
+    "input": "12\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "0c842e5b-e3b7-4b31-8737-8ce592bd6dec",
+    "problem_id": "eabf9d59-c2b9-45ac-b47f-dde684e6e203",
+    "input": "50\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "170306e0-02e6-4b03-bd6f-b158e6a23aaa",
+    "problem_id": "8dd0a498-b2e8-41b4-809d-2a809df780e7",
+    "input": "4 2\n",
+    "expected_output": "1/2\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "70d2ee9a-5075-4a8a-b63f-562276020cfd",
+    "problem_id": "8dd0a498-b2e8-41b4-809d-2a809df780e7",
+    "input": "3 3\n",
+    "expected_output": "2/3\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "6bc64b46-3e46-4119-9c85-977c382455aa",
+    "problem_id": "8dd0a498-b2e8-41b4-809d-2a809df780e7",
+    "input": "6 6\n",
+    "expected_output": "1/6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "b0dc287e-3a74-47ba-9b92-6183b1f0d0b8",
+    "problem_id": "8dd0a498-b2e8-41b4-809d-2a809df780e7",
+    "input": "1 1\n",
+    "expected_output": "1/1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "e9dabf53-342f-44ca-8adb-4db3040d3450",
+    "problem_id": "8dd0a498-b2e8-41b4-809d-2a809df780e7",
+    "input": "5 2\n",
+    "expected_output": "1/3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "d80f1883-33d4-4cff-870b-b8a43b0a0c59",
+    "problem_id": "8dd0a498-b2e8-41b4-809d-2a809df780e7",
+    "input": "2 5\n",
+    "expected_output": "1/3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "3a0e7c4f-f83e-4d3d-9103-fa0a2cdb9a70",
+    "problem_id": "8dd0a498-b2e8-41b4-809d-2a809df780e7",
+    "input": "1 6\n",
+    "expected_output": "1/6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "18a62036-1881-4485-a9cb-484a117aa655",
+    "problem_id": "8dd0a498-b2e8-41b4-809d-2a809df780e7",
+    "input": "6 1\n",
+    "expected_output": "1/6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "34c89dc2-e67d-4f1a-b869-8955faf6705a",
+    "problem_id": "8dd0a498-b2e8-41b4-809d-2a809df780e7",
+    "input": "3 4\n",
+    "expected_output": "1/2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "92d8ae99-d6a1-4a10-b75d-472df8a41199",
+    "problem_id": "8dd0a498-b2e8-41b4-809d-2a809df780e7",
+    "input": "5 6\n",
+    "expected_output": "1/6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "b309bd0b-4ca1-4b9f-b504-4c5241497224",
+    "problem_id": "685a4a62-1e55-4f45-a947-dc1ea5b50577",
+    "input": ".-.--\n",
+    "expected_output": "012\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "33a83ad0-4c1f-4644-bf00-bd4072f24dc7",
+    "problem_id": "685a4a62-1e55-4f45-a947-dc1ea5b50577",
+    "input": "--.\n",
+    "expected_output": "20\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "ce697805-8c59-4e1f-972f-15dba7c38db3",
+    "problem_id": "685a4a62-1e55-4f45-a947-dc1ea5b50577",
+    "input": ".\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "cd1143ee-a465-44ec-b3ef-a7d32f6d0eea",
+    "problem_id": "685a4a62-1e55-4f45-a947-dc1ea5b50577",
+    "input": "-..-.--\n",
+    "expected_output": "1012\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "ddf138b2-0bd1-42ae-9e2e-13eb7d3f0198",
+    "problem_id": "685a4a62-1e55-4f45-a947-dc1ea5b50577",
+    "input": "----.\n",
+    "expected_output": "220\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "3da66ca5-e067-4581-b061-8fcc449df532",
+    "problem_id": "685a4a62-1e55-4f45-a947-dc1ea5b50577",
+    "input": "-.---.\n",
+    "expected_output": "121\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "ec3f4104-07e3-4d47-b5db-9b6ba174befb",
+    "problem_id": "685a4a62-1e55-4f45-a947-dc1ea5b50577",
+    "input": "...\n",
+    "expected_output": "000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "d2b539ae-a2e9-4193-a064-9fb3524cdd27",
+    "problem_id": "685a4a62-1e55-4f45-a947-dc1ea5b50577",
+    "input": "--------\n",
+    "expected_output": "2222\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "b81f670a-b5e2-4560-9cf9-ee6176611835",
+    "problem_id": "685a4a62-1e55-4f45-a947-dc1ea5b50577",
+    "input": "....\n",
+    "expected_output": "0000\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "2d1c4b49-68b9-4dac-bf84-ade55dea245f",
+    "problem_id": "f75e68e1-bb37-434a-9c06-5f189a9eb82f",
+    "input": "3\n5 6\n1 2\n",
+    "expected_output": "5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "dc918e2d-4782-4b24-be42-4e05b854f05d",
+    "problem_id": "f75e68e1-bb37-434a-9c06-5f189a9eb82f",
+    "input": "4\n1 2 3\n2 4\n",
+    "expected_output": "5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "604c3dfb-19c0-4d0f-b1a1-2404e2c865e6",
+    "problem_id": "f75e68e1-bb37-434a-9c06-5f189a9eb82f",
+    "input": "3\n5 6\n1 3\n",
+    "expected_output": "11\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "f4f9ddc2-e599-44f3-9938-d323dee37a41",
+    "problem_id": "f75e68e1-bb37-434a-9c06-5f189a9eb82f",
+    "input": "5\n1 2 3 4\n1 5\n",
+    "expected_output": "10\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "0ec7c05d-f8ef-4366-baf2-d179c342e457",
+    "problem_id": "f75e68e1-bb37-434a-9c06-5f189a9eb82f",
+    "input": "2\n7\n1 2\n",
+    "expected_output": "7\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "db7c2cae-e621-448c-bd57-3105adb778ef",
+    "problem_id": "f75e68e1-bb37-434a-9c06-5f189a9eb82f",
+    "input": "6\n2 3 4 5 6\n2 5\n",
+    "expected_output": "12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "1658a0cd-910c-4ce2-a35b-a66006fe80eb",
+    "problem_id": "f75e68e1-bb37-434a-9c06-5f189a9eb82f",
+    "input": "6\n2 3 4 5 6\n1 6\n",
+    "expected_output": "20\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "ef064b15-63b1-4068-86c9-df544bca80c0",
+    "problem_id": "f75e68e1-bb37-434a-9c06-5f189a9eb82f",
+    "input": "10\n1 1 1 1 1 1 1 1 1\n3 8\n",
+    "expected_output": "5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "e84f3cc2-7671-4037-b0d6-635c8bb25edb",
+    "problem_id": "1d6fed76-6503-4ff6-92e3-7139ea3d6c6d",
+    "input": "code\nedoc\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "27255399-d634-49a1-8ed5-874e9f1d3936",
+    "problem_id": "1d6fed76-6503-4ff6-92e3-7139ea3d6c6d",
+    "input": "abb\naba\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "99dcf1f3-957e-4c67-bf9c-c92e48163eed",
+    "problem_id": "1d6fed76-6503-4ff6-92e3-7139ea3d6c6d",
+    "input": "abc\ncba\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "2f00e0e8-a28e-4027-9ec7-cb369b94e522",
+    "problem_id": "1d6fed76-6503-4ff6-92e3-7139ea3d6c6d",
+    "input": "code\ncode\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "339f4a9e-7a95-4669-9624-42462c0cbd78",
+    "problem_id": "1d6fed76-6503-4ff6-92e3-7139ea3d6c6d",
+    "input": "a\na\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "5b3e910e-6d10-4875-90fb-aa5d81ec56c6",
+    "problem_id": "1d6fed76-6503-4ff6-92e3-7139ea3d6c6d",
+    "input": "ab\nba\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "3f1eeb4d-39bf-4c6b-8f91-61f7ade9af92",
+    "problem_id": "1d6fed76-6503-4ff6-92e3-7139ea3d6c6d",
+    "input": "ab\nab\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "4c074cfc-f684-4244-a8a9-50b6cdb64d0f",
+    "problem_id": "1d6fed76-6503-4ff6-92e3-7139ea3d6c6d",
+    "input": "hello\nolleh\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "7b0e65d9-2518-4216-aadd-3d9538004286",
+    "problem_id": "1d6fed76-6503-4ff6-92e3-7139ea3d6c6d",
+    "input": "heLlo\nolleh\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "cebeacbb-131a-424b-a769-c206dfba4dd9",
+    "problem_id": "1d6fed76-6503-4ff6-92e3-7139ea3d6c6d",
+    "input": "verylongword\ndrowgnolyrev\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "a3091185-0c9d-4596-abab-5636dc53d151",
+    "problem_id": "96f6e3d3-19d8-4324-894a-87190204beac",
+    "input": "HoUse\n",
+    "expected_output": "house\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "57311965-a1f1-4bfe-8281-ed21d985bc86",
+    "problem_id": "96f6e3d3-19d8-4324-894a-87190204beac",
+    "input": "ViP\n",
+    "expected_output": "VIP\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "4189f158-2a58-465b-af50-3e9faa718b99",
+    "problem_id": "96f6e3d3-19d8-4324-894a-87190204beac",
+    "input": "maTRIx\n",
+    "expected_output": "matrix\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "aa9c89bb-e4ab-4402-97af-810459cf185a",
+    "problem_id": "96f6e3d3-19d8-4324-894a-87190204beac",
+    "input": "abCD\n",
+    "expected_output": "abcd\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "51bcf9cc-2e38-4c34-b9f7-dd26f8d6bff5",
+    "problem_id": "96f6e3d3-19d8-4324-894a-87190204beac",
+    "input": "A\n",
+    "expected_output": "A\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "29f2d30f-b6a6-4699-9cc2-dd7f7314cf28",
+    "problem_id": "96f6e3d3-19d8-4324-894a-87190204beac",
+    "input": "a\n",
+    "expected_output": "a\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "f62354f1-da05-4dcd-b154-2299f360d58b",
+    "problem_id": "96f6e3d3-19d8-4324-894a-87190204beac",
+    "input": "HELLo\n",
+    "expected_output": "HELLO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "b5ac738d-c3ba-4af2-a603-e2d171807290",
+    "problem_id": "96f6e3d3-19d8-4324-894a-87190204beac",
+    "input": "hellO\n",
+    "expected_output": "hello\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "f71e9691-42cb-40b0-9018-a41231284551",
+    "problem_id": "96f6e3d3-19d8-4324-894a-87190204beac",
+    "input": "CODE\n",
+    "expected_output": "CODE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "3709bc29-be25-4fab-81b3-36cd4ab7f314",
+    "problem_id": "96f6e3d3-19d8-4324-894a-87190204beac",
+    "input": "code\n",
+    "expected_output": "code\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "64875fda-10e7-44f0-bb2e-934ad6aa9bab",
+    "problem_id": "69c2c9f1-5716-4dbe-9610-4cc773481bc5",
+    "input": "4 2 1 3\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "69e2c3f1-c80f-4c92-a365-b0aa02ded5ec",
+    "problem_id": "69c2c9f1-5716-4dbe-9610-4cc773481bc5",
+    "input": "7 2 2 4\n",
+    "expected_output": "SEGMENT\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "01848bd1-4da7-4b68-83ad-064ac9475251",
+    "problem_id": "69c2c9f1-5716-4dbe-9610-4cc773481bc5",
+    "input": "3 5 9 1\n",
+    "expected_output": "IMPOSSIBLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "461f91a7-61d9-49bd-bee0-76d8d38b4c48",
+    "problem_id": "69c2c9f1-5716-4dbe-9610-4cc773481bc5",
+    "input": "5 5 5 8\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "f0e692d8-0136-4378-a124-bea41edd9961",
+    "problem_id": "69c2c9f1-5716-4dbe-9610-4cc773481bc5",
+    "input": "2 2 2 2\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "ce39d1c5-de2c-4afc-8a61-689b3940d2ef",
+    "problem_id": "69c2c9f1-5716-4dbe-9610-4cc773481bc5",
+    "input": "1 2 3 4\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "855e4f43-fe60-4960-a2ca-f71259178704",
+    "problem_id": "69c2c9f1-5716-4dbe-9610-4cc773481bc5",
+    "input": "1 2 4 8\n",
+    "expected_output": "IMPOSSIBLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "bc5b5fe5-890e-4c9f-a1cc-88148bb74f20",
+    "problem_id": "69c2c9f1-5716-4dbe-9610-4cc773481bc5",
+    "input": "3 4 5 10\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "d8ae1e28-d03a-43a1-b50f-8003e5b177d8",
+    "problem_id": "69c2c9f1-5716-4dbe-9610-4cc773481bc5",
+    "input": "10 20 30 40\n",
+    "expected_output": "TRIANGLE\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "7296d29d-56ee-4758-8cdd-9e0a7f58fd26",
+    "problem_id": "69c2c9f1-5716-4dbe-9610-4cc773481bc5",
+    "input": "10 20 30 50\n",
+    "expected_output": "SEGMENT\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "019e96ad-30d7-46f1-9db1-9229f0311adf",
+    "problem_id": "742557cc-92b7-4df7-a202-8fade3fedd5a",
+    "input": "10\n",
+    "expected_output": "2\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "b33ea923-1416-4fbb-b616-5d933b60559d",
+    "problem_id": "742557cc-92b7-4df7-a202-8fade3fedd5a",
+    "input": "21\n",
+    "expected_output": "8\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "5894fd86-b441-4e8d-b8cf-5c6de3ed1f7f",
+    "problem_id": "742557cc-92b7-4df7-a202-8fade3fedd5a",
+    "input": "1\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "2eefcd1c-465b-4f31-9193-b72591a90243",
+    "problem_id": "742557cc-92b7-4df7-a202-8fade3fedd5a",
+    "input": "5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "9852c150-b731-4303-8ed5-e86acaaa7599",
+    "problem_id": "742557cc-92b7-4df7-a202-8fade3fedd5a",
+    "input": "6\n",
+    "expected_output": "1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "c7a5c229-2f4a-4bc1-84e4-878b625912b3",
+    "problem_id": "742557cc-92b7-4df7-a202-8fade3fedd5a",
+    "input": "30\n",
+    "expected_output": "12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "b800f380-ae66-4ac5-be65-59b464baefb0",
+    "problem_id": "742557cc-92b7-4df7-a202-8fade3fedd5a",
+    "input": "100\n",
+    "expected_output": "56\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "068c3d68-ddf9-4167-a9a4-e98c3f8a1783",
+    "problem_id": "742557cc-92b7-4df7-a202-8fade3fedd5a",
+    "input": "500\n",
+    "expected_output": "266\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "4f9f2fad-fa44-453b-b811-2b084fe1f805",
+    "problem_id": "742557cc-92b7-4df7-a202-8fade3fedd5a",
+    "input": "3000\n",
+    "expected_output": "1375\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "ac0ae679-a335-4ba9-adf9-5038efa4b8e8",
+    "problem_id": "9f0292a7-3022-431c-a7ea-f3f29e776110",
+    "input": "001001\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "3f968b91-c20d-4688-9e67-6951db8d877f",
+    "problem_id": "9f0292a7-3022-431c-a7ea-f3f29e776110",
+    "input": "1000000001\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "c66a0057-250d-4224-8a7e-4041d314eb16",
+    "problem_id": "9f0292a7-3022-431c-a7ea-f3f29e776110",
+    "input": "1111111\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "a7408bb1-7854-4887-9092-aed561ba4a3a",
+    "problem_id": "9f0292a7-3022-431c-a7ea-f3f29e776110",
+    "input": "0101010\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "71e5ec53-888e-4e48-9dec-20411131f9a0",
+    "problem_id": "9f0292a7-3022-431c-a7ea-f3f29e776110",
+    "input": "0000000\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "29820b4d-a564-4176-a13d-423ca7ba8ac1",
+    "problem_id": "9f0292a7-3022-431c-a7ea-f3f29e776110",
+    "input": "000000111111\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "1e81dfb4-6816-4f2e-9441-c0e763671048",
+    "problem_id": "9f0292a7-3022-431c-a7ea-f3f29e776110",
+    "input": "0000001111111\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "f379dab0-9989-462f-a8ac-de00a99a6e57",
+    "problem_id": "9f0292a7-3022-431c-a7ea-f3f29e776110",
+    "input": "10101010101010\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "dba2e200-c868-4a89-9693-fac6425bb2bb",
+    "problem_id": "9f0292a7-3022-431c-a7ea-f3f29e776110",
+    "input": "1111110000000\n",
+    "expected_output": "YES\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "537b7a1b-8ddd-4895-aad9-0f51605184da",
+    "problem_id": "9f0292a7-3022-431c-a7ea-f3f29e776110",
+    "input": "1111110111111\n",
+    "expected_output": "NO\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "b5fdbb33-d411-4027-9b89-33d67d80d65a",
+    "problem_id": "83a2c4a5-30dd-4faa-bc86-aabe725da2be",
+    "input": "4 2\n1 3 3 2\n",
+    "expected_output": "3\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "27da9695-08e6-4649-938d-4c5a719fdba3",
+    "problem_id": "83a2c4a5-30dd-4faa-bc86-aabe725da2be",
+    "input": "2 1\n4 1\n",
+    "expected_output": "4\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "e15df933-4c0c-42e4-a9f4-caea5997446d",
+    "problem_id": "83a2c4a5-30dd-4faa-bc86-aabe725da2be",
+    "input": "3 5\n10 10 10\n",
+    "expected_output": "3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "fea6b9d7-b899-4c40-96d3-74312616c2ea",
+    "problem_id": "83a2c4a5-30dd-4faa-bc86-aabe725da2be",
+    "input": "4 10\n1 2 3 4\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "1b0d8636-05a9-4ed2-b518-ab696a0cee42",
+    "problem_id": "83a2c4a5-30dd-4faa-bc86-aabe725da2be",
+    "input": "5 3\n1 1 1 1 1\n",
+    "expected_output": "10\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "cd8c422e-615a-4149-8b52-6b516983c509",
+    "problem_id": "83a2c4a5-30dd-4faa-bc86-aabe725da2be",
+    "input": "3 100\n1000 500 100\n",
+    "expected_output": "17\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "b85c5e9e-1b2c-4ccb-9b4b-0ba36e4a5fd4",
+    "problem_id": "83a2c4a5-30dd-4faa-bc86-aabe725da2be",
+    "input": "5 7\n100 90 80 70 60\n",
+    "expected_output": "20\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "ae020c58-e2a7-4190-a706-b6f8a6ff8937",
+    "problem_id": "83a2c4a5-30dd-4faa-bc86-aabe725da2be",
+    "input": "2 10\n10 10\n",
+    "expected_output": "1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "9676599e-5bbc-4da3-ae58-59437d03607d",
+    "problem_id": "bcc81a8a-28af-4cb7-8644-ca22b6243431",
+    "input": "10\n5\n",
+    "expected_output": "5 la uoc cua 10\n10 khong la uoc cua 5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "7b16bceb-e64f-4026-9279-bfb6dfb2ef50",
+    "problem_id": "bcc81a8a-28af-4cb7-8644-ca22b6243431",
+    "input": "6\n3\n",
+    "expected_output": "3 la uoc cua 6\n6 khong la uoc cua 3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "be01a87e-ebce-4ba9-812e-e1b816f7727a",
+    "problem_id": "bcc81a8a-28af-4cb7-8644-ca22b6243431",
+    "input": "3\n6\n",
+    "expected_output": "6 khong la uoc cua 3\n3 la uoc cua 6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "8f2b870d-e2aa-4fbc-8dc5-6b3e6592b019",
+    "problem_id": "bcc81a8a-28af-4cb7-8644-ca22b6243431",
+    "input": "7\n7\n",
+    "expected_output": "7 la uoc cua 7\n7 la uoc cua 7\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "5c158cbf-54b3-4fe7-a136-a68eca3b9a35",
+    "problem_id": "bcc81a8a-28af-4cb7-8644-ca22b6243431",
+    "input": "8\n12\n",
+    "expected_output": "12 khong la uoc cua 8\n8 khong la uoc cua 12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "7cc35843-04e4-4795-8eeb-509bab4c07bf",
+    "problem_id": "bcc81a8a-28af-4cb7-8644-ca22b6243431",
+    "input": "1\n9\n",
+    "expected_output": "9 khong la uoc cua 1\n1 la uoc cua 9\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "c991a1ab-65df-4b5b-8407-984f506d36d6",
+    "problem_id": "bcc81a8a-28af-4cb7-8644-ca22b6243431",
+    "input": "9\n1\n",
+    "expected_output": "1 la uoc cua 9\n9 khong la uoc cua 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "f75df636-9b36-4f61-af72-c106acec6163",
+    "problem_id": "bcc81a8a-28af-4cb7-8644-ca22b6243431",
+    "input": "100\n25\n",
+    "expected_output": "25 la uoc cua 100\n100 khong la uoc cua 25\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "661d072a-3c5c-4c21-b6e2-7f2e5d412140",
+    "problem_id": "bcc81a8a-28af-4cb7-8644-ca22b6243431",
+    "input": "25\n100\n",
+    "expected_output": "100 khong la uoc cua 25\n25 la uoc cua 100\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "9c3e84fd-75a9-4b36-824d-3c975a2ce9a2",
+    "problem_id": "1e79a50d-4f9c-4c16-b934-1f60217c9bc4",
+    "input": "5\n10\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "05082ad1-733a-4d1c-a908-0348fbd96a6d",
+    "problem_id": "1e79a50d-4f9c-4c16-b934-1f60217c9bc4",
+    "input": "10\n5\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "80fee54c-7e4e-4b50-8523-d2d5400e3c40",
+    "problem_id": "1e79a50d-4f9c-4c16-b934-1f60217c9bc4",
+    "input": "7\n7\n",
+    "expected_output": "7 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "aeb97a1a-c0de-4607-b363-39b4125de38c",
+    "problem_id": "1e79a50d-4f9c-4c16-b934-1f60217c9bc4",
+    "input": "-1\n5\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "435f88d9-9a39-4f2f-a7fa-bcd89361758b",
+    "problem_id": "1e79a50d-4f9c-4c16-b934-1f60217c9bc4",
+    "input": "5\n-1\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "0fb9c426-ab03-413b-9a62-d584585bffbc",
+    "problem_id": "1e79a50d-4f9c-4c16-b934-1f60217c9bc4",
+    "input": "-10\n-20\n",
+    "expected_output": "-20 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "03f1c1d3-ad86-48d2-b841-8733e9d8037f",
+    "problem_id": "1e79a50d-4f9c-4c16-b934-1f60217c9bc4",
+    "input": "0\n0\n",
+    "expected_output": "0 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "2d01eb9f-fa6c-44ce-be8a-c83ef5cf22cb",
+    "problem_id": "1e79a50d-4f9c-4c16-b934-1f60217c9bc4",
+    "input": "1000000000\n-1000000000\n",
+    "expected_output": "-1000000000 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "b963d70e-47d2-4093-88b9-b43c0c821ab0",
+    "problem_id": "1e79a50d-4f9c-4c16-b934-1f60217c9bc4",
+    "input": "123\n456\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "41ac5821-c294-44e5-93dc-1ccf1c3c1eb4",
+    "problem_id": "1e79a50d-4f9c-4c16-b934-1f60217c9bc4",
+    "input": "456\n123\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "33417257-b531-451b-8486-64c63d521859",
+    "problem_id": "83a2c4a5-30dd-4faa-bc86-aabe725da2be",
+    "input": "6 5\n1 5 10 15 20 25\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 1,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:22:59.913Z"
+  },
+  {
+    "id": "5b6185c1-2c73-4883-a440-76e3ac791788",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "input": "3\n5\n2\n",
+    "expected_output": "2\n-0.6666666667 -1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "503df75d-28e1-4b27-9e92-9b965225fea2",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "input": "1\n-2\n1\n",
+    "expected_output": "1\n1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "dc3f2ad5-1a3b-4569-9a1c-71415af17d8b",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "input": "1\n0\n1\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "38533a52-b1db-4a11-9521-a1ecd100ce1f",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "input": "1\n-3\n2\n",
+    "expected_output": "2\n2 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "5748001b-9850-4a92-b02b-3ddf2892ae45",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "input": "1\n0\n-4\n",
+    "expected_output": "2\n2 -2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "27f1c0d7-abaa-460e-86fc-8af0ea4fb849",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "input": "-1\n0\n4\n",
+    "expected_output": "2\n-2 2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "67b72722-e9eb-4e70-b174-7fe0c902b020",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "input": "1\n2\n5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "98aa8efb-280c-4115-8c9a-3f90cb13ad06",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "input": "2\n-7\n3\n",
+    "expected_output": "2\n3 0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "1464ad07-8b82-47d7-82d3-5701451c1d88",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "input": "5\n6\n1\n",
+    "expected_output": "2\n-0.2 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "b7761002-7eb6-40f9-8ee3-04f4721e60a9",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "input": "1\n1\n0\n",
+    "expected_output": "2\n0 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "d28677a8-33e0-4e31-a957-b5362dcfdc49",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "input": "1\n-1\n-1\n",
+    "expected_output": "2\n1.61803398875 -0.61803398875\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 4,
+    "order_index": 10,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "54effac7-dadd-47d5-b06f-43530d20ba81",
+    "problem_id": "f9edbc5f-9ebb-452e-8f81-a8af3459b92f",
+    "input": "4\n4\n1\n",
+    "expected_output": "1\n-0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 11,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "bb400735-b13c-43ed-bbf6-c077c7abd6b4",
+    "problem_id": "633eb86a-ac9d-4237-8c8e-852735286423",
+    "input": "12\n",
+    "expected_output": "12 la so chan\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "ea6e4427-ef3f-4905-8fb2-7e467ecf0a19",
+    "problem_id": "633eb86a-ac9d-4237-8c8e-852735286423",
+    "input": "7\n",
+    "expected_output": "7 la so le\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "f937be05-5ceb-486e-9716-0c2c7fe15a2b",
+    "problem_id": "633eb86a-ac9d-4237-8c8e-852735286423",
+    "input": "1\n",
+    "expected_output": "1 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "64e15547-8793-4bcd-a878-220716165563",
+    "problem_id": "633eb86a-ac9d-4237-8c8e-852735286423",
+    "input": "2\n",
+    "expected_output": "2 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "c68a0793-fd54-4d4e-88e9-80638e75bd48",
+    "problem_id": "633eb86a-ac9d-4237-8c8e-852735286423",
+    "input": "99\n",
+    "expected_output": "99 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "742d79b6-5945-41a2-8147-6cde4f51b3ea",
+    "problem_id": "633eb86a-ac9d-4237-8c8e-852735286423",
+    "input": "100\n",
+    "expected_output": "100 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "def3731e-7167-46ba-b570-4263dda5b1f0",
+    "problem_id": "633eb86a-ac9d-4237-8c8e-852735286423",
+    "input": "123456789\n",
+    "expected_output": "123456789 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "d310ab23-b0ce-4390-935b-00d92a436a6b",
+    "problem_id": "633eb86a-ac9d-4237-8c8e-852735286423",
+    "input": "1000000000\n",
+    "expected_output": "1000000000 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "32cd9810-03a5-4a04-86fa-bae56f66d3c4",
+    "problem_id": "3d62e4bd-b22c-4498-ad28-b4bcdf41e2aa",
+    "input": "10\n20\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "0cd06d8c-962e-43db-ae9a-530a28277333",
+    "problem_id": "3d62e4bd-b22c-4498-ad28-b4bcdf41e2aa",
+    "input": "3\n5\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "f18e90da-b533-4102-9490-1890c2d77dfd",
+    "problem_id": "3d62e4bd-b22c-4498-ad28-b4bcdf41e2aa",
+    "input": "2\n3\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "ab40c107-ae4d-46ee-a82d-4a3005b41b61",
+    "problem_id": "3d62e4bd-b22c-4498-ad28-b4bcdf41e2aa",
+    "input": "1\n2\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "f253d9b9-36c0-4897-a51d-7b2845ddb88f",
+    "problem_id": "3d62e4bd-b22c-4498-ad28-b4bcdf41e2aa",
+    "input": "100\n200\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "0230d2c5-b326-40b9-8bd3-48c9d4c54a8f",
+    "problem_id": "3d62e4bd-b22c-4498-ad28-b4bcdf41e2aa",
+    "input": "99\n101\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "38d4dd76-6fd6-46b0-af23-85d228871ed3",
+    "problem_id": "3d62e4bd-b22c-4498-ad28-b4bcdf41e2aa",
+    "input": "999\n1000\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "b95c2e37-2a5f-476d-b5d8-fcfce872fa29",
+    "problem_id": "3d62e4bd-b22c-4498-ad28-b4bcdf41e2aa",
+    "input": "0\n8\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "124b15f3-54f1-44d9-9873-226531b9fc27",
+    "problem_id": "3d62e4bd-b22c-4498-ad28-b4bcdf41e2aa",
+    "input": "0\n7\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  },
+  {
+    "id": "bc1856b5-9ca1-4868-bc79-beae28fde161",
+    "problem_id": "bcc81a8a-28af-4cb7-8644-ca22b6243431",
+    "input": "5\n10\n",
+    "expected_output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:19:49.012Z"
+  }
+]
+```
+
+### File: `backups/problem_testcases-reset-20260625-184454.json`
+
+```json
+[
+  {
+    "id": "a0132ae9-41a8-4e76-9cbd-be0c4b33800a",
+    "problem_id": "d6c7107b-e147-4a99-a8bc-aea966a73f38",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:44:51.137Z"
+  },
+  {
+    "id": "76a5cc41-8430-4356-81a3-ccc7e12a55e1",
+    "problem_id": "935b0613-3af8-4243-b41f-5fcaecdd523c",
+    "input": "123\n456\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "40903ec6-261f-44f1-b520-d22cc2b919f9",
+    "problem_id": "935b0613-3af8-4243-b41f-5fcaecdd523c",
+    "input": "456\n123\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "7d705b99-8804-4f27-8c08-63ae48871eee",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "input": "3\n5\n2\n",
+    "expected_output": "2\n-0.6666666667 -1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "5aefe4db-0f71-40ac-b6c9-3c145708ce73",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "input": "1\n-2\n1\n",
+    "expected_output": "1\n1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "37cc2b47-fac0-42e2-9470-275f18b0e1a7",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "input": "1\n0\n1\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "e5d6e440-e2c3-4d95-8c6a-69d71c69f172",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "input": "1\n-3\n2\n",
+    "expected_output": "2\n2 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "988672e7-5749-4149-b1df-31bc8c9e319d",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "input": "1\n0\n-4\n",
+    "expected_output": "2\n2 -2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "b156fcac-c0cf-424c-991d-6129c20d4aa6",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "input": "-1\n0\n4\n",
+    "expected_output": "2\n-2 2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "3621d309-f9d8-4517-a62b-bb0d978e9436",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "input": "1\n2\n5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "4bff1c22-b258-4c3a-9b79-aad6942e9175",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "input": "2\n-7\n3\n",
+    "expected_output": "2\n3 0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "30fbb94d-d100-47dd-a7df-441ad8b64328",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "input": "5\n6\n1\n",
+    "expected_output": "2\n-0.2 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "c7179285-9138-4356-b96f-d2f3a5af8f9b",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "input": "1\n1\n0\n",
+    "expected_output": "2\n0 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "18570e61-025b-4711-898c-c01dcc154cb5",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "input": "1\n-1\n-1\n",
+    "expected_output": "2\n1.61803398875 -0.61803398875\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 4,
+    "order_index": 10,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "55365348-d7b0-4020-a779-55a73524431b",
+    "problem_id": "b574351d-6779-42ea-a5b6-21e6ddabd527",
+    "input": "4\n4\n1\n",
+    "expected_output": "1\n-0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 11,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "67946020-7858-46ba-841f-35d12360a42e",
+    "problem_id": "32c6ef3d-2978-4e0f-a6de-1949a071cce6",
+    "input": "12\n",
+    "expected_output": "12 la so chan\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "0e712116-6e87-482c-b7a4-532b35604f0f",
+    "problem_id": "32c6ef3d-2978-4e0f-a6de-1949a071cce6",
+    "input": "7\n",
+    "expected_output": "7 la so le\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "5db1b1fe-cd25-4810-9e60-8302ef969e8e",
+    "problem_id": "32c6ef3d-2978-4e0f-a6de-1949a071cce6",
+    "input": "1\n",
+    "expected_output": "1 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "91c2b68b-3186-4466-80be-5b1d87dbf1b2",
+    "problem_id": "32c6ef3d-2978-4e0f-a6de-1949a071cce6",
+    "input": "2\n",
+    "expected_output": "2 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "48f19e27-634b-438b-94df-59a63be8d2cf",
+    "problem_id": "32c6ef3d-2978-4e0f-a6de-1949a071cce6",
+    "input": "99\n",
+    "expected_output": "99 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "014aff20-3fff-4ed5-99aa-ce42e26613bc",
+    "problem_id": "32c6ef3d-2978-4e0f-a6de-1949a071cce6",
+    "input": "100\n",
+    "expected_output": "100 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "6a77f5a7-8548-42ce-9455-ec004495bc67",
+    "problem_id": "32c6ef3d-2978-4e0f-a6de-1949a071cce6",
+    "input": "123456789\n",
+    "expected_output": "123456789 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "a434fe2d-0628-481a-b15b-65e43a9d99ff",
+    "problem_id": "32c6ef3d-2978-4e0f-a6de-1949a071cce6",
+    "input": "1000000000\n",
+    "expected_output": "1000000000 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "3c0872f9-0953-4310-8eab-a3db42e7abd7",
+    "problem_id": "577cbfdc-8ebe-4754-8234-2958d456a075",
+    "input": "10\n20\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "432b1248-8715-4cef-88ab-eff19ca342c1",
+    "problem_id": "577cbfdc-8ebe-4754-8234-2958d456a075",
+    "input": "3\n5\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "f7e7c61d-7414-46df-b40c-aa56cb9aee0d",
+    "problem_id": "577cbfdc-8ebe-4754-8234-2958d456a075",
+    "input": "2\n3\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "1ad70f5c-6591-44cb-9acf-4550cc58095e",
+    "problem_id": "577cbfdc-8ebe-4754-8234-2958d456a075",
+    "input": "1\n2\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "73e3a9b0-12cd-4414-904b-b6e05b0c7e50",
+    "problem_id": "577cbfdc-8ebe-4754-8234-2958d456a075",
+    "input": "100\n200\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "03709c1d-fe56-4647-b6e6-c646255049f6",
+    "problem_id": "577cbfdc-8ebe-4754-8234-2958d456a075",
+    "input": "99\n101\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "6f7ee6f2-e4e9-4def-a16c-f246d78f0c49",
+    "problem_id": "577cbfdc-8ebe-4754-8234-2958d456a075",
+    "input": "999\n1000\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "60a9477b-b145-4794-95c4-5d2c04fdd275",
+    "problem_id": "577cbfdc-8ebe-4754-8234-2958d456a075",
+    "input": "0\n8\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "89a69dd4-c4df-4a6f-af2b-16fd4870fb43",
+    "problem_id": "577cbfdc-8ebe-4754-8234-2958d456a075",
+    "input": "0\n7\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "755d637a-c24f-423d-a11e-e90e5534a390",
+    "problem_id": "24f76a80-4d7a-4a93-82e4-a9c072bcc797",
+    "input": "5\n10\n",
+    "expected_output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "9492dea9-9c35-48e6-a127-c94d45cac46d",
+    "problem_id": "24f76a80-4d7a-4a93-82e4-a9c072bcc797",
+    "input": "10\n5\n",
+    "expected_output": "5 la uoc cua 10\n10 khong la uoc cua 5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "d4f5dbfb-3df2-45f7-9d1c-c71ba7ee2c44",
+    "problem_id": "24f76a80-4d7a-4a93-82e4-a9c072bcc797",
+    "input": "6\n3\n",
+    "expected_output": "3 la uoc cua 6\n6 khong la uoc cua 3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "172441b6-0787-457e-9bf5-d9a860e727cb",
+    "problem_id": "24f76a80-4d7a-4a93-82e4-a9c072bcc797",
+    "input": "3\n6\n",
+    "expected_output": "6 khong la uoc cua 3\n3 la uoc cua 6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "0c6576f1-44f4-4ffb-919c-364268c0e7a1",
+    "problem_id": "24f76a80-4d7a-4a93-82e4-a9c072bcc797",
+    "input": "7\n7\n",
+    "expected_output": "7 la uoc cua 7\n7 la uoc cua 7\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "570e6d9c-6366-4118-a68e-eede996fe492",
+    "problem_id": "24f76a80-4d7a-4a93-82e4-a9c072bcc797",
+    "input": "8\n12\n",
+    "expected_output": "12 khong la uoc cua 8\n8 khong la uoc cua 12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "2fca3c32-7950-427e-ade2-69b251c20196",
+    "problem_id": "24f76a80-4d7a-4a93-82e4-a9c072bcc797",
+    "input": "1\n9\n",
+    "expected_output": "9 khong la uoc cua 1\n1 la uoc cua 9\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "b7e6b292-4e2b-4285-ae95-c1d7f6108844",
+    "problem_id": "24f76a80-4d7a-4a93-82e4-a9c072bcc797",
+    "input": "9\n1\n",
+    "expected_output": "1 la uoc cua 9\n9 khong la uoc cua 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "b8fa8a05-c361-4a32-87b0-43485bbd63c8",
+    "problem_id": "24f76a80-4d7a-4a93-82e4-a9c072bcc797",
+    "input": "100\n25\n",
+    "expected_output": "25 la uoc cua 100\n100 khong la uoc cua 25\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "0934ad3a-e6b3-4038-a6a1-7d2d2f38fa96",
+    "problem_id": "24f76a80-4d7a-4a93-82e4-a9c072bcc797",
+    "input": "25\n100\n",
+    "expected_output": "100 khong la uoc cua 25\n25 la uoc cua 100\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "e7742de4-3477-4b2b-ab46-12fac1d9d815",
+    "problem_id": "935b0613-3af8-4243-b41f-5fcaecdd523c",
+    "input": "5\n10\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "5b60861a-8f8e-47ae-bf0f-03626df5ce17",
+    "problem_id": "935b0613-3af8-4243-b41f-5fcaecdd523c",
+    "input": "10\n5\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "1bd23685-846d-4b6b-866e-2d631005eaa6",
+    "problem_id": "935b0613-3af8-4243-b41f-5fcaecdd523c",
+    "input": "7\n7\n",
+    "expected_output": "7 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "db381cef-404a-469f-ade4-9a7bcefa87f1",
+    "problem_id": "935b0613-3af8-4243-b41f-5fcaecdd523c",
+    "input": "-1\n5\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "00f2cfb8-7aa0-485a-a86d-5052e3633540",
+    "problem_id": "935b0613-3af8-4243-b41f-5fcaecdd523c",
+    "input": "5\n-1\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "b77431a5-140f-4132-be85-2b788a856a98",
+    "problem_id": "935b0613-3af8-4243-b41f-5fcaecdd523c",
+    "input": "-10\n-20\n",
+    "expected_output": "-20 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "394a7251-7bc7-4173-9d77-5ff24f1a3026",
+    "problem_id": "935b0613-3af8-4243-b41f-5fcaecdd523c",
+    "input": "0\n0\n",
+    "expected_output": "0 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  },
+  {
+    "id": "dd20c7bd-05f0-44f1-9e49-64430c5f666f",
+    "problem_id": "935b0613-3af8-4243-b41f-5fcaecdd523c",
+    "input": "1000000000\n-1000000000\n",
+    "expected_output": "-1000000000 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:43:28.555Z"
+  }
+]
+```
+
+### File: `backups/problem_testcases-reset-20260625-184543.json`
+
+```json
+[
+  {
+    "id": "2efd54b1-a23c-4674-b8f7-4234ac035bbc",
+    "problem_id": "02fc7698-d3d6-489d-9131-e390b09147ec",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:45:39.575Z"
+  },
+  {
+    "id": "54399c08-251a-4fa7-aab3-889031592865",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "input": "3\n5\n2\n",
+    "expected_output": "2\n-0.6666666667 -1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "1310c2f4-0d68-4bcb-8696-3f82cfd3d5a4",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "input": "1\n-2\n1\n",
+    "expected_output": "1\n1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "f13036ba-b634-4495-8c4f-c261b4cbd5d4",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "input": "1\n0\n1\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "e3f251b2-d04f-45a1-8e6b-001eef734168",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "input": "1\n-3\n2\n",
+    "expected_output": "2\n2 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "7ce7ebd1-a5ce-491a-a7f5-904e27532d12",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "input": "1\n0\n-4\n",
+    "expected_output": "2\n2 -2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "4a513b88-b9f6-409d-b661-68080f7d7b80",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "input": "-1\n0\n4\n",
+    "expected_output": "2\n-2 2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "8c890951-ec93-4bff-a18f-45b789aa7b06",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "input": "1\n2\n5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "37fde873-e715-4ad5-ac8e-911e0ce1c424",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "input": "2\n-7\n3\n",
+    "expected_output": "2\n3 0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "eabef55c-0af4-44df-a168-4caa00dc3032",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "input": "5\n6\n1\n",
+    "expected_output": "2\n-0.2 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "98807508-03d8-4ba9-a19f-8df420804ffc",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "input": "1\n1\n0\n",
+    "expected_output": "2\n0 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "cd306b31-f4b4-4644-a7cc-771ea16242eb",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "input": "1\n-1\n-1\n",
+    "expected_output": "2\n1.61803398875 -0.61803398875\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 4,
+    "order_index": 10,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "f9536076-af86-4fa9-a82b-e633de179653",
+    "problem_id": "f215a1d9-d2f1-433a-af90-9ca3ac289794",
+    "input": "4\n4\n1\n",
+    "expected_output": "1\n-0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 11,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "d4d0d0dd-6452-443f-ba3d-ec8676af76ee",
+    "problem_id": "3e08ba7e-9e2a-4f5f-904c-b6f1b3303faf",
+    "input": "12\n",
+    "expected_output": "12 la so chan\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "6f6bb29a-3b85-4144-a11b-8f8710e38171",
+    "problem_id": "3e08ba7e-9e2a-4f5f-904c-b6f1b3303faf",
+    "input": "7\n",
+    "expected_output": "7 la so le\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "594f0cfd-ddf8-480b-827d-c69cb8d4a8a4",
+    "problem_id": "3e08ba7e-9e2a-4f5f-904c-b6f1b3303faf",
+    "input": "1\n",
+    "expected_output": "1 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "b1b0f316-a29f-4d28-9f3c-e02e8a3c7e7e",
+    "problem_id": "3e08ba7e-9e2a-4f5f-904c-b6f1b3303faf",
+    "input": "2\n",
+    "expected_output": "2 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "bdb31423-64c8-4d86-80d3-02c6e6288bae",
+    "problem_id": "3e08ba7e-9e2a-4f5f-904c-b6f1b3303faf",
+    "input": "99\n",
+    "expected_output": "99 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "af395c86-b544-4a1e-9a48-e5e0bfc6778c",
+    "problem_id": "3e08ba7e-9e2a-4f5f-904c-b6f1b3303faf",
+    "input": "100\n",
+    "expected_output": "100 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "ee7276e1-45d3-4381-b226-ea258b767081",
+    "problem_id": "3e08ba7e-9e2a-4f5f-904c-b6f1b3303faf",
+    "input": "123456789\n",
+    "expected_output": "123456789 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "8df35f87-7b46-4587-9b7f-bf3792567465",
+    "problem_id": "3e08ba7e-9e2a-4f5f-904c-b6f1b3303faf",
+    "input": "1000000000\n",
+    "expected_output": "1000000000 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "57ffa15c-6088-4070-b2a1-c65b4e0c8919",
+    "problem_id": "0fce3eed-2d09-45c6-9937-ad4e4e7dfbed",
+    "input": "10\n20\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "ac1ec97e-87e1-47bf-88b9-10f4ec462e06",
+    "problem_id": "0fce3eed-2d09-45c6-9937-ad4e4e7dfbed",
+    "input": "3\n5\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "84c475b5-88e2-407e-969e-3dc0823aeec1",
+    "problem_id": "0fce3eed-2d09-45c6-9937-ad4e4e7dfbed",
+    "input": "2\n3\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "b7f246ad-bb4f-4d19-93a1-be4fd1374b2a",
+    "problem_id": "0fce3eed-2d09-45c6-9937-ad4e4e7dfbed",
+    "input": "1\n2\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "46767aa7-e025-4c5f-8a08-ac763a47c3f1",
+    "problem_id": "0fce3eed-2d09-45c6-9937-ad4e4e7dfbed",
+    "input": "100\n200\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "189e096f-b215-4315-8905-787b14d15aa3",
+    "problem_id": "0fce3eed-2d09-45c6-9937-ad4e4e7dfbed",
+    "input": "99\n101\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "d87d5c68-2358-407f-a52d-23dd99d90ec6",
+    "problem_id": "0fce3eed-2d09-45c6-9937-ad4e4e7dfbed",
+    "input": "999\n1000\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "f6264ded-c20f-480d-9586-dbe5d0590a6a",
+    "problem_id": "0fce3eed-2d09-45c6-9937-ad4e4e7dfbed",
+    "input": "0\n8\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "a497c1b6-0c0b-443b-a263-a418ea319d62",
+    "problem_id": "0fce3eed-2d09-45c6-9937-ad4e4e7dfbed",
+    "input": "0\n7\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "dc22871f-70dd-4661-ad63-c8bdc4be7c96",
+    "problem_id": "19a480e9-0a85-483c-b2d4-9d5f44a4e8b7",
+    "input": "5\n10\n",
+    "expected_output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "36a29392-f277-4c0e-82df-3cc27f60a05c",
+    "problem_id": "19a480e9-0a85-483c-b2d4-9d5f44a4e8b7",
+    "input": "10\n5\n",
+    "expected_output": "5 la uoc cua 10\n10 khong la uoc cua 5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "eef0eb90-6994-455d-9e8a-ecbdf63c6b5f",
+    "problem_id": "19a480e9-0a85-483c-b2d4-9d5f44a4e8b7",
+    "input": "6\n3\n",
+    "expected_output": "3 la uoc cua 6\n6 khong la uoc cua 3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "50510717-bbcc-4d15-90d3-38e5c9e78732",
+    "problem_id": "19a480e9-0a85-483c-b2d4-9d5f44a4e8b7",
+    "input": "3\n6\n",
+    "expected_output": "6 khong la uoc cua 3\n3 la uoc cua 6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "b466c324-0e46-41aa-89f7-d305ee335ee7",
+    "problem_id": "19a480e9-0a85-483c-b2d4-9d5f44a4e8b7",
+    "input": "7\n7\n",
+    "expected_output": "7 la uoc cua 7\n7 la uoc cua 7\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "47b6e9ef-b9a3-4a0c-afda-32ec93afcbd1",
+    "problem_id": "19a480e9-0a85-483c-b2d4-9d5f44a4e8b7",
+    "input": "8\n12\n",
+    "expected_output": "12 khong la uoc cua 8\n8 khong la uoc cua 12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "4add85d0-a1ed-4cae-8700-bc37777628a6",
+    "problem_id": "19a480e9-0a85-483c-b2d4-9d5f44a4e8b7",
+    "input": "1\n9\n",
+    "expected_output": "9 khong la uoc cua 1\n1 la uoc cua 9\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "aebcdb80-851b-48a2-8e9e-4e53d2e9979a",
+    "problem_id": "19a480e9-0a85-483c-b2d4-9d5f44a4e8b7",
+    "input": "9\n1\n",
+    "expected_output": "1 la uoc cua 9\n9 khong la uoc cua 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "a8ec13d5-66df-411c-90bd-53c4c35cbdab",
+    "problem_id": "19a480e9-0a85-483c-b2d4-9d5f44a4e8b7",
+    "input": "100\n25\n",
+    "expected_output": "25 la uoc cua 100\n100 khong la uoc cua 25\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "aa284eaa-e3cc-49d2-afbc-67ed3c16eed7",
+    "problem_id": "19a480e9-0a85-483c-b2d4-9d5f44a4e8b7",
+    "input": "25\n100\n",
+    "expected_output": "100 khong la uoc cua 25\n25 la uoc cua 100\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "aaea5acb-f29b-4d31-ba12-1715d2c52777",
+    "problem_id": "6359833a-a75c-4f5c-bd5e-b663cae29bf8",
+    "input": "5\n10\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "ac3eaaa2-205f-4a56-850f-ae99fbf26a6a",
+    "problem_id": "6359833a-a75c-4f5c-bd5e-b663cae29bf8",
+    "input": "10\n5\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "ba63b26c-81f2-4e08-a6a2-a57082302b87",
+    "problem_id": "6359833a-a75c-4f5c-bd5e-b663cae29bf8",
+    "input": "7\n7\n",
+    "expected_output": "7 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "0ad0e6dc-6ef5-44fa-9c8c-c58beaf06870",
+    "problem_id": "6359833a-a75c-4f5c-bd5e-b663cae29bf8",
+    "input": "-1\n5\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "2834d4b1-843f-4614-a7ba-176b353db92d",
+    "problem_id": "6359833a-a75c-4f5c-bd5e-b663cae29bf8",
+    "input": "5\n-1\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "83953f36-eb9e-4425-ba1a-94feab292f1e",
+    "problem_id": "6359833a-a75c-4f5c-bd5e-b663cae29bf8",
+    "input": "-10\n-20\n",
+    "expected_output": "-20 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "9485bf26-01e6-44bc-b292-dfa3952ccaba",
+    "problem_id": "6359833a-a75c-4f5c-bd5e-b663cae29bf8",
+    "input": "0\n0\n",
+    "expected_output": "0 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "59f2d5ba-dd13-459d-9cca-2cbbeee7bf4c",
+    "problem_id": "6359833a-a75c-4f5c-bd5e-b663cae29bf8",
+    "input": "1000000000\n-1000000000\n",
+    "expected_output": "-1000000000 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "11c18603-6775-4279-9b7f-ffae5f0898cf",
+    "problem_id": "6359833a-a75c-4f5c-bd5e-b663cae29bf8",
+    "input": "123\n456\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  },
+  {
+    "id": "cd34139c-8b65-4726-88e6-0bc1a0b2b724",
+    "problem_id": "6359833a-a75c-4f5c-bd5e-b663cae29bf8",
+    "input": "456\n123\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:44:58.224Z"
+  }
+]
+```
+
+### File: `backups/problem_testcases-reset-20260625-184810.json`
+
+```json
+[
+  {
+    "id": "cd123024-7473-4d40-91b1-c281a672ba0f",
+    "problem_id": "ad4c51f2-fd64-48f1-bab0-aa5b8370e2b2",
+    "input": "1",
+    "expected_output": "1",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:46:55.275Z"
+  },
+  {
+    "id": "5989c833-0985-47ee-921a-ac9731a076a6",
+    "problem_id": "924bb2af-8786-448d-bed4-1308e99f6c80",
+    "input": "2",
+    "expected_output": "2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 10,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:46:55.275Z"
+  },
+  {
+    "id": "437d0fb0-d1d6-40ed-b5bd-05a790159f82",
+    "problem_id": "498fcd27-80d3-4032-b2ab-bd17f9949575",
+    "input": "c",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:46:59.374Z"
+  },
+  {
+    "id": "3dc38435-3505-4dcb-91d1-60c9eb4e0d71",
+    "problem_id": "498fcd27-80d3-4032-b2ab-bd17f9949575",
+    "input": "d",
+    "expected_output": "4",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:46:59.374Z"
+  },
+  {
+    "id": "425dea69-b47c-47e1-8027-17c2ef278bd2",
+    "problem_id": "498fcd27-80d3-4032-b2ab-bd17f9949575",
+    "input": "e",
+    "expected_output": "5",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:46:59.374Z"
+  },
+  {
+    "id": "9d49983d-5793-491b-91c9-591492f1b822",
+    "problem_id": "fd5c7ec5-d1a8-44de-8963-96b7d9567d0c",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:47:01.214Z"
+  },
+  {
+    "id": "1f387549-cf1a-496c-a966-e6a3c444ded1",
+    "problem_id": "c4fa516e-a3d9-4eef-bf97-2db1113b9664",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:48:07.415Z"
+  },
+  {
+    "id": "e142a283-7b70-4714-9d59-89da9224285d",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "input": "3\n5\n2\n",
+    "expected_output": "2\n-0.6666666667 -1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "9356f0cf-f5f1-4d60-a4e2-08181d74bdbd",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "input": "1\n-2\n1\n",
+    "expected_output": "1\n1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "6e4e7aff-acf0-434a-9e50-c893b6f15565",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "input": "1\n0\n1\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "c72c279f-5509-4ca4-b468-96c4e2c7d2ac",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "input": "1\n-3\n2\n",
+    "expected_output": "2\n2 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "4ba4c3d8-fef0-4bb0-899a-67f022967e1c",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "input": "1\n0\n-4\n",
+    "expected_output": "2\n2 -2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "48c3e03a-4caa-494f-814e-a2de114dbf6f",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "input": "-1\n0\n4\n",
+    "expected_output": "2\n-2 2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "8d57c9e1-1ee1-41a2-a0b5-a0f3c553d486",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "input": "1\n2\n5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "51517470-225c-452d-bde9-44cc7b0d0b0f",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "input": "2\n-7\n3\n",
+    "expected_output": "2\n3 0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "0e1a571b-3af8-4df6-a941-3d0902f8eafa",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "input": "5\n6\n1\n",
+    "expected_output": "2\n-0.2 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "8bd1f2e0-9475-4038-8629-742d5ed9bdfe",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "input": "1\n1\n0\n",
+    "expected_output": "2\n0 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "bb8bbcbc-9c47-4969-9e0f-0ebc960b5228",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "input": "1\n-1\n-1\n",
+    "expected_output": "2\n1.61803398875 -0.61803398875\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 4,
+    "order_index": 10,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "42a6502e-560a-46e0-b821-95fda7b15303",
+    "problem_id": "70245233-4667-44c7-ac42-4f5b0aca648c",
+    "input": "4\n4\n1\n",
+    "expected_output": "1\n-0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 11,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "a9487b53-67a0-4862-9e44-ef2c31713457",
+    "problem_id": "63a6e1df-6554-4200-bcb6-a8c3742567bd",
+    "input": "12\n",
+    "expected_output": "12 la so chan\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "d76cf4f2-851b-4b04-9db2-ddbea392439a",
+    "problem_id": "63a6e1df-6554-4200-bcb6-a8c3742567bd",
+    "input": "7\n",
+    "expected_output": "7 la so le\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "d4c9b1fe-6400-48ab-9f65-650a5dd7bf23",
+    "problem_id": "63a6e1df-6554-4200-bcb6-a8c3742567bd",
+    "input": "1\n",
+    "expected_output": "1 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "3f873fa2-5b68-41eb-8b94-a44c250e7b9b",
+    "problem_id": "63a6e1df-6554-4200-bcb6-a8c3742567bd",
+    "input": "2\n",
+    "expected_output": "2 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "52f540f2-503d-4200-a1ec-c5760ecd9473",
+    "problem_id": "63a6e1df-6554-4200-bcb6-a8c3742567bd",
+    "input": "99\n",
+    "expected_output": "99 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "29456b3d-58c8-44a6-973b-4fe9ebf17316",
+    "problem_id": "63a6e1df-6554-4200-bcb6-a8c3742567bd",
+    "input": "100\n",
+    "expected_output": "100 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "f0c7cc22-92c8-43c2-b7b0-517cc8b48c1d",
+    "problem_id": "63a6e1df-6554-4200-bcb6-a8c3742567bd",
+    "input": "123456789\n",
+    "expected_output": "123456789 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "49c63fca-89a2-4493-9c7c-5936a4b24a65",
+    "problem_id": "63a6e1df-6554-4200-bcb6-a8c3742567bd",
+    "input": "1000000000\n",
+    "expected_output": "1000000000 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "2a554dee-74c0-42ec-918b-a62ed8a131d9",
+    "problem_id": "32028589-d0b4-41d3-a7e7-13b4b66f8cf5",
+    "input": "10\n20\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "03bd155a-0450-4017-bd3a-097724d8923a",
+    "problem_id": "32028589-d0b4-41d3-a7e7-13b4b66f8cf5",
+    "input": "3\n5\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "88ae92a2-bb51-4152-ad1b-6a9bfd4f8cd9",
+    "problem_id": "32028589-d0b4-41d3-a7e7-13b4b66f8cf5",
+    "input": "2\n3\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "15c71402-5826-46e3-bdbf-457757c363f7",
+    "problem_id": "32028589-d0b4-41d3-a7e7-13b4b66f8cf5",
+    "input": "1\n2\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "f9ae4d08-08b8-4ac6-a04b-789b5c7c1a32",
+    "problem_id": "32028589-d0b4-41d3-a7e7-13b4b66f8cf5",
+    "input": "100\n200\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "3d94784b-3aa7-48cc-8356-d8702bb31144",
+    "problem_id": "32028589-d0b4-41d3-a7e7-13b4b66f8cf5",
+    "input": "99\n101\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "e6bd6742-3ef4-4dd3-b8e5-c4d2fc0f7ae5",
+    "problem_id": "32028589-d0b4-41d3-a7e7-13b4b66f8cf5",
+    "input": "999\n1000\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "9ffee76a-7cc4-40fb-8654-fe35bca68b09",
+    "problem_id": "32028589-d0b4-41d3-a7e7-13b4b66f8cf5",
+    "input": "0\n8\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "13c4f092-4e47-4b98-ae5e-1dc1eda03e6d",
+    "problem_id": "32028589-d0b4-41d3-a7e7-13b4b66f8cf5",
+    "input": "0\n7\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "e14eb33c-5075-42b9-85b5-9d49ea410a40",
+    "problem_id": "3a377eff-6fd8-46cf-bb2b-edf8fe5781bd",
+    "input": "5\n10\n",
+    "expected_output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "eeeab525-c3ba-43f4-8411-33fca9f6171c",
+    "problem_id": "3a377eff-6fd8-46cf-bb2b-edf8fe5781bd",
+    "input": "10\n5\n",
+    "expected_output": "5 la uoc cua 10\n10 khong la uoc cua 5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "aeef55ec-0e98-4b08-a8c1-adfbc1a578c9",
+    "problem_id": "3a377eff-6fd8-46cf-bb2b-edf8fe5781bd",
+    "input": "6\n3\n",
+    "expected_output": "3 la uoc cua 6\n6 khong la uoc cua 3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "5f7733b3-a788-40cd-b373-785b729da694",
+    "problem_id": "3a377eff-6fd8-46cf-bb2b-edf8fe5781bd",
+    "input": "3\n6\n",
+    "expected_output": "6 khong la uoc cua 3\n3 la uoc cua 6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "6f059512-e4c4-4468-9d86-85358f8166e8",
+    "problem_id": "3a377eff-6fd8-46cf-bb2b-edf8fe5781bd",
+    "input": "7\n7\n",
+    "expected_output": "7 la uoc cua 7\n7 la uoc cua 7\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "96482318-c02e-4534-8c89-62006061de9b",
+    "problem_id": "3a377eff-6fd8-46cf-bb2b-edf8fe5781bd",
+    "input": "8\n12\n",
+    "expected_output": "12 khong la uoc cua 8\n8 khong la uoc cua 12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "6dcdb3e4-556b-4e28-a6a5-494b3a8b63a7",
+    "problem_id": "3a377eff-6fd8-46cf-bb2b-edf8fe5781bd",
+    "input": "1\n9\n",
+    "expected_output": "9 khong la uoc cua 1\n1 la uoc cua 9\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "9189fff2-436a-4bba-ac9a-2ab286db7531",
+    "problem_id": "3a377eff-6fd8-46cf-bb2b-edf8fe5781bd",
+    "input": "9\n1\n",
+    "expected_output": "1 la uoc cua 9\n9 khong la uoc cua 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "5cb68390-2316-443b-bdaa-3288b18cbd50",
+    "problem_id": "3a377eff-6fd8-46cf-bb2b-edf8fe5781bd",
+    "input": "100\n25\n",
+    "expected_output": "25 la uoc cua 100\n100 khong la uoc cua 25\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "330b7d7f-c73a-4768-b803-47949fcef216",
+    "problem_id": "3a377eff-6fd8-46cf-bb2b-edf8fe5781bd",
+    "input": "25\n100\n",
+    "expected_output": "100 khong la uoc cua 25\n25 la uoc cua 100\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "9084355a-2775-4e9a-af2c-dfc500fd1e8b",
+    "problem_id": "3eefee81-9be0-4d80-a4ba-b6be9951148a",
+    "input": "5\n10\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "caa036b6-1d73-45d9-9c75-f19c52514885",
+    "problem_id": "3eefee81-9be0-4d80-a4ba-b6be9951148a",
+    "input": "10\n5\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "8f529426-b866-446c-8a9c-46797a2c6351",
+    "problem_id": "3eefee81-9be0-4d80-a4ba-b6be9951148a",
+    "input": "7\n7\n",
+    "expected_output": "7 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "1d170d2c-932c-45db-a294-a6781168de43",
+    "problem_id": "3eefee81-9be0-4d80-a4ba-b6be9951148a",
+    "input": "-1\n5\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "758ab042-f2dd-4b91-9608-b7a2706ceef2",
+    "problem_id": "3eefee81-9be0-4d80-a4ba-b6be9951148a",
+    "input": "5\n-1\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "41c56a5c-65c8-46e5-8628-32fda7243365",
+    "problem_id": "3eefee81-9be0-4d80-a4ba-b6be9951148a",
+    "input": "-10\n-20\n",
+    "expected_output": "-20 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "deebc31a-7d83-45c5-ba75-cfac986a5eba",
+    "problem_id": "3eefee81-9be0-4d80-a4ba-b6be9951148a",
+    "input": "0\n0\n",
+    "expected_output": "0 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "6cfdf20c-ae45-4bdd-951d-70fdbd034813",
+    "problem_id": "3eefee81-9be0-4d80-a4ba-b6be9951148a",
+    "input": "1000000000\n-1000000000\n",
+    "expected_output": "-1000000000 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "412d0e90-5a7e-45e9-8bcf-6f26f8f81576",
+    "problem_id": "3eefee81-9be0-4d80-a4ba-b6be9951148a",
+    "input": "123\n456\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  },
+  {
+    "id": "315e9b9a-5b6a-47a6-ac9c-4c8027e0f3f1",
+    "problem_id": "3eefee81-9be0-4d80-a4ba-b6be9951148a",
+    "input": "456\n123\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:45:48.739Z"
+  }
+]
+```
+
+### File: `backups/problem_testcases-reset-20260625-214200.json`
+
+```json
+[
+  {
+    "id": "5df00353-5932-4b3a-8c37-12665da9ecf1",
+    "problem_id": "31e989bc-918b-4d02-9b41-1d4847ea1446",
+    "input": "1",
+    "expected_output": "1",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:40:12.268Z"
+  },
+  {
+    "id": "c528891f-deb7-4061-a31a-e38a351315c1",
+    "problem_id": "40f96ec3-40bd-429a-a860-4c2c84badf15",
+    "input": "2",
+    "expected_output": "2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 10,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:40:12.268Z"
+  },
+  {
+    "id": "43482210-3217-473f-875c-ebd3dd1aed54",
+    "problem_id": "ddbc838b-4473-4dbe-8244-26dcdc1721d6",
+    "input": "c",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:40:19.656Z"
+  },
+  {
+    "id": "d4888969-2953-4859-9ddb-10adaed71cc3",
+    "problem_id": "ddbc838b-4473-4dbe-8244-26dcdc1721d6",
+    "input": "d",
+    "expected_output": "4",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 1,
+    "created_at": "2026-06-25T14:40:19.656Z"
+  },
+  {
+    "id": "a2cdcbf3-2d3c-4682-a756-7c2361f4634d",
+    "problem_id": "ddbc838b-4473-4dbe-8244-26dcdc1721d6",
+    "input": "e",
+    "expected_output": "5",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 2,
+    "created_at": "2026-06-25T14:40:19.656Z"
+  },
+  {
+    "id": "283c2153-e4c1-49fa-9e36-58e2dcd37f68",
+    "problem_id": "5ec853b7-c0a9-44d1-b39e-53c2886c7bfd",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:40:23.256Z"
+  },
+  {
+    "id": "558816a6-2838-4db1-8754-3700f4f499d0",
+    "problem_id": "97d34c29-54ee-462a-8ac1-32d248b98bb8",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:41:54.445Z"
+  },
+  {
+    "id": "f645527e-4326-4e43-b071-fc73ce887157",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "input": "3\n5\n2\n",
+    "expected_output": "2\n-0.6666666667 -1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "44e1bdc3-68ff-4c5f-a394-8283962f788e",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "input": "1\n-2\n1\n",
+    "expected_output": "1\n1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "e3777c45-ad23-4600-8af4-a3d6f48e0fd0",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "input": "1\n0\n1\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "1b95a0f1-cd46-453c-9458-e5448b143050",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "input": "1\n-3\n2\n",
+    "expected_output": "2\n2 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "6de712d4-6de3-41cc-b043-f054ba50aaa9",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "input": "1\n0\n-4\n",
+    "expected_output": "2\n2 -2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "c2465d44-c527-447b-b713-7a85fa3ff053",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "input": "-1\n0\n4\n",
+    "expected_output": "2\n-2 2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "b2481443-3ec6-4ffa-be36-a276de50df24",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "input": "1\n2\n5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "a599e878-0c3b-44b5-95cc-1db53aa60c7a",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "input": "2\n-7\n3\n",
+    "expected_output": "2\n3 0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "2fb79dff-b775-4532-b584-afb235a52a70",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "input": "5\n6\n1\n",
+    "expected_output": "2\n-0.2 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "a2cee2ca-da59-4a40-a190-f7d00fef44ff",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "input": "1\n1\n0\n",
+    "expected_output": "2\n0 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "6bab8f1a-d56c-4b0c-9455-4a2b4b31a575",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "input": "1\n-1\n-1\n",
+    "expected_output": "2\n1.61803398875 -0.61803398875\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 4,
+    "order_index": 10,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "6cfdb1c3-b443-4ec0-9688-e95ad9ca0f06",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "input": "4\n4\n1\n",
+    "expected_output": "1\n-0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 11,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "21d6c02e-e48f-45bc-a129-44363adadc1d",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "input": "12\n",
+    "expected_output": "12 la so chan\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "22d71c2d-4715-421c-bb12-5bfc0810b31e",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "input": "7\n",
+    "expected_output": "7 la so le\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "0d84c3b9-d4b8-4f7f-b004-764ac926e625",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "input": "1\n",
+    "expected_output": "1 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "cb9cff40-3daf-40e1-8ccb-41eac9921084",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "input": "2\n",
+    "expected_output": "2 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "5d75f2b4-74e6-4f17-9e93-4ca6a9f31cdf",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "input": "99\n",
+    "expected_output": "99 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "b8308918-7b77-48ab-a630-e9cd4b29624a",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "input": "100\n",
+    "expected_output": "100 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "f0c161d5-d5dd-46bb-b1b2-456f1e1736f1",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "input": "123456789\n",
+    "expected_output": "123456789 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "1bced5d2-44a1-42e9-bc98-171b14714a36",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "input": "1000000000\n",
+    "expected_output": "1000000000 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "530303c1-6a62-4f1f-bb05-b6ab3b797740",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "input": "10\n20\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "980913e4-8d32-4929-a377-bf987edb9416",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "input": "3\n5\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "1fe2d002-a56e-4292-bc1f-04b6f2224a8b",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "input": "2\n3\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "88742ca4-df96-4512-8ed2-51ff19d78620",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "input": "1\n2\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "79393041-6c61-481e-a955-99851761b46b",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "input": "100\n200\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "86a0bf23-0753-4c59-8d61-e238c174b5b6",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "input": "99\n101\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "6e1b246b-38df-454d-8b67-9bc3647fb7e3",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "input": "999\n1000\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "dd36560c-b920-4402-9e4e-900ec043e423",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "input": "0\n8\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "f8c2a829-a973-4f74-8056-f26f55296aac",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "input": "0\n7\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "09b94aac-df97-4eb2-9c73-bb0a6e589c79",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "input": "5\n10\n",
+    "expected_output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "4a049051-624e-44b9-a3a6-588d8916d6b3",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "input": "10\n5\n",
+    "expected_output": "5 la uoc cua 10\n10 khong la uoc cua 5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "14f21315-1333-475f-9ec0-a2f323731256",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "input": "6\n3\n",
+    "expected_output": "3 la uoc cua 6\n6 khong la uoc cua 3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "bef1e125-2d12-469a-8dc4-78a58f8e7016",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "input": "3\n6\n",
+    "expected_output": "6 khong la uoc cua 3\n3 la uoc cua 6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "bb79aa53-18ae-4b55-8618-472650fcc3dd",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "input": "7\n7\n",
+    "expected_output": "7 la uoc cua 7\n7 la uoc cua 7\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "e3ad08e5-2bde-4a50-936d-7295d9f6855e",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "input": "8\n12\n",
+    "expected_output": "12 khong la uoc cua 8\n8 khong la uoc cua 12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "568444a3-f952-4c46-81dd-1d28ee3b0db5",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "input": "1\n9\n",
+    "expected_output": "9 khong la uoc cua 1\n1 la uoc cua 9\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "53b502b4-20cb-45f0-8599-0c7a94b84a1f",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "input": "9\n1\n",
+    "expected_output": "1 la uoc cua 9\n9 khong la uoc cua 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "c625d674-68f5-47a9-a6cf-5b1659091ddc",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "input": "100\n25\n",
+    "expected_output": "25 la uoc cua 100\n100 khong la uoc cua 25\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "670cad1b-116f-40a5-946d-bf920e94b36c",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "input": "25\n100\n",
+    "expected_output": "100 khong la uoc cua 25\n25 la uoc cua 100\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "5d9164fe-8127-4d8f-ade4-de49c2eeb9b6",
+    "problem_id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "input": "5\n10\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "4af55cbb-3091-47ee-8852-293ac53777d3",
+    "problem_id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "input": "10\n5\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "a3920f94-04fb-4736-9815-410c6e019f9a",
+    "problem_id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "input": "7\n7\n",
+    "expected_output": "7 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "cb8e68b9-dade-460f-b1ff-133aa0b61561",
+    "problem_id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "input": "-1\n5\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "08bf50ca-bb13-4db6-b8a1-682ae201b8f5",
+    "problem_id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "input": "5\n-1\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "7f7f6f28-63c2-43d0-98a0-923e7685779e",
+    "problem_id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "input": "-10\n-20\n",
+    "expected_output": "-20 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "9bfea7b2-e2a3-429c-a0a8-6f04be64b276",
+    "problem_id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "input": "0\n0\n",
+    "expected_output": "0 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "acb80e8d-6319-45f9-b181-d924c86146ab",
+    "problem_id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "input": "1000000000\n-1000000000\n",
+    "expected_output": "-1000000000 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "2517b052-c143-4189-9471-b7de1c87bff0",
+    "problem_id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "input": "123\n456\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  },
+  {
+    "id": "a300e84a-610e-45f7-a3a2-bc9d0c220e5d",
+    "problem_id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "input": "456\n123\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T11:48:16.170Z"
+  }
+]
+```
+
+### File: `backups/problem_testcases-reset-20260625-215053.json`
+
+```json
+[
+  {
+    "id": "7e45e931-8c15-4b90-82b8-fe5e2ff8d698",
+    "problem_id": "40fd0dcd-aa2b-45a3-9d79-2709735c362d",
+    "input": "1",
+    "expected_output": "1",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:48:38.176Z"
+  },
+  {
+    "id": "09704dc0-30d1-4820-bceb-97fe1d1b69f6",
+    "problem_id": "395ba749-5b9d-4533-a973-c0f84633e712",
+    "input": "2",
+    "expected_output": "2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 10,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:48:38.176Z"
+  },
+  {
+    "id": "e8ba189b-f527-49c8-8d51-673abbb3fc4b",
+    "problem_id": "973a35b5-95f9-4b73-b153-1661c230cf56",
+    "input": "c",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:48:48.168Z"
+  },
+  {
+    "id": "c78829d9-99ff-44b8-9ce9-224618d4a8f7",
+    "problem_id": "973a35b5-95f9-4b73-b153-1661c230cf56",
+    "input": "d",
+    "expected_output": "4",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 1,
+    "created_at": "2026-06-25T14:48:48.168Z"
+  },
+  {
+    "id": "60e70902-803f-4241-9033-155ddd129770",
+    "problem_id": "973a35b5-95f9-4b73-b153-1661c230cf56",
+    "input": "e",
+    "expected_output": "5",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 2,
+    "created_at": "2026-06-25T14:48:48.168Z"
+  },
+  {
+    "id": "a21fb6b0-f001-4c5c-b25d-1dd09a8a6734",
+    "problem_id": "4ab23438-fb9e-412f-b190-0a713fdc5120",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:48:52.487Z"
+  },
+  {
+    "id": "e2589328-6516-4241-9ed8-c56061da3998",
+    "problem_id": "e49a3862-3f69-450c-b8aa-5e2e152b1661",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:50:43.694Z"
+  },
+  {
+    "id": "c0ed2b73-980a-45d7-b971-dba8be455c83",
+    "problem_id": "0e8cda00-193b-46c5-b3ba-a400da3b64b1",
+    "input": "5\n10\n",
+    "expected_output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "9d7bdca6-f7d2-448c-a552-6f739e7b358c",
+    "problem_id": "0e8cda00-193b-46c5-b3ba-a400da3b64b1",
+    "input": "10\n5\n",
+    "expected_output": "5 la uoc cua 10\n10 khong la uoc cua 5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "ba3ffd7d-f0fe-4270-97ec-aed056957744",
+    "problem_id": "0e8cda00-193b-46c5-b3ba-a400da3b64b1",
+    "input": "6\n3\n",
+    "expected_output": "3 la uoc cua 6\n6 khong la uoc cua 3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "34416b3f-c687-4cef-b5ef-700fcebbf6ac",
+    "problem_id": "0e8cda00-193b-46c5-b3ba-a400da3b64b1",
+    "input": "3\n6\n",
+    "expected_output": "6 khong la uoc cua 3\n3 la uoc cua 6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "40cdf54b-408b-4189-a946-8e3d878e1843",
+    "problem_id": "0e8cda00-193b-46c5-b3ba-a400da3b64b1",
+    "input": "7\n7\n",
+    "expected_output": "7 la uoc cua 7\n7 la uoc cua 7\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "8700fdd8-fdc0-4004-a801-77b47e90f18c",
+    "problem_id": "0e8cda00-193b-46c5-b3ba-a400da3b64b1",
+    "input": "8\n12\n",
+    "expected_output": "12 khong la uoc cua 8\n8 khong la uoc cua 12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 5,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "1a875132-014a-450d-9b18-7fa3e94f50d4",
+    "problem_id": "0e8cda00-193b-46c5-b3ba-a400da3b64b1",
+    "input": "1\n9\n",
+    "expected_output": "9 khong la uoc cua 1\n1 la uoc cua 9\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "112e3132-70c7-448c-99e6-c7fcd9469f67",
+    "problem_id": "0e8cda00-193b-46c5-b3ba-a400da3b64b1",
+    "input": "9\n1\n",
+    "expected_output": "1 la uoc cua 9\n9 khong la uoc cua 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "2aa6a1c4-d279-49ef-814e-fd7f523fa7fd",
+    "problem_id": "0e8cda00-193b-46c5-b3ba-a400da3b64b1",
+    "input": "100\n25\n",
+    "expected_output": "25 la uoc cua 100\n100 khong la uoc cua 25\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "070576b7-4238-4e8e-aed6-51b211211605",
+    "problem_id": "0e8cda00-193b-46c5-b3ba-a400da3b64b1",
+    "input": "25\n100\n",
+    "expected_output": "100 khong la uoc cua 25\n25 la uoc cua 100\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "09a5b3d9-4258-40aa-85ce-905ec72b0c94",
+    "problem_id": "5cd80379-884e-4cc9-a7b3-caad16d36947",
+    "input": "5\n10\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "3ea82b1f-6eaf-4790-95e5-4d01417c3df2",
+    "problem_id": "5cd80379-884e-4cc9-a7b3-caad16d36947",
+    "input": "10\n5\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "31a23afd-e316-4610-af19-f0c627f8efd8",
+    "problem_id": "5cd80379-884e-4cc9-a7b3-caad16d36947",
+    "input": "7\n7\n",
+    "expected_output": "7 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "276bd316-fcb6-4374-a1de-bb2d3061b1de",
+    "problem_id": "5cd80379-884e-4cc9-a7b3-caad16d36947",
+    "input": "-1\n5\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "850ac2e0-467e-40b4-9864-d194562f5e34",
+    "problem_id": "5cd80379-884e-4cc9-a7b3-caad16d36947",
+    "input": "5\n-1\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "e7aa5cc3-ddc8-4fd1-847a-c6b1669ed9c9",
+    "problem_id": "5cd80379-884e-4cc9-a7b3-caad16d36947",
+    "input": "-10\n-20\n",
+    "expected_output": "-20 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "61fa6e4b-98f3-4cbe-b9a3-fd17f6639e46",
+    "problem_id": "5cd80379-884e-4cc9-a7b3-caad16d36947",
+    "input": "0\n0\n",
+    "expected_output": "0 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "b795f921-32ec-4746-b72f-0aa8cacf7221",
+    "problem_id": "5cd80379-884e-4cc9-a7b3-caad16d36947",
+    "input": "1000000000\n-1000000000\n",
+    "expected_output": "-1000000000 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "4b45e955-06b2-4180-b5c1-870b8bd15168",
+    "problem_id": "5cd80379-884e-4cc9-a7b3-caad16d36947",
+    "input": "123\n456\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "6a227dff-9a2f-41a7-8037-26d7630f5b51",
+    "problem_id": "5cd80379-884e-4cc9-a7b3-caad16d36947",
+    "input": "456\n123\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "d4953d9d-83a2-47a4-a1cd-21170e57662a",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "input": "3\n5\n2\n",
+    "expected_output": "2\n-0.6666666667 -1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "4fe66499-c1e8-47f0-862b-83d98392f5c0",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "input": "1\n-2\n1\n",
+    "expected_output": "1\n1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "ae75dfe3-1937-4fb5-9623-11b2c51280c3",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "input": "1\n0\n1\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "ef98f2c3-2b43-4be0-b208-7815f20ab3eb",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "input": "1\n-3\n2\n",
+    "expected_output": "2\n2 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "64b5d27e-638e-4e32-b060-a81ce864ecff",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "input": "1\n0\n-4\n",
+    "expected_output": "2\n2 -2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "048c6a86-16f4-4a7c-992b-a17a04b44eb2",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "input": "-1\n0\n4\n",
+    "expected_output": "2\n-2 2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "065f9ad3-8dd5-446b-b42c-6b7c823f649b",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "input": "1\n2\n5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "213b9474-86ec-4939-95e1-8d5a547aa8dc",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "input": "2\n-7\n3\n",
+    "expected_output": "2\n3 0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "691fe145-77ca-4fa6-b3a8-196a5bfc9249",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "input": "5\n6\n1\n",
+    "expected_output": "2\n-0.2 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "0fc1fd81-125f-4eb0-a51d-5c680d9c0d54",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "input": "1\n1\n0\n",
+    "expected_output": "2\n0 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "bf1876a9-3829-464c-ae46-3907de95e703",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "input": "1\n-1\n-1\n",
+    "expected_output": "2\n1.61803398875 -0.61803398875\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 4,
+    "order_index": 10,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "3afd9696-bc3e-4973-8abb-62908ef2bc17",
+    "problem_id": "125c7879-075f-4efe-b570-7ab7faad1036",
+    "input": "4\n4\n1\n",
+    "expected_output": "1\n-0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 11,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "7372a8cb-d758-42be-8d6d-8fbf13f9b0f9",
+    "problem_id": "f7a0f70a-c030-4844-9a87-0b4a124508d3",
+    "input": "12\n",
+    "expected_output": "12 la so chan\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "f8598c2d-4889-4e48-83ec-c86266d4a865",
+    "problem_id": "f7a0f70a-c030-4844-9a87-0b4a124508d3",
+    "input": "7\n",
+    "expected_output": "7 la so le\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "fb8dbfac-b786-4785-ac16-1c1bac798c2b",
+    "problem_id": "f7a0f70a-c030-4844-9a87-0b4a124508d3",
+    "input": "1\n",
+    "expected_output": "1 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "7c7fdc38-0402-4457-86a2-b7ad1a2bde66",
+    "problem_id": "f7a0f70a-c030-4844-9a87-0b4a124508d3",
+    "input": "2\n",
+    "expected_output": "2 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "4250337f-0764-496e-9eaf-737e8346cea0",
+    "problem_id": "f7a0f70a-c030-4844-9a87-0b4a124508d3",
+    "input": "99\n",
+    "expected_output": "99 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "9cf2edb0-b319-4352-9013-5e2420547b3a",
+    "problem_id": "f7a0f70a-c030-4844-9a87-0b4a124508d3",
+    "input": "100\n",
+    "expected_output": "100 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "e6b01c36-13f1-4e02-90ab-a8b9ce6fce12",
+    "problem_id": "f7a0f70a-c030-4844-9a87-0b4a124508d3",
+    "input": "123456789\n",
+    "expected_output": "123456789 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "d8d16927-cf87-472b-b5e7-2529d913e553",
+    "problem_id": "f7a0f70a-c030-4844-9a87-0b4a124508d3",
+    "input": "1000000000\n",
+    "expected_output": "1000000000 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "5dd444bf-e257-40a4-b594-ae35d16b44d5",
+    "problem_id": "0e4553a0-f16a-4e4f-9880-3f4f99386d25",
+    "input": "10\n20\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "c295414f-4c34-4b27-977a-2ec0967f6d99",
+    "problem_id": "0e4553a0-f16a-4e4f-9880-3f4f99386d25",
+    "input": "3\n5\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "936a7f1e-f544-44ed-bd5b-a6a7f6f41c20",
+    "problem_id": "0e4553a0-f16a-4e4f-9880-3f4f99386d25",
+    "input": "2\n3\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "39b339fe-d556-45e9-bbe9-9013097eea33",
+    "problem_id": "0e4553a0-f16a-4e4f-9880-3f4f99386d25",
+    "input": "1\n2\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "111adcc9-942d-4c2c-99f6-8fca5d9b9a38",
+    "problem_id": "0e4553a0-f16a-4e4f-9880-3f4f99386d25",
+    "input": "100\n200\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "88c073f0-5ce9-4855-b95d-6709f3810f73",
+    "problem_id": "0e4553a0-f16a-4e4f-9880-3f4f99386d25",
+    "input": "99\n101\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "a8a19448-d961-4aa2-a614-efd5ac8f7d7a",
+    "problem_id": "0e4553a0-f16a-4e4f-9880-3f4f99386d25",
+    "input": "999\n1000\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "546bfe88-2f84-4e5d-a3b5-5f2ee00799b4",
+    "problem_id": "0e4553a0-f16a-4e4f-9880-3f4f99386d25",
+    "input": "0\n8\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  },
+  {
+    "id": "c3b2a3c7-ee16-45cb-8b43-5d31eaeee232",
+    "problem_id": "0e4553a0-f16a-4e4f-9880-3f4f99386d25",
+    "input": "0\n7\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T14:42:06.165Z"
+  }
+]
+```
+
+### File: `backups/problem_testcases-reset-20260625-220522.json`
+
+```json
+[
+  {
+    "id": "e1344489-8d55-4ecc-abe0-5eb0afb7b97c",
+    "problem_id": "a3f94bc8-3ab3-4740-a855-38df5772144a",
+    "input": "1",
+    "expected_output": "1",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T15:02:22.027Z"
+  },
+  {
+    "id": "af2f72fd-e419-4eb9-af74-d4763e0da445",
+    "problem_id": "2f16a1df-5a78-4d0b-92d4-14d7174ace1c",
+    "input": "2",
+    "expected_output": "2",
+    "explanation": "",
+    "is_public": false,
+    "weight": 10,
+    "order_index": 0,
+    "created_at": "2026-06-25T15:02:22.027Z"
+  },
+  {
+    "id": "038a4fa2-20a0-4f5b-b3db-51be3ac80bb2",
+    "problem_id": "0a59031a-a479-44d4-9dce-fb633f5f7c20",
+    "input": "c",
+    "expected_output": "3",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 0,
+    "created_at": "2026-06-25T15:02:42.142Z"
+  },
+  {
+    "id": "a284479f-8728-4061-9f60-19cf87747d21",
+    "problem_id": "0a59031a-a479-44d4-9dce-fb633f5f7c20",
+    "input": "d",
+    "expected_output": "4",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 1,
+    "created_at": "2026-06-25T15:02:42.142Z"
+  },
+  {
+    "id": "f9e1e68d-0fe9-4ead-b363-dbbb0d366a31",
+    "problem_id": "0a59031a-a479-44d4-9dce-fb633f5f7c20",
+    "input": "e",
+    "expected_output": "5",
+    "explanation": "",
+    "is_public": true,
+    "weight": 5,
+    "order_index": 2,
+    "created_at": "2026-06-25T15:02:42.142Z"
+  },
+  {
+    "id": "9c277d1b-454b-41ac-8ec8-a03b08f5d6af",
+    "problem_id": "b53a8349-c75f-4d5b-ba6d-361da735c965",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T15:02:50.586Z"
+  },
+  {
+    "id": "27ee14d9-06f6-4fc8-bd57-52495a188dbb",
+    "problem_id": "0e716344-d724-44a6-a867-7b29d367a32f",
+    "input": "in",
+    "expected_output": "out",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T15:05:13.331Z"
+  },
+  {
+    "id": "b2677b69-a1b6-45f8-96c8-dbe86ff4789f",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "input": "3\n5\n2\n",
+    "expected_output": "2\n-0.6666666667 -1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "a38a3c6d-0b8d-4cac-8902-e63396549b44",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "input": "1\n-2\n1\n",
+    "expected_output": "1\n1\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "462b054d-a5dc-4685-af25-82da0b6f6934",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "input": "1\n0\n1\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "281cd7e3-d7fb-422a-8e5a-eab7825d4f30",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "input": "1\n-3\n2\n",
+    "expected_output": "2\n2 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "2dfd805d-4026-4e81-8cfa-aceab5adbef3",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "input": "1\n0\n-4\n",
+    "expected_output": "2\n2 -2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "5781bf22-7a6e-41f2-b082-768e41329b62",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "input": "-1\n0\n4\n",
+    "expected_output": "2\n-2 2\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "16761f70-d97a-47d3-a3f1-b93ed5a64988",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "input": "1\n2\n5\n",
+    "expected_output": "0\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "38f99aa8-139b-4491-8a62-85d28bb24d5c",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "input": "2\n-7\n3\n",
+    "expected_output": "2\n3 0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "cd44c636-3bef-473a-b8d0-949064b8d065",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "input": "5\n6\n1\n",
+    "expected_output": "2\n-0.2 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "839322f1-6262-40de-9355-eac5d9188105",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "input": "1\n1\n0\n",
+    "expected_output": "2\n0 -1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "47966f58-5bc7-47a0-9859-3a1c3afc2b1c",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "input": "1\n-1\n-1\n",
+    "expected_output": "2\n1.61803398875 -0.61803398875\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 4,
+    "order_index": 10,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "b8d9a139-fb22-4bc5-9957-015d7b78d8ac",
+    "problem_id": "9630c337-d52e-4f5d-a5de-0aab06d73c51",
+    "input": "4\n4\n1\n",
+    "expected_output": "1\n-0.5\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 11,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "827bd58d-e66c-49f9-b51c-525eff787c31",
+    "problem_id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "input": "12\n",
+    "expected_output": "12 la so chan\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "609b00fb-a436-4d00-bd82-c25ebc037fca",
+    "problem_id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "input": "7\n",
+    "expected_output": "7 la so le\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "256041dd-6273-42fa-ac36-e12cc7e86e9c",
+    "problem_id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "input": "1\n",
+    "expected_output": "1 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "2b31c9d4-c1a1-4eb7-9958-b8613e7e27eb",
+    "problem_id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "input": "2\n",
+    "expected_output": "2 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "5f86c9b6-14a1-4cf1-8ed5-fa194daa5509",
+    "problem_id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "input": "99\n",
+    "expected_output": "99 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "87757084-b274-4cc8-bbda-9fe6fca69ece",
+    "problem_id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "input": "100\n",
+    "expected_output": "100 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "9661aac0-2fc5-4099-8dd4-4cf891e04214",
+    "problem_id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "input": "123456789\n",
+    "expected_output": "123456789 la so le\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "6a128964-7fc0-42f3-829e-f5bf318cec3d",
+    "problem_id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "input": "1000000000\n",
+    "expected_output": "1000000000 la so chan\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "8bb692ff-5dfd-492a-9a73-9d57dafe8ac4",
+    "problem_id": "ad29dbc9-8210-46c9-ad1b-05d697bd3273",
+    "input": "10\n20\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "5e372881-1b73-499b-b95e-50bcb11ae525",
+    "problem_id": "ad29dbc9-8210-46c9-ad1b-05d697bd3273",
+    "input": "3\n5\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "93be89d1-7da0-47e7-925d-2aa7db922062",
+    "problem_id": "ad29dbc9-8210-46c9-ad1b-05d697bd3273",
+    "input": "2\n3\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "4766c1f6-c7da-47d2-ad23-1be2f7958c32",
+    "problem_id": "ad29dbc9-8210-46c9-ad1b-05d697bd3273",
+    "input": "1\n2\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "f368ef52-6bab-4e1a-9c29-098593f99d07",
+    "problem_id": "ad29dbc9-8210-46c9-ad1b-05d697bd3273",
+    "input": "100\n200\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "4a0cfea8-f7f0-4fe7-9656-7862639e229b",
+    "problem_id": "ad29dbc9-8210-46c9-ad1b-05d697bd3273",
+    "input": "99\n101\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "85b6d195-f3d5-4d8e-beac-0e4b5cd885d3",
+    "problem_id": "ad29dbc9-8210-46c9-ad1b-05d697bd3273",
+    "input": "999\n1000\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "9137f37e-c77e-44fd-925c-a34e69703c95",
+    "problem_id": "ad29dbc9-8210-46c9-ad1b-05d697bd3273",
+    "input": "0\n8\n",
+    "expected_output": "DUNG\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "01c322c3-b325-4abc-9b22-41475865837f",
+    "problem_id": "ad29dbc9-8210-46c9-ad1b-05d697bd3273",
+    "input": "0\n7\n",
+    "expected_output": "SAI\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 8,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "f1fd23cc-8fcb-433f-baa5-b714c855ac80",
+    "problem_id": "c8f08503-bdf3-4386-8164-96d6279210a8",
+    "input": "5\n10\n",
+    "expected_output": "10 khong la uoc cua 5\n5 la uoc cua 10\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "06501e83-7a7b-45f9-bf06-3299e0c9484c",
+    "problem_id": "c8f08503-bdf3-4386-8164-96d6279210a8",
+    "input": "10\n5\n",
+    "expected_output": "5 la uoc cua 10\n10 khong la uoc cua 5\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "0c9165e1-a520-4f82-aa86-d388433655df",
+    "problem_id": "c8f08503-bdf3-4386-8164-96d6279210a8",
+    "input": "6\n3\n",
+    "expected_output": "3 la uoc cua 6\n6 khong la uoc cua 3\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 2,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "d8da396d-c720-414e-b7e9-0074cf3ce49b",
+    "problem_id": "c8f08503-bdf3-4386-8164-96d6279210a8",
+    "input": "3\n6\n",
+    "expected_output": "6 khong la uoc cua 3\n3 la uoc cua 6\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "f56b0a33-598a-43c2-9195-2772a9bc251b",
+    "problem_id": "c8f08503-bdf3-4386-8164-96d6279210a8",
+    "input": "7\n7\n",
+    "expected_output": "7 la uoc cua 7\n7 la uoc cua 7\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "bdddc04e-10c6-455d-b876-757b49e9484c",
+    "problem_id": "c8f08503-bdf3-4386-8164-96d6279210a8",
+    "input": "8\n12\n",
+    "expected_output": "12 khong la uoc cua 8\n8 khong la uoc cua 12\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 5,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "1b06c105-0cdc-4e6b-95a4-1a5b4b275377",
+    "problem_id": "c8f08503-bdf3-4386-8164-96d6279210a8",
+    "input": "1\n9\n",
+    "expected_output": "9 khong la uoc cua 1\n1 la uoc cua 9\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 6,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "f3c28e87-4c22-4546-ace6-d253403b3b55",
+    "problem_id": "c8f08503-bdf3-4386-8164-96d6279210a8",
+    "input": "9\n1\n",
+    "expected_output": "1 la uoc cua 9\n9 khong la uoc cua 1\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "db811f4c-20e6-47ac-98ec-810b971b5743",
+    "problem_id": "c8f08503-bdf3-4386-8164-96d6279210a8",
+    "input": "100\n25\n",
+    "expected_output": "25 la uoc cua 100\n100 khong la uoc cua 25\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "19c09f22-af6d-42b5-97ea-61c531338462",
+    "problem_id": "c8f08503-bdf3-4386-8164-96d6279210a8",
+    "input": "25\n100\n",
+    "expected_output": "100 khong la uoc cua 25\n25 la uoc cua 100\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "ed8941b8-8ab9-4a00-8ce0-22665ddad68c",
+    "problem_id": "4f5383a5-12dc-4942-b35b-bd5aaeb5f45a",
+    "input": "5\n10\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 0,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "e38d96fb-1feb-476c-828b-6f5d572c0818",
+    "problem_id": "4f5383a5-12dc-4942-b35b-bd5aaeb5f45a",
+    "input": "10\n5\n",
+    "expected_output": "5 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 1,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "cd486c3d-4e8c-43cd-9f15-0838aaee36f3",
+    "problem_id": "4f5383a5-12dc-4942-b35b-bd5aaeb5f45a",
+    "input": "7\n7\n",
+    "expected_output": "7 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": true,
+    "weight": 1,
+    "order_index": 2,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "980ee9e7-a934-4673-87e3-9b05e72e8ba9",
+    "problem_id": "4f5383a5-12dc-4942-b35b-bd5aaeb5f45a",
+    "input": "-1\n5\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 3,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "eb9d3d50-1e7a-4e78-8059-339f11c866b7",
+    "problem_id": "4f5383a5-12dc-4942-b35b-bd5aaeb5f45a",
+    "input": "5\n-1\n",
+    "expected_output": "-1 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 4,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "2d8645f5-2819-4b36-a5b3-1799284bb705",
+    "problem_id": "4f5383a5-12dc-4942-b35b-bd5aaeb5f45a",
+    "input": "-10\n-20\n",
+    "expected_output": "-20 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 5,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "0abc19ae-1b43-4291-8ea5-311e3e2cc68d",
+    "problem_id": "4f5383a5-12dc-4942-b35b-bd5aaeb5f45a",
+    "input": "0\n0\n",
+    "expected_output": "0 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 6,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "0e073d92-3e1c-4238-b1bf-20f2bfc4df50",
+    "problem_id": "4f5383a5-12dc-4942-b35b-bd5aaeb5f45a",
+    "input": "1000000000\n-1000000000\n",
+    "expected_output": "-1000000000 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 3,
+    "order_index": 7,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "8fed9544-ea2b-41a4-a7c9-4ee914afeebe",
+    "problem_id": "4f5383a5-12dc-4942-b35b-bd5aaeb5f45a",
+    "input": "123\n456\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 8,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  },
+  {
+    "id": "bd283eac-2680-4ce7-a050-aa69d8445a42",
+    "problem_id": "4f5383a5-12dc-4942-b35b-bd5aaeb5f45a",
+    "input": "456\n123\n",
+    "expected_output": "123 la gia tri nho nhat\n",
+    "explanation": "",
+    "is_public": false,
+    "weight": 2,
+    "order_index": 9,
+    "created_at": "2026-06-25T14:51:03.008Z"
+  }
+]
+```
+
 ### File: `backups/student_problem_assignments-before-cleanup-20260624-165640.json`
 
 ```json
@@ -4439,6 +20131,384 @@ TERMINAL_MAX_OUTPUT_BYTES=100000
     "updated_at": "2026-06-20T11:50:43.758Z"
   }
 ]
+```
+
+### File: `backups/student_problem_assignments-reset-20260625-181549.json`
+
+```json
+[
+  {
+    "id": "ec78234a-e948-4183-abf3-20cfe7ade4ae",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "COMPLETED",
+    "note": "Bai mau de test chuc nang phan bo",
+    "assigned_at": "2026-06-19T23:15:24.529Z",
+    "completed_at": "2026-06-19T23:17:39.339Z",
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-19T23:15:24.529Z",
+    "updated_at": "2026-06-19T23:17:39.339Z"
+  },
+  {
+    "id": "d7ce8df5-0ff0-455b-b1ad-d06590aaf53e",
+    "user_id": "8ae0731b-ef11-4742-aed4-43836100a270",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-19T23:34:57.181Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-19T23:34:57.181Z",
+    "updated_at": "2026-06-19T23:34:57.181Z"
+  },
+  {
+    "id": "b2f076d9-2976-4e35-bc7f-6dc987d2a862",
+    "user_id": "8ae0731b-ef11-4742-aed4-43836100a270",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-19T23:34:57.181Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-19T23:34:57.181Z",
+    "updated_at": "2026-06-19T23:34:57.181Z"
+  },
+  {
+    "id": "3421f9fd-93fb-41de-bd72-0d4a3f96b67e",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "Bai mau de test chuc nang phan bo",
+    "assigned_at": "2026-06-19T23:15:24.689Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-19T23:15:24.689Z",
+    "updated_at": "2026-06-19T23:16:22.525Z"
+  },
+  {
+    "id": "31de5eb9-677c-4a79-8089-a584c57c29ff",
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "CANCELLED",
+    "note": "Bai mau de test chuc nang phan bo",
+    "assigned_at": "2026-06-19T23:18:01.691Z",
+    "completed_at": null,
+    "cancelled_at": "2026-06-19T23:18:02.776Z",
+    "copied_from_user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "copied_from_assignment_id": "3421f9fd-93fb-41de-bd72-0d4a3f96b67e",
+    "created_at": "2026-06-19T23:18:01.691Z",
+    "updated_at": "2026-06-19T23:18:02.776Z"
+  },
+  {
+    "id": "a432e0e7-df1c-4477-9215-f06df0f734b2",
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "COMPLETED",
+    "note": "Bai mau de test chuc nang phan bo",
+    "assigned_at": "2026-06-19T23:18:20.441Z",
+    "completed_at": "2026-06-19T23:18:58.122Z",
+    "cancelled_at": null,
+    "copied_from_user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "copied_from_assignment_id": "3421f9fd-93fb-41de-bd72-0d4a3f96b67e",
+    "created_at": "2026-06-19T23:18:20.441Z",
+    "updated_at": "2026-06-19T23:18:58.122Z"
+  },
+  {
+    "id": "e238a931-e689-48f7-bcc5-cd0a71c91d54",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "CANCELLED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": "2026-06-25T10:57:47.109Z",
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-25T10:57:47.109Z"
+  },
+  {
+    "id": "e24aca69-b80e-4d4a-b545-c2d9da911c1c",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "df6b867c-3789-458f-acf0-f04a0ea3b409",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "CANCELLED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": "2026-06-25T10:57:49.386Z",
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-25T10:57:49.386Z"
+  },
+  {
+    "id": "20348a20-c886-4410-a485-d7c9d31edc18",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "CANCELLED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": "2026-06-25T10:57:52.760Z",
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-25T10:57:52.760Z"
+  },
+  {
+    "id": "4a23c90b-8a87-4c34-81d8-a56f95f5dbf8",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "17c5fed9-1348-492d-8d69-8b83c0bf7268",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "CANCELLED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": "2026-06-25T10:57:55.085Z",
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-25T10:57:55.085Z"
+  },
+  {
+    "id": "85c30946-fa9f-483a-a4e8-0e3d8272fa0a",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "520616c1-55e8-4c45-a612-622605d0f1be",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "CANCELLED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": "2026-06-25T10:57:57.357Z",
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-25T10:57:57.357Z"
+  },
+  {
+    "id": "d77cced0-99dd-40d3-8760-c1319fa268a6",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "1296010a-2609-4e35-bafc-4d056b4373be",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "CANCELLED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": "2026-06-25T10:57:59.593Z",
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-25T10:57:59.593Z"
+  },
+  {
+    "id": "95e88e36-bcf2-48e6-98c9-4036b238393a",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "CANCELLED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": "2026-06-25T10:58:01.538Z",
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-25T10:58:01.538Z"
+  },
+  {
+    "id": "f2b67383-c404-4f4f-895a-6cb60e56e179",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "f5e17c71-5cb2-49f7-802d-37f636f6f799",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "CANCELLED",
+    "note": "",
+    "assigned_at": "2026-06-20T11:50:43.758Z",
+    "completed_at": null,
+    "cancelled_at": "2026-06-25T10:58:03.794Z",
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-20T11:50:43.758Z",
+    "updated_at": "2026-06-25T10:58:03.794Z"
+  },
+  {
+    "id": "fbe637a0-f65c-4740-bb52-11efa7e268ec",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-25T10:59:37.768Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-25T10:59:37.768Z",
+    "updated_at": "2026-06-25T10:59:37.768Z"
+  }
+]
+```
+
+### File: `backups/student_problem_assignments-reset-20260625-181628.json`
+
+```json
+[
+  {
+    "id": "660b958d-6e4f-48e1-a54c-702876baadf1",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "67bc3659-2010-499d-a121-beb60c950d47",
+    "assigned_by": null,
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-25T11:16:28.451Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-25T11:16:28.451Z",
+    "updated_at": "2026-06-25T11:16:28.451Z"
+  }
+]
+```
+
+### File: `backups/student_problem_assignments-reset-20260625-181944.json`
+
+```json
+[]
+```
+
+### File: `backups/student_problem_assignments-reset-20260625-184324.json`
+
+```json
+[]
+```
+
+### File: `backups/student_problem_assignments-reset-20260625-184454.json`
+
+```json
+[]
+```
+
+### File: `backups/student_problem_assignments-reset-20260625-184543.json`
+
+```json
+[]
+```
+
+### File: `backups/student_problem_assignments-reset-20260625-184810.json`
+
+```json
+[]
+```
+
+### File: `backups/student_problem_assignments-reset-20260625-214200.json`
+
+```json
+[
+  {
+    "id": "7a673f97-4e16-4793-9328-759f4f9979c7",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "13bf59a3-7524-49a8-9313-1703143277a5",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-25T11:52:56.006Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-25T11:52:56.006Z",
+    "updated_at": "2026-06-25T11:52:56.006Z"
+  },
+  {
+    "id": "780329ed-4f5d-46e7-a747-9e15a9415a65",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "46dba8b9-e531-4f85-ab8a-9d52f23aff5f",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "ASSIGNED",
+    "note": "",
+    "assigned_at": "2026-06-25T11:52:56.006Z",
+    "completed_at": null,
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-25T11:52:56.006Z",
+    "updated_at": "2026-06-25T11:52:56.006Z"
+  },
+  {
+    "id": "af57b4db-7f24-4e3a-b00b-df390f8f77d6",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "COMPLETED",
+    "note": "",
+    "assigned_at": "2026-06-25T11:52:56.006Z",
+    "completed_at": "2026-06-25T13:55:33.498Z",
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-25T11:52:56.006Z",
+    "updated_at": "2026-06-25T13:55:33.498Z"
+  },
+  {
+    "id": "1625fd2c-e5a7-405a-b38f-30bae521be60",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "COMPLETED",
+    "note": "",
+    "assigned_at": "2026-06-25T11:52:56.006Z",
+    "completed_at": "2026-06-25T14:08:21.397Z",
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-25T11:52:56.006Z",
+    "updated_at": "2026-06-25T14:08:21.397Z"
+  },
+  {
+    "id": "adec978d-7bb4-45ea-ba5c-b14055a73e48",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "assigned_by": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "status": "COMPLETED",
+    "note": "",
+    "assigned_at": "2026-06-25T11:52:56.006Z",
+    "completed_at": "2026-06-25T14:11:56.500Z",
+    "cancelled_at": null,
+    "copied_from_user_id": null,
+    "copied_from_assignment_id": null,
+    "created_at": "2026-06-25T11:52:56.006Z",
+    "updated_at": "2026-06-25T14:11:56.500Z"
+  }
+]
+```
+
+### File: `backups/student_problem_assignments-reset-20260625-215053.json`
+
+```json
+[]
+```
+
+### File: `backups/student_problem_assignments-reset-20260625-220522.json`
+
+```json
+[]
 ```
 
 ### File: `backups/submissions-before-cleanup-20260624-165640.json`
@@ -5461,6 +21531,1475 @@ TERMINAL_MAX_OUTPUT_BYTES=100000
 ]
 ```
 
+### File: `backups/submissions-reset-20260625-181549.json`
+
+```json
+[
+  {
+    "id": "33073056-b8e5-49e6-b8c7-bdd47bd05a4c",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "attempt_id": "84ae9154-2d0b-49ca-b096-746dbd828b81",
+    "code": "# Nhập dữ liệu đầu vào và chuyển thành số nguyên\na, b = map(int, input().split())\n\n# Tính toán và in kết quả\nprint(a + b)\n",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 231691,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T19:06:14.344Z"
+  },
+  {
+    "id": "d959dda8-4f14-41f6-b2a4-12df116a4be0",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "attempt_id": "74ceb150-8097-4927-b9bd-d3d4c5744057",
+    "code": "import math\r\n\r\ndef solve_quadratic():\r\n    # Đọc vào 3 dòng dữ liệu, chuyển đổi thành số thực (float)\r\n    a = float(input())\r\n    b = float(input())\r\n    c = float(input())\r\n    \r\n    # Tính Delta\r\n    delta = b**2 - 4*a*c\r\n    \r\n    # Kiểm tra các trường hợp của Delta\r\n    if delta > 0:\r\n        print(2)\r\n        # Tính x1 với nhánh cộng, x2 với nhánh trừ như đề bài yêu cầu\r\n        x1 = (-b + math.sqrt(delta)) / (2*a)\r\n        x2 = (-b - math.sqrt(delta)) / (2*a)\r\n        print(f\"{x1} {x2}\")\r\n        \r\n    elif delta == 0:\r\n        print(1)\r\n        # Nghiệm kép\r\n        x = -b / (2*a)\r\n        # Xử lý trường hợp số -0.0 trong Python để in ra 0.0 cho an toàn\r\n        if x == -0.0:\r\n            x = 0.0\r\n        print(x)\r\n        \r\n    else: # delta < 0\r\n        # Vô nghiệm trong tập số thực\r\n        print(0)\r\n\r\nif __name__ == '__main__':\r\n    solve_quadratic()",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 14,
+    "total_count": 14,
+    "duration_ms": 95043,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "input": "3\n5\n2\n",
+        "actual": "2\n-0.6666666666666666 -1.0\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "2\n-0.6666666667 -1\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "input": "1\n-2\n1\n",
+        "actual": "1\n1.0\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "1\n1\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "input": "1\n0\n1\n",
+        "actual": "0\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "0\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 6,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 7,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 8,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 9,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 10,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 11,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 12,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 13,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 14,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-25T11:02:01.128Z"
+  },
+  {
+    "id": "677db9d6-96dc-4538-bf88-80322494050e",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "attempt_id": "7d775c15-6305-4cdf-ae82-65965983e078",
+    "code": "# Nhập dữ liệu đầu vào và chuyển thành số nguyên\na, b = map(int, input().split())\n\n# Tính toán và in kết quả\nprint(a + b)\n",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 1223723,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T21:52:05.200Z"
+  },
+  {
+    "id": "15803837-4dfc-4419-a91e-100cb8be9c86",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "attempt_id": "e0e04a36-3354-41d7-8ac8-507759f69f85",
+    "code": "a = int(input())\nb = int(input())\nprint(a + b)",
+    "status": "RUNTIME_ERROR",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 5,
+    "duration_ms": 479,
+    "report": [
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '3 5' (dòng 1)",
+        "index": 1,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      },
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '-2 10' (dòng 1)",
+        "index": 2,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      },
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '0 0' (dòng 1)",
+        "index": 3,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      },
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '999999 1' (dòng 1)",
+        "index": 4,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      },
+      {
+        "error": "Runtime Error: ValueError: invalid literal for int() with base 10: '-100 -200' (dòng 1)",
+        "index": 5,
+        "passed": false,
+        "status": "Runtime Error",
+        "errorType": "USER_CODE_RUNTIME_ERROR"
+      }
+    ],
+    "created_at": "2026-06-19T23:17:05.181Z"
+  },
+  {
+    "id": "d806a1a6-d52d-4c7f-b9b7-0a722a3a4ab6",
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "attempt_id": "3dd7fe79-c3ef-44aa-9b4b-bfe65ce34436",
+    "code": "a, b = map(int, input().split())\nprint(a + b)",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 497,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T23:17:39.339Z"
+  },
+  {
+    "id": "b7ec79fa-4785-400f-bb8f-8bf5eb2e6eae",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "attempt_id": "f08c3b47-a819-4175-bb63-e7c0eb8ea8e6",
+    "code": "# Nhập sĩ số lớp N (số nguyên)\nN = int(input())\n# Nhập tổng số tiền T (số thực)\nT = float(input())\n\n# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được\nvalue = float(T/N)\nprint(\"Trung binh moi hoc sin nhan qua tri gia\",value)",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 5,
+    "duration_ms": 348607,
+    "report": [
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 1,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-20T11:58:28.606Z"
+  },
+  {
+    "id": "50e15e79-6e3a-48a6-9686-dbe7e3aa6fe1",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "attempt_id": "ca4c3a60-cacd-460f-a880-8d944da8904d",
+    "code": "# Nhập sĩ số lớp N (số nguyên)\nN = int(input())\n# Nhập tổng số tiền T (số thực)\nT = float(input())\n\n# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được\nvalue=float(T/N)\n\nprint(\"Trung binh moi hoc sinh nhan qua tri gia:\",value,\"dong\")",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 5,
+    "duration_ms": 149651,
+    "report": [
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 1,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-20T12:01:08.613Z"
+  },
+  {
+    "id": "028063c9-98c1-4f15-b654-eae782c6691a",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "attempt_id": "562dd191-c7a6-4bae-8087-227201d88287",
+    "code": "# Nhập sĩ số lớp N (số nguyên)\nN = int(input())\n# Nhập tổng số tiền T (số thực)\nT = float(input())\n\n# Hãy tính toán và in ra kết quả trung bình trị giá quà mỗi học sinh nhận được\nvalue=float(T/N)\nprint(\"Trung binh moi hoc sinh nhan quan tri gia:\",value,\"dong\")",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 5,
+    "duration_ms": 86516,
+    "report": [
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 1,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-20T12:07:19.729Z"
+  },
+  {
+    "id": "ac6c0ae1-0cbb-46f0-978c-ed336e2375b6",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "attempt_id": "5808c6b1-aebb-4480-8de1-6e5f4c4d8f5a",
+    "code": "# Nhập chiều cao tính bằng mét (số thực)\nh = float(input())\n\n# Đổi sang centimet (số nguyên) và in ra màn hình đúng định dạng\nprint(\"Chieu cao cua ban la:\",int(h*100),\"cm\")",
+    "status": "WRONG_ANSWER",
+    "score": 80,
+    "passed_count": 4,
+    "total_count": 5,
+    "duration_ms": 133688,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "input": "1.42",
+        "actual": "Chieu cao cua ban la: 142 cm\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "Chieu cao cua ban la: 142 cm"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Token thứ 6 không khớp: thực tế là \"204\", mong muốn \"205\".",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-24T09:34:23.314Z"
+  },
+  {
+    "id": "385b1fe4-e882-49a8-99a9-ebf537e5988f",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "attempt_id": "706e6aa9-f2b7-443b-ae62-5fc8ae16653f",
+    "code": "# Nhập cân nặng w của quả dưa\nw = int(input())\n\n# Hãy viết code kiểm tra ở đây\nif (w % 2 ==0):\n    print(\"YES\")\nelse:\n    print(\"NO\")",
+    "status": "WRONG_ANSWER",
+    "score": 80,
+    "passed_count": 4,
+    "total_count": 5,
+    "duration_ms": 1783350,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Sai đáp án (Wrong Answer)",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T20:45:38.306Z"
+  },
+  {
+    "id": "1185f3ec-fa99-4adb-b6e6-d1b6b2bfe233",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "attempt_id": "90762349-8381-4b32-830a-5508c5186834",
+    "code": "# Nhập cân nặng w của quả dưa\nw = int(input())\n\n# Hãy viết code kiểm tra ở đây\nif (w % 2 ==0 and w != 2):\n    print(\"YES\")\nelse:\n    print(\"NO\")",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 25032,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T20:47:38.413Z"
+  },
+  {
+    "id": "5f4ffed0-f948-423e-adbc-2c0082d41aff",
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "attempt_id": "09f27bb1-98a4-42db-855e-62a01a962f85",
+    "code": "n = int(input())\nprint('YES' if n % 2 == 0 and n > 2 else 'NO')",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 5,
+    "total_count": 5,
+    "duration_ms": 430,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-19T23:18:58.122Z"
+  },
+  {
+    "id": "17d1c9ec-cf62-426c-9c6b-ee5298c1e507",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "attempt_id": "7cf3db6f-87d6-4ec0-8be4-1c22e1c0c8ca",
+    "code": "# Nhập chiều cao tính bằng mét (số thực)\nh = float(input())\n\n# Đổi sang centimet (số nguyên) và in ra màn hình đúng định dạng\nprint(\"Chieu cao cua ban la:\",int(h*100),\"cm\")",
+    "status": "WRONG_ANSWER",
+    "score": 80,
+    "passed_count": 4,
+    "total_count": 5,
+    "duration_ms": 74264,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "input": "1.42",
+        "actual": "Chieu cao cua ban la: 142 cm\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "Chieu cao cua ban la: 142 cm"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Token thứ 6 không khớp: thực tế là \"204\", mong muốn \"205\".",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-24T10:14:51.129Z"
+  },
+  {
+    "id": "8b8b92fc-a62a-4bd4-8191-5b06ed2c961d",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "attempt_id": "84120bb6-b9d4-4eb4-ab0c-71627912fc09",
+    "code": "# Nhập chiều cao tính bằng mét (số thực)\nh = float(input())\nkq = h*100\n# Đổi sang centimet (số nguyên) và in ra màn hình đúng định dạng\nprint(\"Chieu cao cua ban la:\",int(kq),\"cm\")",
+    "status": "WRONG_ANSWER",
+    "score": 80,
+    "passed_count": 4,
+    "total_count": 5,
+    "duration_ms": 12094,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "input": "1.42",
+        "actual": "Chieu cao cua ban la: 142 cm\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "Chieu cao cua ban la: 142 cm"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Token thứ 6 không khớp: thực tế là \"204\", mong muốn \"205\".",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-24T10:16:31.742Z"
+  },
+  {
+    "id": "78caada8-1ca0-478e-9da5-f4e2504ddc60",
+    "user_id": "fc481905-8850-459b-bd92-b8aa3e9da3b0",
+    "problem_id": "c9b1c316-ecb5-4e67-9e63-48cccf54655e",
+    "attempt_id": null,
+    "code": "print(1)",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 0,
+    "total_count": 0,
+    "duration_ms": 0,
+    "report": [],
+    "created_at": "2026-06-25T10:47:13.713Z"
+  }
+]
+```
+
+### File: `backups/submissions-reset-20260625-181628.json`
+
+```json
+[
+  {
+    "id": "f16cd835-19b8-43de-ba5b-7896ed0504ab",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "67bc3659-2010-499d-a121-beb60c950d47",
+    "attempt_id": "9be2b21e-00dc-4eae-bdc9-a1c1ef39aa85",
+    "code": "print(2)\n",
+    "status": "WRONG_ANSWER",
+    "score": 25,
+    "passed_count": 1,
+    "total_count": 2,
+    "duration_ms": 0,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "input": "1\n",
+        "actual": "2\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "2\n"
+      },
+      {
+        "error": "Token thứ 1 không khớp: thực tế là \"2\", mong muốn \"4\".",
+        "index": 2,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-25T11:16:29.581Z"
+  }
+]
+```
+
+### File: `backups/submissions-reset-20260625-181944.json`
+
+```json
+[]
+```
+
+### File: `backups/submissions-reset-20260625-184324.json`
+
+```json
+[]
+```
+
+### File: `backups/submissions-reset-20260625-184454.json`
+
+```json
+[]
+```
+
+### File: `backups/submissions-reset-20260625-184543.json`
+
+```json
+[]
+```
+
+### File: `backups/submissions-reset-20260625-184810.json`
+
+```json
+[]
+```
+
+### File: `backups/submissions-reset-20260625-214200.json`
+
+```json
+[
+  {
+    "id": "7f0cebbf-cb7f-4b39-856c-fe1ca0e5a45d",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "attempt_id": "b4ce25fa-43d0-401a-afed-02aad9157846",
+    "code": "# Viet chuong trinh cua em o day\nn=int(input(\"n\"))\nif n%2==0:\n    print(n,\"La so chan\")\nelse:\n    print(n,\"La so le\")",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 8,
+    "duration_ms": 16683,
+    "report": [
+      {
+        "error": "Token thứ 1 không khớp: thực tế là \"n12\", mong muốn \"12\".",
+        "index": 1,
+        "input": "12\n",
+        "actual": "n12 La so chan\n",
+        "passed": false,
+        "status": "Wrong Answer",
+        "expected": "12 la so chan\n"
+      },
+      {
+        "error": "Token thứ 1 không khớp: thực tế là \"n7\", mong muốn \"7\".",
+        "index": 2,
+        "input": "7\n",
+        "actual": "n7 La so le\n",
+        "passed": false,
+        "status": "Wrong Answer",
+        "expected": "7 la so le\n"
+      },
+      {
+        "error": "Token thứ 1 không khớp: thực tế là \"n1\", mong muốn \"1\".",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 1 không khớp: thực tế là \"n2\", mong muốn \"2\".",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 1 không khớp: thực tế là \"n99\", mong muốn \"99\".",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 1 không khớp: thực tế là \"n100\", mong muốn \"100\".",
+        "index": 6,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 1 không khớp: thực tế là \"n123456789\", mong muốn \"123456789\".",
+        "index": 7,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 1 không khớp: thực tế là \"n1000000000\", mong muốn \"1000000000\".",
+        "index": 8,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-25T13:40:37.102Z"
+  },
+  {
+    "id": "a450f501-3eba-429f-987d-cc6cd8293bd0",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "attempt_id": "f60ad6b1-5e96-4995-8b38-467029668f6f",
+    "code": "# Viet chuong trinh cua em o day\nn=int(input())\nif n%2==0:\n    print(n,\"La so chan\")\nelse:\n    print(n,\"La so le\")",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 8,
+    "duration_ms": 72164,
+    "report": [
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 1,
+        "input": "12\n",
+        "actual": "12 La so chan\n",
+        "passed": false,
+        "status": "Wrong Answer",
+        "expected": "12 la so chan\n"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 2,
+        "input": "7\n",
+        "actual": "7 La so le\n",
+        "passed": false,
+        "status": "Wrong Answer",
+        "expected": "7 la so le\n"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 6,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 7,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 8,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-25T13:47:51.095Z"
+  },
+  {
+    "id": "bc39ecae-32c5-4b46-819f-1b3a6bc5e705",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "attempt_id": "d50f4d1f-607f-465a-9796-fe4e62d97c97",
+    "code": "# Viet chuong trinh cua em o day\nn=int(input())\nif n%2==0:\n    print(n,\"n la so chan\")\nelse:\n    print(n,\"n la so le\")",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 8,
+    "duration_ms": 133644,
+    "report": [
+      {
+        "error": "Số lượng token không khớp (thực tế có 5 tokens, mong muốn 4 tokens).",
+        "index": 1,
+        "input": "12\n",
+        "actual": "12 n la so chan\n",
+        "passed": false,
+        "status": "Wrong Answer",
+        "expected": "12 la so chan\n"
+      },
+      {
+        "error": "Số lượng token không khớp (thực tế có 5 tokens, mong muốn 4 tokens).",
+        "index": 2,
+        "input": "7\n",
+        "actual": "7 n la so le\n",
+        "passed": false,
+        "status": "Wrong Answer",
+        "expected": "7 la so le\n"
+      },
+      {
+        "error": "Số lượng token không khớp (thực tế có 5 tokens, mong muốn 4 tokens).",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Số lượng token không khớp (thực tế có 5 tokens, mong muốn 4 tokens).",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Số lượng token không khớp (thực tế có 5 tokens, mong muốn 4 tokens).",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Số lượng token không khớp (thực tế có 5 tokens, mong muốn 4 tokens).",
+        "index": 6,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Số lượng token không khớp (thực tế có 5 tokens, mong muốn 4 tokens).",
+        "index": 7,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Số lượng token không khớp (thực tế có 5 tokens, mong muốn 4 tokens).",
+        "index": 8,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-25T13:50:32.096Z"
+  },
+  {
+    "id": "3a3a10cf-a05f-44a9-9727-6c50b190652e",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "attempt_id": "66abd9de-d6c1-456d-bb17-f8393ceca651",
+    "code": "a=int(input())\nb=int(input())\nif a%b==0:\n    print(b,\"La uoc cua\",a)\nelse:\n    print(b,\"Khong la uoc cua\",a)\nif b%a==0:\n    print(a,\"La uoc cua \",b)\nelse:\n    print(a,\"Khong la uoc cua\",b)\n",
+    "status": "WRONG_ANSWER",
+    "score": 0,
+    "passed_count": 0,
+    "total_count": 10,
+    "duration_ms": 465231,
+    "report": [
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"Khong\", mong muốn \"khong\".",
+        "index": 1,
+        "input": "5\n10\n",
+        "actual": "10 Khong la uoc cua 5\n5 La uoc cua  10\n",
+        "passed": false,
+        "status": "Wrong Answer",
+        "expected": "10 khong la uoc cua 5\n5 la uoc cua 10\n"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 2,
+        "input": "10\n5\n",
+        "actual": "5 La uoc cua 10\n10 Khong la uoc cua 5\n",
+        "passed": false,
+        "status": "Wrong Answer",
+        "expected": "5 la uoc cua 10\n10 khong la uoc cua 5\n"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 3,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"Khong\", mong muốn \"khong\".",
+        "index": 4,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 5,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"Khong\", mong muốn \"khong\".",
+        "index": 6,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"Khong\", mong muốn \"khong\".",
+        "index": 7,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 8,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"La\", mong muốn \"la\".",
+        "index": 9,
+        "passed": false,
+        "status": "Wrong Answer"
+      },
+      {
+        "error": "Token thứ 2 không khớp: thực tế là \"Khong\", mong muốn \"khong\".",
+        "index": 10,
+        "passed": false,
+        "status": "Wrong Answer"
+      }
+    ],
+    "created_at": "2026-06-25T14:03:28.608Z"
+  },
+  {
+    "id": "4b0b7dc6-184b-432a-8787-5fda0f7549c5",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "attempt_id": "6427e9d1-3603-4030-a8a2-69505c54769c",
+    "code": "# Viet chuong trinh cua em o day\nn = int(input())\nif (n%2==0):\n    print(n,\"la so chan\")\nelse:\n    print(n,\"la so le\")",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 8,
+    "total_count": 8,
+    "duration_ms": 219355,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "input": "12\n",
+        "actual": "12 la so chan\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "12 la so chan\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "input": "7\n",
+        "actual": "7 la so le\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "7 la so le\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 6,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 7,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 8,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-25T13:52:29.194Z"
+  },
+  {
+    "id": "e42bab67-edd2-477a-90a7-1dde61b40cf6",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "attempt_id": "1de3dfad-deb7-41ff-96ab-bf76af0b7d0e",
+    "code": "# Viet chuong trinh cua em o day\nn=int(input())\nif n%2==0:\n    print(n,\"la so chan\")\nelse:\n    print(n,\"la so le\")",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 8,
+    "total_count": 8,
+    "duration_ms": 15371,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "input": "12\n",
+        "actual": "12 la so chan\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "12 la so chan\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "input": "7\n",
+        "actual": "7 la so le\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "7 la so le\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 6,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 7,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 8,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-25T13:55:33.498Z"
+  },
+  {
+    "id": "9500a739-c735-4b95-b948-a7980b2aacb0",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "attempt_id": "86df6eec-fc7e-43c1-8da4-f5fa7250b147",
+    "code": "a=int(input())\nb=int(input())\nif a%b==0:\n    print(b,\"la uoc cua\",a)\nelse:\n    print(b,\"khong la uoc cua\",a)\nif b%a==0:\n    print(a,\"la uoc cua \",b)\nelse:\n    print(a,\"khong la uoc cua\",b)\n",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 10,
+    "total_count": 10,
+    "duration_ms": 22806,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "input": "5\n10\n",
+        "actual": "10 khong la uoc cua 5\n5 la uoc cua  10\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "10 khong la uoc cua 5\n5 la uoc cua 10\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "input": "10\n5\n",
+        "actual": "5 la uoc cua 10\n10 khong la uoc cua 5\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "5 la uoc cua 10\n10 khong la uoc cua 5\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 6,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 7,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 8,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 9,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 10,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-25T14:08:21.397Z"
+  },
+  {
+    "id": "b7b4639f-27b8-4831-932d-718c9ae6dcdd",
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "attempt_id": "c79a7090-9c26-4eba-af0f-8a5622d4ad37",
+    "code": "m=int(input())\nn=int(input())\nif m%2==n%2:\n    print(\"DUNG\")\nelse:\n    print(\"SAI\")\n",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 9,
+    "total_count": 9,
+    "duration_ms": 202834,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "input": "10\n20\n",
+        "actual": "DUNG\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "DUNG\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "input": "3\n5\n",
+        "actual": "DUNG\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "DUNG\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "input": "2\n3\n",
+        "actual": "SAI\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "SAI\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 6,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 7,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 8,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 9,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-25T14:11:56.500Z"
+  }
+]
+```
+
+### File: `backups/submissions-reset-20260625-215053.json`
+
+```json
+[]
+```
+
+### File: `backups/submissions-reset-20260625-220522.json`
+
+```json
+[
+  {
+    "id": "6cba30df-c1c5-428c-9c5f-405bbf85f243",
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "attempt_id": "729e1bbc-9265-40eb-8183-bde3e4c7d756",
+    "code": "# Viet chuong trinh cua em\nn = int(input(\"Nhap n: \"))\n\nif (n%2==0):\n    print(n,\"la so chan\")\nelse:\n    print(n,\"la so le\")",
+    "status": "ACCEPTED",
+    "score": 100,
+    "passed_count": 8,
+    "total_count": 8,
+    "duration_ms": 22801,
+    "report": [
+      {
+        "error": "Khớp đáp án",
+        "index": 1,
+        "input": "12\n",
+        "actual": "12 la so chan\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "12 la so chan\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 2,
+        "input": "7\n",
+        "actual": "7 la so le\n",
+        "passed": true,
+        "status": "Accepted",
+        "expected": "7 la so le\n"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 3,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 4,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 5,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 6,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 7,
+        "passed": true,
+        "status": "Accepted"
+      },
+      {
+        "error": "Khớp đáp án",
+        "index": 8,
+        "passed": true,
+        "status": "Accepted"
+      }
+    ],
+    "created_at": "2026-06-25T14:57:52.475Z"
+  }
+]
+```
+
 ### File: `backups/user_problem_progress-before-cleanup-20260624-165640.json`
 
 ```json
@@ -5639,6 +23178,238 @@ TERMINAL_MAX_OUTPUT_BYTES=100000
     "last_submitted_at": "2026-06-19T23:18:58.122Z",
     "completed_at": "2026-06-19T23:18:58.122Z",
     "updated_at": "2026-06-19T23:18:58.122Z"
+  }
+]
+```
+
+### File: `backups/user_problem_progress-reset-20260625-181549.json`
+
+```json
+[
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "05f1b134-20cd-4bf4-aa5c-557f7f78baa8",
+    "best_submission_id": null,
+    "best_score": 0,
+    "best_status": null,
+    "submission_count": 0,
+    "first_started_at": "2026-06-19T19:13:33.401Z",
+    "last_submitted_at": null,
+    "completed_at": null,
+    "updated_at": "2026-06-19T19:38:50.482Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "b1465848-0c44-45f1-b074-9dae7cc40364",
+    "best_submission_id": "d959dda8-4f14-41f6-b2a4-12df116a4be0",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 1,
+    "first_started_at": "2026-06-25T11:02:01.128Z",
+    "last_submitted_at": "2026-06-25T11:02:01.128Z",
+    "completed_at": "2026-06-25T11:02:01.128Z",
+    "updated_at": "2026-06-25T11:02:01.128Z"
+  },
+  {
+    "user_id": "4b2d0e83-9d57-4ceb-bd4d-ddf47be157aa",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "best_submission_id": "d806a1a6-d52d-4c7f-b9b7-0a722a3a4ab6",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 2,
+    "first_started_at": "2026-06-19T23:17:05.181Z",
+    "last_submitted_at": "2026-06-19T23:17:39.339Z",
+    "completed_at": "2026-06-19T23:17:39.339Z",
+    "updated_at": "2026-06-24T10:00:00.443Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "best_submission_id": "1185f3ec-fa99-4adb-b6e6-d1b6b2bfe233",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 2,
+    "first_started_at": "2026-06-19T20:45:38.306Z",
+    "last_submitted_at": "2026-06-19T20:47:38.413Z",
+    "completed_at": "2026-06-19T20:47:38.413Z",
+    "updated_at": "2026-06-24T10:00:00.443Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "22db8187-aa7c-441b-b026-120d1a81eea0",
+    "best_submission_id": "b7ec79fa-4785-400f-bb8f-8bf5eb2e6eae",
+    "best_score": 0,
+    "best_status": "WRONG_ANSWER",
+    "submission_count": 3,
+    "first_started_at": "2026-06-20T11:58:28.606Z",
+    "last_submitted_at": "2026-06-20T12:07:19.729Z",
+    "completed_at": null,
+    "updated_at": "2026-06-24T10:00:00.443Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "abc037d2-bb46-4d21-b483-ecaa3c8a4ada",
+    "best_submission_id": "33073056-b8e5-49e6-b8c7-bdd47bd05a4c",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 2,
+    "first_started_at": "2026-06-19T19:06:14.344Z",
+    "last_submitted_at": "2026-06-19T21:52:05.200Z",
+    "completed_at": "2026-06-19T19:06:14.344Z",
+    "updated_at": "2026-06-24T10:00:00.443Z"
+  },
+  {
+    "user_id": "bc583315-9582-42a8-997d-c7e466eac3cc",
+    "problem_id": "17123ff1-a123-42ad-8dac-c10886e1e8c0",
+    "best_submission_id": "5f4ffed0-f948-423e-adbc-2c0082d41aff",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 1,
+    "first_started_at": "2026-06-19T23:18:58.122Z",
+    "last_submitted_at": "2026-06-19T23:18:58.122Z",
+    "completed_at": "2026-06-19T23:18:58.122Z",
+    "updated_at": "2026-06-24T10:00:00.443Z"
+  },
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "797523ff-7db3-4021-89ac-cb984cd916a2",
+    "best_submission_id": "ac6c0ae1-0cbb-46f0-978c-ed336e2375b6",
+    "best_score": 80,
+    "best_status": "WRONG_ANSWER",
+    "submission_count": 3,
+    "first_started_at": "2026-06-24T09:34:23.314Z",
+    "last_submitted_at": "2026-06-24T10:16:31.742Z",
+    "completed_at": null,
+    "updated_at": "2026-06-24T10:16:31.742Z"
+  }
+]
+```
+
+### File: `backups/user_problem_progress-reset-20260625-181628.json`
+
+```json
+[
+  {
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "67bc3659-2010-499d-a121-beb60c950d47",
+    "best_submission_id": "f16cd835-19b8-43de-ba5b-7896ed0504ab",
+    "best_score": 25,
+    "best_status": "WRONG_ANSWER",
+    "submission_count": 1,
+    "first_started_at": "2026-06-25T11:16:29.581Z",
+    "last_submitted_at": "2026-06-25T11:16:29.581Z",
+    "completed_at": null,
+    "updated_at": "2026-06-25T11:16:29.581Z"
+  }
+]
+```
+
+### File: `backups/user_problem_progress-reset-20260625-181944.json`
+
+```json
+[]
+```
+
+### File: `backups/user_problem_progress-reset-20260625-184324.json`
+
+```json
+[]
+```
+
+### File: `backups/user_problem_progress-reset-20260625-184454.json`
+
+```json
+[]
+```
+
+### File: `backups/user_problem_progress-reset-20260625-184543.json`
+
+```json
+[]
+```
+
+### File: `backups/user_problem_progress-reset-20260625-184810.json`
+
+```json
+[]
+```
+
+### File: `backups/user_problem_progress-reset-20260625-214200.json`
+
+```json
+[
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "best_submission_id": "4b0b7dc6-184b-432a-8787-5fda0f7549c5",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 1,
+    "first_started_at": "2026-06-25T13:52:29.194Z",
+    "last_submitted_at": "2026-06-25T13:52:29.194Z",
+    "completed_at": "2026-06-25T13:52:29.194Z",
+    "updated_at": "2026-06-25T13:52:29.194Z"
+  },
+  {
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "c8d9d817-a51c-4045-a37f-021773ac84a5",
+    "best_submission_id": "e42bab67-edd2-477a-90a7-1dde61b40cf6",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 4,
+    "first_started_at": "2026-06-25T13:40:37.102Z",
+    "last_submitted_at": "2026-06-25T13:55:33.498Z",
+    "completed_at": "2026-06-25T13:55:33.498Z",
+    "updated_at": "2026-06-25T13:55:33.498Z"
+  },
+  {
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "8a2652fd-bbcd-43a5-9e48-9573f5131a24",
+    "best_submission_id": "9500a739-c735-4b95-b948-a7980b2aacb0",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 2,
+    "first_started_at": "2026-06-25T14:03:28.608Z",
+    "last_submitted_at": "2026-06-25T14:08:21.397Z",
+    "completed_at": "2026-06-25T14:08:21.397Z",
+    "updated_at": "2026-06-25T14:08:21.397Z"
+  },
+  {
+    "user_id": "2ea30662-065c-4988-98fd-e1ba4e8be4f0",
+    "problem_id": "5a910644-8972-4942-9fe7-a8328fec2b6a",
+    "best_submission_id": "b7b4639f-27b8-4831-932d-718c9ae6dcdd",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 1,
+    "first_started_at": "2026-06-25T14:11:56.500Z",
+    "last_submitted_at": "2026-06-25T14:11:56.500Z",
+    "completed_at": "2026-06-25T14:11:56.500Z",
+    "updated_at": "2026-06-25T14:11:56.500Z"
+  }
+]
+```
+
+### File: `backups/user_problem_progress-reset-20260625-215053.json`
+
+```json
+[]
+```
+
+### File: `backups/user_problem_progress-reset-20260625-220522.json`
+
+```json
+[
+  {
+    "user_id": "b97d1fe5-52b4-4b88-917c-dc46afdf64ee",
+    "problem_id": "0d0eecc1-0b21-49ce-8a46-b477fec4edb6",
+    "best_submission_id": "6cba30df-c1c5-428c-9c5f-405bbf85f243",
+    "best_score": 100,
+    "best_status": "ACCEPTED",
+    "submission_count": 1,
+    "first_started_at": "2026-06-25T14:57:52.475Z",
+    "last_submitted_at": "2026-06-25T14:57:52.475Z",
+    "completed_at": "2026-06-25T14:57:52.475Z",
+    "updated_at": "2026-06-25T14:57:52.475Z"
   }
 ]
 ```
@@ -6706,6 +24477,44 @@ ALTER TABLE problems ADD COLUMN IF NOT EXISTS compare_mode TEXT NOT NULL DEFAULT
 ALTER TABLE problems ADD COLUMN IF NOT EXISTS number_tolerance DOUBLE PRECISION NOT NULL DEFAULT 1e-6;
 ```
 
+### File: `migrations/008_problem_groups.sql`
+
+```sql
+CREATE TABLE IF NOT EXISTS problem_groups (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  slug TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL DEFAULT '',
+  group_type TEXT NOT NULL DEFAULT 'CUSTOM'
+    CHECK (group_type IN ('BASIC', 'PRACTICE', 'ADVANCED', 'HSG', 'TOPIC', 'CUSTOM')),
+  color TEXT NOT NULL DEFAULT '',
+  icon TEXT NOT NULL DEFAULT '',
+  order_index INTEGER NOT NULL DEFAULT 0,
+  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+  created_by UUID REFERENCES users(id) ON DELETE SET NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS problem_group_items (
+  group_id UUID NOT NULL REFERENCES problem_groups(id) ON DELETE CASCADE,
+  problem_id UUID NOT NULL REFERENCES problems(id) ON DELETE CASCADE,
+  added_by UUID REFERENCES users(id) ON DELETE SET NULL,
+  order_index INTEGER NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (group_id, problem_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_problem_groups_active_order
+ON problem_groups(is_active, order_index, created_at DESC);
+
+CREATE INDEX IF NOT EXISTS idx_problem_group_items_problem
+ON problem_group_items(problem_id);
+
+CREATE INDEX IF NOT EXISTS idx_problem_group_items_group_order
+ON problem_group_items(group_id, order_index);
+```
+
 ### File: `package.json`
 
 ```json
@@ -6719,7 +24528,9 @@ ALTER TABLE problems ADD COLUMN IF NOT EXISTS number_tolerance DOUBLE PRECISION 
     "start": "node src/server.js",
     "db:migrate": "node scripts/migrate.js",
     "db:seed": "node scripts/seed.js",
-    "test": "node --test"
+    "db:seed:canonical": "node scripts/seed.js --with-canonical-problems",
+    "problems:reset-basic": "node scripts/reset-and-seed-basic-problems.js",
+    "test": "node --test --test-concurrency=1"
   },
   "engines": {
     "node": ">=20"
@@ -6952,6 +24763,11 @@ import { hashPassword } from '../src/auth.js';
 import { normalizeProblem } from '../src/validation.js';
 import { canonicalProblems } from '../data/canonical-problems.js';
 
+const args = new Set(process.argv.slice(2));
+const shouldSeedCanonicalProblems =
+  args.has('--with-canonical-problems') ||
+  String(process.env.SEED_CANONICAL_PROBLEMS || '').toLowerCase() === 'true';
+
 const email = String(process.env.ADMIN_EMAIL || '').trim().toLowerCase();
 const password = process.env.ADMIN_PASSWORD || '';
 const name = process.env.ADMIN_NAME || 'Quản trị viên';
@@ -6987,7 +24803,56 @@ async function insertCanonicalProblems(createdBy) {
   let insertedCount = 0;
   let skippedCount = 0;
 
+  const problemGroupAssignments = [];
+  const activeGroupSlugs = new Set();
+
+  for (const raw of canonicalProblems) {
+    const p = normalizeProblem({
+      ...raw,
+      timeLimitMinutes: raw.timeLimitMinutes ?? 30,
+      executionLimitMs: raw.executionLimitMs ?? 1500
+    });
+    
+    // Determine group: put Codeforces problems into 'Bài ôn luyện' (bai-on-luyen), others into 'Bài tập cơ bản' (bai-tap-co-ban)
+    let targetGroupSlug = 'bai-tap-co-ban';
+    if (p.source && p.source.toLowerCase().includes('codeforces')) {
+      targetGroupSlug = 'bai-on-luyen';
+    } else if (p.rating >= 1000 && p.rating <= 1300) {
+      targetGroupSlug = 'bai-on-luyen';
+    } else if (p.rating >= 1400) {
+      targetGroupSlug = 'bai-nang-cao';
+    } else if (p.title.toLowerCase().includes('hsg') || (p.source && p.source.toLowerCase().includes('hsg'))) {
+      targetGroupSlug = 'bai-thi-hsg';
+    }
+
+    problemGroupAssignments.push({ slug: p.slug, groupSlug: targetGroupSlug });
+    activeGroupSlugs.add(targetGroupSlug);
+  }
+
   await transaction(async (client) => {
+    // Ensure default groups exist
+    const defaultGroups = [
+      { slug: 'bai-tap-co-ban', name: 'Bài tập cơ bản', type: 'BASIC', description: 'Các bài tập căn bản cho lập trình viên mới bắt đầu', color: '#2563eb', icon: 'code' },
+      { slug: 'bai-on-luyen', name: 'Bài ôn luyện', type: 'PRACTICE', description: 'Các bài tập thực hành nâng cao kỹ năng tư duy', color: '#10b981', icon: 'practice' },
+      { slug: 'bai-nang-cao', name: 'Bài nâng cao', type: 'ADVANCED', description: 'Thách thức với các thuật toán và cấu trúc dữ liệu phức tạp', color: '#d946ef', icon: 'star' },
+      { slug: 'bai-thi-hsg', name: 'Bài thi HSG', type: 'HSG', description: 'Tuyển tập các bài thi học sinh giỏi các cấp', color: '#f59e0b', icon: 'award' }
+    ];
+    const groupsToCreate = defaultGroups.filter(g => activeGroupSlugs.has(g.slug));
+    const groupSlugToId = {};
+    for (const g of groupsToCreate) {
+      const existing = await client.query('SELECT id FROM problem_groups WHERE slug = $1', [g.slug]);
+      if (existing.rows[0]) {
+        groupSlugToId[g.slug] = existing.rows[0].id;
+      } else {
+        const insertRes = await client.query(
+          `INSERT INTO problem_groups (slug, name, description, group_type, color, icon)
+           VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`,
+          [g.slug, g.name, g.description, g.type, g.color, g.icon]
+        );
+        groupSlugToId[g.slug] = insertRes.rows[0].id;
+      }
+    }
+
     for (const raw of canonicalProblems) {
       const p = normalizeProblem({
         ...raw,
@@ -7044,6 +24909,16 @@ async function insertCanonicalProblems(createdBy) {
             [problemId, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
           );
         }
+
+        // Assign to group
+        const assignment = problemGroupAssignments.find(a => a.slug === p.slug);
+        const targetGroupSlug = assignment ? assignment.groupSlug : 'bai-tap-co-ban';
+        const groupId = groupSlugToId[targetGroupSlug];
+        await client.query(
+          `INSERT INTO problem_group_items(group_id, problem_id, added_by)
+           VALUES ($1, $2, $3) ON CONFLICT DO NOTHING`,
+          [groupId, problemId, createdBy]
+        );
         
         // Add to existingProblems in memory for subsequent checks in this loop
         existingProblems.push({
@@ -7060,7 +24935,11 @@ async function insertCanonicalProblems(createdBy) {
 }
 
 const admin = await pool.query("SELECT id FROM users WHERE role = 'ADMIN' ORDER BY created_at LIMIT 1");
-await insertCanonicalProblems(admin.rows[0]?.id || null);
+if (shouldSeedCanonicalProblems) {
+  await insertCanonicalProblems(admin.rows[0]?.id || null);
+} else {
+  console.log('Skip canonical problem seed. Use --with-canonical-problems or SEED_CANONICAL_PROBLEMS=true to seed legacy problem data.');
+}
 
 await pool.end();
 ```
@@ -7553,7 +25432,7 @@ function normalizeOutput(value) {
   return String(value ?? '').replace(/\r\n/g, '\n');
 }
 
-export async function runPythonLocal(code, input, limitMs = 1500) {
+export async function runPythonLocal(code, input, limitMs = 1500, suppressInputPrompts = true) {
   const workdir = await fs.mkdtemp(path.join(os.tmpdir(), 'simpleoj-'));
   const dropPrivileges = process.platform !== 'win32' && typeof process.getuid === 'function' && process.getuid() === 0;
   if (dropPrivileges) await fs.chown(workdir, 65534, 65534);
@@ -7596,7 +25475,7 @@ export async function runPythonLocal(code, input, limitMs = 1500) {
         finish({ output: '', error: 'Runner error: không thể khởi động môi trường chạy Python' });
       }
     });
-    child.stdin.end(JSON.stringify({ code, input, limitMs }));
+    child.stdin.end(JSON.stringify({ code, input, limitMs, suppressInputPrompts }));
   });
 }
 
@@ -7604,7 +25483,15 @@ async function runRemote(code, testcases, limitMs, options = {}) {
   const response = await fetch(`${config.judgeServiceUrl.replace(/\/$/, '')}/internal/judge`, {
     method: 'POST',
     headers: { 'content-type': 'application/json', authorization: `Bearer ${config.judgeServiceToken}` },
-    body: JSON.stringify({ code, testcases, limitMs, options }),
+    body: JSON.stringify({
+      code,
+      testcases,
+      limitMs,
+      options: {
+        ...options,
+        suppressInputPrompts: options.suppressInputPrompts !== false
+      }
+    }),
     signal: AbortSignal.timeout(Math.max(10000, testcases.length * (limitMs + 1000)))
   });
   if (!response.ok) throw new Error(`Judge service trả về ${response.status}`);
@@ -7825,7 +25712,8 @@ export async function judgeSubmission(code, testcases, limitMs = 1500, forceLoca
     const weight = Number(testcase.weight ?? 1);
     totalWeight += weight;
 
-    const result = await runPythonLocal(code, testcase.input, limitMs);
+    const suppressInputPrompts = options.suppressInputPrompts !== false;
+    const result = await runPythonLocal(code, testcase.input, limitMs, suppressInputPrompts);
     const actual = normalizeOutput(result.output);
     const expected = normalizeOutput(testcase.output);
     
@@ -7877,6 +25765,105 @@ export async function judgeSubmission(code, testcases, limitMs = 1500, forceLoca
   return { passed: passedCount, total, score, reports };
 }
 
+```
+
+### File: `src/problem-groups.js`
+
+```javascript
+import { query } from './db.js';
+
+export async function assertActiveGroupsExist(client, groupIds) {
+  if (!groupIds || !groupIds.length) return;
+  const { rows } = await client.query(
+    'SELECT id FROM problem_groups WHERE id = ANY($1) AND is_active = TRUE',
+    [groupIds]
+  );
+  if (rows.length !== groupIds.length) {
+    throw new Error('Một hoặc nhiều nhóm bài tập không tồn tại hoặc đã bị ẩn.');
+  }
+}
+
+export async function assertActiveProblemsExist(client, problemIds) {
+  if (!problemIds || !problemIds.length) return;
+  const { rows } = await client.query(
+    'SELECT id FROM problems WHERE id = ANY($1) AND is_active = TRUE',
+    [problemIds]
+  );
+  if (rows.length !== problemIds.length) {
+    throw new Error('Một hoặc nhiều bài tập không tồn tại hoặc đã bị ẩn.');
+  }
+}
+
+export async function assertGroupWillNotBeEmpty(client, groupId, nextProblemIds) {
+  if (!nextProblemIds || nextProblemIds.length === 0) {
+    throw new Error('Nhóm bài tập phải có ít nhất 1 bài. Không được tạo group trống.');
+  }
+}
+
+export async function assertProblemsWillNotBeOrphaned(client, problemIdsToRemove, excludingGroupId) {
+  if (!problemIdsToRemove || !problemIdsToRemove.length) return;
+  
+  // Find other active groups that contain these problems
+  const { rows } = await client.query(
+    `SELECT pgi.problem_id, COUNT(pg.id)::int as other_active_groups_count
+     FROM problem_group_items pgi
+     JOIN problem_groups pg ON pg.id = pgi.group_id AND pg.is_active = TRUE
+     WHERE pgi.problem_id = ANY($1) AND pg.id != $2
+     GROUP BY pgi.problem_id`,
+    [problemIdsToRemove, excludingGroupId]
+  );
+  
+  // Filter for active problems
+  const activeProbsRes = await client.query(
+    'SELECT id, title FROM problems WHERE id = ANY($1) AND is_active = TRUE',
+    [problemIdsToRemove]
+  );
+  
+  for (const p of activeProbsRes.rows) {
+    const match = rows.find(r => r.problem_id === p.id);
+    if (!match || match.other_active_groups_count === 0) {
+      throw new Error(`Không thể gỡ bỏ bài "${p.title}" vì bài sẽ bị mồ côi (không thuộc nhóm hoạt động nào khác).`);
+    }
+  }
+}
+
+export async function assignProblemGroups(client, problemId, groupIds, adminId) {
+  if (!groupIds || groupIds.length === 0) {
+    throw new Error('Bài tập phải thuộc ít nhất 1 nhóm hoạt động.');
+  }
+  await client.query('DELETE FROM problem_group_items WHERE problem_id = $1', [problemId]);
+  for (let i = 0; i < groupIds.length; i++) {
+    await client.query(
+      `INSERT INTO problem_group_items (group_id, problem_id, added_by, order_index)
+       VALUES ($1, $2, $3, $4)
+       ON CONFLICT (group_id, problem_id) DO NOTHING`,
+      [groupIds[i], problemId, adminId, i]
+    );
+  }
+}
+
+export async function syncGroupProblems(client, groupId, problemIds, adminId) {
+  await assertGroupWillNotBeEmpty(client, groupId, problemIds);
+  
+  const currentRes = await client.query(
+    'SELECT problem_id FROM problem_group_items WHERE group_id = $1',
+    [groupId]
+  );
+  const currentProblemIds = currentRes.rows.map(r => r.problem_id);
+  const removed = currentProblemIds.filter(id => !problemIds.includes(id));
+  
+  await assertProblemsWillNotBeOrphaned(client, removed, groupId);
+
+  await client.query('DELETE FROM problem_group_items WHERE group_id = $1', [groupId]);
+  for (let i = 0; i < problemIds.length; i++) {
+    await client.query(
+      `INSERT INTO problem_group_items (group_id, problem_id, added_by, order_index)
+       VALUES ($1, $2, $3, $4)
+       ON CONFLICT (group_id, problem_id) DO NOTHING`,
+      [groupId, problemIds[i], adminId, i]
+    );
+  }
+}
 ```
 
 ### File: `src/python-runner.py`
@@ -7946,6 +25933,20 @@ def main():
     sys.stdin = io.StringIO(str(payload.get("input", "")))
     sys.stdout = output
     sys.stderr = output
+
+    suppress_prompts = payload.get("suppressInputPrompts", True)
+    if suppress_prompts:
+        _original_input = builtins.input
+        def oj_input(prompt=""):
+            line = sys.stdin.readline()
+            if line == "":
+                raise EOFError("EOF when reading a line")
+            if line.endswith("\n"):
+                line = line[:-1]
+            if line.endswith("\r"):
+                line = line[:-1]
+            return line
+        builtins.input = oj_input
     
     is_running_user_code = True
     try:
@@ -7972,6 +25973,8 @@ def main():
             error = "".join(tb_lines)
     finally:
         is_running_user_code = False
+        if suppress_prompts:
+            builtins.input = _original_input
         sys.stdin, sys.stdout, sys.stderr = old_stdin, old_stdout, old_stderr
     text = output.getvalue()
     result = {"output": text[:20000], "error": error, "truncated": len(text) > 20000}
@@ -8004,6 +26007,22 @@ import {
 import { cleanText, normalizeEmail, normalizeProblem, validEmail, validateProblem } from './validation.js';
 import { judgeSubmission, runPythonLocal, parseRunnerError } from './judge.js';
 import { attachTerminalServer } from './terminal.js';
+import {
+  assertActiveGroupsExist,
+  assertActiveProblemsExist,
+  assertGroupWillNotBeEmpty,
+  assertProblemsWillNotBeOrphaned,
+  assignProblemGroups,
+  syncGroupProblems
+} from './problem-groups.js';
+import {
+  normalizeUserInput,
+  validateUserCreate,
+  validateUserUpdate,
+  assertCanModifyUserAdmin,
+  safeUserRow,
+  getUserUsageCounts
+} from './users-admin.js';
 
 const app = express();
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -8135,10 +26154,14 @@ app.post('/api/auth/logout', (_req, res) => {
   res.json({ ok: true });
 });
 
-app.get('/api/auth/me', (req, res) => res.json({ user: req.user || null }));
+app.get('/api/auth/me', (req, res) => res.json({
+  user: req.user || null,
+  terminalRunner: config.terminalRunner,
+  serverTerminalEnabled: config.serverTerminalEnabled
+}));
 
 app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
-  const { tab, cursor, rating, minRating, maxRating, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo } = req.query;
+  const { tab, cursor, rating, minRating, maxRating, minScore, maxScore, assigned, sort, uploadedFrom, uploadedTo, group, groupId } = req.query;
 
   // Parse filters
   const parsedRating = rating !== undefined && rating !== '' ? Number(rating) : null;
@@ -8153,6 +26176,26 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
 
   // Default is_active check
   whereConditions.push('(p.is_active = TRUE OR $2 = \'ADMIN\')');
+
+  // Filter by group slug
+  if (group) {
+    queryParams.push(group);
+    whereConditions.push(`p.id IN (
+      SELECT pgi.problem_id FROM problem_group_items pgi
+      JOIN problem_groups pg ON pg.id = pgi.group_id
+      WHERE pg.slug = $${queryParams.length} AND pg.is_active = TRUE
+    )`);
+  }
+
+  // Filter by group ID
+  if (groupId) {
+    queryParams.push(groupId);
+    whereConditions.push(`p.id IN (
+      SELECT pgi.problem_id FROM problem_group_items pgi
+      JOIN problem_groups pg ON pg.id = pgi.group_id
+      WHERE pg.id = $${queryParams.length} AND pg.is_active = TRUE
+    )`);
+  }
 
   // Handle tab-specific filters
   if (tab === 'todo') {
@@ -8392,6 +26435,34 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
     };
   });
 
+  // Fetch and attach groups
+  if (items.length > 0) {
+    const problemIds = items.map(item => item.id);
+    const { rows: groupRows } = await query(
+      `SELECT pgi.problem_id, pg.id, pg.slug, pg.name, pg.group_type AS "groupType", pg.color, pg.icon
+       FROM problem_group_items pgi
+       JOIN problem_groups pg ON pg.id = pgi.group_id
+       WHERE pgi.problem_id = ANY($1) AND pg.is_active = TRUE`,
+      [problemIds]
+    );
+    for (const item of items) {
+      item.groups = groupRows
+        .filter(gr => gr.problem_id === item.id)
+        .map(gr => ({
+          id: gr.id,
+          slug: gr.slug,
+          name: gr.name,
+          groupType: gr.groupType,
+          color: gr.color,
+          icon: gr.icon
+        }));
+    }
+  } else {
+    for (const item of items) {
+      item.groups = [];
+    }
+  }
+
   if (!usePagination) {
     return res.json({ problems: items });
   }
@@ -8418,6 +26489,195 @@ app.get('/api/problems/:slug', requireAuth, asyncRoute(async (req, res) => {
   );
   if (!rows[0]) return res.status(404).json({ error: 'Không tìm thấy bài tập.' });
   res.json({ problem: rows[0] });
+}));
+
+app.get('/api/problem-groups', requireAuth, asyncRoute(async (req, res) => {
+  const { rows } = await query(
+    `SELECT pg.id, pg.slug, pg.name, pg.description, pg.group_type AS "groupType",
+            pg.color, pg.icon, pg.order_index AS "orderIndex",
+            COUNT(p.id)::int AS "problemCount"
+     FROM problem_groups pg
+     JOIN problem_group_items pgi ON pgi.group_id = pg.id
+     JOIN problems p ON p.id = pgi.problem_id
+     WHERE pg.is_active = TRUE AND p.is_active = TRUE
+     GROUP BY pg.id, pg.slug, pg.name, pg.description, pg.group_type, pg.color, pg.icon, pg.order_index
+     ORDER BY pg.order_index ASC, pg.created_at DESC`
+  );
+  res.json({ groups: rows });
+}));
+
+app.get('/api/problem-groups/:slug/problems', requireAuth, asyncRoute(async (req, res) => {
+  const { slug } = req.params;
+  const { ratingMin, ratingMax, status, cursor } = req.query;
+
+  const { rows: groupRows } = await query(
+    'SELECT id, slug, name, description, group_type AS "groupType" FROM problem_groups WHERE slug = $1 AND is_active = TRUE',
+    [slug]
+  );
+  if (!groupRows[0]) {
+    return res.status(404).json({ error: 'Không tìm thấy nhóm bài tập.' });
+  }
+  const group = groupRows[0];
+
+  const parsedMinRating = ratingMin !== undefined && ratingMin !== '' ? Number(ratingMin) : null;
+  const parsedMaxRating = ratingMax !== undefined && ratingMax !== '' ? Number(ratingMax) : null;
+
+  const queryParams = [req.user.id, req.user.role, group.id];
+  const whereConditions = [
+    '(p.is_active = TRUE OR $2 = \'ADMIN\')',
+    `p.id IN (SELECT problem_id FROM problem_group_items WHERE group_id = $3)`
+  ];
+
+  if (status === 'todo') {
+    whereConditions.push('COALESCE(upp.submission_count, 0) = 0');
+  } else if (status === 'attempted') {
+    whereConditions.push("COALESCE(upp.submission_count, 0) > 0 AND upp.completed_at IS NULL AND COALESCE(upp.best_score, 0) < p.passing_score AND COALESCE(upp.best_status, '') != 'ACCEPTED'");
+  } else if (status === 'completed' || status === 'done') {
+    whereConditions.push("(upp.completed_at IS NOT NULL OR COALESCE(upp.best_score, 0) >= p.passing_score OR upp.best_status = 'ACCEPTED')");
+  }
+
+  if (parsedMinRating !== null) {
+    queryParams.push(parsedMinRating);
+    whereConditions.push(`p.rating >= $${queryParams.length}`);
+  }
+  if (parsedMaxRating !== null) {
+    queryParams.push(parsedMaxRating);
+    whereConditions.push(`p.rating <= $${queryParams.length}`);
+  }
+
+  const sortField = 'p.published_at';
+  const sortOrder = 'DESC';
+  const jsFieldName = 'publishedAt';
+
+  if (cursor) {
+    try {
+      const { val, id } = JSON.parse(Buffer.from(cursor, 'base64').toString('utf8'));
+      if (val !== undefined && id) {
+        queryParams.push(val);
+        const valPlaceholder = `$${queryParams.length}`;
+        queryParams.push(id);
+        const idPlaceholder = `$${queryParams.length}`;
+        whereConditions.push(
+          `(${sortField} < (${valPlaceholder}::timestamptz) OR (${sortField} = (${valPlaceholder}::timestamptz) AND p.id < ${idPlaceholder}))`
+        );
+      }
+    } catch (err) {
+      console.error('Failed to parse cursor:', err);
+    }
+  }
+
+  const limit = Math.min(20, Math.max(1, Number(req.query.limit || 10)));
+  queryParams.push(limit + 1);
+  const limitPlaceholder = `$${queryParams.length}`;
+
+  const querySql = `
+    SELECT
+      p.id,
+      p.slug,
+      p.title,
+      p.difficulty,
+      p.rating,
+      p.source,
+      p.order_index AS "orderIndex",
+      p.published_at AS "publishedAt",
+      p.time_limit_minutes AS "timeLimitMinutes",
+      p.max_score AS "maxScore",
+      p.passing_score AS "passingScore",
+      COALESCE(upp.best_score, 0)::int AS "bestScore",
+      upp.best_status AS "bestStatus",
+      COALESCE(upp.submission_count, 0)::int AS "submissionCount",
+      upp.last_submitted_at AS "lastSubmittedAt",
+      upp.completed_at AS "completedAt"
+    FROM problems p
+    LEFT JOIN user_problem_progress upp ON upp.problem_id = p.id AND upp.user_id = $1
+    WHERE ${whereConditions.join(' AND ')}
+    ORDER BY ${sortField} ${sortOrder}, p.id ${sortOrder}
+    LIMIT ${limitPlaceholder}
+  `;
+
+  const { rows } = await query(querySql, queryParams);
+  const hasMore = rows.length > limit;
+  const rawItems = hasMore ? rows.slice(0, limit) : rows;
+
+  function getRatingLabel(r) {
+    if (r >= 800 && r <= 1000) return 'Cơ bản';
+    if (r >= 1100 && r <= 1300) return 'Dễ';
+    if (r >= 1400 && r <= 1600) return 'Trung bình';
+    if (r >= 1700 && r <= 1900) return 'Khó';
+    return 'Nâng cao';
+  }
+
+  const items = rawItems.map((item) => {
+    const submissionCount = Number(item.submissionCount || 0);
+    const bestScore = Number(item.bestScore || 0);
+    const bestStatus = item.bestStatus || null;
+    const completedAt = item.completedAt || null;
+    const passingScore = Number(item.passingScore || 100);
+
+    const isAttempted = submissionCount > 0;
+    const isCompleted = completedAt !== null || bestStatus === 'ACCEPTED' || bestScore >= passingScore;
+
+    return {
+      id: item.id,
+      slug: item.slug,
+      title: item.title,
+      difficulty: item.difficulty,
+      rating: item.rating,
+      ratingLabel: getRatingLabel(item.rating),
+      source: item.source,
+      orderIndex: item.orderIndex,
+      publishedAt: item.publishedAt,
+      timeLimitMinutes: item.timeLimitMinutes,
+      bestScore,
+      bestStatus,
+      submissionCount,
+      lastSubmittedAt: item.lastSubmittedAt,
+      completedAt,
+      isCompleted,
+      isAttempted
+    };
+  });
+
+  if (items.length > 0) {
+    const problemIds = items.map(item => item.id);
+    const { rows: groupRows } = await query(
+      `SELECT pgi.problem_id, pg.id, pg.slug, pg.name, pg.group_type AS "groupType", pg.color, pg.icon
+       FROM problem_group_items pgi
+       JOIN problem_groups pg ON pg.id = pgi.group_id
+       WHERE pgi.problem_id = ANY($1) AND pg.is_active = TRUE`,
+      [problemIds]
+    );
+    for (const item of items) {
+      item.groups = groupRows
+        .filter(gr => gr.problem_id === item.id)
+        .map(gr => ({
+          id: gr.id,
+          slug: gr.slug,
+          name: gr.name,
+          groupType: gr.groupType,
+          color: gr.color,
+          icon: gr.icon
+        }));
+    }
+  } else {
+    for (const item of items) {
+      item.groups = [];
+    }
+  }
+
+  let nextCursor = null;
+  if (items.length > 0 && hasMore) {
+    const lastItem = items[items.length - 1];
+    const lastVal = lastItem[jsFieldName];
+    nextCursor = Buffer.from(JSON.stringify({ val: lastVal, id: lastItem.id })).toString('base64');
+  }
+
+  res.json({
+    group,
+    items,
+    nextCursor,
+    hasMore
+  });
 }));
 
 app.post('/api/attempts', requireAuth, asyncRoute(async (req, res) => {
@@ -8695,11 +26955,12 @@ app.get('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => 
   const { rows } = await query('SELECT * FROM problems WHERE id=$1', [req.params.id]);
   if (!rows[0]) return res.status(404).json({ error: 'Không tìm thấy bài.' });
   const problem = rows[0];
-  const { rows: testcases } = await query(
-    'SELECT input, expected_output AS output, explanation, is_public, weight, order_index FROM problem_testcases WHERE problem_id=$1 ORDER BY order_index ASC',
-    [problem.id]
-  );
-  problem.testcases = testcases;
+  const [testcasesRes, groupItemsRes] = await Promise.all([
+    query('SELECT input, expected_output AS output, explanation, is_public, weight, order_index FROM problem_testcases WHERE problem_id=$1 ORDER BY order_index ASC', [problem.id]),
+    query('SELECT group_id FROM problem_group_items WHERE problem_id=$1', [problem.id])
+  ]);
+  problem.testcases = testcasesRes.rows;
+  problem.groupIds = groupItemsRes.rows.map(gi => gi.group_id);
   res.json({ problem });
 }));
 
@@ -8707,56 +26968,118 @@ app.post('/api/admin/problems', requireAdmin, asyncRoute(async (req, res) => {
   const p = normalizeProblem(req.body);
   const errors = validateProblem(p);
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
-  const saved = await transaction(async (client) => {
-    const { rows } = await client.query(
-      `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by,compare_mode,number_tolerance)
-       VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16,$17,$18) RETURNING *`,
-      [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
-        p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id, p.compareMode, p.numberTolerance]
-    );
-    const problem = rows[0];
-    for (const tc of p.testcases) {
-      await client.query(
-        `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
-         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-        [problem.id, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+
+  const parsedGroupIds = parseUuidList(req.body.groupIds);
+  if (p.isActive && parsedGroupIds.length === 0) {
+    return res.status(400).json({ error: 'Bài tập hoạt động phải thuộc ít nhất 1 nhóm hoạt động.' });
+  }
+
+  try {
+    const saved = await transaction(async (client) => {
+      if (p.isActive) {
+        await assertActiveGroupsExist(client, parsedGroupIds);
+      }
+
+      const { rows } = await client.query(
+        `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by,compare_mode,number_tolerance)
+         VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16,$17,$18) RETURNING *`,
+        [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+          p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id, p.compareMode, p.numberTolerance]
       );
-    }
-    problem.testcases = p.testcases;
-    return problem;
-  });
-  res.status(201).json({ problem: saved });
+      const problem = rows[0];
+      for (const tc of p.testcases) {
+        await client.query(
+          `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
+           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+          [problem.id, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+        );
+      }
+      problem.testcases = p.testcases;
+
+      if (parsedGroupIds.length > 0) {
+        await assignProblemGroups(client, problem.id, parsedGroupIds, req.user.id);
+      }
+      problem.groupIds = parsedGroupIds;
+      return problem;
+    });
+    res.status(201).json({ problem: saved });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 }));
 
 app.put('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => {
   const p = normalizeProblem(req.body);
   const errors = validateProblem(p);
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
-  const saved = await transaction(async (client) => {
-    const { rows } = await client.query(
-      `UPDATE problems SET slug=$1,title=$2,difficulty=$3,rating=$4,max_score=$5,passing_score=$6,
-         published_at=$7,source=$8,order_index=$9,description=$10,starter_code=$11,examples=$12::jsonb,
-         time_limit_minutes=$13,execution_limit_ms=$14,is_active=$15,compare_mode=$16,number_tolerance=$17,updated_at=NOW()
-       WHERE id=$18 RETURNING *`,
-      [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
-        p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive,
-        p.compareMode, p.numberTolerance, req.params.id]
-    );
-    const problem = rows[0];
-    if (!problem) return null;
-    await client.query('DELETE FROM problem_testcases WHERE problem_id=$1', [problem.id]);
-    for (const tc of p.testcases) {
-      await client.query(
-        `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
-         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-        [problem.id, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+
+  const parsedGroupIds = parseUuidList(req.body.groupIds);
+  if (p.isActive && parsedGroupIds.length === 0) {
+    return res.status(400).json({ error: 'Bài tập hoạt động phải thuộc ít nhất 1 nhóm hoạt động.' });
+  }
+
+  try {
+    const saved = await transaction(async (client) => {
+      if (p.isActive) {
+        await assertActiveGroupsExist(client, parsedGroupIds);
+      }
+
+      const { rows } = await client.query(
+        `UPDATE problems SET slug=$1,title=$2,difficulty=$3,rating=$4,max_score=$5,passing_score=$6,
+           published_at=$7,source=$8,order_index=$9,description=$10,starter_code=$11,examples=$12::jsonb,
+           time_limit_minutes=$13,execution_limit_ms=$14,is_active=$15,compare_mode=$16,number_tolerance=$17,updated_at=NOW()
+         WHERE id=$18 RETURNING *`,
+        [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+          p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive,
+          p.compareMode, p.numberTolerance, req.params.id]
       );
-    }
-    problem.testcases = p.testcases;
-    return problem;
-  });
-  if (!saved) return res.status(404).json({ error: 'Không tìm thấy bài.' });
-  res.json({ problem: saved });
+      const problem = rows[0];
+      if (!problem) return null;
+      
+      await client.query('DELETE FROM problem_testcases WHERE problem_id=$1', [problem.id]);
+      for (const tc of p.testcases) {
+        await client.query(
+          `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
+           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+          [problem.id, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+        );
+      }
+      problem.testcases = p.testcases;
+
+      if (p.isActive) {
+        await assignProblemGroups(client, problem.id, parsedGroupIds, req.user.id);
+      } else {
+        const { rows: groupsContaining } = await client.query(
+          `SELECT group_id FROM problem_group_items WHERE problem_id = $1`,
+          [problem.id]
+        );
+        const groupIds = groupsContaining.map(r => r.group_id);
+        for (const gid of groupIds) {
+          const { rows: otherProbs } = await client.query(
+            `SELECT pgi.problem_id FROM problem_group_items pgi
+             JOIN problems p ON p.id = pgi.problem_id
+             WHERE pgi.group_id = $1 AND pgi.problem_id != $2 AND p.is_active = TRUE`,
+            [gid, problem.id]
+          );
+          const { rows: groupInfo } = await client.query('SELECT is_active FROM problem_groups WHERE id = $1', [gid]);
+          if (groupInfo[0]?.is_active && otherProbs.length === 0) {
+            throw new Error(`Không thể ẩn bài tập này vì nó là bài duy nhất trong nhóm hoạt động "${gid}". Hãy thêm bài khác vào nhóm trước.`);
+          }
+        }
+      }
+
+      if (parsedGroupIds.length > 0) {
+        await assignProblemGroups(client, problem.id, parsedGroupIds, req.user.id);
+      }
+      problem.groupIds = parsedGroupIds;
+      return problem;
+    });
+
+    if (!saved) return res.status(404).json({ error: 'Không tìm thấy bài.' });
+    res.json({ problem: saved });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 }));
 
 app.delete('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => {
@@ -8768,7 +27091,10 @@ app.delete('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) 
 app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res) => {
   const items = Array.isArray(req.body) ? req.body : req.body.problems;
   if (!Array.isArray(items) || !items.length || items.length > 100) return res.status(400).json({ error: 'File cần chứa từ 1 đến 100 bài.' });
-  
+
+  const globalGroupIds = parseUuidList(req.body.groupIds);
+  const createMissingGroups = req.body.createMissingGroups === true || req.body.createMissingGroups === 'true';
+
   const validationErrors = [];
   const normalized = [];
   for (let i = 0; i < items.length; i++) {
@@ -8780,6 +27106,12 @@ app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res)
       const name = p.title || p.slug || `Bài ${i + 1}`;
       validationErrors.push(`Bài "${name}": ${errs.join(' ')}`);
     }
+
+    const pGroupSlugs = Array.isArray(pRaw.groupSlugs) ? pRaw.groupSlugs.filter(Boolean) : [];
+    if (globalGroupIds.length === 0 && pGroupSlugs.length === 0) {
+      const name = p.title || p.slug || `Bài ${i + 1}`;
+      validationErrors.push(`Bài "${name}": Vui lòng chọn ít nhất 1 nhóm bài tập trước khi import để tránh bài tập mồ côi.`);
+    }
   }
 
   if (validationErrors.length) {
@@ -8790,71 +27122,410 @@ app.post('/api/admin/problems/import', requireAdmin, asyncRoute(async (req, res)
   let updatedCount = 0;
   const slugsAffected = [];
 
-  await transaction(async (client) => {
-    for (const p of normalized) {
-      const existing = await client.query('SELECT id FROM problems WHERE slug = $1', [p.slug]);
-      const isUpdate = existing.rows.length > 0;
-      if (isUpdate) {
-        updatedCount += 1;
-      } else {
-        createdCount += 1;
+  try {
+    await transaction(async (client) => {
+      if (globalGroupIds.length > 0) {
+        await assertActiveGroupsExist(client, globalGroupIds);
       }
 
-      const { rows } = await client.query(
-        `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by,compare_mode,number_tolerance)
-         VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16,$17,$18)
-         ON CONFLICT(slug) DO UPDATE SET
-           title=EXCLUDED.title,
-           difficulty=EXCLUDED.difficulty,
-           rating=EXCLUDED.rating,
-           max_score=EXCLUDED.max_score,
-           passing_score=EXCLUDED.passing_score,
-           published_at=EXCLUDED.published_at,
-           source=EXCLUDED.source,
-           order_index=EXCLUDED.order_index,
-           description=EXCLUDED.description,
-           starter_code=EXCLUDED.starter_code,
-           examples=EXCLUDED.examples,
-           time_limit_minutes=EXCLUDED.time_limit_minutes,
-           execution_limit_ms=EXCLUDED.execution_limit_ms,
-           is_active=EXCLUDED.is_active,
-           compare_mode=EXCLUDED.compare_mode,
-           number_tolerance=EXCLUDED.number_tolerance,
-           updated_at=NOW()
-         RETURNING id`,
-        [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
-          p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id, p.compareMode, p.numberTolerance]
-      );
-      const problemId = rows[0].id;
-      slugsAffected.push(p.slug);
+      const groupSlugToIdMap = {};
 
-      await client.query('DELETE FROM problem_testcases WHERE problem_id=$1', [problemId]);
-      for (const tc of p.testcases) {
-        await client.query(
-          `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
-           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-          [problemId, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+      for (let i = 0; i < normalized.length; i++) {
+        const p = normalized[i];
+        const pRaw = items[i];
+        const pGroupSlugs = Array.isArray(pRaw.groupSlugs) ? pRaw.groupSlugs.filter(Boolean) : [];
+
+        const resolvedGroupIds = [...globalGroupIds];
+
+        for (const slug of pGroupSlugs) {
+          if (groupSlugToIdMap[slug]) {
+            resolvedGroupIds.push(groupSlugToIdMap[slug]);
+            continue;
+          }
+
+          const { rows: grRows } = await client.query(
+            'SELECT id FROM problem_groups WHERE slug = $1 AND is_active = TRUE',
+            [slug]
+          );
+
+          if (grRows[0]) {
+            const gid = grRows[0].id;
+            groupSlugToIdMap[slug] = gid;
+            resolvedGroupIds.push(gid);
+          } else {
+            if (createMissingGroups) {
+              const { rows: insertedGr } = await client.query(
+                `INSERT INTO problem_groups (name, slug, description, group_type, color, icon, is_active, created_by)
+                 VALUES ($1, $2, $3, 'CUSTOM', '#6b7280', 'code', TRUE, $4) RETURNING id`,
+                [slug, slug, `Nhóm tự động tạo từ import bài tập`, req.user.id]
+              );
+              const gid = insertedGr[0].id;
+              groupSlugToIdMap[slug] = gid;
+              resolvedGroupIds.push(gid);
+            } else {
+              throw new Error(`Nhóm bài tập có slug "${slug}" không tồn tại hoặc đã bị ẩn.`);
+            }
+          }
+        }
+
+        const uniqueGroupIds = [...new Set(resolvedGroupIds)];
+        if (uniqueGroupIds.length === 0) {
+          throw new Error(`Bài "${p.title}" không thuộc nhóm nào.`);
+        }
+
+        const existing = await client.query('SELECT id FROM problems WHERE slug = $1', [p.slug]);
+        const isUpdate = existing.rows.length > 0;
+        if (isUpdate) {
+          updatedCount += 1;
+        } else {
+          createdCount += 1;
+        }
+
+        const { rows } = await client.query(
+          `INSERT INTO problems(slug,title,difficulty,rating,max_score,passing_score,published_at,source,order_index,description,starter_code,examples,time_limit_minutes,execution_limit_ms,is_active,created_by,compare_mode,number_tolerance)
+           VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13,$14,$15,$16,$17,$18)
+           ON CONFLICT(slug) DO UPDATE SET
+             title=EXCLUDED.title,
+             difficulty=EXCLUDED.difficulty,
+             rating=EXCLUDED.rating,
+             max_score=EXCLUDED.max_score,
+             passing_score=EXCLUDED.passing_score,
+             published_at=EXCLUDED.published_at,
+             source=EXCLUDED.source,
+             order_index=EXCLUDED.order_index,
+             description=EXCLUDED.description,
+             starter_code=EXCLUDED.starter_code,
+             examples=EXCLUDED.examples,
+             time_limit_minutes=EXCLUDED.time_limit_minutes,
+             execution_limit_ms=EXCLUDED.execution_limit_ms,
+             is_active=EXCLUDED.is_active,
+             compare_mode=EXCLUDED.compare_mode,
+             number_tolerance=EXCLUDED.number_tolerance,
+             updated_at=NOW()
+           RETURNING id`,
+          [p.slug, p.title, p.difficulty, p.rating, p.maxScore, p.passingScore, p.publishedAt, p.source, p.orderIndex,
+            p.description, p.starterCode, JSON.stringify(p.examples), p.timeLimitMinutes, p.executionLimitMs, p.isActive, req.user.id, p.compareMode, p.numberTolerance]
         );
+        const problemId = rows[0].id;
+        slugsAffected.push(p.slug);
+
+        await client.query('DELETE FROM problem_testcases WHERE problem_id=$1', [problemId]);
+        for (const tc of p.testcases) {
+          await client.query(
+            `INSERT INTO problem_testcases(problem_id, input, expected_output, explanation, is_public, weight, order_index)
+             VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+            [problemId, tc.input, tc.output, tc.explanation, tc.isPublic, tc.weight, tc.orderIndex]
+          );
+        }
+
+        await assignProblemGroups(client, problemId, uniqueGroupIds, req.user.id);
       }
-    }
-  });
+    });
+
+    res.json({
+      imported: normalized.length,
+      created: createdCount,
+      updated: updatedCount,
+      errors: [],
+      slugs: slugsAffected
+    });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}));
+
+app.get('/api/admin/users', requireAdmin, asyncRoute(async (req, res) => {
+  const { q, role, status, page, pageSize, sort } = req.query;
+
+  const countQueryParams = [];
+  const countConditions = [];
+  if (q && q.trim()) {
+    countQueryParams.push(`%${q.trim()}%`);
+    countConditions.push(`(u.email ILIKE $${countQueryParams.length} OR u.full_name ILIKE $${countQueryParams.length})`);
+  }
+  if (role && (role === 'ADMIN' || role === 'STUDENT')) {
+    countQueryParams.push(role);
+    countConditions.push(`u.role = $${countQueryParams.length}`);
+  }
+  if (status === 'active') {
+    countConditions.push(`u.is_active = TRUE`);
+  } else if (status === 'inactive') {
+    countConditions.push(`u.is_active = FALSE`);
+  }
+  const whereClause = countConditions.length ? `WHERE ${countConditions.join(' AND ')}` : '';
+  const countQuerySql = `SELECT COUNT(*)::int AS total FROM users u ${whereClause}`;
+  const { rows: countRows } = await query(countQuerySql, countQueryParams);
+  const total = countRows[0].total;
+
+  const queryParams = [...countQueryParams];
+  const limit = Math.min(100, Math.max(1, Number(pageSize || 20)));
+  const offset = (Math.max(1, Number(page || 1)) - 1) * limit;
+
+  queryParams.push(limit);
+  const limitPlaceholder = `$${queryParams.length}`;
+  queryParams.push(offset);
+  const offsetPlaceholder = `$${queryParams.length}`;
+
+  let orderBy = 'u.created_at DESC';
+  if (sort === 'created_at_asc') orderBy = 'u.created_at ASC';
+  else if (sort === 'name_asc') orderBy = 'u.full_name ASC, u.created_at DESC';
+  else if (sort === 'email_asc') orderBy = 'u.email ASC, u.created_at DESC';
+  else if (sort === 'submissions_desc') orderBy = '"submissionsCount" DESC, u.created_at DESC';
+  else if (sort === 'score_desc') orderBy = '"totalScore" DESC, u.created_at DESC';
+
+  const querySql = `
+    SELECT
+      u.id,
+      u.email,
+      u.full_name AS "fullName",
+      u.role,
+      u.is_active AS "isActive",
+      u.created_at AS "createdAt",
+      u.updated_at AS "updatedAt",
+      (SELECT COUNT(*)::int FROM submissions s WHERE s.user_id = u.id) AS "submissionsCount",
+      (SELECT COUNT(*)::int FROM user_problem_progress upp WHERE upp.user_id = u.id AND upp.completed_at IS NOT NULL) AS "solvedCount",
+      (SELECT COALESCE(MAX(upp.best_score), 0)::int FROM user_problem_progress upp WHERE upp.user_id = u.id) AS "bestScore",
+      (SELECT COALESCE(SUM(upp.best_score), 0)::int FROM user_problem_progress upp WHERE upp.user_id = u.id) AS "totalScore",
+      (SELECT COUNT(*)::int FROM student_problem_assignments spa WHERE spa.user_id = u.id AND spa.status = 'ASSIGNED') AS "activeAssignmentsCount"
+    FROM users u
+    ${whereClause}
+    ORDER BY ${orderBy}
+    LIMIT ${limitPlaceholder} OFFSET ${offsetPlaceholder}
+  `;
+  const { rows: users } = await query(querySql, queryParams);
+  
+  const totalPages = Math.ceil(total / limit);
 
   res.json({
-    imported: normalized.length,
-    created: createdCount,
-    updated: updatedCount,
-    errors: [],
-    slugs: slugsAffected
+    users,
+    pagination: {
+      page: Math.max(1, Number(page || 1)),
+      pageSize: limit,
+      total,
+      totalPages
+    }
   });
 }));
 
-app.get('/api/admin/users', requireAdmin, asyncRoute(async (_req, res) => {
-  const { rows } = await query(
-    `SELECT u.id,u.email,u.full_name,u.role,u.is_active,u.created_at,COUNT(s.id)::int AS submissions,
-       COALESCE(MAX(s.score),0)::int AS best_score FROM users u LEFT JOIN submissions s ON s.user_id=u.id
-     GROUP BY u.id ORDER BY u.created_at DESC LIMIT 300`
+app.post('/api/admin/users', requireAdmin, asyncRoute(async (req, res) => {
+  const input = normalizeUserInput(req.body);
+  const password = req.body.password;
+  const errors = validateUserCreate({ ...input, password });
+  if (errors.length) return res.status(400).json({ error: errors.join(' ') });
+
+  try {
+    const saved = await transaction(async (client) => {
+      const { rows: existing } = await client.query('SELECT id FROM users WHERE email = $1', [input.email]);
+      if (existing[0]) {
+        const err = new Error('Email đã tồn tại. Vui lòng chọn email khác.');
+        err.status = 409;
+        throw err;
+      }
+
+      const passHash = hashPassword(password);
+      const { rows } = await client.query(
+        `INSERT INTO users (email, password_hash, full_name, role, is_active)
+         VALUES ($1, $2, $3, $4, $5)
+         RETURNING id, email, full_name, role, is_active, created_at, updated_at`,
+        [input.email, passHash, input.fullName, input.role, input.isActive]
+      );
+      return rows[0];
+    });
+    res.status(201).json({ user: safeUserRow(saved) });
+  } catch (error) {
+    res.status(error.status || 400).json({ error: error.message });
+  }
+}));
+
+app.get('/api/admin/users/:id', requireAdmin, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const { rows: userRows } = await query(
+    'SELECT id, email, full_name, role, is_active, created_at, updated_at FROM users WHERE id = $1',
+    [id]
   );
-  res.json({ users: rows });
+  const u = userRows[0];
+  if (!u) return res.status(404).json({ error: 'Không tìm thấy người dùng.' });
+
+  const { rows: statsRows } = await query(`
+    SELECT
+      (SELECT COUNT(*)::int FROM submissions WHERE user_id = $1) AS "submissionsCount",
+      (SELECT COUNT(*)::int FROM user_problem_progress WHERE user_id = $1 AND completed_at IS NOT NULL) AS "solvedCount",
+      (SELECT COUNT(*)::int FROM user_problem_progress WHERE user_id = $1 AND submission_count > 0) AS "attemptedProblemsCount",
+      (SELECT COUNT(*)::int FROM user_problem_progress WHERE user_id = $1 AND completed_at IS NOT NULL) AS "completedProblemsCount",
+      (SELECT COALESCE(MAX(best_score), 0)::int FROM user_problem_progress WHERE user_id = $1) AS "bestScore",
+      (SELECT COALESCE(SUM(best_score), 0)::int FROM user_problem_progress WHERE user_id = $1) AS "totalScore",
+      (SELECT COUNT(*)::int FROM student_problem_assignments WHERE user_id = $1 AND status = 'ASSIGNED') AS "activeAssignmentsCount"
+  `, [id]);
+  const stats = statsRows[0];
+
+  const { rows: subRows } = await query(`
+    SELECT s.id, s.problem_id, s.score, s.status, s.runtime_ms, s.created_at, p.title AS problem_title, p.slug AS problem_slug
+    FROM submissions s
+    JOIN problems p ON p.id = s.problem_id
+    WHERE s.user_id = $1
+    ORDER BY s.created_at DESC
+    LIMIT 10
+  `, [id]);
+
+  const { rows: assignRows } = await query(`
+    SELECT spa.id, spa.problem_id, spa.assigned_at, p.title AS problem_title, p.slug AS problem_slug, p.rating
+    FROM student_problem_assignments spa
+    JOIN problems p ON p.id = spa.problem_id
+    WHERE spa.user_id = $1 AND spa.status = 'ASSIGNED'
+    ORDER BY spa.assigned_at DESC
+  `, [id]);
+
+  res.json({
+    user: {
+      id: u.id,
+      email: u.email,
+      fullName: u.full_name,
+      role: u.role,
+      isActive: u.is_active,
+      createdAt: u.created_at,
+      updatedAt: u.updated_at,
+      stats,
+      recentSubmissions: subRows.map(r => ({
+        id: r.id,
+        problemId: r.problem_id,
+        problemTitle: r.problem_title,
+        problemSlug: r.problem_slug,
+        score: r.score,
+        status: r.status,
+        runtimeMs: r.runtime_ms,
+        createdAt: r.created_at
+      })),
+      activeAssignments: assignRows.map(r => ({
+        id: r.id,
+        problemId: r.problem_id,
+        problemTitle: r.problem_title,
+        problemSlug: r.problem_slug,
+        rating: r.rating,
+        assignedAt: r.assigned_at
+      }))
+    }
+  });
+}));
+
+app.patch('/api/admin/users/:id/password', requireAdmin, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const { newPassword } = req.body;
+  if (!newPassword || !validatePassword(newPassword)) {
+    return res.status(400).json({ error: 'Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm cả chữ và số.' });
+  }
+
+  const passHash = hashPassword(newPassword);
+  const { rows } = await query(
+    'UPDATE users SET password_hash = $1, updated_at = NOW() WHERE id = $2 RETURNING id',
+    [passHash, id]
+  );
+  if (!rows[0]) return res.status(404).json({ error: 'Không tìm thấy người dùng.' });
+  res.json({ ok: true });
+}));
+
+app.patch('/api/admin/users/:id/status', requireAdmin, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const isActive = Boolean(req.body.isActive);
+
+  try {
+    const updated = await transaction(async (client) => {
+      const { rows: current } = await client.query('SELECT role FROM users WHERE id = $1', [id]);
+      if (!current[0]) {
+        const err = new Error('Không tìm thấy người dùng.');
+        err.status = 404;
+        throw err;
+      }
+      await assertCanModifyUserAdmin(client, req.user.id, id, current[0].role, isActive);
+
+      const { rows } = await client.query(
+        `UPDATE users SET is_active = $1, updated_at = NOW() WHERE id = $2
+         RETURNING id, email, full_name, role, is_active, created_at, updated_at`,
+        [isActive, id]
+      );
+      return rows[0];
+    });
+    res.json({ user: safeUserRow(updated) });
+  } catch (error) {
+    res.status(error.status || 400).json({ error: error.message });
+  }
+}));
+
+app.patch('/api/admin/users/:id', requireAdmin, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const input = normalizeUserInput(req.body);
+  const errors = validateUserUpdate(input);
+  if (errors.length) return res.status(400).json({ error: errors.join(' ') });
+
+  try {
+    const updated = await transaction(async (client) => {
+      const { rows: current } = await client.query('SELECT email, full_name, role, is_active FROM users WHERE id = $1', [id]);
+      if (!current[0]) {
+        const err = new Error('Không tìm thấy người dùng.');
+        err.status = 404;
+        throw err;
+      }
+      
+      const email = input.email !== undefined ? input.email : current[0].email;
+      const fullName = input.fullName !== undefined ? input.fullName : current[0].full_name;
+      const role = input.role !== undefined ? input.role : current[0].role;
+      const isActive = input.isActive !== undefined ? input.isActive : current[0].is_active;
+
+      await assertCanModifyUserAdmin(client, req.user.id, id, role, isActive);
+
+      const { rows: existing } = await client.query('SELECT id FROM users WHERE email = $1 AND id != $2', [email, id]);
+      if (existing[0]) {
+        const err = new Error('Email đã tồn tại. Vui lòng chọn email khác.');
+        err.status = 409;
+        throw err;
+      }
+
+      const { rows } = await client.query(
+        `UPDATE users
+         SET email = $1, full_name = $2, role = $3, is_active = $4, updated_at = NOW()
+         WHERE id = $5
+         RETURNING id, email, full_name, role, is_active, created_at, updated_at`,
+        [email, fullName, role, isActive, id]
+      );
+      return rows[0];
+    });
+    res.json({ user: safeUserRow(updated) });
+  } catch (error) {
+    res.status(error.status || 400).json({ error: error.message });
+  }
+}));
+
+app.delete('/api/admin/users/:id', requireAdmin, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const hard = req.query.hard === 'true';
+
+  try {
+    await transaction(async (client) => {
+      const { rows: userRows } = await client.query('SELECT id, role, is_active FROM users WHERE id = $1', [id]);
+      if (!userRows[0]) {
+        const err = new Error('Không tìm thấy người dùng.');
+        err.status = 404;
+        throw err;
+      }
+
+      await assertCanModifyUserAdmin(client, req.user.id, id, userRows[0].role, false);
+
+      if (hard) {
+        const usage = await getUserUsageCounts(client, id);
+        if (usage.submissions > 0 || usage.attempts > 0 || usage.progress > 0 || usage.assignments > 0) {
+          const err = new Error('Không thể xóa cứng user này vì đã có dữ liệu học tập. Hãy khóa tài khoản thay thế.');
+          err.status = 409;
+          throw err;
+        }
+        await client.query('DELETE FROM users WHERE id = $1', [id]);
+      } else {
+        await client.query('UPDATE users SET is_active = FALSE, updated_at = NOW() WHERE id = $1', [id]);
+      }
+    });
+
+    res.json({ ok: true, mode: hard ? 'hard_delete' : 'soft_delete' });
+  } catch (error) {
+    res.status(error.status || 400).json({ error: error.message });
+  }
 }));
 
 app.get('/api/admin/student-assignments', requireAdmin, asyncRoute(async (req, res) => {
@@ -9145,13 +27816,194 @@ app.post('/api/admin/student-assignments/copy', requireAdmin, asyncRoute(async (
   });
 }));
 
-app.patch('/api/admin/users/:id', requireAdmin, asyncRoute(async (req, res) => {
-  const role = req.body.role === 'ADMIN' ? 'ADMIN' : 'STUDENT';
-  const active = Boolean(req.body.isActive);
-  if (req.params.id === req.user.id && (!active || role !== 'ADMIN')) return res.status(400).json({ error: 'Không thể tự khóa hoặc hạ quyền tài khoản đang dùng.' });
-  const { rows } = await query('UPDATE users SET role=$1,is_active=$2,updated_at=NOW() WHERE id=$3 RETURNING id,email,full_name,role,is_active', [role, active, req.params.id]);
-  if (!rows[0]) return res.status(404).json({ error: 'Không tìm thấy tài khoản.' });
-  res.json({ user: rows[0] });
+app.get('/api/admin/problem-groups', requireAdmin, asyncRoute(async (req, res) => {
+  const { rows } = await query(
+    `SELECT pg.id, pg.slug, pg.name, pg.description, pg.group_type AS "groupType",
+            pg.color, pg.icon, pg.order_index AS "orderIndex", pg.is_active AS "isActive",
+            COALESCE(ARRAY_REMOVE(ARRAY_AGG(pgi.problem_id), NULL), '{}') AS "problemIds",
+            COUNT(pgi.problem_id)::int AS "problemCount"
+     FROM problem_groups pg
+     LEFT JOIN problem_group_items pgi ON pgi.group_id = pg.id
+     GROUP BY pg.id, pg.slug, pg.name, pg.description, pg.group_type, pg.color, pg.icon, pg.order_index, pg.is_active
+     ORDER BY pg.order_index ASC, pg.created_at DESC`
+  );
+  res.json({ groups: rows });
+}));
+
+app.post('/api/admin/problem-groups', requireAdmin, asyncRoute(async (req, res) => {
+  const { name, slug, description, groupType, color, icon, orderIndex, problemIds } = req.body;
+  if (!name || !name.trim()) {
+    return res.status(400).json({ error: 'Tên nhóm bài tập không được để trống.' });
+  }
+  if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
+    return res.status(400).json({ error: 'Slug không hợp lệ (chỉ gồm chữ thường, số và dấu gạch ngang).' });
+  }
+  const parsedProblemIds = parseUuidList(problemIds);
+  if (parsedProblemIds.length === 0) {
+    return res.status(400).json({ error: 'Nhóm bài tập phải có ít nhất 1 bài. Không được tạo group trống.' });
+  }
+
+  try {
+    const saved = await transaction(async (client) => {
+      const { rows: existing } = await client.query('SELECT id FROM problem_groups WHERE slug = $1', [slug]);
+      if (existing[0]) {
+        throw new Error('Slug đã tồn tại. Vui lòng chọn slug khác.');
+      }
+
+      await assertActiveProblemsExist(client, parsedProblemIds);
+
+      const { rows: pgRows } = await client.query(
+        `INSERT INTO problem_groups (name, slug, description, group_type, color, icon, order_index, is_active, created_by)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, TRUE, $8) RETURNING *`,
+        [
+          name.trim(),
+          slug.trim(),
+          description || '',
+          groupType || 'CUSTOM',
+          color || '',
+          icon || '',
+          Number(orderIndex || 0),
+          req.user.id
+        ]
+      );
+      const newGroup = pgRows[0];
+
+      await syncGroupProblems(client, newGroup.id, parsedProblemIds, req.user.id);
+      newGroup.problemIds = parsedProblemIds;
+      return newGroup;
+    });
+
+    res.status(201).json({ group: saved });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}));
+
+app.put('/api/admin/problem-groups/:id', requireAdmin, asyncRoute(async (req, res) => {
+  const { name, description, groupType, color, icon, orderIndex, isActive, problemIds } = req.body;
+  if (!name || !name.trim()) {
+    return res.status(400).json({ error: 'Tên nhóm bài tập không được để trống.' });
+  }
+  const parsedProblemIds = parseUuidList(problemIds);
+  const activeStatus = isActive !== undefined ? Boolean(isActive) : true;
+
+  if (activeStatus && parsedProblemIds.length === 0) {
+    return res.status(400).json({ error: 'Nhóm bài tập phải có ít nhất 1 bài. Không được tạo group trống.' });
+  }
+
+  try {
+    const updated = await transaction(async (client) => {
+      await assertActiveProblemsExist(client, parsedProblemIds);
+
+      const { rows: pgRows } = await client.query(
+        `UPDATE problem_groups
+         SET name = $1, description = $2, group_type = $3, color = $4, icon = $5, order_index = $6, is_active = $7, updated_at = NOW()
+         WHERE id = $8 RETURNING *`,
+        [
+          name.trim(),
+          description || '',
+          groupType || 'CUSTOM',
+          color || '',
+          icon || '',
+          Number(orderIndex || 0),
+          activeStatus,
+          req.params.id
+        ]
+      );
+      const updatedGroup = pgRows[0];
+      if (!updatedGroup) {
+        throw new Error('Không tìm thấy nhóm bài tập.');
+      }
+
+      await syncGroupProblems(client, updatedGroup.id, parsedProblemIds, req.user.id);
+      
+      if (!activeStatus) {
+        await assertProblemsWillNotBeOrphaned(client, parsedProblemIds, updatedGroup.id);
+      }
+
+      updatedGroup.problemIds = parsedProblemIds;
+      return updatedGroup;
+    });
+
+    res.json({ group: updated });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}));
+
+app.delete('/api/admin/problem-groups/:id', requireAdmin, asyncRoute(async (req, res) => {
+  const { moveToGroupId } = req.body || {};
+  
+  try {
+    await transaction(async (client) => {
+      const { rows: groupRows } = await client.query('SELECT id, name, is_active FROM problem_groups WHERE id = $1', [req.params.id]);
+      if (!groupRows[0]) {
+        throw new Error('Không tìm thấy nhóm bài tập.');
+      }
+      
+      const { rows: itemRows } = await client.query('SELECT problem_id FROM problem_group_items WHERE group_id = $1', [req.params.id]);
+      const problemIds = itemRows.map(r => r.problem_id);
+
+      if (moveToGroupId) {
+        const { rows: targetRows } = await client.query('SELECT id FROM problem_groups WHERE id = $1 AND is_active = TRUE', [moveToGroupId]);
+        if (!targetRows[0]) {
+          throw new Error('Nhóm bài tập đích không tồn tại hoặc đã bị ẩn.');
+        }
+        
+        for (const pid of problemIds) {
+          await client.query(
+            `INSERT INTO problem_group_items (group_id, problem_id, added_by)
+             VALUES ($1, $2, $3)
+             ON CONFLICT (group_id, problem_id) DO NOTHING`,
+            [moveToGroupId, pid, req.user.id]
+          );
+        }
+      } else {
+        await assertProblemsWillNotBeOrphaned(client, problemIds, req.params.id);
+      }
+
+      await client.query(
+        `UPDATE problem_groups SET is_active = FALSE, updated_at = NOW() WHERE id = $1`,
+        [req.params.id]
+      );
+    });
+
+    res.json({ ok: true });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}));
+
+app.put('/api/admin/problems/:id/groups', requireAdmin, asyncRoute(async (req, res) => {
+  const { groupIds } = req.body;
+  const parsedGroupIds = parseUuidList(groupIds);
+  if (parsedGroupIds.length === 0) {
+    return res.status(400).json({ error: 'Bài tập phải thuộc ít nhất 1 nhóm hoạt động.' });
+  }
+
+  try {
+    await transaction(async (client) => {
+      const { rows: probRows } = await client.query('SELECT id FROM problems WHERE id = $1 AND is_active = TRUE', [req.params.id]);
+      if (!probRows[0]) {
+        throw new Error('Không tìm thấy bài tập hoặc bài tập đã bị ẩn.');
+      }
+
+      await assertActiveGroupsExist(client, parsedGroupIds);
+
+      await assignProblemGroups(client, req.params.id, parsedGroupIds, req.user.id);
+    });
+
+    const { rows } = await query(
+      `SELECT pg.id, pg.slug, pg.name, pg.group_type AS "groupType", pg.color, pg.icon
+       FROM problem_group_items pgi
+       JOIN problem_groups pg ON pg.id = pgi.group_id
+       WHERE pgi.problem_id = $1 AND pg.is_active = TRUE`,
+      [req.params.id]
+    );
+    res.json({ groups: rows });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 }));
 
 app.post('/internal/judge', asyncRoute(async (req, res) => {
@@ -9395,7 +28247,7 @@ function normalizeCommand(value) {
   return String(value || '').trim().replace(/\s+/g, ' ');
 }
 
-class TerminalSession {
+export class TerminalSession {
   constructor(ws, user) {
     this.ws = ws;
     this.user = user;
@@ -9404,6 +28256,7 @@ class TerminalSession {
     this.workdir = null;
     this.outputBytes = 0;
     this.closed = false;
+    this.inputBuffer = '';
     
     this.idleTimer = null;
     
@@ -9488,7 +28341,7 @@ class TerminalSession {
         if (this.processKind === 'pty') {
           this.process.write(data);
         } else {
-          this.process.stdin?.write(data);
+          this.handlePipeInput(data);
         }
       }
     }
@@ -9500,6 +28353,15 @@ class TerminalSession {
     else if (message.type === 'dispose') {
       await this.close(1000, 'Client disposed');
     }
+
+    else if (message.type === 'resize') {
+      this.cols = message.cols;
+      this.rows = message.rows;
+      if (this.processKind === 'pty' && this.process?.resize) {
+        this.process.resize(message.cols, message.rows);
+      }
+      return;
+    }
   }
 
   async runPython(mode) {
@@ -9510,6 +28372,7 @@ class TerminalSession {
     }
 
     this.outputBytes = 0;
+    this.inputBuffer = '';
     const pty = await loadPty();
     const dropPrivileges = process.platform !== 'win32' && typeof process.getuid === 'function' && process.getuid() === 0;
     const env = {
@@ -9523,7 +28386,7 @@ class TerminalSession {
       try {
         this.processKind = 'pty';
         this.process = pty.spawn(config.pythonCommand, ['-u', '-I', terminalRunnerPath, mode], {
-          name: 'xterm-256color', cwd: this.workdir, env, cols: 80, rows: 24,
+          name: 'xterm-256color', cwd: this.workdir, env, cols: this.cols || 80, rows: this.rows || 24,
           ...(dropPrivileges ? { uid: 65534, gid: 65534 } : {})
         });
         runningProcesses.add(this.process);
@@ -9771,6 +28634,7 @@ class TerminalSession {
     const proc = this.process;
     this.process = null;
     this.processKind = null;
+    this.inputBuffer = '';
     if (proc) {
       runningProcesses.delete(proc);
     }
@@ -9845,12 +28709,57 @@ class TerminalSession {
       this.workdir = null;
     }
   }
+
+  handlePipeInput(data) {
+    if (!this.process) return;
+    for (const ch of data) {
+      const code = ch.charCodeAt(0);
+
+      // Ctrl+C
+      if (ch === '\x03') {
+        this.interrupt();
+        return;
+      }
+
+      // Enter
+      if (ch === '\r' || ch === '\n') {
+        this.output('\r\n');
+        this.process.stdin?.write(this.inputBuffer + '\n');
+        this.inputBuffer = '';
+        continue;
+      }
+
+      // Backspace
+      if (ch === '\x7f' || ch === '\x08') {
+        if (this.inputBuffer.length > 0) {
+          this.inputBuffer = this.inputBuffer.slice(0, -1);
+          this.output('\b \b');
+        }
+        continue;
+      }
+
+      // Ignore control characters except tab
+      if (code < 32 && ch !== '\t') {
+        continue;
+      }
+
+      // Printable character
+      this.inputBuffer += ch;
+      this.output(ch);
+    }
+  }
+
   validateMessageSchema(message) {
     if (!message || typeof message !== 'object') return false;
-    const validTypes = ['runFile', 'startRepl', 'stdin', 'interrupt', 'dispose'];
+    const validTypes = ['runFile', 'startRepl', 'stdin', 'interrupt', 'dispose', 'resize'];
     if (!validTypes.includes(message.type)) return false;
     if (message.type === 'runFile' && typeof message.code !== 'string') return false;
     if (message.type === 'stdin' && typeof message.data !== 'string') return false;
+    if (message.type === 'resize') {
+      const { cols, rows } = message;
+      if (!Number.isInteger(cols) || cols < 20 || cols > 240) return false;
+      if (!Number.isInteger(rows) || rows < 5 || rows > 80) return false;
+    }
     return true;
   }
 }
@@ -9921,6 +28830,114 @@ export function attachTerminalServer(server) {
   });
 
   return wsServer;
+}
+```
+
+### File: `src/users-admin.js`
+
+```javascript
+import { cleanText, normalizeEmail, validEmail } from './validation.js';
+import { validatePassword } from './auth.js';
+
+export function normalizeUserInput(input) {
+  return {
+    email: normalizeEmail(input.email),
+    fullName: cleanText(input.fullName, 100),
+    role: String(input.role || 'STUDENT').trim().toUpperCase(),
+    isActive: input.isActive !== undefined ? Boolean(input.isActive) : true
+  };
+}
+
+export function validateUserCreate(input) {
+  const errors = [];
+  if (!input.email || !validEmail(input.email)) {
+    errors.push('Email không hợp lệ.');
+  }
+  if (!input.fullName || !input.fullName.trim()) {
+    errors.push('Họ tên không được để trống.');
+  }
+  if (!input.password) {
+    errors.push('Mật khẩu không được để trống.');
+  } else if (!validatePassword(input.password)) {
+    errors.push('Mật khẩu phải chứa ít nhất 8 ký tự, bao gồm cả chữ và số.');
+  }
+  if (input.role !== 'ADMIN' && input.role !== 'STUDENT') {
+    errors.push('Vai trò không hợp lệ.');
+  }
+  return errors;
+}
+
+export function validateUserUpdate(input) {
+  const errors = [];
+  if (!input.email || !validEmail(input.email)) {
+    errors.push('Email không hợp lệ.');
+  }
+  if (!input.fullName || !input.fullName.trim()) {
+    errors.push('Họ tên không được để trống.');
+  }
+  if (input.role !== 'ADMIN' && input.role !== 'STUDENT') {
+    errors.push('Vai trò không hợp lệ.');
+  }
+  return errors;
+}
+
+export async function getActiveAdminCount(client) {
+  const { rows } = await client.query(
+    "SELECT COUNT(*)::int AS count FROM users WHERE role = 'ADMIN' AND is_active = TRUE"
+  );
+  return rows[0].count;
+}
+
+export async function assertCanModifyUserAdmin(client, actorUserId, targetUserId, nextRole, nextIsActive) {
+  if (actorUserId === targetUserId) {
+    if (nextIsActive === false || nextRole === 'STUDENT') {
+      throw new Error('Không thể tự khóa hoặc hạ quyền tài khoản đang đăng nhập.');
+    }
+  }
+
+  const { rows: targetRows } = await client.query(
+    "SELECT role, is_active FROM users WHERE id = $1",
+    [targetUserId]
+  );
+  const targetUser = targetRows[0];
+  if (!targetUser) return; 
+
+  const wasActiveAdmin = targetUser.role === 'ADMIN' && targetUser.is_active === true;
+  const willStopBeingActiveAdmin = (nextRole === 'STUDENT' || nextIsActive === false);
+
+  if (wasActiveAdmin && willStopBeingActiveAdmin) {
+    const activeAdminCount = await getActiveAdminCount(client);
+    if (activeAdminCount <= 1) {
+      throw new Error('Không thể vô hiệu hóa hoặc hạ quyền admin cuối cùng.');
+    }
+  }
+}
+
+export async function getUserUsageCounts(client, userId) {
+  const { rows: subCount } = await client.query("SELECT COUNT(*)::int FROM submissions WHERE user_id = $1", [userId]);
+  const { rows: attCount } = await client.query("SELECT COUNT(*)::int FROM attempts WHERE user_id = $1", [userId]);
+  const { rows: progCount } = await client.query("SELECT COUNT(*)::int FROM user_problem_progress WHERE user_id = $1", [userId]);
+  const { rows: assignCount } = await client.query("SELECT COUNT(*)::int FROM student_problem_assignments WHERE user_id = $1", [userId]);
+  
+  return {
+    submissions: subCount[0].count,
+    attempts: attCount[0].count,
+    progress: progCount[0].count,
+    assignments: assignCount[0].count
+  };
+}
+
+export function safeUserRow(row) {
+  if (!row) return null;
+  return {
+    id: row.id,
+    email: row.email,
+    fullName: row.full_name,
+    role: row.role,
+    isActive: row.is_active,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at
+  };
 }
 ```
 
@@ -10122,6 +29139,7 @@ test('Admin Import API integration', async (t) => {
   let port;
   let cookieHeader;
   let adminId;
+  let defaultGroupId;
 
   t.before(async () => {
     // Start temporary test server
@@ -10137,6 +29155,9 @@ test('Admin Import API integration', async (t) => {
     adminId = rows[0].id;
     const token = jwt.sign({ sub: adminId, role: 'ADMIN' }, config.jwtSecret, { expiresIn: '1h' });
     cookieHeader = `simpleoj_session=${token}`;
+
+    const groupRes = await query("SELECT id FROM problem_groups WHERE slug = 'bai-tap-co-ban' LIMIT 1");
+    defaultGroupId = groupRes.rows[0]?.id;
   });
 
   t.after(async () => {
@@ -10169,7 +29190,7 @@ test('Admin Import API integration', async (t) => {
     const res = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', cookie: cookieHeader },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({ problems: payload, groupIds: [defaultGroupId] })
     });
 
     assert.equal(res.status, 200);
@@ -10208,7 +29229,7 @@ test('Admin Import API integration', async (t) => {
     const res = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', cookie: cookieHeader },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({ problems: payload, groupIds: [defaultGroupId] })
     });
 
     assert.equal(res.status, 400);
@@ -10241,7 +29262,7 @@ test('Admin Import API integration', async (t) => {
     const res1 = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', cookie: cookieHeader },
-      body: JSON.stringify(firstPayload)
+      body: JSON.stringify({ problems: firstPayload, groupIds: [defaultGroupId] })
     });
     assert.equal(res1.status, 200);
 
@@ -10263,7 +29284,7 @@ test('Admin Import API integration', async (t) => {
     const res2 = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', cookie: cookieHeader },
-      body: JSON.stringify(secondPayload)
+      body: JSON.stringify({ problems: secondPayload, groupIds: [defaultGroupId] })
     });
 
     assert.equal(res2.status, 200);
@@ -10304,7 +29325,7 @@ test('Admin Import API integration', async (t) => {
     const res = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', cookie: cookieHeader },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({ problems: payload, groupIds: [defaultGroupId] })
     });
 
     assert.equal(res.status, 200);
@@ -10315,6 +29336,421 @@ test('Admin Import API integration', async (t) => {
     const tcRes = await query("SELECT expected_output, is_public FROM problem_testcases WHERE problem_id = $1", [dbRes.rows[0].id]);
     assert.equal(tcRes.rows[0].expected_output, 'out');
     assert.equal(tcRes.rows[0].is_public, true);
+  });
+});
+```
+
+### File: `test/admin-users.test.js`
+
+```javascript
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import http from 'node:http';
+import jwt from 'jsonwebtoken';
+import app from '../src/server.js';
+import { query, transaction } from '../src/db.js';
+import { config } from '../src/config.js';
+import { hashPassword, verifyPassword } from '../src/auth.js';
+
+test('Admin Users CRUD Integration Tests', async (t) => {
+  let server;
+  let port;
+  let adminId;
+  let adminCookie;
+  let studentId;
+  let studentCookie;
+  let helperAdminId; // a second admin to test deactivating/demoting/deleting "last admin" rules
+  let helperAdminCookie;
+
+  t.before(async () => {
+    // Start temporary test server
+    server = http.createServer(app);
+    await new Promise((resolve) => server.listen(0, resolve));
+    port = server.address().port;
+
+    // Get or create a student user
+    const { rows: existingStudents } = await query("SELECT id FROM users WHERE role = 'STUDENT' LIMIT 1");
+    if (existingStudents[0]) {
+      studentId = existingStudents[0].id;
+    } else {
+      const email = `test-crud-student-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`;
+      const { rows: insertedStudent } = await query(
+        `INSERT INTO users (email, password_hash, full_name, role)
+         VALUES ($1, 'dummy_hash', 'Test Crud Student', 'STUDENT')
+         RETURNING id`,
+        [email]
+      );
+      studentId = insertedStudent[0].id;
+    }
+
+    // Get or create an admin user
+    const { rows: existingAdmins } = await query("SELECT id, email FROM users WHERE role = 'ADMIN' AND is_active = TRUE ORDER BY created_at LIMIT 2");
+    if (existingAdmins[0]) {
+      adminId = existingAdmins[0].id;
+    } else {
+      const email = `test-crud-admin-${Date.now()}@example.com`;
+      const { rows: insertedAdmin } = await query(
+        `INSERT INTO users (email, password_hash, full_name, role)
+         VALUES ($1, 'dummy_hash', 'Test Crud Admin', 'ADMIN')
+         RETURNING id`,
+        [email]
+      );
+      adminId = insertedAdmin[0].id;
+    }
+
+    // Ensure we have a second active admin to prevent "last admin" rule failure during self-deactivation tests
+    if (existingAdmins[1]) {
+      helperAdminId = existingAdmins[1].id;
+    } else {
+      const email2 = `test-crud-helper-admin-${Date.now()}@example.com`;
+      const { rows: insertedHelperAdmin } = await query(
+        `INSERT INTO users (email, password_hash, full_name, role, is_active)
+         VALUES ($1, 'dummy_hash', 'Helper Admin', 'ADMIN', TRUE)
+         RETURNING id`,
+        [email2]
+      );
+      helperAdminId = insertedHelperAdmin[0].id;
+    }
+
+    // Generate cookies
+    const studentToken = jwt.sign({ sub: studentId, role: 'STUDENT' }, config.jwtSecret, { expiresIn: '1h' });
+    studentCookie = `simpleoj_session=${studentToken}`;
+
+    const adminToken = jwt.sign({ sub: adminId, role: 'ADMIN' }, config.jwtSecret, { expiresIn: '1h' });
+    adminCookie = `simpleoj_session=${adminToken}`;
+
+    const helperAdminToken = jwt.sign({ sub: helperAdminId, role: 'ADMIN' }, config.jwtSecret, { expiresIn: '1h' });
+    helperAdminCookie = `simpleoj_session=${helperAdminToken}`;
+  });
+
+  t.after(async () => {
+    if (server) {
+      await new Promise((resolve) => server.close(resolve));
+    }
+  });
+
+  await t.test('Authorization: blocks student and anonymous, allows admin', async () => {
+    // Anonymous -> 401
+    const resAnon = await fetch(`http://localhost:${port}/api/admin/users`);
+    assert.equal(resAnon.status, 401);
+
+    // Student -> 403
+    const resStud = await fetch(`http://localhost:${port}/api/admin/users`, {
+      headers: { cookie: studentCookie }
+    });
+    assert.equal(resStud.status, 403);
+
+    // Admin -> 200
+    const resAdmin = await fetch(`http://localhost:${port}/api/admin/users`, {
+      headers: { cookie: adminCookie }
+    });
+    assert.equal(resAdmin.status, 200);
+  });
+
+  await t.test('List Users: pagination, searching, filtering, and no password hashes exposed', async () => {
+    const uniqName = `UniqFullName-${Date.now()}`;
+    const uniqEmail = `uniq-email-${Date.now()}@example.com`;
+    
+    // Insert a specific user to search and filter for
+    const { rows: inserted } = await query(
+      `INSERT INTO users (email, password_hash, full_name, role, is_active)
+       VALUES ($1, 'dummy_hash', $2, 'STUDENT', TRUE) RETURNING id`,
+      [uniqEmail, uniqName]
+    );
+    const targetUserId = inserted[0].id;
+
+    // 1. Verify no password_hash is returned
+    const res = await fetch(`http://localhost:${port}/api/admin/users`, {
+      headers: { cookie: adminCookie }
+    });
+    const body = await res.json();
+    assert.ok(body.users.length > 0);
+    for (const u of body.users) {
+      assert.equal(u.password_hash, undefined);
+      assert.equal(u.passwordHash, undefined);
+    }
+
+    // 2. Verify pagination shape
+    assert.ok(body.pagination);
+    assert.ok(body.pagination.page);
+    assert.ok(body.pagination.pageSize);
+    assert.ok(body.pagination.total);
+    assert.ok(body.pagination.totalPages);
+
+    // 3. Search by name
+    const resSearch = await fetch(`http://localhost:${port}/api/admin/users?q=${uniqName}`, {
+      headers: { cookie: adminCookie }
+    });
+    const bodySearch = await resSearch.json();
+    assert.equal(bodySearch.users.length, 1);
+    assert.equal(bodySearch.users[0].id, targetUserId);
+
+    // 4. Filter by role
+    const resRole = await fetch(`http://localhost:${port}/api/admin/users?role=ADMIN`, {
+      headers: { cookie: adminCookie }
+    });
+    const bodyRole = await resRole.json();
+    assert.ok(bodyRole.users.every(u => u.role === 'ADMIN'));
+
+    // 5. Filter by status
+    const resStatus = await fetch(`http://localhost:${port}/api/admin/users?status=active`, {
+      headers: { cookie: adminCookie }
+    });
+    const bodyStatus = await resStatus.json();
+    assert.ok(bodyStatus.users.every(u => u.isActive === true));
+
+    // Clean up
+    await query("DELETE FROM users WHERE id = $1", [targetUserId]);
+  });
+
+  await t.test('Create User: validations, unique check, and no session cookie set', async () => {
+    const email = `create-user-${Date.now()}@example.com`;
+
+    // Invalid password (too short) -> 400
+    const resShortPass = await fetch(`http://localhost:${port}/api/admin/users`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        email,
+        fullName: 'Test Short Pass',
+        password: '123',
+        role: 'STUDENT'
+      })
+    });
+    assert.equal(resShortPass.status, 400);
+
+    // Invalid password (no digits) -> 400
+    const resNoDigits = await fetch(`http://localhost:${port}/api/admin/users`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        email,
+        fullName: 'Test No Digits',
+        password: 'PasswordNoDigits',
+        role: 'STUDENT'
+      })
+    });
+    assert.equal(resNoDigits.status, 400);
+
+    // Valid create -> 201
+    const resValid = await fetch(`http://localhost:${port}/api/admin/users`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        email,
+        fullName: 'Create Success User',
+        password: 'Password123',
+        role: 'STUDENT',
+        isActive: true
+      })
+    });
+    assert.equal(resValid.status, 201);
+    const bodyValid = await resValid.json();
+    assert.equal(bodyValid.user.email, email);
+    assert.equal(bodyValid.user.fullName, 'Create Success User');
+    assert.equal(bodyValid.user.isActive, true);
+
+    // Verify no session cookie was set in the response headers (admin should not be logged in as the new user)
+    const cookies = resValid.headers.get('set-cookie');
+    assert.ok(!cookies || !cookies.includes('simpleoj_session'));
+
+    // Duplicate email -> 409
+    const resDuplicate = await fetch(`http://localhost:${port}/api/admin/users`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        email,
+        fullName: 'Duplicate Email User',
+        password: 'Password123',
+        role: 'STUDENT'
+      })
+    });
+    assert.equal(resDuplicate.status, 409);
+
+    // Clean up
+    await query("DELETE FROM users WHERE email = $1", [email]);
+  });
+
+  await t.test('Update User Profile: edit name/role, duplicate email block, and safety rules', async () => {
+    const emailA = `email-a-${Date.now()}@example.com`;
+    const emailB = `email-b-${Date.now()}@example.com`;
+
+    const { rows: userARows } = await query(
+      `INSERT INTO users (email, password_hash, full_name, role, is_active)
+       VALUES ($1, 'dummy_hash', 'User A', 'STUDENT', TRUE) RETURNING id`,
+      [emailA]
+    );
+    const userAId = userARows[0].id;
+
+    const { rows: userBRows } = await query(
+      `INSERT INTO users (email, password_hash, full_name, role, is_active)
+       VALUES ($1, 'dummy_hash', 'User B', 'STUDENT', TRUE) RETURNING id`,
+      [emailB]
+    );
+    const userBId = userBRows[0].id;
+
+    // 1. Success update: change full name and role to ADMIN
+    const resOk = await fetch(`http://localhost:${port}/api/admin/users/${userAId}`, {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        fullName: 'User A Modified',
+        email: emailA,
+        role: 'ADMIN',
+        isActive: true
+      })
+    });
+    assert.equal(resOk.status, 200);
+    const bodyOk = await resOk.json();
+    assert.equal(bodyOk.user.fullName, 'User A Modified');
+    assert.equal(bodyOk.user.role, 'ADMIN');
+
+    // 2. Duplicate email update -> 409
+    const resDup = await fetch(`http://localhost:${port}/api/admin/users/${userAId}`, {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        fullName: 'User A Modified',
+        email: emailB,
+        role: 'ADMIN',
+        isActive: true
+      })
+    });
+    assert.equal(resDup.status, 409);
+
+    // 3. Safety: demoting self to STUDENT -> 400
+    const resSelfDemote = await fetch(`http://localhost:${port}/api/admin/users/${adminId}`, {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        fullName: 'Admin',
+        email: `admin-${Date.now()}@example.com`,
+        role: 'STUDENT',
+        isActive: true
+      })
+    });
+    assert.equal(resSelfDemote.status, 400);
+
+    // 4. Safety: deactivating self -> 400
+    const resSelfDeactive = await fetch(`http://localhost:${port}/api/admin/users/${adminId}`, {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        fullName: 'Admin',
+        email: `admin-${Date.now()}@example.com`,
+        role: 'ADMIN',
+        isActive: false
+      })
+    });
+    assert.equal(resSelfDeactive.status, 400);
+
+    // Clean up
+    await query("DELETE FROM users WHERE id IN ($1, $2)", [userAId, userBId]);
+  });
+
+  await t.test('Reset Password & Toggle Status: verify password and login blockage', async () => {
+    const email = `status-user-${Date.now()}@example.com`;
+    const password = 'OldPassword123';
+    const newPassword = 'NewPassword123';
+
+    // Insert user
+    const { rows } = await query(
+      `INSERT INTO users (email, password_hash, full_name, role, is_active)
+       VALUES ($1, $2, 'Status User', 'STUDENT', TRUE) RETURNING id`,
+      [email, hashPassword(password)]
+    );
+    const userId = rows[0].id;
+
+    // Reset password
+    const resReset = await fetch(`http://localhost:${port}/api/admin/users/${userId}/password`, {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({ newPassword })
+    });
+    assert.equal(resReset.status, 200);
+
+    // Verify new password works
+    const { rows: updatedRows } = await query("SELECT password_hash FROM users WHERE id = $1", [userId]);
+    assert.ok(verifyPassword(newPassword, updatedRows[0].password_hash));
+    assert.ok(!verifyPassword(password, updatedRows[0].password_hash));
+
+    // Deactivate user
+    const resDeactive = await fetch(`http://localhost:${port}/api/admin/users/${userId}/status`, {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({ isActive: false })
+    });
+    assert.equal(resDeactive.status, 200);
+    const bodyDeactive = await resDeactive.json();
+    assert.equal(bodyDeactive.user.isActive, false);
+
+    // Clean up
+    await query("DELETE FROM users WHERE id = $1", [userId]);
+  });
+
+  await t.test('Delete User: soft-delete vs hard-delete rules', async () => {
+    const email = `delete-user-${Date.now()}@example.com`;
+
+    // Create user
+    const { rows: userRows } = await query(
+      `INSERT INTO users (email, password_hash, full_name, role, is_active)
+       VALUES ($1, 'dummy_hash', 'Delete User', 'STUDENT', TRUE) RETURNING id`,
+      [email]
+    );
+    const userId = userRows[0].id;
+
+    // 1. Soft-delete -> sets is_active = FALSE
+    const resSoft = await fetch(`http://localhost:${port}/api/admin/users/${userId}`, {
+      method: 'DELETE',
+      headers: { cookie: adminCookie }
+    });
+    assert.equal(resSoft.status, 200);
+    const bodySoft = await resSoft.status; // verify it returned OK
+    const { rows: checkRows } = await query("SELECT is_active FROM users WHERE id = $1", [userId]);
+    assert.equal(checkRows[0].is_active, false);
+
+    // Make active again for hard delete test
+    await query("UPDATE users SET is_active = TRUE WHERE id = $1", [userId]);
+
+    // Create a temporary problem to assign/submit
+    const { rows: probRows } = await query(
+      `INSERT INTO problems (slug, title, description, rating, created_by)
+       VALUES ($1, 'Del Test Prob', 'Desc', 800, $2) RETURNING id`,
+      [`del-prob-${Date.now()}`, adminId]
+    );
+    const problemId = probRows[0].id;
+
+    // Insert a submission for this user
+    const { rows: subRows } = await query(
+      `INSERT INTO submissions (problem_id, user_id, code, score, status)
+       VALUES ($1, $2, 'print(1)', 100, 'ACCEPTED') RETURNING id`,
+      [problemId, userId]
+    );
+    const submissionId = subRows[0].id;
+
+    // Try hard delete when user has submissions -> should fail with 409
+    const resHardFail = await fetch(`http://localhost:${port}/api/admin/users/${userId}?hard=true`, {
+      method: 'DELETE',
+      headers: { cookie: adminCookie }
+    });
+    assert.equal(resHardFail.status, 409);
+    const bodyHardFail = await resHardFail.json();
+    assert.ok(bodyHardFail.error.toLowerCase().includes('không thể xóa cứng'));
+
+    // Remove submission
+    await query("DELETE FROM submissions WHERE id = $1", [submissionId]);
+
+    // Hard delete should now succeed -> deletes completely
+    const resHardSuccess = await fetch(`http://localhost:${port}/api/admin/users/${userId}?hard=true`, {
+      method: 'DELETE',
+      headers: { cookie: adminCookie }
+    });
+    assert.equal(resHardSuccess.status, 200);
+    const { rows: checkExists } = await query("SELECT 1 FROM users WHERE id = $1", [userId]);
+    assert.equal(checkExists.length, 0);
+
+    // Clean up temporary problem
+    await query("DELETE FROM problems WHERE id = $1", [problemId]);
   });
 });
 ```
@@ -10580,6 +30016,593 @@ test('judgeSubmission - weighted score & private testcases masking', async () =>
   assert.equal(reportPrivate.input, undefined);
   assert.equal(reportPrivate.expected, undefined);
   assert.equal(reportPrivate.actual, undefined);
+});
+```
+
+### File: `test/judge-input-prompt.test.js`
+
+```javascript
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { judgeSubmission } from '../src/judge.js';
+
+test('1. one input prompt should be ignored', async () => {
+  const code = `
+n = int(input("Nhap n: "))
+print(n * 2)
+`;
+
+  const result = await judgeSubmission(
+    code,
+    [{ input: "5\n", output: "10\n", isPublic: true }],
+    1500,
+    true,
+    { compareMode: "token" }
+  );
+
+  assert.equal(result.score, 100);
+  assert.equal(result.reports[0].actual, "10\n");
+});
+
+test('2. multiple input prompts should be ignored', async () => {
+  const code = `
+a = int(input("Nhap a: "))
+b = int(input("Nhap b: "))
+print(a + b)
+`;
+
+  const result = await judgeSubmission(
+    code,
+    [{ input: "3\n5\n", output: "8\n", isPublic: true }],
+    1500,
+    true,
+    { compareMode: "token" }
+  );
+
+  assert.equal(result.score, 100);
+});
+
+test('3. Vietnamese prompt should be ignored', async () => {
+  const code = `
+n = int(input("Nhập số n: "))
+print(n)
+`;
+
+  const result = await judgeSubmission(
+    code,
+    [{ input: "7\n", output: "7\n", isPublic: true }],
+    1500,
+    true,
+    { compareMode: "token" }
+  );
+
+  assert.equal(result.score, 100);
+});
+
+test('4. explicit print should not be ignored', async () => {
+  const code = `
+print("Nhap n:")
+n = int(input())
+print(n)
+`;
+
+  const result = await judgeSubmission(
+    code,
+    [{ input: "5\n", output: "5\n", isPublic: true }],
+    1500,
+    true,
+    { compareMode: "token" }
+  );
+
+  assert.equal(result.score, 0);
+  assert.match(result.reports[0].actual, /Nhap n:/);
+});
+
+test('5. EOF behavior stays correct', async () => {
+  const code = `
+a = input("a: ")
+b = input("b: ")
+print(a, b)
+`;
+
+  const result = await judgeSubmission(
+    code,
+    [{ input: "hello\n", output: "hello world\n", isPublic: true }],
+    1500,
+    true,
+    { compareMode: "token" }
+  );
+
+  assert.equal(result.score, 0);
+  assert.match(result.reports[0].error || "", /EOF|đọc quá nhiều dữ liệu|input/);
+});
+```
+
+### File: `test/problem-groups.test.js`
+
+```javascript
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import http from 'node:http';
+import jwt from 'jsonwebtoken';
+import app from '../src/server.js';
+import { query } from '../src/db.js';
+import { config } from '../src/config.js';
+
+test('Problem Groups Integration Tests', async (t) => {
+  let server;
+  let port;
+  let adminId;
+  let adminCookie;
+  let studentId;
+  let studentCookie;
+
+  t.before(async () => {
+    // Start temporary test server
+    server = http.createServer(app);
+    await new Promise((resolve) => server.listen(0, resolve));
+    port = server.address().port;
+
+    // Get or create a student user
+    const { rows: existingStudents } = await query("SELECT id FROM users WHERE role = 'STUDENT' LIMIT 1");
+    if (existingStudents[0]) {
+      studentId = existingStudents[0].id;
+    } else {
+      const email = `test-group-student-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`;
+      const { rows: insertedStudent } = await query(
+        `INSERT INTO users (email, password_hash, full_name, role)
+         VALUES ($1, 'dummy_hash', 'Test Group Student', 'STUDENT')
+         RETURNING id`,
+        [email]
+      );
+      studentId = insertedStudent[0].id;
+    }
+
+    // Get an existing admin user from DB
+    const { rows: existingAdmins } = await query("SELECT id FROM users WHERE role = 'ADMIN' LIMIT 1");
+    if (existingAdmins[0]) {
+      adminId = existingAdmins[0].id;
+    } else {
+      const email = `test-group-admin-${Date.now()}-${Math.random().toString(36).substring(7)}@example.com`;
+      const { rows: insertedAdmin } = await query(
+        `INSERT INTO users (email, password_hash, full_name, role)
+         VALUES ($1, 'dummy_hash', 'Test Group Admin', 'ADMIN')
+         RETURNING id`,
+        [email]
+      );
+      adminId = insertedAdmin[0].id;
+    }
+
+    // Generate cookies
+    const studentToken = jwt.sign({ sub: studentId, role: 'STUDENT' }, config.jwtSecret, { expiresIn: '1h' });
+    studentCookie = `simpleoj_session=${studentToken}`;
+
+    const adminToken = jwt.sign({ sub: adminId, role: 'ADMIN' }, config.jwtSecret, { expiresIn: '1h' });
+    adminCookie = `simpleoj_session=${adminToken}`;
+  });
+
+  t.after(async () => {
+    if (server) {
+      await new Promise((resolve) => server.close(resolve));
+    }
+  });
+
+  async function createTestProblem(slug) {
+    const { rows } = await query(
+      `INSERT INTO problems (slug, title, description, rating, max_score, passing_score, created_by, is_active)
+       VALUES ($1, 'Group Test Problem', 'Description', 800, 100, 100, $2, TRUE) RETURNING id`,
+      [slug, adminId]
+    );
+    return rows[0].id;
+  }
+
+  await t.test('Admin can create group with at least one problem, student cannot', async () => {
+    const slug = `p-g-${Date.now()}`;
+    const pid = await createTestProblem(slug);
+
+    // Student tries to create -> 403
+    const resStud = await fetch(`http://localhost:${port}/api/admin/problem-groups`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: studentCookie },
+      body: JSON.stringify({
+        name: 'Nhóm Student Test',
+        slug: `stud-test-${Date.now()}`,
+        problemIds: [pid]
+      })
+    });
+    assert.equal(resStud.status, 403);
+
+    // Admin tries to create empty group -> 400
+    const resEmpty = await fetch(`http://localhost:${port}/api/admin/problem-groups`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        name: 'Nhóm Trống',
+        slug: `empty-test-${Date.now()}`,
+        problemIds: []
+      })
+    });
+    assert.equal(resEmpty.status, 400);
+
+    // Admin creates successfully
+    const groupSlug = `success-${Date.now()}`;
+    const resSuccess = await fetch(`http://localhost:${port}/api/admin/problem-groups`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        name: 'Nhóm Thành Công',
+        slug: groupSlug,
+        problemIds: [pid]
+      })
+    });
+    assert.equal(resSuccess.status, 201);
+    const data = await resSuccess.json();
+    assert.equal(data.group.name, 'Nhóm Thành Công');
+    assert.deepEqual(data.group.problemIds, [pid]);
+
+    // Clean up
+    await query("DELETE FROM problem_groups WHERE id = $1", [data.group.id]);
+    await query("DELETE FROM problems WHERE id = $1", [pid]);
+  });
+
+  await t.test('Group update and orphan rules', async () => {
+    const pid1 = await createTestProblem(`p1-${Date.now()}`);
+    const pid2 = await createTestProblem(`p2-${Date.now()}`);
+
+    // Create Group A containing pid1
+    const resA = await fetch(`http://localhost:${port}/api/admin/problem-groups`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        name: 'Nhóm A',
+        slug: `group-a-${Date.now()}`,
+        problemIds: [pid1]
+      })
+    });
+    const groupA = (await resA.json()).group;
+
+    // Create Group B containing pid2
+    const resB = await fetch(`http://localhost:${port}/api/admin/problem-groups`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        name: 'Nhóm B',
+        slug: `group-b-${Date.now()}`,
+        problemIds: [pid2]
+      })
+    });
+    const groupB = (await resB.json()).group;
+
+    // 1. Try to update Group A to have empty problemIds -> should fail
+    const resUpdEmpty = await fetch(`http://localhost:${port}/api/admin/problem-groups/${groupA.id}`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        name: 'Nhóm A mới',
+        problemIds: []
+      })
+    });
+    assert.equal(resUpdEmpty.status, 400);
+
+    // 2. Try to remove pid1 from Group A (which makes pid1 orphan since it is in no other active groups) -> should fail
+    const resUpdOrphan = await fetch(`http://localhost:${port}/api/admin/problem-groups/${groupA.id}`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        name: 'Nhóm A mới',
+        problemIds: [pid2] // removes pid1, adds pid2
+      })
+    });
+    assert.equal(resUpdOrphan.status, 400);
+
+    // 3. Add pid1 to Group B first (so pid1 belongs to two groups)
+    const resUpdB = await fetch(`http://localhost:${port}/api/admin/problem-groups/${groupB.id}`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        name: 'Nhóm B',
+        problemIds: [pid2, pid1]
+      })
+    });
+    assert.equal(resUpdB.status, 200);
+
+    // Now remove pid1 from Group A -> should succeed because pid1 still belongs to Group B!
+    const resUpdAOk = await fetch(`http://localhost:${port}/api/admin/problem-groups/${groupA.id}`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        name: 'Nhóm A mới',
+        problemIds: [pid2] // pid1 removed, pid2 added
+      })
+    });
+    assert.equal(resUpdAOk.status, 200);
+
+    // Clean up
+    await query("DELETE FROM problem_groups WHERE id IN ($1, $2)", [groupA.id, groupB.id]);
+    await query("DELETE FROM problems WHERE id IN ($1, $2)", [pid1, pid2]);
+  });
+
+  await t.test('Deactivate / delete group checks', async () => {
+    const pid = await createTestProblem(`p-del-${Date.now()}`);
+
+    // Create Group
+    const resG = await fetch(`http://localhost:${port}/api/admin/problem-groups`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        name: 'Nhóm Xóa',
+        slug: `group-del-${Date.now()}`,
+        problemIds: [pid]
+      })
+    });
+    const group = (await resG.json()).group;
+
+    // Try to delete/deactivate Group -> should fail since it would orphan pid
+    const resDel = await fetch(`http://localhost:${port}/api/admin/problem-groups/${group.id}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json', cookie: adminCookie }
+    });
+    assert.equal(resDel.status, 400);
+
+    // Create a target group for moving problems
+    const resT = await fetch(`http://localhost:${port}/api/admin/problem-groups`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        name: 'Nhóm Đích',
+        slug: `group-target-${Date.now()}`,
+        problemIds: [pid] // starts with same problem
+      })
+    });
+    const targetGroup = (await resT.json()).group;
+
+    // Try deleting with moveToGroupId -> should succeed
+    const resDelSuccess = await fetch(`http://localhost:${port}/api/admin/problem-groups/${group.id}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({ moveToGroupId: targetGroup.id })
+    });
+    assert.equal(resDelSuccess.status, 200);
+
+    // Clean up
+    await query("DELETE FROM problem_groups WHERE id IN ($1, $2)", [group.id, targetGroup.id]);
+    await query("DELETE FROM problems WHERE id = $1", [pid]);
+  });
+
+  await t.test('Problem imports require group assignment', async () => {
+    const importPayload = [
+      {
+        slug: `imp-${Date.now()}`,
+        title: 'Import Problem',
+        description: 'Solve this import',
+        rating: 1000,
+        passingScore: 100,
+        maxScore: 100,
+        testcases: [{ input: '1\n', output: '1\n', isPublic: true, weight: 1 }]
+      }
+    ];
+
+    // 1. Import without any groupIds -> should fail with 400
+    const resFail = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        problems: importPayload,
+        groupIds: []
+      })
+    });
+    assert.equal(resFail.status, 400);
+
+    // 2. Import with invalid group ID -> should fail with 400
+    const resFailInvalid = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        problems: importPayload,
+        groupIds: ['00000000-0000-0000-0000-000000000000']
+      })
+    });
+    assert.equal(resFailInvalid.status, 400);
+
+    // 3. Find default group id
+    const { rows } = await query("SELECT id FROM problem_groups WHERE slug = 'bai-tap-co-ban' AND is_active = TRUE");
+    assert.ok(rows[0]);
+    const defaultGroupId = rows[0].id;
+
+    // 4. Import with correct group ID -> should succeed
+    const resSuccess = await fetch(`http://localhost:${port}/api/admin/problems/import`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie: adminCookie },
+      body: JSON.stringify({
+        problems: importPayload,
+        groupIds: [defaultGroupId]
+      })
+    });
+    assert.equal(resSuccess.status, 200);
+    const data = await resSuccess.json();
+    assert.equal(data.imported, 1);
+
+    // Clean up
+    await query("DELETE FROM problem_group_items WHERE problem_id IN (SELECT id FROM problems WHERE slug = $1)", [importPayload[0].slug]);
+    await query("DELETE FROM problems WHERE slug = $1", [importPayload[0].slug]);
+  });
+});
+```
+
+### File: `test/reset-basic-problems.test.js`
+
+```javascript
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { exec } from 'node:child_process';
+import { promisify } from 'node:util';
+import { query } from '../src/db.js';
+
+const execAsync = promisify(exec);
+
+test('Reset and Seed Basic Problems Script Tests', async (t) => {
+
+  await t.test('1. Dry-run does not modify database, and Apply deletes old data and seeds exactly 5 basic exercises', async () => {
+    // Check admin user existence, create one if not exists
+    const adminRes = await query("SELECT id FROM users WHERE role = 'ADMIN' LIMIT 1");
+    let adminId = adminRes.rows[0]?.id;
+    if (!adminId) {
+      const insertedAdmin = await query(`
+        INSERT INTO users (email, password_hash, full_name, role)
+        VALUES ('temp-admin-test-reset@example.com', 'dummy_hash', 'Temp Admin', 'ADMIN')
+        RETURNING id
+      `);
+      adminId = insertedAdmin.rows[0].id;
+    }
+
+    // --- SETUP PRE-EXISTING DUMMY PROBLEMS AND GROUPS ---
+    console.log('Test Setup: Inserting dummy problems/groups to be reset...');
+    const dummyGroupSlug = `temp-test-group-${Date.now()}`;
+    const dummyGroupRes = await query(`
+      INSERT INTO problem_groups (slug, name, description, group_type, is_active, created_by)
+      VALUES ($1, 'Temp Group', 'Temporary', 'BASIC', TRUE, $2)
+      RETURNING id
+    `, [dummyGroupSlug, adminId]);
+    const dummyGroupId = dummyGroupRes.rows[0].id;
+
+    const dummyProblemSlug = `temp-test-prob-${Date.now()}`;
+    const dummyProblemRes = await query(`
+      INSERT INTO problems (slug, title, description, rating, max_score, passing_score, is_active, created_by)
+      VALUES ($1, 'Temp Problem', 'Temporary', 800, 100, 100, TRUE, $2)
+      RETURNING id
+    `, [dummyProblemSlug, adminId]);
+    const dummyProblemId = dummyProblemRes.rows[0].id;
+
+    await query(`
+      INSERT INTO problem_group_items (group_id, problem_id, added_by)
+      VALUES ($1, $2, $3)
+    `, [dummyGroupId, dummyProblemId, adminId]);
+
+    await query(`
+      INSERT INTO problem_testcases (problem_id, input, expected_output, is_public, weight, order_index)
+      VALUES ($1, 'in', 'out', TRUE, 1, 0)
+    `, [dummyProblemId]);
+
+    const basicProbSlugs = [
+      'bai-20-giai-phuong-trinh-bac-hai',
+      'bai-21-kiem-tra-chan-le',
+      'bai-22-cung-tinh-chan-le',
+      'bai-23-kiem-tra-uoc-cua-nhau',
+      'bai-24-tim-gia-tri-nho-nhat'
+    ];
+    const initialBasicRes = await query('SELECT COUNT(*)::int FROM problems WHERE slug = ANY($1)', [basicProbSlugs]);
+    const initialBasicCount = initialBasicRes.rows[0].count;
+
+    // --- RUN DRY-RUN ---
+    console.log('Running dry-run...');
+    const { stdout: stdoutDry, stderr: stderrDry } = await execAsync('node scripts/reset-and-seed-basic-problems.js --dry-run');
+    assert.ok(stdoutDry.includes('DRY-RUN SUMMARY'), 'Should print dry-run summary');
+
+    // Verify database remains unchanged after dry-run
+    const checkAfterDryProb = await query('SELECT COUNT(*)::int FROM problems WHERE slug = $1', [dummyProblemSlug]);
+    const checkAfterDryGroup = await query('SELECT COUNT(*)::int FROM problem_groups WHERE slug = $1', [dummyGroupSlug]);
+    assert.equal(checkAfterDryProb.rows[0].count, 1, 'Dummy problem should still exist after dry-run');
+    assert.equal(checkAfterDryGroup.rows[0].count, 1, 'Dummy group should still exist after dry-run');
+
+    // Verify basic problems count has not changed
+    const basicProbCountDry = await query('SELECT COUNT(*)::int FROM problems WHERE slug = ANY($1)', [basicProbSlugs]);
+    assert.equal(basicProbCountDry.rows[0].count, initialBasicCount, 'Basic problems count should not change during dry-run');
+
+    // --- RUN APPLY ---
+    console.log('Running apply...');
+    const { stdout: stdoutApply, stderr: stderrApply } = await execAsync('node scripts/reset-and-seed-basic-problems.js --apply');
+    assert.ok(stdoutApply.includes('Reset and seed completed and committed successfully'), 'Should print apply completion');
+
+    // Verify dummy data is completely gone
+    const checkAfterApplyProb = await query('SELECT COUNT(*)::int FROM problems WHERE slug = $1', [dummyProblemSlug]);
+    const checkAfterApplyGroup = await query('SELECT COUNT(*)::int FROM problem_groups WHERE slug = $1', [dummyGroupSlug]);
+    assert.equal(checkAfterApplyProb.rows[0].count, 0, 'Dummy problem should be deleted by apply');
+    assert.equal(checkAfterApplyGroup.rows[0].count, 0, 'Dummy group should be deleted by apply');
+
+    // Verify learning data is 0
+    const subCount = await query('SELECT COUNT(*)::int FROM submissions');
+    const attCount = await query('SELECT COUNT(*)::int FROM attempts');
+    const progCount = await query('SELECT COUNT(*)::int FROM user_problem_progress');
+    const assignCount = await query('SELECT COUNT(*)::int FROM student_problem_assignments');
+    assert.equal(subCount.rows[0].count, 0, 'submissions should be 0');
+    assert.equal(attCount.rows[0].count, 0, 'attempts should be 0');
+    assert.equal(progCount.rows[0].count, 0, 'user_problem_progress should be 0');
+    assert.equal(assignCount.rows[0].count, 0, 'student_problem_assignments should be 0');
+
+    // Verify exactly one active group
+    const activeGroups = await query('SELECT id, slug, name FROM problem_groups WHERE is_active = TRUE');
+    assert.equal(activeGroups.rows.length, 1, 'Should have exactly 1 active group');
+    assert.equal(activeGroups.rows[0].slug, 'bai-tap-co-ban', 'Group slug must be bai-tap-co-ban');
+    assert.equal(activeGroups.rows[0].name, 'Bài tập cơ bản', 'Group name must be Bài tập cơ bản');
+
+    // Verify exactly 5 active problems
+    const activeProblems = await query('SELECT id, slug, title, compare_mode, starter_code, description FROM problems WHERE is_active = TRUE ORDER BY order_index');
+    assert.equal(activeProblems.rows.length, 5, 'Should have exactly 5 active problems');
+
+    const expectedSlugs = [
+      'bai-20-giai-phuong-trinh-bac-hai',
+      'bai-21-kiem-tra-chan-le',
+      'bai-22-cung-tinh-chan-le',
+      'bai-23-kiem-tra-uoc-cua-nhau',
+      'bai-24-tim-gia-tri-nho-nhat'
+    ];
+
+    for (let i = 0; i < 5; i++) {
+      const prob = activeProblems.rows[i];
+      assert.equal(prob.slug, expectedSlugs[i], `Slug must match at index ${i}`);
+      
+      // Verify compare mode
+      if (prob.slug === 'bai-20-giai-phuong-trinh-bac-hai') {
+        assert.equal(prob.compare_mode, 'number', 'Bài 20 must use number compareMode');
+      } else {
+        assert.equal(prob.compare_mode, 'token', `Problem ${prob.slug} must use token compareMode`);
+      }
+
+      // Verify starter code is empty or has only a comment
+      assert.ok(
+        prob.starter_code === '' || prob.starter_code.trim() === '# Viet chuong trinh cua em o day',
+        `Starter code for ${prob.slug} should be empty or a placeholder comment`
+      );
+
+      // Verify description does not contain solution code or gợi ý code as code
+      const descLower = prob.description.toLowerCase();
+      assert.ok(!descLower.includes('def solve'), `Description of ${prob.slug} should not contain solution functions`);
+      assert.ok(!descLower.includes('import sys'), `Description of ${prob.slug} should not contain Python template boilerplate`);
+
+      // Verify every problem has at least 8 testcases
+      const tcRes = await query('SELECT COUNT(*)::int FROM problem_testcases WHERE problem_id = $1', [prob.id]);
+      const tcCount = tcRes.rows[0].count;
+      assert.ok(tcCount >= 8, `Problem ${prob.slug} must have at least 8 test cases, found ${tcCount}`);
+
+      // Verify problem is linked to Bài tập cơ bản group
+      const linkRes = await query('SELECT COUNT(*)::int FROM problem_group_items WHERE group_id = $1 AND problem_id = $2', [activeGroups.rows[0].id, prob.id]);
+      assert.equal(linkRes.rows[0].count, 1, `Problem ${prob.slug} must be linked to Bài tập cơ bản group`);
+    }
+
+    // Verify no orphan active problems
+    const orphans = await query(`
+      SELECT p.id, p.slug 
+      FROM problems p
+      LEFT JOIN problem_group_items pgi ON pgi.problem_id = p.id
+      LEFT JOIN problem_groups g ON g.id = pgi.group_id AND g.is_active = TRUE
+      WHERE p.is_active = TRUE
+      GROUP BY p.id, p.slug
+      HAVING COUNT(g.id) = 0
+    `);
+    assert.equal(orphans.rows.length, 0, 'No active problem should be orphaned (must belong to at least one active group)');
+
+    // Verify no empty active groups
+    const emptyGroups = await query(`
+      SELECT g.id, g.slug
+      FROM problem_groups g
+      LEFT JOIN problem_group_items pgi ON pgi.group_id = g.id
+      LEFT JOIN problems p ON p.id = pgi.problem_id AND p.is_active = TRUE
+      WHERE g.is_active = TRUE
+      GROUP BY g.id, g.slug
+      HAVING COUNT(p.id) = 0
+    `);
+    assert.equal(emptyGroups.rows.length, 0, 'No active group should be empty');
+  });
 });
 ```
 
@@ -10869,6 +30892,115 @@ test('Submission Flow Integration Tests', async (t) => {
     assert.equal(data.jwtSecret, undefined);
     assert.equal(data.databaseUrl, undefined);
   });
+});
+```
+
+### File: `test/terminal.test.js`
+
+```javascript
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { TerminalSession } from '../src/terminal.js';
+
+test('TerminalSession.validateMessageSchema validation rules', () => {
+  const session = new TerminalSession(null, null);
+
+  // 1. Valid non-resize messages
+  assert.equal(session.validateMessageSchema({ type: 'runFile', code: 'print(1)' }), true);
+  assert.equal(session.validateMessageSchema({ type: 'startRepl' }), true);
+  assert.equal(session.validateMessageSchema({ type: 'stdin', data: 'hello' }), true);
+  assert.equal(session.validateMessageSchema({ type: 'interrupt' }), true);
+  assert.equal(session.validateMessageSchema({ type: 'dispose' }), true);
+
+  // 2. Invalid schemas
+  assert.equal(session.validateMessageSchema(null), false);
+  assert.equal(session.validateMessageSchema({ type: 'invalidType' }), false);
+  assert.equal(session.validateMessageSchema({ type: 'runFile' }), false); // missing code
+  assert.equal(session.validateMessageSchema({ type: 'runFile', code: 123 }), false); // code not string
+  assert.equal(session.validateMessageSchema({ type: 'stdin' }), false); // missing data
+
+  // 3. Valid resize
+  assert.equal(session.validateMessageSchema({ type: 'resize', cols: 80, rows: 24 }), true);
+  assert.equal(session.validateMessageSchema({ type: 'resize', cols: 20, rows: 5 }), true);
+  assert.equal(session.validateMessageSchema({ type: 'resize', cols: 240, rows: 80 }), true);
+
+  // 4. Invalid resize: cols too small/large
+  assert.equal(session.validateMessageSchema({ type: 'resize', cols: 19, rows: 24 }), false);
+  assert.equal(session.validateMessageSchema({ type: 'resize', cols: 241, rows: 24 }), false);
+
+  // 5. Invalid resize: rows too small/large
+  assert.equal(session.validateMessageSchema({ type: 'resize', cols: 80, rows: 4 }), false);
+  assert.equal(session.validateMessageSchema({ type: 'resize', cols: 80, rows: 81 }), false);
+
+  // 6. Invalid resize: non-integer values
+  assert.equal(session.validateMessageSchema({ type: 'resize', cols: 80.5, rows: 24 }), false);
+  assert.equal(session.validateMessageSchema({ type: 'resize', cols: 80, rows: '24' }), false);
+});
+
+test('TerminalSession.handlePipeInput fallback editor simulation', () => {
+  const session = new TerminalSession({ readyState: 1, send: () => {} }, null);
+  
+  let stdinWritten = [];
+  let interruptCalled = false;
+  let outputs = [];
+  
+  // Set up mock state
+  session.process = {
+    stdin: {
+      write(data) {
+        stdinWritten.push(data);
+      }
+    }
+  };
+  session.interrupt = () => {
+    interruptCalled = true;
+  };
+  session.output = (data) => {
+    outputs.push(data);
+  };
+  session.inputBuffer = '';
+
+  // 1. Regular printable characters
+  session.handlePipeInput('abc');
+  assert.equal(session.inputBuffer, 'abc');
+  assert.deepEqual(outputs, ['a', 'b', 'c']);
+  outputs = [];
+
+  // 2. Backspace deletes last character
+  session.handlePipeInput('\x7f'); // DEL
+  assert.equal(session.inputBuffer, 'ab');
+  assert.deepEqual(outputs, ['\b \b']);
+  outputs = [];
+
+  session.handlePipeInput('\x08'); // BS
+  assert.equal(session.inputBuffer, 'a');
+  assert.deepEqual(outputs, ['\b \b']);
+  outputs = [];
+
+  // 3. Backspace on empty buffer does nothing
+  session.inputBuffer = '';
+  session.handlePipeInput('\x7f');
+  assert.equal(session.inputBuffer, '');
+  assert.deepEqual(outputs, []);
+
+  // 4. Enter flushes the buffer to process stdin and outputs CRLF
+  session.inputBuffer = 'hello';
+  session.handlePipeInput('\r');
+  assert.deepEqual(stdinWritten, ['hello\n']);
+  assert.equal(session.inputBuffer, '');
+  assert.deepEqual(outputs, ['\r\n']);
+  stdinWritten = [];
+  outputs = [];
+
+  // 5. Ctrl+C calls interrupt
+  session.handlePipeInput('\x03');
+  assert.equal(interruptCalled, true);
+
+  // 6. Repeated chars input
+  session.inputBuffer = '';
+  session.handlePipeInput('iiii');
+  assert.equal(session.inputBuffer, 'iiii');
+  assert.deepEqual(outputs, ['i', 'i', 'i', 'i']);
 });
 ```
 
