@@ -67,6 +67,7 @@ export class TerminalSession {
     this.workdir = null;
     this.outputBytes = 0;
     this.closed = false;
+    this.inputBuffer = '';
     
     this.idleTimer = null;
     
@@ -151,7 +152,7 @@ export class TerminalSession {
         if (this.processKind === 'pty') {
           this.process.write(data);
         } else {
-          this.process.stdin?.write(data);
+          this.handlePipeInput(data);
         }
       }
     }
@@ -182,6 +183,7 @@ export class TerminalSession {
     }
 
     this.outputBytes = 0;
+    this.inputBuffer = '';
     const pty = await loadPty();
     const dropPrivileges = process.platform !== 'win32' && typeof process.getuid === 'function' && process.getuid() === 0;
     const env = {
@@ -443,6 +445,7 @@ export class TerminalSession {
     const proc = this.process;
     this.process = null;
     this.processKind = null;
+    this.inputBuffer = '';
     if (proc) {
       runningProcesses.delete(proc);
     }
@@ -517,6 +520,46 @@ export class TerminalSession {
       this.workdir = null;
     }
   }
+
+  handlePipeInput(data) {
+    if (!this.process) return;
+    for (const ch of data) {
+      const code = ch.charCodeAt(0);
+
+      // Ctrl+C
+      if (ch === '\x03') {
+        this.interrupt();
+        return;
+      }
+
+      // Enter
+      if (ch === '\r' || ch === '\n') {
+        this.output('\r\n');
+        this.process.stdin?.write(this.inputBuffer + '\n');
+        this.inputBuffer = '';
+        continue;
+      }
+
+      // Backspace
+      if (ch === '\x7f' || ch === '\x08') {
+        if (this.inputBuffer.length > 0) {
+          this.inputBuffer = this.inputBuffer.slice(0, -1);
+          this.output('\b \b');
+        }
+        continue;
+      }
+
+      // Ignore control characters except tab
+      if (code < 32 && ch !== '\t') {
+        continue;
+      }
+
+      // Printable character
+      this.inputBuffer += ch;
+      this.output(ch);
+    }
+  }
+
   validateMessageSchema(message) {
     if (!message || typeof message !== 'object') return false;
     const validTypes = ['runFile', 'startRepl', 'stdin', 'interrupt', 'dispose', 'resize'];

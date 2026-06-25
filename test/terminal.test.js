@@ -36,3 +36,69 @@ test('TerminalSession.validateMessageSchema validation rules', () => {
   assert.equal(session.validateMessageSchema({ type: 'resize', cols: 80.5, rows: 24 }), false);
   assert.equal(session.validateMessageSchema({ type: 'resize', cols: 80, rows: '24' }), false);
 });
+
+test('TerminalSession.handlePipeInput fallback editor simulation', () => {
+  const session = new TerminalSession({ readyState: 1, send: () => {} }, null);
+  
+  let stdinWritten = [];
+  let interruptCalled = false;
+  let outputs = [];
+  
+  // Set up mock state
+  session.process = {
+    stdin: {
+      write(data) {
+        stdinWritten.push(data);
+      }
+    }
+  };
+  session.interrupt = () => {
+    interruptCalled = true;
+  };
+  session.output = (data) => {
+    outputs.push(data);
+  };
+  session.inputBuffer = '';
+
+  // 1. Regular printable characters
+  session.handlePipeInput('abc');
+  assert.equal(session.inputBuffer, 'abc');
+  assert.deepEqual(outputs, ['a', 'b', 'c']);
+  outputs = [];
+
+  // 2. Backspace deletes last character
+  session.handlePipeInput('\x7f'); // DEL
+  assert.equal(session.inputBuffer, 'ab');
+  assert.deepEqual(outputs, ['\b \b']);
+  outputs = [];
+
+  session.handlePipeInput('\x08'); // BS
+  assert.equal(session.inputBuffer, 'a');
+  assert.deepEqual(outputs, ['\b \b']);
+  outputs = [];
+
+  // 3. Backspace on empty buffer does nothing
+  session.inputBuffer = '';
+  session.handlePipeInput('\x7f');
+  assert.equal(session.inputBuffer, '');
+  assert.deepEqual(outputs, []);
+
+  // 4. Enter flushes the buffer to process stdin and outputs CRLF
+  session.inputBuffer = 'hello';
+  session.handlePipeInput('\r');
+  assert.deepEqual(stdinWritten, ['hello\n']);
+  assert.equal(session.inputBuffer, '');
+  assert.deepEqual(outputs, ['\r\n']);
+  stdinWritten = [];
+  outputs = [];
+
+  // 5. Ctrl+C calls interrupt
+  session.handlePipeInput('\x03');
+  assert.equal(interruptCalled, true);
+
+  // 6. Repeated chars input
+  session.inputBuffer = '';
+  session.handlePipeInput('iiii');
+  assert.equal(session.inputBuffer, 'iiii');
+  assert.deepEqual(outputs, ['i', 'i', 'i', 'i']);
+});

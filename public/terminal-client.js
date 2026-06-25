@@ -848,6 +848,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
     followOutput = true;
     userIsNearBottom = true;
     renderScrollToBottomButton(false);
+    terminal.focus();
 
     running = true;
     commandPending = true;
@@ -1014,40 +1015,7 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
 
     if (running) {
       if (isServerMode) {
-        if (runtime === 'pty') {
-          if (data === '\x03') {
-            sendTerminalMessage({ type: 'interrupt' });
-          } else {
-            sendTerminalMessage({ type: 'stdin', data });
-          }
-        } else {
-          // spawn mode stdin buffering
-          if (data === '\x03') {
-            writeTerminal('^C\r\n');
-            sendTerminalMessage({ type: 'interrupt' });
-            processInputBuffer = '';
-            return;
-          }
-          if (data === '\r' || data === '\n') {
-            writeTerminal('\r\n');
-            sendTerminalMessage({ type: 'stdin', data: processInputBuffer + '\n' });
-            processInputBuffer = '';
-            return;
-          }
-          if (data === '\x7f' || data === '\x08') {
-            if (processInputBuffer.length > 0) {
-              processInputBuffer = processInputBuffer.slice(0, -1);
-              writeTerminal('\b \b');
-            }
-            return;
-          }
-          for (const char of data) {
-            if (char >= ' ') {
-              processInputBuffer += char;
-              writeTerminal(char);
-            }
-          }
-        }
+        sendTerminalMessage({ type: 'stdin', data });
       } else {
         // Pyodide running: only allow Ctrl+C if in RUNNING/LOADING state, or full input editing if in WAITING_INPUT
         if (terminalState === 'WAITING_INPUT') {
@@ -1138,6 +1106,9 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
   });
 
   const handleTerminalKeydown = (event) => {
+    if (isServerMode && running) {
+      return;
+    }
     if (event.ctrlKey || event.metaKey) {
       const key = event.key.toLowerCase();
       if (key === 'a' || key === 'e' || key === 'u' || key === 'k' || key === 'c') {
@@ -1164,6 +1135,9 @@ export function createTerminalController({ host, getCode, onRunningChange }) {
   host.addEventListener('keydown', handleTerminalKeydown, true);
 
   terminal.attachCustomKeyEventHandler((event) => {
+    if (isServerMode && running) {
+      return true;
+    }
     if (event.type === 'keydown' && event.ctrlKey && event.key.toLowerCase() === 'c') {
       if (running || terminalState === 'RUNNING' || terminalState === 'WAITING_INPUT') {
         handleCtrlC();
