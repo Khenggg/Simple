@@ -24,7 +24,9 @@
     "dev:local": "node scripts/local-db.js dev",
     "local:setup": "npm run db:local:up && node scripts/ensure-local-databases.js && npm run db:local:migrate",
     "problems:import-api": "node scripts/import-problems-api.js",
-    "problems:import-api:dry": "node scripts/import-problems-api.js --dry-run"
+    "problems:import-api:dry": "node scripts/import-problems-api.js --dry-run",
+    "check:language": "node scripts/check-language-policy.js",
+    "scan:cjk": "node scripts/find-cjk-text.js"
   },
   "engines": {
     "node": ">=20"
