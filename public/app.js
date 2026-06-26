@@ -2637,10 +2637,10 @@ function renderAdminSubmissionDetailDrawer() {
         <div class="drawer-head">
           <div>
             <span class="eyebrow">Chi tiết bài nộp</span>
-            <h3>${escapeHtml(submission.problemTitle || 'Bài nộp')}</h3>
+            <h3 id="submission-detail-title">${escapeHtml(submission.problemTitle || 'Bài nộp')}</h3>
             <p>${escapeHtml(submission.studentName || 'Học sinh')} · ${escapeHtml(submission.studentEmail || '')}</p>
           </div>
-          <button class="btn secondary" id="close-submission-detail">Đóng</button>
+          <button class="btn secondary" id="close-submission-detail" type="button">Đóng</button>
         </div>
 
         <div class="submission-metrics">
@@ -2691,8 +2691,8 @@ function renderAdminSubmissionDetailDrawer() {
   }
 
   return `
-    <div class="submission-detail-backdrop" id="submission-detail-overlay">
-      <div class="submission-detail-drawer" role="dialog" aria-modal="true">
+    <div id="submission-detail-overlay" class="submission-detail-backdrop" role="presentation">
+      <div class="submission-detail-drawer" role="dialog" aria-modal="true" aria-labelledby="submission-detail-title">
         ${body}
       </div>
     </div>
@@ -2840,7 +2840,6 @@ function renderAdminSubmissionsPage() {
           </div>
         </main>
       </div>
-      ${renderAdminSubmissionDetailDrawer()}
     </section>
   `, 'Bài nộp');
 
@@ -2864,13 +2863,33 @@ function syncAdminSubmissionFiltersFromDom() {
   };
 }
 
+function removeSubmissionDetailOverlay() {
+  document.getElementById('submission-detail-overlay')?.remove();
+  document.body.classList.remove('submission-detail-open');
+}
+
+function mountSubmissionDetailOverlay(html) {
+  removeSubmissionDetailOverlay();
+
+  document.body.insertAdjacentHTML('beforeend', html);
+  document.body.classList.add('submission-detail-open');
+
+  bindAdminSubmissionDetailEvents();
+
+  requestAnimationFrame(() => {
+    const closeButton = document.getElementById('close-submission-detail');
+    closeButton?.focus?.();
+  });
+}
+
 function closeAdminSubmissionDetail() {
   disposeAdminSubmissionCodeEditor();
   state.adminSubmissions.selectedId = '';
   state.adminSubmissions.selected = null;
   state.adminSubmissions.detailLoading = false;
   state.adminSubmissions.detailError = '';
-  document.body.classList.remove('submission-detail-open');
+
+  removeSubmissionDetailOverlay();
   if (state.page === 'submissions') renderAdminSubmissionsPage();
 }
 
@@ -2910,6 +2929,8 @@ async function openAdminSubmissionDetail(id) {
   pageState.detailError = '';
   if (state.page === 'submissions') renderAdminSubmissionsPage();
 
+  mountSubmissionDetailOverlay(renderAdminSubmissionDetailDrawer());
+
   try {
     const data = await apiAdminSubmissionDetail(id);
     pageState.selected = data.submission;
@@ -2918,6 +2939,8 @@ async function openAdminSubmissionDetail(id) {
   } finally {
     pageState.detailLoading = false;
     if (state.page === 'submissions') renderAdminSubmissionsPage();
+    mountSubmissionDetailOverlay(renderAdminSubmissionDetailDrawer());
+    renderSubmissionCodeViewer(pageState.selected?.code || '');
   }
 }
 
@@ -3051,15 +3074,33 @@ function bindAdminSubmissionEvents() {
 }
 
 function bindAdminSubmissionDetailEvents() {
-  document.getElementById('close-submission-detail')?.addEventListener('click', closeAdminSubmissionDetail);
-  document.getElementById('submission-detail-overlay')?.addEventListener('click', (event) => {
-    if (event.target.id === 'submission-detail-overlay') {
+  const overlay = document.getElementById('submission-detail-overlay');
+  const drawer = overlay?.querySelector('.submission-detail-drawer');
+
+  overlay?.addEventListener('click', (event) => {
+    if (event.target === overlay) {
       closeAdminSubmissionDetail();
     }
   });
+
+  drawer?.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
+
+  document.getElementById('close-submission-detail')?.addEventListener('click', closeAdminSubmissionDetail);
   document.getElementById('copy-submission-code')?.addEventListener('click', copySelectedSubmissionCode);
   document.getElementById('download-submission-code')?.addEventListener('click', downloadSelectedSubmissionCode);
   document.getElementById('rejudge-submission-preview')?.addEventListener('click', rejudgeSelectedSubmissionPreview);
+}
+
+// Add Escape key support once globally
+if (!window._adminSubmissionEscRegistered) {
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && document.body.classList.contains('submission-detail-open')) {
+      closeAdminSubmissionDetail();
+    }
+  });
+  window._adminSubmissionEscRegistered = true;
 }
 
 async function adminSubmissionsView() {
