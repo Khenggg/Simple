@@ -285,6 +285,7 @@ export async function judgeSubmission(code, testcases, limitMs = 1500, forceLoca
   let totalWeight = 0;
   let passedWeight = 0;
   let passedCount = 0;
+  const includeHiddenReport = options.includeHiddenReport === true;
 
   for (let index = 0; index < testcases.length; index += 1) {
     const testcase = testcases[index];
@@ -311,7 +312,8 @@ export async function judgeSubmission(code, testcases, limitMs = 1500, forceLoca
     };
 
     const isPublic = testcase.isPublic ?? testcase.is_public ?? false;
-    if (isPublic) {
+    reportItem.isPublic = Boolean(isPublic);
+    if (isPublic || includeHiddenReport) {
       reportItem.input = testcase.input;
       reportItem.expected = expected;
       reportItem.actual = actual;
@@ -343,4 +345,3 @@ export async function judgeSubmission(code, testcases, limitMs = 1500, forceLoca
   const score = totalWeight ? Math.round((passedWeight / totalWeight) * 100) : 0;
   return { passed: passedCount, total, score, reports };
 }
-

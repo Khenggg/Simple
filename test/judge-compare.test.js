@@ -94,3 +94,21 @@ test('judgeSubmission - weighted score & private testcases masking', async () =>
   assert.equal(reportPrivate.expected, undefined);
   assert.equal(reportPrivate.actual, undefined);
 });
+
+test('judgeSubmission - includeHiddenReport reveals hidden testcase IO for admin mode', async () => {
+  const code = 'import sys\nx = int(sys.stdin.read().strip())\nif x == 1:\n    print(1)\nelse:\n    print(5)\n';
+  const testcases = [
+    { input: '1', output: '1\n', weight: 1, isPublic: true },
+    { input: '2\n', output: '4\n', weight: 3, isPublic: false }
+  ];
+
+  const result = await judgeSubmission(code, testcases, 1500, true, {
+    compareMode: 'token',
+    includeHiddenReport: true
+  });
+
+  assert.equal(result.reports[1].input, '2\n');
+  assert.equal(result.reports[1].expected, '4\n');
+  assert.equal(result.reports[1].actual, '5\n');
+  assert.equal(result.reports[1].isPublic, false);
+});

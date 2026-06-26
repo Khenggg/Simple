@@ -43,15 +43,26 @@ test('Admin Submission Review APIs', async (t) => {
     return inserted.rows[0].id;
   }
 
-  async function createProblem() {
+  async function createProblem(testcases = []) {
     const slug = `admin-sub-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
     const result = await query(
-      `INSERT INTO problems (slug, title, description, rating, created_by)
-       VALUES ($1, $2, 'Submission review test', 900, $3)
+      `INSERT INTO problems (slug, title, description, rating, compare_mode, number_tolerance, execution_limit_ms, created_by)
+       VALUES ($1, $2, 'Submission review test', 900, 'token', 0.000001, 1500, $3)
        RETURNING id, slug, title`,
       [slug, `Problem ${slug}`, adminId]
     );
-    return result.rows[0];
+    const problem = result.rows[0];
+
+    for (let index = 0; index < testcases.length; index += 1) {
+      const testcase = testcases[index];
+      await query(
+        `INSERT INTO problem_testcases (problem_id, input, expected_output, is_public, weight, order_index)
+         VALUES ($1, $2, $3, $4, $5, $6)`,
+        [problem.id, testcase.input, testcase.output, testcase.isPublic, testcase.weight ?? 1, index]
+      );
+    }
+
+    return problem;
   }
 
   async function createSubmission({
@@ -79,6 +90,8 @@ test('Admin Submission Review APIs', async (t) => {
 
   async function cleanupProblem(problemId) {
     await query('DELETE FROM submissions WHERE problem_id = $1', [problemId]);
+    await query('DELETE FROM attempts WHERE problem_id = $1', [problemId]);
+    await query('DELETE FROM problem_testcases WHERE problem_id = $1', [problemId]);
     await query('DELETE FROM problems WHERE id = $1', [problemId]);
   }
 
@@ -135,7 +148,14 @@ test('Admin Submission Review APIs', async (t) => {
   await t.test('admin can view submission detail with code and report', async () => {
     const problem = await createProblem();
     try {
-      const submissionId = await createSubmission({ userId: studentId, problemId: problem.id });
+      const submissionId = await createSubmission({
+        userId: studentId,
+        problemId: problem.id,
+        report: [
+          { index: 1, status: 'ACCEPTED', passed: true, input: '1\n', expected: '2\n', actual: '2\n', isPublic: true, runtimeMs: 11 },
+          { index: 2, status: 'WRONG_ANSWER', passed: false, input: '2\n', expected: '4\n', actual: '5\n', isPublic: false, runtimeMs: 14 }
+        ]
+      });
       const response = await fetch(`http://localhost:${port}/api/admin/submissions/${submissionId}`, {
         headers: { cookie: adminCookie }
       });
@@ -146,6 +166,9 @@ test('Admin Submission Review APIs', async (t) => {
       assert.ok(body.submission.code.includes('print'));
       assert.ok(Array.isArray(body.submission.report));
       assert.equal(body.submission.firstFailedReport.status, 'WRONG_ANSWER');
+      assert.equal(body.submission.report[1].input, '2\n');
+      assert.equal(body.submission.report[1].expected, '4\n');
+      assert.equal(body.submission.report[1].actual, '5\n');
     } finally {
       await cleanupProblem(problem.id);
     }
@@ -240,12 +263,25 @@ test('Admin Submission Review APIs', async (t) => {
   await t.test('existing student submission detail permissions still hold', async () => {
     const problem = await createProblem();
     try {
-      const submissionId = await createSubmission({ userId: studentId, problemId: problem.id, status: 'ACCEPTED', score: 100 });
+      const submissionId = await createSubmission({
+        userId: studentId,
+        problemId: problem.id,
+        status: 'ACCEPTED',
+        score: 100,
+        report: [
+          { index: 1, status: 'ACCEPTED', passed: true, input: '1\n', expected: '2\n', actual: '2\n', isPublic: true },
+          { index: 2, status: 'ACCEPTED', passed: true, input: '2\n', expected: '4\n', actual: '4\n', isPublic: false }
+        ]
+      });
 
       const ownerRes = await fetch(`http://localhost:${port}/api/submissions/${submissionId}`, {
         headers: { cookie: studentCookie }
       });
       assert.equal(ownerRes.status, 200);
+      const ownerBody = await ownerRes.json();
+      assert.equal(ownerBody.submission.report[1].input, undefined);
+      assert.equal(ownerBody.submission.report[1].expected, undefined);
+      assert.equal(ownerBody.submission.report[1].actual, undefined);
 
       const otherRes = await fetch(`http://localhost:${port}/api/submissions/${submissionId}`, {
         headers: { cookie: otherStudentCookie }
@@ -256,6 +292,67 @@ test('Admin Submission Review APIs', async (t) => {
         headers: { cookie: adminCookie }
       });
       assert.equal(adminRes.status, 200);
+      const adminBody = await adminRes.json();
+      assert.equal(adminBody.submission.report[1].input, '2\n');
+      assert.equal(adminBody.submission.report[1].expected, '4\n');
+      assert.equal(adminBody.submission.report[1].actual, '4\n');
+    } finally {
+      await cleanupProblem(problem.id);
+    }
+  });
+
+  await t.test('admin rejudge preview returns hidden testcase IO and does not update DB by default', async () => {
+    const problem = await createProblem([
+      { input: '1\n', output: '1\n', isPublic: true, weight: 1 },
+      { input: '2\n', output: '4\n', isPublic: false, weight: 1 }
+    ]);
+
+    try {
+      const maskedSubmissionId = await createSubmission({
+        userId: studentId,
+        problemId: problem.id,
+        code: 'import sys\nx = int(sys.stdin.read().strip())\nprint(5 if x == 2 else 1)\n',
+        status: 'WRONG_ANSWER',
+        score: 50,
+        passedCount: 1,
+        totalCount: 2,
+        report: [
+          { index: 1, status: 'ACCEPTED', passed: true, input: '1\n', expected: '1\n', actual: '1\n', isPublic: true },
+          { index: 2, status: 'WRONG_ANSWER', passed: false, isPublic: false, error: 'Sai đáp án' }
+        ]
+      });
+
+      const previewRes = await fetch(`http://localhost:${port}/api/admin/submissions/${maskedSubmissionId}/rejudge-preview`, {
+        method: 'POST',
+        headers: { cookie: adminCookie }
+      });
+      assert.equal(previewRes.status, 200);
+      const previewBody = await previewRes.json();
+      assert.equal(previewBody.report[1].input, '2\n');
+      assert.equal(previewBody.report[1].expected, '4\n');
+      assert.equal(previewBody.report[1].actual, '5\n');
+
+      const { rows: savedRows } = await query('SELECT report FROM submissions WHERE id = $1', [maskedSubmissionId]);
+      assert.equal(savedRows[0].report[1].input, undefined);
+      assert.equal(savedRows[0].report[1].expected, undefined);
+      assert.equal(savedRows[0].report[1].actual, undefined);
+    } finally {
+      await cleanupProblem(problem.id);
+    }
+  });
+
+  await t.test('student cannot call rejudge preview endpoint', async () => {
+    const problem = await createProblem([
+      { input: '1\n', output: '1\n', isPublic: true, weight: 1 }
+    ]);
+
+    try {
+      const submissionId = await createSubmission({ userId: studentId, problemId: problem.id });
+      const response = await fetch(`http://localhost:${port}/api/admin/submissions/${submissionId}/rejudge-preview`, {
+        method: 'POST',
+        headers: { cookie: studentCookie }
+      });
+      assert.equal(response.status, 403);
     } finally {
       await cleanupProblem(problem.id);
     }

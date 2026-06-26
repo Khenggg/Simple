@@ -12,6 +12,7 @@ test('Submission Flow Integration Tests', async (t) => {
   let adminId;
   let studentId;
   let studentCookie;
+  let adminCookie;
 
   t.before(async () => {
     // Start temporary test server
@@ -44,6 +45,8 @@ test('Submission Flow Integration Tests', async (t) => {
     // Generate student cookie
     const token = jwt.sign({ sub: studentId, role: 'STUDENT' }, config.jwtSecret, { expiresIn: '1h' });
     studentCookie = `simpleoj_session=${token}`;
+    const adminToken = jwt.sign({ sub: adminId, role: 'ADMIN' }, config.jwtSecret, { expiresIn: '1h' });
+    adminCookie = `simpleoj_session=${adminToken}`;
   });
 
   t.after(async () => {
@@ -142,6 +145,35 @@ test('Submission Flow Integration Tests', async (t) => {
       assert.equal(reports[1].input, undefined);
       assert.equal(reports[1].expected, undefined);
       assert.equal(reports[1].actual, undefined);
+
+      const { rows: savedSubmissionRows } = await query(
+        'SELECT id, report FROM submissions WHERE attempt_id = $1',
+        [attemptId]
+      );
+      assert.equal(savedSubmissionRows.length, 1);
+      const savedReport = savedSubmissionRows[0].report;
+      assert.equal(savedReport[1].isPublic, false);
+      assert.equal(savedReport[1].input, '2\n');
+      assert.equal(savedReport[1].expected, '4\n');
+      assert.equal(savedReport[1].actual, '4\n');
+
+      const ownerDetailRes = await fetch(`http://localhost:${port}/api/submissions/${savedSubmissionRows[0].id}`, {
+        headers: { cookie: studentCookie }
+      });
+      assert.equal(ownerDetailRes.status, 200);
+      const ownerDetail = await ownerDetailRes.json();
+      assert.equal(ownerDetail.submission.report[1].input, undefined);
+      assert.equal(ownerDetail.submission.report[1].expected, undefined);
+      assert.equal(ownerDetail.submission.report[1].actual, undefined);
+
+      const adminDetailRes = await fetch(`http://localhost:${port}/api/admin/submissions/${savedSubmissionRows[0].id}`, {
+        headers: { cookie: adminCookie }
+      });
+      assert.equal(adminDetailRes.status, 200);
+      const adminDetail = await adminDetailRes.json();
+      assert.equal(adminDetail.submission.report[1].input, '2\n');
+      assert.equal(adminDetail.submission.report[1].expected, '4\n');
+      assert.equal(adminDetail.submission.report[1].actual, '4\n');
 
       // Verify progress updated & completed
       const progress = await query("SELECT completed_at, best_score FROM user_problem_progress WHERE user_id=$1 AND problem_id=$2", [studentId, problemId]);

@@ -16,6 +16,7 @@ import {
 import { cleanText, normalizeEmail, normalizeProblem, validEmail, validateProblem } from './validation.js';
 import { judgeSubmission, runPythonLocal, parseRunnerError } from './judge.js';
 import { attachTerminalServer } from './terminal.js';
+import { maskSubmissionReportForStudent, normalizeSubmissionReport } from './report-utils.js';
 import {
   assertActiveGroupsExist,
   assertActiveProblemsExist,
@@ -90,19 +91,6 @@ function normalizeSubmissionSort(value) {
   if (normalized === 'score_desc') return 'score_desc';
   if (normalized === 'score_asc') return 'score_asc';
   return 'newest';
-}
-
-function normalizeSubmissionReport(report) {
-  if (Array.isArray(report)) return report;
-  if (typeof report === 'string') {
-    try {
-      const parsed = JSON.parse(report);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch {
-      return [];
-    }
-  }
-  return [];
 }
 
 function getFirstFailedReport(report) {
@@ -829,7 +817,9 @@ app.post('/api/submissions', requireAuth, asyncRoute(async (req, res) => {
   if (!expired) {
     judged = await judgeSubmission(code, testcases, attempt.execution_limit_ms, false, {
       compareMode: attempt.compare_mode,
-      numberTolerance: attempt.number_tolerance
+      numberTolerance: attempt.number_tolerance,
+      suppressInputPrompts: true,
+      includeHiddenReport: true
     });
     const hadTimeout = judged.reports.some((r) => r.status === 'Time Limit Exceeded');
     const hadOutputLimit = judged.reports.some((r) => r.status === 'Output Limit Exceeded');
@@ -908,8 +898,8 @@ app.post('/api/submissions', requireAuth, asyncRoute(async (req, res) => {
   });
 
   const submission = saved.rows[0];
-
-  res.status(201).json({ submission, reports: judged.reports });
+  const studentReports = maskSubmissionReportForStudent(judged.reports);
+  res.status(201).json({ submission, reports: studentReports });
 }));
 
 app.get('/api/me/submissions', requireAuth, asyncRoute(async (req, res) => {
@@ -940,8 +930,18 @@ app.get('/api/submissions/:id', requireAuth, asyncRoute(async (req, res) => {
     return res.status(403).json({ error: 'Không có quyền truy cập bài nộp này.' });
   }
 
+  let report = normalizeSubmissionReport(submission.report);
+  if (req.user.role !== 'ADMIN') {
+    report = maskSubmissionReportForStudent(report);
+  }
+
   delete submission.userId;
-  res.json({ submission });
+  res.json({
+    submission: {
+      ...submission,
+      report
+    }
+  });
 }));
 
 app.get('/api/admin/submissions', requireAdmin, asyncRoute(async (req, res) => {
@@ -1116,6 +1116,90 @@ app.get('/api/admin/submissions/:id', requireAdmin, asyncRoute(async (req, res) 
       ...submission,
       firstFailedReport: getFirstFailedReport(submission.report)
     }
+  });
+}));
+
+app.post('/api/admin/submissions/:id/rejudge-preview', requireAdmin, asyncRoute(async (req, res) => {
+  const { id } = req.params;
+  const save = String(req.query.save || '').toLowerCase() === 'true';
+
+  const { rows } = await query(
+    `SELECT
+       s.id,
+       s.code,
+       s.problem_id AS "problemId",
+       p.execution_limit_ms AS "executionLimitMs",
+       p.compare_mode AS "compareMode",
+       p.number_tolerance AS "numberTolerance"
+     FROM submissions s
+     JOIN problems p ON p.id = s.problem_id
+     WHERE s.id = $1`,
+    [id]
+  );
+
+  const submission = rows[0];
+  if (!submission) {
+    return res.status(404).json({ error: 'KhÃ´ng tÃ¬m tháº¥y bÃ i ná»™p.' });
+  }
+
+  const { rows: testcaseRows } = await query(
+    `SELECT
+       input,
+       expected_output AS output,
+       is_public AS "isPublic",
+       weight,
+       order_index
+     FROM problem_testcases
+     WHERE problem_id = $1
+     ORDER BY order_index ASC, id ASC`,
+    [submission.problemId]
+  );
+
+  const judged = await judgeSubmission(
+    submission.code,
+    testcaseRows,
+    submission.executionLimitMs || 1500,
+    false,
+    {
+      compareMode: submission.compareMode || 'token',
+      numberTolerance: submission.numberTolerance ?? 1e-6,
+      suppressInputPrompts: true,
+      includeHiddenReport: true
+    }
+  );
+
+  if (save) {
+    const statuses = judged.reports.map((item) => item.status);
+    const nextStatus = judged.score === 100
+      ? 'ACCEPTED'
+      : statuses.includes('Time Limit Exceeded')
+        ? 'TIME_LIMIT'
+        : statuses.includes('Output Limit Exceeded')
+          ? 'OUTPUT_LIMIT'
+          : statuses.includes('Memory Limit Exceeded')
+            ? 'MEMORY_LIMIT'
+            : statuses.includes('Runtime Error')
+              ? 'RUNTIME_ERROR'
+              : 'WRONG_ANSWER';
+
+    await query(
+      `UPDATE submissions
+       SET
+         report = $2::jsonb,
+         score = $3,
+         status = $4,
+         passed_count = $5,
+         total_count = $6
+       WHERE id = $1`,
+      [id, JSON.stringify(judged.reports), judged.score, nextStatus, judged.passed, judged.total]
+    );
+  }
+
+  res.json({
+    report: judged.reports,
+    score: judged.score,
+    passedCount: judged.passed,
+    totalCount: judged.total
   });
 }));
 

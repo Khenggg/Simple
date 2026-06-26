@@ -368,6 +368,12 @@ async function apiAdminSubmissionDetail(id) {
   return api(`/api/admin/submissions/${encodeURIComponent(id)}`);
 }
 
+async function apiAdminRejudgeSubmissionPreview(id) {
+  return api(`/api/admin/submissions/${encodeURIComponent(id)}/rejudge-preview`, {
+    method: 'POST'
+  });
+}
+
 function clientGetRatingLabel(r) {
   if (r >= 800 && r <= 1000) return 'Cơ bản';
   if (r >= 1100 && r <= 1300) return 'Dễ';
@@ -410,6 +416,10 @@ function shortText(value, max = 300) {
   const text = String(value ?? '');
   if (text.length <= max) return text;
   return `${text.slice(0, max)}...`;
+}
+
+function renderCodeBlock(value, max = 1200) {
+  return `<pre class="mini-code-block">${escapeHtml(shortText(value, max))}</pre>`;
 }
 
 function getTeacherHint(submission) {
@@ -2462,60 +2472,102 @@ function disposeAdminSubmissionCodeEditor() {
   }
 }
 
-function renderAdminSubmissionValue(value, { hiddenText = '-', max = 300 } = {}) {
-  const text = String(value ?? '');
-  if (!text) return `<span class="muted">${escapeHtml(hiddenText)}</span>`;
-  const shortened = shortText(text, max);
-  if (shortened === text) {
-    return `<pre>${escapeHtml(text)}</pre>`;
-  }
+function hasReportIO(item) {
+  return [item?.input, item?.expected, item?.actual].some((value) => String(value ?? '') !== '');
+}
+
+function renderAdminTestcaseCard(item) {
+  const status = item.status || (item.passed ? 'ACCEPTED' : 'UNKNOWN');
+  const statusClass = getSubmissionStatusClass(status);
+  const hasIO = hasReportIO(item);
+  const missingHiddenText = item.isPublic === false && !hasIO
+    ? 'Dữ liệu test ẩn chưa được lưu trong lần chấm cũ. Hãy bấm "Chạy lại để xem test ẩn".'
+    : '';
+
   return `
-    <pre>${escapeHtml(shortened)}</pre>
-    <details class="submission-report-expand">
-      <summary>Xem đầy đủ</summary>
-      <pre>${escapeHtml(text)}</pre>
-    </details>
+    <article class="testcase-card">
+      <div class="testcase-card-head">
+        <div>
+          <strong>Test #${escapeHtml(String(item.index))}</strong>
+          ${item.isPublic === false ? '<span class="mini-badge">Test ẩn</span>' : '<span class="mini-badge public">Public</span>'}
+        </div>
+        <span class="status-badge ${statusClass}">${escapeHtml(statusLabel(status))}</span>
+        <span class="muted">${item.runtimeMs !== null && item.runtimeMs !== undefined ? escapeHtml(formatRuntimeMs(item.runtimeMs)) : '-'}</span>
+      </div>
+
+      ${missingHiddenText
+        ? `<div class="empty subtle">${escapeHtml(missingHiddenText)}</div>`
+        : `
+          <div class="testcase-io-grid">
+            <div>
+              <label>Input</label>
+              ${renderCodeBlock(item.input || '-')}
+            </div>
+            <div>
+              <label>Expected</label>
+              ${renderCodeBlock(item.expected || '-')}
+            </div>
+            <div>
+              <label>Actual</label>
+              ${renderCodeBlock(item.actual || '-')}
+            </div>
+          </div>
+        `
+      }
+
+      <div class="testcase-error">
+        <label>Error</label>
+        ${renderCodeBlock(item.error || '-')}
+      </div>
+    </article>
   `;
 }
 
 function renderAdminSubmissionReport(submission) {
-  const report = Array.isArray(submission?.report) ? submission.report.map(normalizeAdminReportItem) : [];
+  const report = Array.isArray(submission?.report)
+    ? submission.report.map(normalizeAdminReportItem)
+    : [];
+
   if (!report.length) {
     return '<div class="empty">Không có dữ liệu testcase.</div>';
   }
 
-  const rows = report.map((item) => {
-    const hiddenIO = !item.input && !item.expected && !item.actual;
-    const statusClass = getSubmissionStatusClass(item.status || (item.passed ? 'ACCEPTED' : 'UNKNOWN'));
-    return `
-      <tr>
-        <td>${item.index}</td>
-        <td><span class="status-badge ${statusClass}">${escapeHtml(statusLabel(item.status || (item.passed ? 'ACCEPTED' : 'UNKNOWN')))}</span></td>
-        <td>${renderAdminSubmissionValue(item.input, { hiddenText: hiddenIO ? 'Test ẩn - không hiển thị dữ liệu' : '-' })}</td>
-        <td>${renderAdminSubmissionValue(item.expected, { hiddenText: hiddenIO ? 'Test ẩn - không hiển thị dữ liệu' : '-' })}</td>
-        <td>${renderAdminSubmissionValue(item.actual, { hiddenText: hiddenIO ? 'Test ẩn - không hiển thị dữ liệu' : '-' })}</td>
-        <td>${renderAdminSubmissionValue(item.error, { hiddenText: '-' })}</td>
-        <td>${item.runtimeMs !== null && item.runtimeMs !== undefined ? escapeHtml(formatRuntimeMs(item.runtimeMs)) : '<span class="muted">-</span>'}</td>
-      </tr>
-    `;
-  }).join('');
-
   return `
-    <div class="table-wrap report-table">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Status</th>
-            <th>Input</th>
-            <th>Expected</th>
-            <th>Actual</th>
-            <th>Error</th>
-            <th>Runtime</th>
-          </tr>
-        </thead>
-        <tbody>${rows}</tbody>
-      </table>
+    <div class="submission-report-list">
+      ${report.map((item) => renderAdminTestcaseCard(item)).join('')}
+    </div>
+  `;
+}
+
+function renderFirstFailedBox(submission) {
+  if (String(submission?.status || '').toUpperCase() === 'ACCEPTED') {
+    return `
+      <div class="teacher-first-fail is-success">
+        <h4>Lỗi đầu tiên</h4>
+        <div class="empty subtle">Không có testcase lỗi vì bài làm đã đúng toàn bộ.</div>
+      </div>
+    `;
+  }
+
+  if (!submission?.firstFailedReport) {
+    return `
+      <div class="teacher-first-fail">
+        <h4>Lỗi đầu tiên</h4>
+        <div class="empty subtle">Chưa xác định được testcase lỗi đầu tiên từ report hiện có.</div>
+      </div>
+    `;
+  }
+
+  const firstFailed = normalizeAdminReportItem(submission.firstFailedReport, 0);
+  return `
+    <div class="teacher-first-fail">
+      <h4>Lỗi đầu tiên</h4>
+      <div class="teacher-first-fail-card">
+        <div><span class="muted">Test</span><strong>#${escapeHtml(String(firstFailed.index || 1))}</strong></div>
+        <div><span class="muted">Status</span><strong>${escapeHtml(statusLabel(firstFailed.status || submission.status))}</strong></div>
+        <div><span class="muted">Actual</span>${renderCodeBlock(firstFailed.actual || '-')}</div>
+        <div><span class="muted">Error</span>${renderCodeBlock(firstFailed.error || '-')}</div>
+      </div>
     </div>
   `;
 }
@@ -2534,7 +2586,6 @@ function renderAdminSubmissionDetailDrawer() {
   } else {
     const submission = pageState.selected;
     const hint = getTeacherHint(submission);
-    const firstFailed = normalizeAdminReportItem(submission.firstFailedReport || {}, 0);
 
     body = `
       <div class="submission-detail-body">
@@ -2566,20 +2617,10 @@ function renderAdminSubmissionDetailDrawer() {
           <div><span class="muted">Compare mode</span><strong>${escapeHtml(submission.compareMode || '-')}</strong></div>
         </div>
 
-        <div class="teacher-first-fail">
-          <h4>Lỗi đầu tiên</h4>
-          ${submission.firstFailedReport ? `
-            <div class="teacher-first-fail-card">
-              <div><span class="muted">Test</span><strong>#${escapeHtml(String(firstFailed.index || 1))}</strong></div>
-              <div><span class="muted">Status</span><strong>${escapeHtml(statusLabel(firstFailed.status || submission.status))}</strong></div>
-              <div><span class="muted">Actual</span>${renderAdminSubmissionValue(firstFailed.actual, { hiddenText: '-' })}</div>
-              <div><span class="muted">Error</span>${renderAdminSubmissionValue(firstFailed.error, { hiddenText: '-' })}</div>
-            </div>
-          ` : '<div class="empty">Chưa xác định được testcase lỗi đầu tiên từ report hiện có.</div>'}
-        </div>
+        ${renderFirstFailedBox(submission)}
 
         <div class="submission-detail-layout">
-          <section>
+          <section class="submission-code-panel">
             <div class="section-head">
               <h4>Code học sinh</h4>
               <div class="section-head-actions">
@@ -2590,9 +2631,12 @@ function renderAdminSubmissionDetailDrawer() {
             <div id="submission-code-viewer"></div>
           </section>
 
-          <section>
+          <section class="submission-report-panel">
             <div class="section-head">
               <h4>Kết quả test</h4>
+              <div class="section-head-actions">
+                <button class="btn secondary small" id="rejudge-submission-preview">Chạy lại để xem test ẩn</button>
+              </div>
             </div>
             <div id="submission-report-viewer">${renderAdminSubmissionReport(submission)}</div>
           </section>
@@ -2602,7 +2646,7 @@ function renderAdminSubmissionDetailDrawer() {
   }
 
   return `
-    <div class="submission-detail-overlay" id="submission-detail-overlay">
+    <div class="submission-detail-backdrop" id="submission-detail-overlay">
       <div class="submission-detail-drawer" role="dialog" aria-modal="true">
         ${body}
       </div>
@@ -2614,6 +2658,7 @@ function renderAdminSubmissionsPage() {
   const pageState = state.adminSubmissions;
   const pagination = pageState.pagination;
   disposeAdminSubmissionCodeEditor();
+  document.body.classList.toggle('submission-detail-open', Boolean(pageState.selectedId));
 
   const rows = pageState.items.map((submission) => `
     <tr class="${pageState.selectedId === submission.id ? 'is-selected' : ''}">
@@ -2780,6 +2825,7 @@ function closeAdminSubmissionDetail() {
   state.adminSubmissions.selected = null;
   state.adminSubmissions.detailLoading = false;
   state.adminSubmissions.detailError = '';
+  document.body.classList.remove('submission-detail-open');
   if (state.page === 'submissions') renderAdminSubmissionsPage();
 }
 
@@ -2856,6 +2902,34 @@ function downloadSelectedSubmissionCode() {
   URL.revokeObjectURL(url);
 }
 
+async function rejudgeSelectedSubmissionPreview() {
+  const selected = state.adminSubmissions.selected;
+  if (!selected?.id) return;
+
+  try {
+    toast('Đang chạy lại bài nộp để lấy đầy đủ test ẩn...');
+    const data = await apiAdminRejudgeSubmissionPreview(selected.id);
+    state.adminSubmissions.selected = {
+      ...selected,
+      report: data.report || [],
+      score: data.score ?? selected.score,
+      passedCount: data.passedCount ?? selected.passedCount,
+      totalCount: data.totalCount ?? selected.totalCount,
+      firstFailedReport: Array.isArray(data.report)
+        ? data.report.find((item) => {
+          const status = String(item?.status || item?.verdict || '').toLowerCase();
+          if (status) return !['accepted', 'ok', 'passed'].includes(status);
+          return item?.passed === false;
+        }) || null
+        : selected.firstFailedReport
+    };
+    renderAdminSubmissionsPage();
+    toast('Đã chạy lại và cập nhật report hiển thị.');
+  } catch (error) {
+    toast(error.message || 'Không chạy lại được bài nộp.', true);
+  }
+}
+
 async function renderSubmissionCodeViewer(code) {
   const el = document.getElementById('submission-code-viewer');
   if (!el) return;
@@ -2928,6 +3002,10 @@ function bindAdminSubmissionEvents() {
     }
   });
 
+  bindAdminSubmissionDetailEvents();
+}
+
+function bindAdminSubmissionDetailEvents() {
   document.getElementById('close-submission-detail')?.addEventListener('click', closeAdminSubmissionDetail);
   document.getElementById('submission-detail-overlay')?.addEventListener('click', (event) => {
     if (event.target.id === 'submission-detail-overlay') {
@@ -2936,6 +3014,7 @@ function bindAdminSubmissionEvents() {
   });
   document.getElementById('copy-submission-code')?.addEventListener('click', copySelectedSubmissionCode);
   document.getElementById('download-submission-code')?.addEventListener('click', downloadSelectedSubmissionCode);
+  document.getElementById('rejudge-submission-preview')?.addEventListener('click', rejudgeSelectedSubmissionPreview);
 }
 
 async function adminSubmissionsView() {
@@ -3463,6 +3542,7 @@ async function navigate(page) {
   state.editor?.dispose(); state.editor = null;
   state.terminal?.dispose(); state.terminal = null;
   disposeAdminSubmissionCodeEditor();
+  document.body.classList.remove('submission-detail-open');
   state.page = page;
 
   if (state.user && (page === 'home' || page === 'problems')) {
