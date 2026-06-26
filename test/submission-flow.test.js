@@ -5,6 +5,9 @@ import jwt from 'jsonwebtoken';
 import app from '../src/server.js';
 import { query } from '../src/db.js';
 import { config } from '../src/config.js';
+import { assertLocalTestDatabase } from './test-db-guard.js';
+
+assertLocalTestDatabase('submission-flow.test.js');
 
 test('Submission Flow Integration Tests', async (t) => {
   let server;

@@ -1293,16 +1293,21 @@ body.submission-detail-open {
 .submission-detail-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 100000;
   background: rgba(15, 23, 42, 0.45);
   overflow: auto;
   padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .submission-detail-drawer {
   width: min(1320px, calc(100vw - 48px));
   max-height: calc(100vh - 48px);
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
   background: var(--surface, #fffdf5);
   border: 1px solid var(--line, #e5e7eb);
   border-radius: 24px;
@@ -1577,6 +1582,7 @@ body.submission-detail-open {
 @media (max-width: 960px) {
   .submission-detail-backdrop {
     padding: 0;
+    align-items: stretch;
   }
 
   .submission-detail-drawer {

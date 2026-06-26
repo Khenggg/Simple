@@ -3,22 +3,12 @@ import assert from 'node:assert/strict';
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
 import { query } from '../src/db.js';
+import { isLocalTestDatabaseUrl } from './test-db-guard.js';
 
 const execAsync = promisify(exec);
-
-function isLocalDatabaseUrl(url) {
-  const value = String(url || '').toLowerCase();
-  return (
-    value.includes('localhost') ||
-    value.includes('127.0.0.1') ||
-    value.includes('host.docker.internal') ||
-    value.includes('simpleoj_test')
-  );
-}
-
 const dbUrl = process.env.DATABASE_URL || '';
 
-if (!isLocalDatabaseUrl(dbUrl)) {
+if (!isLocalTestDatabaseUrl(dbUrl)) {
   test('Reset and Seed Basic Problems Script Tests skipped on non-local database', { skip: true }, () => {});
 } else {
   test('Reset and Seed Basic Problems Script Tests', async (t) => {

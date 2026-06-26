@@ -8,9 +8,14 @@ import { normalizeProblem } from '../src/validation.js';
 import { canonicalProblems } from '../data/canonical-problems.js';
 
 const args = new Set(process.argv.slice(2));
+const isProduction = String(process.env.NODE_ENV || '').toLowerCase() === 'production';
 const shouldSeedCanonicalProblems =
   args.has('--with-canonical-problems') ||
   String(process.env.SEED_CANONICAL_PROBLEMS || '').toLowerCase() === 'true';
+
+if (isProduction && shouldSeedCanonicalProblems) {
+  console.warn('Warning: canonical problem seeding is enabled in production.');
+}
 
 const email = String(process.env.ADMIN_EMAIL || '').trim().toLowerCase();
 const password = process.env.ADMIN_PASSWORD || '';
@@ -28,6 +33,24 @@ if (email && password) {
 } else {
   console.log('Skip admin seed: set ADMIN_EMAIL and ADMIN_PASSWORD.');
 }
+
+// Seed Default Groups
+const defaultGroups = [
+  { slug: 'bai-tap-co-ban', name: 'Bài tập cơ bản', type: 'BASIC', description: 'Các bài tập căn bản cho lập trình viên mới bắt đầu', color: '#2563eb', icon: 'code' },
+  { slug: 'bai-on-luyen', name: 'Bài ôn luyện', type: 'PRACTICE', description: 'Các bài tập thực hành nâng cao kỹ năng tư duy', color: '#10b981', icon: 'practice' },
+  { slug: 'bai-nang-cao', name: 'Bài nâng cao', type: 'ADVANCED', description: 'Thách thức với các thuật toán và cấu trúc dữ liệu phức tạp', color: '#d946ef', icon: 'star' },
+  { slug: 'bai-thi-hsg', name: 'Bài thi HSG', type: 'HSG', description: 'Tuyển tập các bài thi học sinh giỏi các cấp', color: '#f59e0b', icon: 'award' }
+];
+
+for (const g of defaultGroups) {
+  await pool.query(
+    `INSERT INTO problem_groups (slug, name, description, group_type, color, icon)
+     VALUES ($1, $2, $3, $4, $5, $6)
+     ON CONFLICT (slug) DO UPDATE SET name = $2, description = $3, group_type = $4, color = $5, icon = $6`,
+    [g.slug, g.name, g.description, g.type, g.color, g.icon]
+  );
+}
+console.log('Default problem groups seeded/verified.');
 
 // Title normalization helper
 function normalizeTitle(title) {
@@ -180,6 +203,7 @@ async function insertCanonicalProblems(createdBy) {
 }
 
 const admin = await pool.query("SELECT id FROM users WHERE role = 'ADMIN' ORDER BY created_at LIMIT 1");
+console.log(`Canonical problem seed: ${shouldSeedCanonicalProblems ? 'enabled' : 'disabled'}.`);
 if (shouldSeedCanonicalProblems) {
   await insertCanonicalProblems(admin.rows[0]?.id || null);
 } else {

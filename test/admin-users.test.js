@@ -6,6 +6,9 @@ import app from '../src/server.js';
 import { query, transaction } from '../src/db.js';
 import { config } from '../src/config.js';
 import { hashPassword, verifyPassword } from '../src/auth.js';
+import { assertLocalTestDatabase } from './test-db-guard.js';
+
+assertLocalTestDatabase('admin-users.test.js');
 
 test('Admin Users CRUD Integration Tests', async (t) => {
   let server;

@@ -42,6 +42,7 @@ app.use(helmet({
   crossOriginOpenerPolicy: { policy: 'same-origin' },
   crossOriginEmbedderPolicy: { policy: 'require-corp' }
 }));
+// admin problem routes
 app.use(express.json({ limit: '1mb' }));
 app.use(cookieParser());
 app.use(optionalAuth);
@@ -418,6 +419,7 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
       p.title,
       p.difficulty,
       p.rating,
+      p.is_active AS "isActive",
       p.source,
       p.order_index AS "orderIndex",
       p.published_at AS "publishedAt",
@@ -484,6 +486,7 @@ app.get('/api/problems', requireAuth, asyncRoute(async (req, res) => {
       title: item.title,
       difficulty: item.difficulty,
       rating: item.rating,
+      isActive: item.isActive,
       ratingLabel: getRatingLabel(item.rating),
       source: item.source,
       orderIndex: item.orderIndex,
@@ -1419,6 +1422,86 @@ app.put('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => 
   }
 }));
 
+app.patch('/api/admin/problems/:id/status', requireAdmin, asyncRoute(async (req, res) => {
+  const nextActive = req.body?.isActive ?? req.body?.is_active;
+  if (nextActive === undefined) {
+    return res.status(400).json({ error: 'Thiáº¿u tráº¡ng thÃ¡i má»›i.' });
+  }
+
+  const isActive = Boolean(nextActive);
+
+  try {
+    const updated = await transaction(async (client) => {
+      const { rows: problemRows } = await client.query('SELECT id FROM problems WHERE id = $1', [req.params.id]);
+      if (!problemRows[0]) return null;
+
+      if (isActive) {
+        const { rows: activeGroups } = await client.query(
+          `SELECT pg.id
+           FROM problem_group_items pgi
+           JOIN problem_groups pg ON pg.id = pgi.group_id AND pg.is_active = TRUE
+           WHERE pgi.problem_id = $1
+           LIMIT 1`,
+          [req.params.id]
+        );
+        if (!activeGroups[0]) {
+          throw new Error('BÃ i táº­p hoáº¡t Ä‘á»™ng pháº£i thuá»™c Ã­t nháº¥t 1 nhÃ³m hoáº¡t Ä‘á»™ng.');
+        }
+      }
+
+      const { rows } = await client.query(
+        'UPDATE problems SET is_active = $1, updated_at = NOW() WHERE id = $2 RETURNING *',
+        [isActive, req.params.id]
+      );
+      return rows[0] || null;
+    });
+
+    if (!updated) return res.status(404).json({ error: 'KhÃ´ng tÃ¬m tháº¥y bÃ i.' });
+    res.json({ problem: updated });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}));
+
+app.delete('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => {
+  const hardDelete = String(req.query.hard || '').toLowerCase() === 'true';
+
+  try {
+    const result = await transaction(async (client) => {
+      const { rows: problemRows } = await client.query('SELECT id FROM problems WHERE id = $1', [req.params.id]);
+      if (!problemRows[0]) return null;
+
+      if (!hardDelete) {
+        const { rows } = await client.query(
+          'UPDATE problems SET is_active = FALSE, updated_at = NOW() WHERE id = $1 RETURNING id',
+          [req.params.id]
+        );
+        return rows[0] || null;
+      }
+
+      await client.query(
+        'DELETE FROM problem_assignment_targets WHERE assignment_id IN (SELECT id FROM problem_assignments WHERE problem_id = $1)',
+        [req.params.id]
+      );
+      await client.query('DELETE FROM problem_assignments WHERE problem_id = $1', [req.params.id]);
+      await client.query('DELETE FROM student_problem_assignments WHERE problem_id = $1', [req.params.id]);
+      await client.query('DELETE FROM user_problem_progress WHERE problem_id = $1', [req.params.id]);
+      await client.query('DELETE FROM submissions WHERE problem_id = $1', [req.params.id]);
+      await client.query('DELETE FROM attempts WHERE problem_id = $1', [req.params.id]);
+      await client.query('DELETE FROM problem_group_items WHERE problem_id = $1', [req.params.id]);
+      await client.query('DELETE FROM problem_testcases WHERE problem_id = $1', [req.params.id]);
+      await client.query('DELETE FROM problems WHERE id = $1', [req.params.id]);
+      return problemRows[0];
+    });
+
+    if (!result) return res.status(404).json({ error: 'KhÃ´ng tÃ¬m tháº¥y bÃ i.' });
+    res.json({ ok: true, mode: hardDelete ? 'hard_delete' : 'soft_delete' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}));
+
+// admin problem routes
 app.delete('/api/admin/problems/:id', requireAdmin, asyncRoute(async (req, res) => {
   const result = await query('UPDATE problems SET is_active=FALSE,updated_at=NOW() WHERE id=$1', [req.params.id]);
   if (!result.rowCount) return res.status(404).json({ error: 'Không tìm thấy bài.' });

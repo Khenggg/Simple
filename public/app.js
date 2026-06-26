@@ -315,8 +315,14 @@ function shell(content, title = 'Tổng quan') {
 async function loadProblems() {
   if (state.problems !== null) return state.problems;
   const data = await api('/api/problems');
-  state.problems = data.problems;
-  return data.problems;
+  state.problems = (data.problems || []).map((problem) => ({
+    ...problem,
+    is_active: problem.is_active ?? problem.isActive,
+    isActive: problem.isActive ?? problem.is_active,
+    time_limit_minutes: problem.time_limit_minutes ?? problem.timeLimitMinutes,
+    timeLimitMinutes: problem.timeLimitMinutes ?? problem.time_limit_minutes
+  }));
+  return state.problems;
 }
 
 async function loadSubmissions() {
@@ -1777,7 +1783,7 @@ async function adminView() {
     state.adminAssignmentState.viewStatus ||= 'all';
   }
 
-  const activeProblems = problems.filter((problem) => problem.is_active !== false);
+  const activeProblems = problems.filter((problem) => problem.isActive !== false && problem.is_active !== false);
   const recent = dashboard.recent.map((submission) => `<tr><td>${escapeHtml(submission.full_name)}</td><td>${escapeHtml(submission.title)}</td><td>${submission.score}</td><td>${formatDuration(submission.duration_ms)}</td><td>${formatDate(submission.created_at)}</td></tr>`).join('');
   const list = problems.map((problem) => {
     const rating = problem.rating ?? 800;
@@ -1858,6 +1864,21 @@ async function adminView() {
       </section>
     </div>
   </section>`, 'Quản trị');
+
+  const problemTableRows = document.querySelectorAll('.table-wrap')[0]?.querySelectorAll('tbody tr') || [];
+  problemTableRows.forEach((row, index) => {
+    const problem = problems[index];
+    if (!problem) return;
+    const isActive = problem.isActive !== false && problem.is_active !== false;
+    const actionCell = row.lastElementChild;
+    if (actionCell && !isActive) {
+      actionCell.innerHTML = `
+        <button class="btn small secondary edit-problem" data-id="${problem.id}">Sá»­a</button>
+        <button class="btn small secondary restore-problem" data-id="${problem.id}">KhÃ´i phá»¥c</button>
+        <button class="btn small danger hard-delete-problem" data-id="${problem.id}">XÃ³a hẳn</button>
+      `;
+    }
+  });
 
   const assignmentUserSelect = document.querySelector('#assignment-user');
   const assignmentNoteInput = document.querySelector('#assignment-note');
@@ -1987,11 +2008,35 @@ async function adminView() {
   document.querySelectorAll('.edit-problem').forEach((button) => button.onclick = async () => problemModal((await api(`/api/admin/problems/${button.dataset.id}`)).problem));
   document.querySelectorAll('.hide-problem').forEach((button) => button.onclick = async () => {
     if (confirm('Ẩn bài này khỏi học sinh?')) {
-      await api(`/api/admin/problems/${button.dataset.id}`, { method: 'DELETE' });
+      await api(`/api/admin/problems/${button.dataset.id}/status`, { method: 'PATCH', body: { isActive: false } });
       state.problems = null;
       state.problemDetails = {};
       state.adminDashboard = null;
       adminView();
+    }
+  });
+
+  document.querySelectorAll('.restore-problem').forEach((button) => button.onclick = async () => {
+    try {
+      await api(`/api/admin/problems/${button.dataset.id}/status`, { method: 'PATCH', body: { isActive: true } });
+      state.problems = null;
+      state.problemDetails = {};
+      state.adminDashboard = null;
+      adminView();
+    } catch (error) {
+      toast(error.message, true);
+    }
+  });
+  document.querySelectorAll('.hard-delete-problem').forEach((button) => button.onclick = async () => {
+    if (!confirm('XÃ³a vÄ©nh viá»…n bÃ i nÃ y? Thao tÃ¡c nÃ y xÃ³a cáº£ submissions, progress vÃ  testcase.')) return;
+    try {
+      await api(`/api/admin/problems/${button.dataset.id}?hard=true`, { method: 'DELETE' });
+      state.problems = null;
+      state.problemDetails = {};
+      state.adminDashboard = null;
+      adminView();
+    } catch (error) {
+      toast(error.message, true);
     }
   });
 

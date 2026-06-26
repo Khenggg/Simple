@@ -10,8 +10,21 @@
     "db:seed": "node scripts/seed.js",
     "db:seed:canonical": "node scripts/seed.js --with-canonical-problems",
     "problems:reset-basic": "node scripts/reset-and-seed-basic-problems.js",
+    "problems:cleanup-test": "node scripts/cleanup-test-problems.js",
+    "problems:cleanup-test:dry": "node scripts/cleanup-test-problems.js --dry-run",
     "test": "node --test --test-concurrency=1 --test-skip-pattern \"Reset and Seed Basic Problems Script Tests\"",
-    "test:reset-basic": "node --test test/reset-basic-problems.test.js"
+    "test:reset-basic": "node --test test/reset-basic-problems.test.js",
+    "db:local:up": "docker compose up -d postgres",
+    "db:local:down": "docker compose down",
+    "db:local:logs": "docker compose logs -f postgres",
+    "db:local:migrate": "node scripts/local-db.js migrate",
+    "db:local:seed": "node scripts/local-db.js seed",
+    "db:local:reset-basic": "node scripts/local-db.js reset-basic",
+    "db:local:test": "node scripts/local-db.js test",
+    "dev:local": "node scripts/local-db.js dev",
+    "local:setup": "npm run db:local:up && node scripts/ensure-local-databases.js && npm run db:local:migrate",
+    "problems:import-api": "node scripts/import-problems-api.js",
+    "problems:import-api:dry": "node scripts/import-problems-api.js --dry-run"
   },
   "engines": {
     "node": ">=20"
